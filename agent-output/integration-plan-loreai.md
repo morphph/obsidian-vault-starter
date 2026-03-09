@@ -11,7 +11,20 @@ status: ready
 
 Part of the [[LoreAI]] x [[blog2video]] content flywheel. This plan covers all changes in the `loreai-v2` repo. Execute steps in order — each builds on the previous.
 
-> **Prerequisite**: blog2video's CTA injection (Move 2 in blog2video plan) can run in parallel with Step 1 here, but Step 3 below depends on blog2video having produced at least one video output to import.
+## Why
+
+Both projects serve the same content domain (AI developer education) but the loop between them is open:
+- LoreAI blog posts already generate `video_ready`, `video_hook`, `video_status` in frontmatter — but `video_url` is never filled, so the "Watch video" button on ZH blog pages never activates
+- blog2video produces rich artifacts (Chinese scripts, video_plan.json with structured concepts/hooks/analogies, cleaned source_blog.md) — all discarded after video render
+- No `/zh/subscribe` page exists for Chinese audience capture from video viewers
+- No source tracking on subscribe API — can't measure what converts
+- Plausible analytics has no custom events — can't track signup conversions
+- Videos have zero CTA pointing to LoreAI
+
+**Goal**: Close the loop. Video viewers → subscribers. Video artifacts → blog posts + SEO pages. Measure everything.
+
+> **Parallel work**: blog2video's CTA injection (see `~/Desktop/Project/blog2video/integration-plan-blog2video.md`) can run at the same time as Step 1 here.
+> **Dependency**: Step 2 below needs blog2video to have produced at least one video output directory to import from.
 
 ---
 
@@ -89,12 +102,48 @@ In the same script, also generate:
 
 One video run could yield 3-5 glossary entries + 1-2 FAQ entries + 2 blog posts.
 
+### 2c. Batch mode + `/import-video` slash command
+
+The script should support batch importing all existing blog2video outputs:
+
+**`--batch` flag**:
+```bash
+npx tsx scripts/import-video-blog.ts --batch [--dry-run]
+```
+- Scans `~/Desktop/Project/blog2video/blog2video-output/*/`
+- Compares against existing blog slugs in `content/blog/en/` and `content/blog/zh/` to skip already-imported dirs
+- Processes all unimported dirs sequentially
+- Single git commit at the end (not per-dir)
+- Always show summary before proceeding: "Found 8 unimported dirs. Import? [y/n]"
+
+**`/import-video` slash command** (for daily use):
+- **New file**: `.claude/commands/import-video.md`
+- Runs the same script but with interactive UX:
+  1. Scan for unimported dirs
+  2. List them with titles (from `video_plan.json`)
+  3. Let user pick which to import (or "all")
+  4. Run import + commit + push
+- This becomes the single command you run after a blog2video session
+
+**Backfill existing 11+ videos**:
+After building the script, run the batch import:
+```bash
+# Preview first
+npx tsx scripts/import-video-blog.ts --batch --dry-run
+
+# Then import 1-2 as quality check
+npx tsx scripts/import-video-blog.ts --dir=~/Desktop/Project/blog2video/blog2video-output/agent-teams/
+
+# Once satisfied, batch the rest
+npx tsx scripts/import-video-blog.ts --batch
+```
+
 ### Verify
 
-1. Run on one existing output dir (e.g., `blog2video-output/agent-teams/`)
-2. Check `content/blog/zh/` for new post — content should read as written article, not spoken script
-3. Check `content/glossary/` for new entries from key_concepts
-4. `git push` → verify new pages appear on loreai.dev
+1. Run `--dry-run` on all existing output dirs — should list 11+ candidates
+2. Import one dir, check content quality on loreai.dev
+3. Run `--batch` for the rest, verify all new pages appear after push
+4. Test `/import-video` slash command interactively
 
 ---
 

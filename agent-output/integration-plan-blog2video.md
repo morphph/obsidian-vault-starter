@@ -11,7 +11,17 @@ status: ready
 
 Part of the [[LoreAI]] x [[blog2video]] content flywheel. This plan covers all changes in the `blog2video` repo. Only 2 steps — blog2video's role is to inject CTAs and make its artifacts importable.
 
-> **Can run in parallel with LoreAI Step 1.** No dependency on LoreAI changes. But the CTA QR code should point to `loreai.dev/zh/subscribe?ref=video-cta` — so coordinate the URL before generating the QR.
+## Why
+
+blog2video produces Chinese narrated videos from English tech content, published to XHS and WeChat under the "AI精读" brand. LoreAI (loreai.dev) is a bilingual AI newsletter/blog platform. Currently:
+- Videos have zero CTA pointing to LoreAI — viewers watch and leave
+- Rich artifacts (Chinese scripts, video_plan.json with structured concepts, source_blog.md) are discarded after render — they could become blog posts and SEO pages on loreai.dev
+- No cross-promotion between the brands
+
+**Goal**: Every video becomes a newsletter signup funnel. Every video's artifacts become reusable by LoreAI's import pipeline.
+
+> **Parallel work**: LoreAI's measurement foundation (see `~/Desktop/Project/obsidian-vault-starter/agent-output/integration-plan-loreai.md`) runs at the same time as Step 1 here. No dependency on LoreAI changes.
+> **Coordinate**: CTA QR code should point to `loreai.dev/zh/subscribe?ref=video-cta` — confirm this URL works after LoreAI creates the `/zh/subscribe` page.
 
 ---
 
