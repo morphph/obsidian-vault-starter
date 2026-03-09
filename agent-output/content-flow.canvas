@@ -1,0 +1,481 @@
+{
+  "nodes": [
+    {
+      "id": "a0b1c2d3e4f5a6b7",
+      "type": "text",
+      "x": -200,
+      "y": -60,
+      "width": 280,
+      "height": 60,
+      "text": "# Content Input / Output Map",
+      "color": "6"
+    },
+    {
+      "id": "g1a0b1c2d3e4f5a6",
+      "type": "group",
+      "x": -220,
+      "y": 40,
+      "width": 1520,
+      "height": 480,
+      "label": "[[blog2video]] — AI精读",
+      "color": "2"
+    },
+    {
+      "id": "b2v_in_blog",
+      "type": "text",
+      "x": -200,
+      "y": 80,
+      "width": 200,
+      "height": 60,
+      "text": "📄 English tech blogs\n(URLs)",
+      "color": "3"
+    },
+    {
+      "id": "b2v_in_pdf0",
+      "type": "text",
+      "x": -200,
+      "y": 160,
+      "width": 200,
+      "height": 60,
+      "text": "📑 PDFs",
+      "color": "3"
+    },
+    {
+      "id": "b2v_in_yt00",
+      "type": "text",
+      "x": -200,
+      "y": 240,
+      "width": 200,
+      "height": 60,
+      "text": "🎬 YouTube videos",
+      "color": "3"
+    },
+    {
+      "id": "b2v_in_gh00",
+      "type": "text",
+      "x": -200,
+      "y": 320,
+      "width": 200,
+      "height": 60,
+      "text": "🐙 GitHub repos",
+      "color": "3"
+    },
+    {
+      "id": "b2v_in_tw00",
+      "type": "text",
+      "x": -200,
+      "y": 400,
+      "width": 200,
+      "height": 60,
+      "text": "🐦 Twitter/X articles",
+      "color": "3"
+    },
+    {
+      "id": "b2v_step1000",
+      "type": "text",
+      "x": 120,
+      "y": 120,
+      "width": 200,
+      "height": 80,
+      "text": "**Content Analyzer**\nClaude Sonnet\nExtract key points",
+      "color": "2"
+    },
+    {
+      "id": "b2v_step2000",
+      "type": "text",
+      "x": 420,
+      "y": 120,
+      "width": 200,
+      "height": 80,
+      "text": "**Script Writer**\nChinese narration\n(not translation)",
+      "color": "2"
+    },
+    {
+      "id": "b2v_step3000",
+      "type": "text",
+      "x": 420,
+      "y": 300,
+      "width": 200,
+      "height": 80,
+      "text": "**Slide Generator**\n+ Remotion Render\n+ Edge TTS",
+      "color": "2"
+    },
+    {
+      "id": "b2v_out_vid0",
+      "type": "text",
+      "x": 740,
+      "y": 80,
+      "width": 220,
+      "height": 60,
+      "text": "🎥 Chinese narrated video\n(MP4)",
+      "color": "1"
+    },
+    {
+      "id": "b2v_out_xhs0",
+      "type": "text",
+      "x": 1040,
+      "y": 80,
+      "width": 220,
+      "height": 60,
+      "text": "→ **小红书**",
+      "color": "1"
+    },
+    {
+      "id": "b2v_out_wx00",
+      "type": "text",
+      "x": 1040,
+      "y": 160,
+      "width": 220,
+      "height": 60,
+      "text": "→ **微信视频号**",
+      "color": "1"
+    },
+    {
+      "id": "b2v_out_scp0",
+      "type": "text",
+      "x": 740,
+      "y": 200,
+      "width": 220,
+      "height": 60,
+      "text": "📤 SCP → Claudiny\n(auto-delivery)",
+      "color": "2"
+    },
+    {
+      "id": "g2a0b1c2d3e4f5a6",
+      "type": "group",
+      "x": -220,
+      "y": 600,
+      "width": 1520,
+      "height": 460,
+      "label": "[[LoreAI]] — loreai.dev",
+      "color": "5"
+    },
+    {
+      "id": "lr_in_rss00",
+      "type": "text",
+      "x": -200,
+      "y": 640,
+      "width": 200,
+      "height": 60,
+      "text": "📡 RSS feeds\n(15+ sources)",
+      "color": "3"
+    },
+    {
+      "id": "lr_in_tw000",
+      "type": "text",
+      "x": -200,
+      "y": 720,
+      "width": 200,
+      "height": 60,
+      "text": "🐦 Twitter/X",
+      "color": "3"
+    },
+    {
+      "id": "lr_in_gh000",
+      "type": "text",
+      "x": -200,
+      "y": 800,
+      "width": 200,
+      "height": 60,
+      "text": "🐙 GitHub trending",
+      "color": "3"
+    },
+    {
+      "id": "lr_in_hn000",
+      "type": "text",
+      "x": -200,
+      "y": 880,
+      "width": 200,
+      "height": 60,
+      "text": "🟧 Hacker News\n+ Reddit",
+      "color": "3"
+    },
+    {
+      "id": "lr_step1000",
+      "type": "text",
+      "x": 120,
+      "y": 680,
+      "width": 220,
+      "height": 100,
+      "text": "**VPS Cron (4am SGT)**\nCollect → SQLite\n28 items/day\n5 categories",
+      "color": "5"
+    },
+    {
+      "id": "lr_step2000",
+      "type": "text",
+      "x": 420,
+      "y": 680,
+      "width": 220,
+      "height": 100,
+      "text": "**Claude Opus**\nFilter + Write\nEN + ZH bilingual",
+      "color": "5"
+    },
+    {
+      "id": "lr_step3000",
+      "type": "text",
+      "x": 420,
+      "y": 860,
+      "width": 220,
+      "height": 60,
+      "text": "**Git push →**\nVercel SSG rebuild",
+      "color": "5"
+    },
+    {
+      "id": "lr_out_web0",
+      "type": "text",
+      "x": 740,
+      "y": 640,
+      "width": 220,
+      "height": 60,
+      "text": "🌐 **loreai.dev**\nBilingual website",
+      "color": "1"
+    },
+    {
+      "id": "lr_out_nl00",
+      "type": "text",
+      "x": 740,
+      "y": 720,
+      "width": 220,
+      "height": 60,
+      "text": "📧 **Newsletter**\nEN + ZH editions",
+      "color": "1"
+    },
+    {
+      "id": "lr_out_aeo0",
+      "type": "text",
+      "x": 740,
+      "y": 800,
+      "width": 220,
+      "height": 80,
+      "text": "🤖 **AEO**\nAI agent discoverability\n(探索中)",
+      "color": "3"
+    },
+    {
+      "id": "lr_out_subs",
+      "type": "text",
+      "x": 1040,
+      "y": 720,
+      "width": 220,
+      "height": 60,
+      "text": "→ **Email subscribers**\n(own the audience)",
+      "color": "1"
+    },
+    {
+      "id": "lr_out_seo0",
+      "type": "text",
+      "x": 1040,
+      "y": 640,
+      "width": 220,
+      "height": 60,
+      "text": "→ **SEO traffic**\n(rented, declining)",
+      "color": "3"
+    },
+    {
+      "id": "cross_feed00",
+      "type": "text",
+      "x": 740,
+      "y": 370,
+      "width": 220,
+      "height": 80,
+      "text": "⬇️ **blog2video feeds\ninto LoreAI**\ncontent production arm",
+      "color": "4"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_b2v_blog_s1",
+      "fromNode": "b2v_in_blog",
+      "fromSide": "right",
+      "toNode": "b2v_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_pdf0_s1",
+      "fromNode": "b2v_in_pdf0",
+      "fromSide": "right",
+      "toNode": "b2v_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_yt00_s1",
+      "fromNode": "b2v_in_yt00",
+      "fromSide": "right",
+      "toNode": "b2v_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_gh00_s1",
+      "fromNode": "b2v_in_gh00",
+      "fromSide": "right",
+      "toNode": "b2v_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_tw00_s1",
+      "fromNode": "b2v_in_tw00",
+      "fromSide": "right",
+      "toNode": "b2v_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_s1_s200",
+      "fromNode": "b2v_step1000",
+      "fromSide": "right",
+      "toNode": "b2v_step2000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_s2_s300",
+      "fromNode": "b2v_step2000",
+      "fromSide": "bottom",
+      "toNode": "b2v_step3000",
+      "toSide": "top",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_s3_out0",
+      "fromNode": "b2v_step3000",
+      "fromSide": "right",
+      "toNode": "b2v_out_vid0",
+      "toSide": "bottom",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_vid_scp",
+      "fromNode": "b2v_out_vid0",
+      "fromSide": "bottom",
+      "toNode": "b2v_out_scp0",
+      "toSide": "top",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_scp_xhs",
+      "fromNode": "b2v_out_scp0",
+      "fromSide": "right",
+      "toNode": "b2v_out_xhs0",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_scp_wx0",
+      "fromNode": "b2v_out_scp0",
+      "fromSide": "right",
+      "toNode": "b2v_out_wx00",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_b2v_to_lr00",
+      "fromNode": "b2v_out_vid0",
+      "fromSide": "bottom",
+      "toNode": "cross_feed00",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "color": "4",
+      "label": "feeds into"
+    },
+    {
+      "id": "e_cross_to_lr",
+      "fromNode": "cross_feed00",
+      "fromSide": "bottom",
+      "toNode": "lr_out_web0",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "color": "4"
+    },
+    {
+      "id": "e_lr_rss_s100",
+      "fromNode": "lr_in_rss00",
+      "fromSide": "right",
+      "toNode": "lr_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_tw0_s100",
+      "fromNode": "lr_in_tw000",
+      "fromSide": "right",
+      "toNode": "lr_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_gh0_s100",
+      "fromNode": "lr_in_gh000",
+      "fromSide": "right",
+      "toNode": "lr_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_hn0_s100",
+      "fromNode": "lr_in_hn000",
+      "fromSide": "right",
+      "toNode": "lr_step1000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_s1_s2000",
+      "fromNode": "lr_step1000",
+      "fromSide": "right",
+      "toNode": "lr_step2000",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_s2_s3000",
+      "fromNode": "lr_step2000",
+      "fromSide": "bottom",
+      "toNode": "lr_step3000",
+      "toSide": "top",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_s3_web00",
+      "fromNode": "lr_step3000",
+      "fromSide": "right",
+      "toNode": "lr_out_web0",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_s2_nl000",
+      "fromNode": "lr_step2000",
+      "fromSide": "right",
+      "toNode": "lr_out_nl00",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_web_seo0",
+      "fromNode": "lr_out_web0",
+      "fromSide": "right",
+      "toNode": "lr_out_seo0",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_nl_subs0",
+      "fromNode": "lr_out_nl00",
+      "fromSide": "right",
+      "toNode": "lr_out_subs",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_lr_web_aeo0",
+      "fromNode": "lr_out_web0",
+      "fromSide": "bottom",
+      "toNode": "lr_out_aeo0",
+      "toSide": "top",
+      "toEnd": "arrow"
+    }
+  ]
+}
