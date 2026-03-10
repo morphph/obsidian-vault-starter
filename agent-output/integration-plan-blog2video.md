@@ -3,117 +3,122 @@ type: implementation-plan
 project: "[[blog2video]]"
 related: "[[LoreAI]]"
 source: agent
-date: 2026-03-09
-status: ready
+date: 2026-03-10
+status: in-progress
 ---
 
 # blog2video: Integration Plan
 
-Part of the [[LoreAI]] x [[blog2video]] content flywheel. This plan covers all changes in the `blog2video` repo. Only 2 steps — blog2video's role is to inject CTAs and make its artifacts importable.
+Part of the [[LoreAI]] x [[blog2video]] content flywheel. This plan covers all changes in the `blog2video` repo.
 
-## Why
+## Architecture Overview
 
-blog2video produces Chinese narrated videos from English tech content, published to XHS and WeChat under the "AI精读" brand. LoreAI (loreai.dev) is a bilingual AI newsletter/blog platform. Currently:
-- Videos have zero CTA pointing to LoreAI — viewers watch and leave
-- Rich artifacts (Chinese scripts, video_plan.json with structured concepts, source_blog.md) are discarded after render — they could become blog posts and SEO pages on loreai.dev
-- No cross-promotion between the brands
+```
+Local Mac: blog2video renders video
+  → SCP to VPS: /home/ubuntu/blog2video/queue/<slug>/
+  → Claudiny (same VPS): detects new delivery, reads flow_source from meta.json,
+    notifies vfan, logs to publish-log.json when published
+  → LoreAI cron (same VPS, 11:50pm SGT): scans queue/ for unimported dirs,
+    runs import-video-blog.ts → blog posts + glossary + FAQ → git push → Vercel rebuild
+```
 
-**Goal**: Every video becomes a newsletter signup funnel. Every video's artifacts become reusable by LoreAI's import pipeline.
+**Key field**: `flow_source` in `meta.json`:
+- `"manual-curate"` — default, vfan found the content manually
+- `"loreai-picker"` — LoreAI's video candidate picker selected it
 
-> **Parallel work**: LoreAI's measurement foundation (see `~/Desktop/Project/obsidian-vault-starter/agent-output/integration-plan-loreai.md`) runs at the same time as Step 1 here. No dependency on LoreAI changes.
-> **Coordinate**: CTA QR code should point to `loreai.dev/zh/subscribe?ref=video-cta` — confirm this URL works after LoreAI creates the `/zh/subscribe` page.
+Claudiny reads `flow_source` on arrival, shows it in notifications, and logs it to `/home/ubuntu/blog2video/publish-log.json`.
 
----
-
-## Step 1: CTA Injection into Every Video (~2h)
-
-*Highest-leverage single change. Every future video drives newsletter signups.*
-
-### 1a. Add verbal CTA to script writer prompt
-
-- **Edit**: `prompts/script-writer.md` (or `.claude/skills/blog2video/prompts/script-writer.md`)
-- In the outro/sign-off section, change the standard ending to include LoreAI mention:
-
-  Current: "AI 世界很吵，精读一篇，胜过刷一百条。我们下期再见。"
-
-  New: "AI 世界很吵，精读一篇，胜过刷一百条。搜 loreai.dev，订阅每日 AI 精读日报，我们下期再见。"
-
-- This requires zero code changes — just a prompt edit. Immediate effect on the next video.
-
-### 1b. Build CTA slide Remotion component
-
-- **New file**: `blog2video-remotion/src/slides/CtaSlide.tsx`
-  - Dark background matching existing slide design (`#0D0D1A`)
-  - QR code image (centered)
-  - Text: "订阅免费 AI 日报" + "loreai.dev"
-  - Brand: "AI精读 by LoreAI"
-  - Duration: ~8-10 seconds
-
-- **Edit**: `blog2video-remotion/src/types.ts` — add `'cta'` to slide type union
-- **Edit**: `blog2video-remotion/src/BlogVideo.tsx` — register `CtaSlide` in slide component map
-- **Edit**: `prompts/slide-html-generator.md` — add instruction: "After the final summary slide, always add a CTA slide of type `cta`. Do not generate HTML for it — the Remotion renderer handles it automatically."
-
-### 1c. Generate QR code
-
-- **New file**: `blog2video-remotion/public/qr-subscribe-zh.png`
-- URL: `https://loreai.dev/zh/subscribe?ref=video-cta`
-- Generate with any QR tool (e.g., `qrencode` CLI or online generator)
-- White QR on transparent background, 400×400px minimum
-
-### 1d. Manual: Update platform bios
-
-- **XHS (小红书) profile bio**: Add "每日AI深度解读 | 订阅日报: loreai.dev"
-- **WeChat Video Account bio**: Same text
-- This takes 5 minutes. Do it the same day as 1a.
-
-### Verify
-
-1. Run `/blog2video` on any test URL
-2. Check generated script ends with loreai.dev verbal CTA
-3. Check rendered video has CTA slide with QR code as final slide
-4. Scan QR → should open `loreai.dev/zh/subscribe?ref=video-cta`
+**Artifacts LoreAI needs from each output dir**:
+- `meta.json` — must have `blog_url` and `flow_source`
+- `source_blog.md` — cleaned English source (for EN blog post generation)
+- `video_X_script.md` — Chinese narration scripts (for ZH blog post generation)
+- `video_plan.json` — `key_concepts[]` array with `concept_en`, `concept_zh`, `analogy_direction` (for glossary/FAQ)
 
 ---
 
-## Step 2: Ensure Artifacts Are Import-Ready (~30min)
+## What's Been Implemented
 
-*Makes blog2video output consumable by LoreAI's import script (LoreAI Step 2).*
+### Step 1: CTA Injection — check current status
 
-This is mostly a verification step — blog2video already produces the right artifacts. Just ensure consistency.
+The plan called for:
 
-### 2a. Verify `meta.json` includes source URL and flow_source
+| Task | What | Status |
+|------|------|--------|
+| 1a | Verbal CTA in script-writer prompt: "搜 loreai.dev，订阅每日 AI 精读日报" | Check `prompts/script-writer.md` |
+| 1b | CTA slide Remotion component (`blog2video-remotion/src/slides/CtaSlide.tsx`) | Check if created |
+| 1b | Register in `BlogVideo.tsx` + `types.ts` | Check if `cta` type exists |
+| 1c | QR code at `blog2video-remotion/public/qr-subscribe-zh.png` | Check if file exists |
+| 1d | XHS/WeChat bio updated | Manual — ask vfan |
 
-- **Check**: each output dir's `meta.json` should have `blog_url` field
-- If missing in some runs, **edit**: `prompts/content-analyzer.md` to always emit `blog_url` in the plan
-- The LoreAI import script needs this to link back to the original source
-- **`flow_source` field**: blog2video now writes `"flow_source": "manual-curate"` by default. When a video comes from LoreAI's picker, the value should be `"loreai-picker"`. Claudiny reads this field to tag videos by origin and log to `publish-log.json`.
+**Expected behavior after CTA implementation**:
+- Every `/blog2video` run produces a script ending with loreai.dev verbal CTA
+- Rendered video has CTA slide as final slide with QR code
+- QR code → `loreai.dev/zh/subscribe?ref=video-cta`
 
-### 2b. Verify `video_plan.json` has structured concepts
+**If debugging CTA slide**:
+- Slide not appearing? Check `BlogVideo.tsx` registers `CtaSlide` component for type `'cta'`
+- QR not rendering? Check `blog2video-remotion/public/qr-subscribe-zh.png` exists
+- Verbal CTA missing? Check `prompts/script-writer.md` outro section
 
-- **Check**: `key_concepts[]` array should have `concept_en`, `concept_zh`, `analogy_direction` for each concept
-- These feed directly into LoreAI's glossary and FAQ generation
-- If older runs are missing these fields, no action needed — only future runs matter
+### Step 2: `flow_source` in meta.json
 
-### 2c. Keep `source_blog.md` in SCP delivery
+- `meta.json` should include `"flow_source": "manual-curate"` by default
+- Check wherever `meta.json` is generated — likely in the content-analyzer stage or the orchestrator command
 
-- **Check**: current SCP cleanup rules in `CLAUDE.md` — `source_blog.md` IS included in delivery
-- Confirm it's not being deleted pre-upload, as the LoreAI import script reads it
+**If debugging**:
+- `flow_source` missing from meta.json? Check `prompts/content-analyzer.md` or the orchestration in `.claude/commands/blog2video.md`
+- Existing 8 videos in queue don't have `flow_source` — Claudiny will ask vfan when they come up for publishing
 
-### Verify
+### Artifact consistency check
 
-1. After a `/blog2video` run, check output dir has: `video_plan.json` (with key_concepts), `meta.json` (with blog_url), `source_blog.md`, all `video_N_script.md` files
-2. These are all the LoreAI import script needs
+After any `/blog2video` run, the output dir should have:
+
+```
+<slug>/
+  meta.json              ← must have: blog_url, flow_source, topic, videos[]
+  source_blog.md         ← cleaned English markdown (required for LoreAI EN blog)
+  video_plan.json        ← must have: key_concepts[] with concept_en, concept_zh, analogy_direction
+  video_1_script.md      ← Chinese narration (required for LoreAI ZH blog)
+  video_1_audio.vtt      ← subtitles
+  video_1.mp4            ← video file (gitignored, not needed by LoreAI)
+  cover_photo.png        ← thumbnail
+  slide_N.png            ← slide screenshots
+```
+
+**If LoreAI import fails**:
+- Missing `video_plan.json` → import aborts. Check content-analyzer stage completed.
+- Missing `source_blog.md` → import falls back to generating EN from ZH. Check Step 0 preprocessing.
+- Missing `video_X_script.md` → import aborts. Check script-writer stage completed.
+- `key_concepts[]` empty or missing fields → glossary/FAQ generation skipped but import continues.
 
 ---
 
-## Execution Summary
+## E2E Test Reference
 
-| Step | What | Depends on | ~Time |
-|------|------|-----------|-------|
-| 1 | CTA injection (prompt + slide + QR + bios) | Nothing | 2h |
-| 2 | Verify artifacts are import-ready | Nothing | 30min |
+See `agent-output/integration-e2e-test.md` in the obsidian vault for the full checklist. Key tests for blog2video:
 
-**Total: ~2.5h, can be done in one session**
+1. Run `/blog2video` on a test URL
+2. Check script ends with verbal CTA mentioning loreai.dev
+3. Check rendered video has CTA slide with QR as final slide
+4. Scan QR → opens `loreai.dev/zh/subscribe?ref=video-cta`
+5. Check `meta.json` has `"flow_source": "manual-curate"`
+6. Check output dir has all required artifacts (meta.json, source_blog.md, video_plan.json, scripts)
+7. SCP to VPS → Claudiny detects and shows `flow_source` in notification
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely cause | Where to look |
+|---------|-------------|---------------|
+| No CTA slide in video | Component not registered | `blog2video-remotion/src/BlogVideo.tsx` — check `cta` in slide map |
+| QR code blank/missing | Image file missing | `blog2video-remotion/public/qr-subscribe-zh.png` exists? |
+| Verbal CTA missing from script | Prompt not updated | `prompts/script-writer.md` — check outro section |
+| `flow_source` missing from meta.json | Not added to generation | Check where meta.json is written — content-analyzer or orchestrator |
+| `source_blog.md` missing from SCP | Cleaned up before upload | Check SCP cleanup rules in `CLAUDE.md` post-render delivery section |
+| `key_concepts` empty | Content-analyzer didn't extract | Check `prompts/content-analyzer.md` — must require key_concepts output |
+| LoreAI import fails | Missing artifacts | Run: `ls <output-dir>/` and check for video_plan.json, source_blog.md, video_X_script.md |
+| CTA slide too long/short | Duration config | Check `CtaSlide.tsx` duration prop, should be ~8-10 seconds |
 
 ---
 
@@ -121,5 +126,5 @@ This is mostly a verification step — blog2video already produces the right art
 
 - Don't add any LoreAI-specific code to blog2video — keep it a standalone pipeline
 - Don't modify the SCP delivery flow — it works fine
-- Don't auto-trigger LoreAI imports from blog2video — that's LoreAI's responsibility
-- The only new dependency is a static QR code image file
+- Don't auto-trigger LoreAI imports from blog2video — LoreAI's cron handles that
+- The only cross-repo dependencies are: QR code URL and `meta.json` field names
