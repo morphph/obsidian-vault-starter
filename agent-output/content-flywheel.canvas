@@ -1,510 +1,59 @@
 {
-  "nodes": [
-    {
-      "id": "title_flywheel",
-      "type": "text",
-      "x": -100,
-      "y": -120,
-      "width": 500,
-      "height": 60,
-      "text": "# Content Flywheel: Integrated End State",
-      "color": "6"
-    },
-    {
-      "id": "grp_flow_a0000",
-      "type": "group",
-      "x": -520,
-      "y": -20,
-      "width": 1640,
-      "height": 520,
-      "label": "Flow A: LoreAI-sourced (automated daily)",
-      "color": "5"
-    },
-    {
-      "id": "grp_flow_b0000",
-      "type": "group",
-      "x": -520,
-      "y": 580,
-      "width": 1640,
-      "height": 520,
-      "label": "Flow B: Externally curated (human-picked weekly)",
-      "color": "2"
-    },
-    {
-      "id": "grp_vps_00000",
-      "type": "group",
-      "x": -520,
-      "y": 1180,
-      "width": 1640,
-      "height": 320,
-      "label": "VPS: All services on same machine (/home/ubuntu/)",
-      "color": "6"
-    },
-    {
-      "id": "grp_shared000",
-      "type": "group",
-      "x": -520,
-      "y": 1580,
-      "width": 1640,
-      "height": 280,
-      "label": "Shared Outputs: 7+ touchpoints per content piece",
-      "color": "4"
-    },
-    {
-      "id": "fa_collect000",
-      "type": "text",
-      "x": -500,
-      "y": 20,
-      "width": 240,
-      "height": 100,
-      "text": "**LoreAI collects**\n350+ items/day\nRSS, Twitter, GitHub\nHN, Reddit",
-      "color": "5"
-    },
-    {
-      "id": "fa_filter0000",
-      "type": "text",
-      "x": -180,
-      "y": 20,
-      "width": 240,
-      "height": 100,
-      "text": "**Claude Opus filters**\n28 items selected\n→ EN+ZH blog posts\n→ EN+ZH newsletters",
-      "color": "5"
-    },
-    {
-      "id": "fa_vidmeta000",
-      "type": "text",
-      "x": -180,
-      "y": 160,
-      "width": 240,
-      "height": 80,
-      "text": "Auto-generates:\n`video_ready: true`\n`video_hook: \"...\"`",
-      "color": "5"
-    },
-    {
-      "id": "fa_picker0000",
-      "type": "text",
-      "x": 140,
-      "y": 20,
-      "width": 240,
-      "height": 100,
-      "text": "**Video Candidate Picker**\n📋 pick-video-candidates.ts\nRanks top 3-5 blog posts\nfor video potential",
-      "color": "4"
-    },
-    {
-      "id": "fa_b2v_render",
-      "type": "text",
-      "x": 460,
-      "y": 20,
-      "width": 240,
-      "height": 100,
-      "text": "**blog2video renders**\n🎥 Chinese video\n+ CTA slide with QR\n+ verbal CTA in script\nmeta.json: flow_source:\n\"loreai-picker\"",
-      "color": "2"
-    },
-    {
-      "id": "fa_publish000",
-      "type": "text",
-      "x": 780,
-      "y": 20,
-      "width": 240,
-      "height": 100,
-      "text": "**Publish to platforms**\n→ 小红书\n→ 微信视频号\nviewers see CTA slide",
-      "color": "1"
-    },
-    {
-      "id": "fa_subscribe0",
-      "type": "text",
-      "x": 780,
-      "y": 160,
-      "width": 240,
-      "height": 80,
-      "text": "**Viewers subscribe**\nScan QR → /zh/subscribe\n?ref=video-cta\n📊 tracked by source",
-      "color": "4"
-    },
-    {
-      "id": "fa_writeback0",
-      "type": "text",
-      "x": 460,
-      "y": 160,
-      "width": 240,
-      "height": 80,
-      "text": "**Status writeback**\nupdate-video-status.ts\n→ video_url set\n→ \"Watch video\" activates",
-      "color": "4"
-    },
-    {
-      "id": "fa_loop_text0",
-      "type": "text",
-      "x": -500,
-      "y": 300,
-      "width": 1020,
-      "height": 60,
-      "text": "🔄 **Loop**: More subscribers → stronger owned audience → less SEO dependency → more content investment → more videos → more subscribers",
-      "color": "4"
-    },
-    {
-      "id": "fb_curate0000",
-      "type": "text",
-      "x": -500,
-      "y": 620,
-      "width": 240,
-      "height": 100,
-      "text": "**vfan finds great content**\nX threads, eng blogs\nYouTube, GitHub repos\nPDFs, research papers",
-      "color": "3"
-    },
-    {
-      "id": "fb_b2v_render",
-      "type": "text",
-      "x": -180,
-      "y": 620,
-      "width": 240,
-      "height": 100,
-      "text": "**blog2video renders**\n🎥 Chinese video\n+ CTA slide\nmeta.json: flow_source:\n\"manual-curate\"",
-      "color": "2"
-    },
-    {
-      "id": "fb_scp_vps000",
-      "type": "text",
-      "x": 140,
-      "y": 620,
-      "width": 240,
-      "height": 80,
-      "text": "**SCP to VPS**\n→ /home/ubuntu/\nblog2video/queue/<slug>/",
-      "color": "6"
-    },
-    {
-      "id": "fb_claudiny00",
-      "type": "text",
-      "x": 140,
-      "y": 740,
-      "width": 240,
-      "height": 80,
-      "text": "**Claudiny picks up**\n→ Publishes to 小红书\n→ Publishes to 微信视频号",
-      "color": "1"
-    },
-    {
-      "id": "fb_cron_imp00",
-      "type": "text",
-      "x": 460,
-      "y": 620,
-      "width": 260,
-      "height": 120,
-      "text": "**LoreAI cron (11:50pm SGT)**\nimport-video-blog.ts --batch\n📄 script → ZH blog post\n📄 source_blog → EN blog post\n📚 key_concepts → glossary\n❓ hooks → FAQ",
-      "color": "4"
-    },
-    {
-      "id": "fb_publish_lr0",
-      "type": "text",
-      "x": 780,
-      "y": 620,
-      "width": 240,
-      "height": 100,
-      "text": "**loreai.dev gets**\n+ EN blog post\n+ ZH blog post\n+ 3-5 glossary entries\n+ 1-2 FAQ entries",
-      "color": "5"
-    },
-    {
-      "id": "fb_newsletter0",
-      "type": "text",
-      "x": 780,
-      "y": 760,
-      "width": 240,
-      "height": 80,
-      "text": "**Weekly newsletter**\n\"本周精读\" section\nDeep-dive content\n+ share link",
-      "color": "5"
-    },
-    {
-      "id": "fb_loop_text0",
-      "type": "text",
-      "x": -500,
-      "y": 900,
-      "width": 1020,
-      "height": 60,
-      "text": "🔄 **Loop**: Better curated content → more engaging videos → more XHS followers → more CTA exposure → more subscribers → newsletter retention",
-      "color": "4"
-    },
-    {
-      "id": "vps_queue0000",
-      "type": "text",
-      "x": -500,
-      "y": 1220,
-      "width": 300,
-      "height": 120,
-      "text": "**blog2video/queue/**\neffective-harnesses.../\nivanhzhao-notion.../\nobsidian-claude.../\nred-green-refactor.../\nsuperpowers/\nweb-search-tool/",
-      "color": "2"
-    },
-    {
-      "id": "vps_claudiny00",
-      "type": "text",
-      "x": -120,
-      "y": 1220,
-      "width": 280,
-      "height": 100,
-      "text": "**Claudiny (queue-watcher)**\nReads flow_source from meta.json\nNotifies with source tag\n→ logs to publish-log.json",
-      "color": "1"
-    },
-    {
-      "id": "vps_loreai000",
-      "type": "text",
-      "x": 240,
-      "y": 1220,
-      "width": 280,
-      "height": 100,
-      "text": "**LoreAI cron (11:50pm)**\nimport-video-blog.ts --batch\nScans queue/ for unimported\n→ blog posts + SEO pages",
-      "color": "5"
-    },
-    {
-      "id": "vps_vercel000",
-      "type": "text",
-      "x": 600,
-      "y": 1220,
-      "width": 240,
-      "height": 100,
-      "text": "**git push → Vercel**\nSSG rebuild\nloreai.dev updated\nNo manual step needed",
-      "color": "4"
-    },
-    {
-      "id": "vps_nomanual0",
-      "type": "text",
-      "x": 920,
-      "y": 1220,
-      "width": 180,
-      "height": 100,
-      "text": "**Fully automated**\nSCP → Claudiny publishes\n→ LoreAI cron imports\n→ Vercel deploys\n🤖 Zero human steps",
-      "color": "4"
-    },
-    {
-      "id": "sh_touchpoint1",
-      "type": "text",
-      "x": -500,
-      "y": 1620,
-      "width": 200,
-      "height": 60,
-      "text": "1️⃣ **XHS Video**",
-      "color": "1"
-    },
-    {
-      "id": "sh_touchpoint2",
-      "type": "text",
-      "x": -260,
-      "y": 1620,
-      "width": 200,
-      "height": 60,
-      "text": "2️⃣ **WeChat Video**",
-      "color": "1"
-    },
-    {
-      "id": "sh_touchpoint3",
-      "type": "text",
-      "x": -20,
-      "y": 1620,
-      "width": 200,
-      "height": 60,
-      "text": "3️⃣ **ZH Blog Post**",
-      "color": "1"
-    },
-    {
-      "id": "sh_touchpoint4",
-      "type": "text",
-      "x": 220,
-      "y": 1620,
-      "width": 200,
-      "height": 60,
-      "text": "4️⃣ **EN Blog Post**",
-      "color": "1"
-    },
-    {
-      "id": "sh_touchpoint5",
-      "type": "text",
-      "x": 460,
-      "y": 1620,
-      "width": 200,
-      "height": 60,
-      "text": "5️⃣ **Newsletter**\n本周精读",
-      "color": "1"
-    },
-    {
-      "id": "sh_touchpoint6",
-      "type": "text",
-      "x": 700,
-      "y": 1620,
-      "width": 200,
-      "height": 60,
-      "text": "6️⃣ **RSS Feed**",
-      "color": "1"
-    },
-    {
-      "id": "sh_touchpoint7",
-      "type": "text",
-      "x": 940,
-      "y": 1620,
-      "width": 200,
-      "height": 60,
-      "text": "7️⃣ **llms.txt / AEO**",
-      "color": "3"
-    },
-    {
-      "id": "sh_was_vs_now",
-      "type": "text",
-      "x": -500,
-      "y": 1720,
-      "width": 500,
-      "height": 80,
-      "text": "**Before**: 1 video → 2 platforms (XHS + WeChat)\n**After**: 1 video → 7+ touchpoints\n**Content ROI**: 2x-3x from same curation effort",
-      "color": "6"
-    },
-    {
-      "id": "sh_measurement",
-      "type": "text",
-      "x": 60,
-      "y": 1720,
-      "width": 500,
-      "height": 80,
-      "text": "**Measurement**: Plausible events + subscriber source + flow_source\nUTM: ?ref=video-cta | video-bio | blog-inline | newsletter-share\nmeta.json: flow_source: loreai-picker | manual-curate\n📊 Compare Flow A vs Flow B performance",
-      "color": "6"
-    }
-  ],
-  "edges": [
-    {
-      "id": "e_fa_col_fil00",
-      "fromNode": "fa_collect000",
-      "fromSide": "right",
-      "toNode": "fa_filter0000",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_fa_fil_meta0",
-      "fromNode": "fa_filter0000",
-      "fromSide": "bottom",
-      "toNode": "fa_vidmeta000",
-      "toSide": "top",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_fa_fil_pick0",
-      "fromNode": "fa_filter0000",
-      "fromSide": "right",
-      "toNode": "fa_picker0000",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_fa_pick_b2v0",
-      "fromNode": "fa_picker0000",
-      "fromSide": "right",
-      "toNode": "fa_b2v_render",
-      "toSide": "left",
-      "toEnd": "arrow",
-      "label": "top candidate"
-    },
-    {
-      "id": "e_fa_b2v_pub00",
-      "fromNode": "fa_b2v_render",
-      "fromSide": "right",
-      "toNode": "fa_publish000",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_fa_pub_sub00",
-      "fromNode": "fa_publish000",
-      "fromSide": "bottom",
-      "toNode": "fa_subscribe0",
-      "toSide": "top",
-      "toEnd": "arrow",
-      "color": "4",
-      "label": "scan QR"
-    },
-    {
-      "id": "e_fa_b2v_wb000",
-      "fromNode": "fa_b2v_render",
-      "fromSide": "bottom",
-      "toNode": "fa_writeback0",
-      "toSide": "top",
-      "toEnd": "arrow",
-      "color": "4"
-    },
-    {
-      "id": "e_fb_cur_b2v00",
-      "fromNode": "fb_curate0000",
-      "fromSide": "right",
-      "toNode": "fb_b2v_render",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_fb_b2v_scp00",
-      "fromNode": "fb_b2v_render",
-      "fromSide": "right",
-      "toNode": "fb_scp_vps000",
-      "toSide": "left",
-      "toEnd": "arrow",
-      "label": "SCP"
-    },
-    {
-      "id": "e_fb_scp_claud",
-      "fromNode": "fb_scp_vps000",
-      "fromSide": "bottom",
-      "toNode": "fb_claudiny00",
-      "toSide": "top",
-      "toEnd": "arrow",
-      "color": "1"
-    },
-    {
-      "id": "e_fb_scp_cron0",
-      "fromNode": "fb_scp_vps000",
-      "fromSide": "right",
-      "toNode": "fb_cron_imp00",
-      "toSide": "left",
-      "toEnd": "arrow",
-      "color": "4",
-      "label": "cron picks up"
-    },
-    {
-      "id": "e_fb_cron_pub0",
-      "fromNode": "fb_cron_imp00",
-      "fromSide": "right",
-      "toNode": "fb_publish_lr0",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_fb_pub_nl000",
-      "fromNode": "fb_publish_lr0",
-      "fromSide": "bottom",
-      "toNode": "fb_newsletter0",
-      "toSide": "top",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_vps_q_claud0",
-      "fromNode": "vps_queue0000",
-      "fromSide": "right",
-      "toNode": "vps_claudiny00",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_vps_q_loreai",
-      "fromNode": "vps_queue0000",
-      "fromSide": "right",
-      "toNode": "vps_loreai000",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_vps_lr_verc0",
-      "fromNode": "vps_loreai000",
-      "fromSide": "right",
-      "toNode": "vps_vercel000",
-      "toSide": "left",
-      "toEnd": "arrow"
-    },
-    {
-      "id": "e_vps_verc_aut",
-      "fromNode": "vps_vercel000",
-      "fromSide": "right",
-      "toNode": "vps_nomanual0",
-      "toSide": "left",
-      "toEnd": "arrow"
-    }
-  ]
+	"nodes":[
+		{"id":"title_flywheel","type":"text","x":-100,"y":-120,"width":500,"height":60,"text":"# Content Flywheel: Integrated End State","color":"6"},
+		{"id":"grp_flow_a0000","type":"group","x":-520,"y":-20,"width":1640,"height":520,"label":"Flow A: LoreAI-sourced (automated daily)","color":"5"},
+		{"id":"grp_flow_b0000","type":"group","x":-520,"y":580,"width":1640,"height":520,"label":"Flow B: Externally curated (human-picked weekly)","color":"2"},
+		{"id":"grp_vps_00000","type":"group","x":-520,"y":1180,"width":1640,"height":320,"label":"VPS: All services on same machine (/home/ubuntu/)","color":"6"},
+		{"id":"grp_shared000","type":"group","x":-520,"y":1580,"width":1640,"height":280,"label":"Shared Outputs: 7+ touchpoints per content piece","color":"4"},
+		{"id":"fa_collect000","type":"text","x":-500,"y":20,"width":240,"height":100,"text":"**LoreAI collects**\n350+ items/day\nRSS, Twitter, GitHub\nHN, Reddit","color":"5"},
+		{"id":"fa_filter0000","type":"text","x":-180,"y":20,"width":240,"height":100,"text":"**Claude Opus filters**\n28 items selected\n→ EN+ZH blog posts\n→ EN+ZH newsletters","color":"5"},
+		{"id":"fa_vidmeta000","type":"text","x":-180,"y":160,"width":240,"height":80,"text":"Auto-generates:\n`video_ready: true`\n`video_hook: \"...\"`","color":"5"},
+		{"id":"fa_picker0000","type":"text","x":140,"y":20,"width":240,"height":100,"text":"**Video Candidate Picker**\n📋 pick-video-candidates.ts\nRanks top 3-5 blog posts\nfor video potential","color":"4"},
+		{"id":"fa_b2v_render","type":"text","x":460,"y":20,"width":240,"height":100,"text":"**blog2video renders**\n🎥 Chinese video\n+ CTA slide with QR\n+ verbal CTA in script\nmeta.json: flow_source:\n\"loreai-picker\"","color":"2"},
+		{"id":"fa_publish000","type":"text","x":780,"y":20,"width":240,"height":100,"text":"**Publish to platforms**\n→ 小红书\n→ 微信视频号\nviewers see CTA slide","color":"1"},
+		{"id":"fa_subscribe0","type":"text","x":780,"y":160,"width":240,"height":80,"text":"**Viewers subscribe**\nScan QR → /zh/subscribe\n?ref=video-cta\n📊 tracked by source","color":"4"},
+		{"id":"fa_writeback0","type":"text","x":460,"y":160,"width":240,"height":80,"text":"**Status writeback**\nupdate-video-status.ts\n→ video_url set\n→ \"Watch video\" activates","color":"4"},
+		{"id":"fa_loop_text0","type":"text","x":-500,"y":300,"width":1020,"height":60,"text":"🔄 **Loop**: More subscribers → stronger owned audience → less SEO dependency → more content investment → more videos → more subscribers","color":"4"},
+		{"id":"fb_curate0000","type":"text","x":-500,"y":620,"width":240,"height":100,"text":"**vfan finds great content**\nX threads, eng blogs\nYouTube, GitHub repos\nPDFs, research papers","color":"3"},
+		{"id":"fb_b2v_render","type":"text","x":-180,"y":620,"width":240,"height":100,"text":"**blog2video renders**\n🎥 Chinese video\n+ CTA slide\nmeta.json: flow_source:\n\"manual-curate\"","color":"2"},
+		{"id":"fb_scp_vps000","type":"text","x":140,"y":620,"width":240,"height":80,"text":"**SCP to VPS**\n→ /home/ubuntu/\nblog2video/queue/<slug>/","color":"6"},
+		{"id":"fb_claudiny00","type":"text","x":140,"y":740,"width":240,"height":80,"text":"**Claudiny picks up**\n→ Publishes to 小红书\n→ Publishes to 微信视频号","color":"1"},
+		{"id":"fb_cron_imp00","type":"text","x":460,"y":620,"width":260,"height":120,"text":"**LoreAI cron (11:50pm SGT)**\nimport-video-blog.ts --batch\n📄 script → ZH blog post\n📄 source_blog → EN blog post\n📚 key_concepts → glossary\n❓ hooks → FAQ","color":"4"},
+		{"id":"fb_publish_lr0","type":"text","x":780,"y":620,"width":240,"height":100,"text":"**loreai.dev gets**\n+ EN blog post\n+ ZH blog post\n+ 3-5 glossary entries\n+ 1-2 FAQ entries","color":"5"},
+		{"id":"fb_newsletter0","type":"text","x":780,"y":760,"width":240,"height":80,"text":"**Weekly newsletter**\n\"本周精读\" section\nDeep-dive content\n+ share link","color":"5"},
+		{"id":"fb_loop_text0","type":"text","x":-500,"y":900,"width":1020,"height":60,"text":"🔄 **Loop**: Better curated content → more engaging videos → more XHS followers → more CTA exposure → more subscribers → newsletter retention","color":"4"},
+		{"id":"vps_queue0000","type":"text","x":-500,"y":1220,"width":300,"height":120,"text":"**blog2video/queue/**\neffective-harnesses.../\nivanhzhao-notion.../\nobsidian-claude.../\nred-green-refactor.../\nsuperpowers/\nweb-search-tool/","color":"2"},
+		{"id":"vps_claudiny00","type":"text","x":-120,"y":1220,"width":280,"height":100,"text":"**Claudiny (queue-watcher)**\nReads flow_source from meta.json\nNotifies with source tag\n→ logs to publish-log.json","color":"1"},
+		{"id":"vps_loreai000","type":"text","x":240,"y":1220,"width":280,"height":100,"text":"**LoreAI cron (11:50pm)**\nimport-video-blog.ts --batch\nScans queue/ for unimported\n→ blog posts + SEO pages","color":"5"},
+		{"id":"vps_vercel000","type":"text","x":600,"y":1220,"width":240,"height":100,"text":"**git push → Vercel**\nSSG rebuild\nloreai.dev updated\nNo manual step needed","color":"4"},
+		{"id":"vps_nomanual0","type":"text","x":920,"y":1220,"width":180,"height":100,"text":"**Fully automated**\nSCP → Claudiny publishes\n→ LoreAI cron imports\n→ Vercel deploys\n🤖 Zero human steps","color":"4"},
+		{"id":"sh_touchpoint1","type":"text","x":-500,"y":1620,"width":200,"height":60,"text":"1️⃣ **XHS Video**","color":"1"},
+		{"id":"sh_touchpoint2","type":"text","x":-260,"y":1620,"width":200,"height":60,"text":"2️⃣ **WeChat Video**","color":"1"},
+		{"id":"sh_touchpoint3","type":"text","x":-20,"y":1620,"width":200,"height":60,"text":"3️⃣ **ZH Blog Post**","color":"1"},
+		{"id":"sh_touchpoint4","type":"text","x":220,"y":1620,"width":200,"height":60,"text":"4️⃣ **EN Blog Post**","color":"1"},
+		{"id":"sh_touchpoint5","type":"text","x":460,"y":1620,"width":200,"height":60,"text":"5️⃣ **Newsletter**\n本周精读","color":"1"},
+		{"id":"sh_touchpoint6","type":"text","x":700,"y":1620,"width":200,"height":60,"text":"6️⃣ **RSS Feed**","color":"1"},
+		{"id":"sh_touchpoint7","type":"text","x":940,"y":1620,"width":200,"height":60,"text":"7️⃣ **llms.txt / AEO**","color":"3"},
+		{"id":"sh_was_vs_now","type":"text","x":-500,"y":1720,"width":500,"height":80,"text":"**Before**: 1 video → 2 platforms (XHS + WeChat)\n**After**: 1 video → 7+ touchpoints\n**Content ROI**: 2x-3x from same curation effort","color":"6"},
+		{"id":"sh_measurement","type":"text","x":60,"y":1720,"width":500,"height":80,"text":"**Measurement**: Plausible events + subscriber source + flow_source\nUTM: ?ref=video-cta | video-bio | blog-inline | newsletter-share\nmeta.json: flow_source: loreai-picker | manual-curate\n📊 Compare Flow A vs Flow B performance","color":"6"}
+	],
+	"edges":[
+		{"id":"e_fa_col_fil00","fromNode":"fa_collect000","fromSide":"right","toNode":"fa_filter0000","toSide":"left","toEnd":"arrow"},
+		{"id":"e_fa_fil_meta0","fromNode":"fa_filter0000","fromSide":"bottom","toNode":"fa_vidmeta000","toSide":"top","toEnd":"arrow"},
+		{"id":"e_fa_fil_pick0","fromNode":"fa_filter0000","fromSide":"right","toNode":"fa_picker0000","toSide":"left","toEnd":"arrow"},
+		{"id":"e_fa_pick_b2v0","fromNode":"fa_picker0000","fromSide":"right","toNode":"fa_b2v_render","toSide":"left","toEnd":"arrow","label":"top candidate"},
+		{"id":"e_fa_b2v_pub00","fromNode":"fa_b2v_render","fromSide":"right","toNode":"fa_publish000","toSide":"left","toEnd":"arrow"},
+		{"id":"e_fa_pub_sub00","fromNode":"fa_publish000","fromSide":"bottom","toNode":"fa_subscribe0","toSide":"top","toEnd":"arrow","color":"4","label":"scan QR"},
+		{"id":"e_fa_b2v_wb000","fromNode":"fa_b2v_render","fromSide":"bottom","toNode":"fa_writeback0","toSide":"top","toEnd":"arrow","color":"4"},
+		{"id":"e_fb_cur_b2v00","fromNode":"fb_curate0000","fromSide":"right","toNode":"fb_b2v_render","toSide":"left","toEnd":"arrow"},
+		{"id":"e_fb_b2v_scp00","fromNode":"fb_b2v_render","fromSide":"right","toNode":"fb_scp_vps000","toSide":"left","toEnd":"arrow","label":"SCP"},
+		{"id":"e_fb_scp_claud","fromNode":"fb_scp_vps000","fromSide":"bottom","toNode":"fb_claudiny00","toSide":"top","toEnd":"arrow","color":"1"},
+		{"id":"e_fb_scp_cron0","fromNode":"fb_scp_vps000","fromSide":"right","toNode":"fb_cron_imp00","toSide":"left","toEnd":"arrow","color":"4","label":"cron picks up"},
+		{"id":"e_fb_cron_pub0","fromNode":"fb_cron_imp00","fromSide":"right","toNode":"fb_publish_lr0","toSide":"left","toEnd":"arrow"},
+		{"id":"e_fb_pub_nl000","fromNode":"fb_publish_lr0","fromSide":"bottom","toNode":"fb_newsletter0","toSide":"top","toEnd":"arrow"},
+		{"id":"e_vps_q_claud0","fromNode":"vps_queue0000","fromSide":"right","toNode":"vps_claudiny00","toSide":"left","toEnd":"arrow"},
+		{"id":"e_vps_q_loreai","fromNode":"vps_queue0000","fromSide":"right","toNode":"vps_loreai000","toSide":"left","toEnd":"arrow"},
+		{"id":"e_vps_lr_verc0","fromNode":"vps_loreai000","fromSide":"right","toNode":"vps_vercel000","toSide":"left","toEnd":"arrow"},
+		{"id":"e_vps_verc_aut","fromNode":"vps_vercel000","fromSide":"right","toNode":"vps_nomanual0","toSide":"left","toEnd":"arrow"}
+	]
 }
