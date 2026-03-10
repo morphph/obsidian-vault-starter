@@ -97,7 +97,7 @@
       "y": 20,
       "width": 240,
       "height": 100,
-      "text": "**blog2video renders**\n🎥 Chinese video\n+ CTA slide with QR\n+ verbal CTA in script",
+      "text": "**blog2video renders**\n🎥 Chinese video\n+ CTA slide with QR\n+ verbal CTA in script\nmeta.json: flow_source:\n\"loreai-picker\"",
       "color": "2"
     },
     {
@@ -157,7 +157,7 @@
       "y": 620,
       "width": 240,
       "height": 100,
-      "text": "**blog2video renders**\n🎥 Chinese video\n+ CTA slide\nOutputs: video_plan.json\nscript.md, source_blog.md",
+      "text": "**blog2video renders**\n🎥 Chinese video\n+ CTA slide\nmeta.json: flow_source:\n\"manual-curate\"",
       "color": "2"
     },
     {
@@ -237,7 +237,7 @@
       "y": 1220,
       "width": 280,
       "height": 100,
-      "text": "**Claudiny (queue-watcher)**\nDetects new deliveries\n→ auto-meta.ts\n→ publish to XHS/WeChat",
+      "text": "**Claudiny (queue-watcher)**\nReads flow_source from meta.json\nNotifies with source tag\n→ logs to publish-log.json",
       "color": "1"
     },
     {
@@ -357,7 +357,7 @@
       "y": 1720,
       "width": 500,
       "height": 80,
-      "text": "**Measurement**: Plausible custom events + subscriber source tracking\nUTM: ?ref=video-cta | video-bio | blog-inline | newsletter-share\n📊 Weekly subscriber-report.ts → conversion by channel",
+      "text": "**Measurement**: Plausible events + subscriber source + flow_source\nUTM: ?ref=video-cta | video-bio | blog-inline | newsletter-share\nmeta.json: flow_source: loreai-picker | manual-curate\n📊 Compare Flow A vs Flow B performance",
       "color": "6"
     }
   ],

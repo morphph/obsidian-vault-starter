@@ -182,6 +182,7 @@ npx tsx scripts/import-video-blog.ts --batch
 - Scan `content/blog/en/` for posts where `video_ready: true` AND `video_status: none`
 - Score by: recency, blog seed score, topic diversity vs recent videos
 - Output ranked list of 3-5 candidates with URLs + hooks
+- Include `"flow_source": "loreai-picker"` in candidate data — this ends up in blog2video's `meta.json` so Claudiny and publish-log can track which flow the video came from
 - Write to `data/video-queue/YYYY-WXX.json`
 
 ### 4b. Build `update-video-status.ts`

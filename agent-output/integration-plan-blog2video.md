@@ -81,11 +81,12 @@ blog2video produces Chinese narrated videos from English tech content, published
 
 This is mostly a verification step — blog2video already produces the right artifacts. Just ensure consistency.
 
-### 2a. Verify `meta.json` includes source URL
+### 2a. Verify `meta.json` includes source URL and flow_source
 
 - **Check**: each output dir's `meta.json` should have `blog_url` field
 - If missing in some runs, **edit**: `prompts/content-analyzer.md` to always emit `blog_url` in the plan
 - The LoreAI import script needs this to link back to the original source
+- **`flow_source` field**: blog2video now writes `"flow_source": "manual-curate"` by default. When a video comes from LoreAI's picker, the value should be `"loreai-picker"`. Claudiny reads this field to tag videos by origin and log to `publish-log.json`.
 
 ### 2b. Verify `video_plan.json` has structured concepts
 
