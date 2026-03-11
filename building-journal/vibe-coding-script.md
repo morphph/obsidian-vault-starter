@@ -2,6 +2,7 @@
 source: agent
 date: 2026-03-10
 type: 口播稿
+status: ready
 topic: vibe coding 开发实践
 ---
 

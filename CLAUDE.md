@@ -14,6 +14,7 @@ Works comfortably in both English and Chinese. Prefers concise, action-oriented 
 - `/projects/` — Project context files. Each has an AUTO-SYNCED section (from repo) and a HUMAN section (strategic thinking). Human section is never overwritten by agent.
 - `/ideas/` — Ideas that "graduated" from daily build logs via /graduate command. Each is a standalone note worth developing.
 - `/references/` — Tool notes, strategy research, people notes, external resources. Agent-assisted content is allowed here but must be tagged with `source: agent`.
+- `/building-journal/` — Polished, ready-to-publish content (口播稿, scripts, articles). Graduated from build logs or agent-output. Use `status: ready/published` in frontmatter.
 - `/agent-output/` — Agent-generated reports, analyses, suggestions. Staging area for human review. Nothing here is part of the "real" vault.
 - `COMMANDS.md` — Command cheatsheet with usage scenarios.
 
