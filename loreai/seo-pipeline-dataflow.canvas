@@ -1,0 +1,604 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 180,
+      "y": -200,
+      "width": 500,
+      "height": 60,
+      "text": "# SEO Pipeline — Data Flow"
+    },
+
+    {
+      "id": "input-group",
+      "type": "group",
+      "x": -40,
+      "y": -100,
+      "width": 900,
+      "height": 130,
+      "label": "☁️ External Inputs",
+      "color": "6"
+    },
+    {
+      "id": "in-news",
+      "type": "text",
+      "x": 0,
+      "y": -50,
+      "width": 140,
+      "height": 40,
+      "color": "6",
+      "text": "**news_items**\n(from Pipeline A)"
+    },
+    {
+      "id": "in-serper",
+      "type": "text",
+      "x": 160,
+      "y": -50,
+      "width": 100,
+      "height": 40,
+      "color": "6",
+      "text": "**Serper.dev**"
+    },
+    {
+      "id": "in-exa",
+      "type": "text",
+      "x": 280,
+      "y": -50,
+      "width": 100,
+      "height": 40,
+      "color": "6",
+      "text": "**Exa Search**"
+    },
+    {
+      "id": "in-brave",
+      "type": "text",
+      "x": 400,
+      "y": -50,
+      "width": 100,
+      "height": 40,
+      "color": "6",
+      "text": "**Brave**"
+    },
+    {
+      "id": "in-gsc",
+      "type": "text",
+      "x": 520,
+      "y": -50,
+      "width": 120,
+      "height": 40,
+      "color": "6",
+      "text": "**GSC API**"
+    },
+    {
+      "id": "in-claude",
+      "type": "text",
+      "x": 660,
+      "y": -50,
+      "width": 160,
+      "height": 40,
+      "color": "6",
+      "text": "**Claude** Opus/Sonnet"
+    },
+
+    {
+      "id": "a2-group",
+      "type": "group",
+      "x": -40,
+      "y": 100,
+      "width": 500,
+      "height": 240,
+      "label": "A2 — Entity Extraction (6:30 AM)",
+      "color": "5"
+    },
+    {
+      "id": "a2-extract",
+      "type": "text",
+      "x": 0,
+      "y": 150,
+      "width": 200,
+      "height": 50,
+      "text": "**Sonnet 4.6**\nextract entities"
+    },
+    {
+      "id": "a2-upsert",
+      "type": "text",
+      "x": 240,
+      "y": 150,
+      "width": 180,
+      "height": 50,
+      "text": "**upsert** clusters\n+ keywords"
+    },
+    {
+      "id": "a2-brave",
+      "type": "text",
+      "x": 80,
+      "y": 250,
+      "width": 260,
+      "height": 40,
+      "text": "**braveExpandNewTopics()** related kws"
+    },
+
+    {
+      "id": "h-group",
+      "type": "group",
+      "x": 520,
+      "y": 100,
+      "width": 340,
+      "height": 240,
+      "label": "H — GSC Export",
+      "color": "5"
+    },
+    {
+      "id": "h-pull",
+      "type": "text",
+      "x": 560,
+      "y": 150,
+      "width": 260,
+      "height": 50,
+      "text": "**JWT auth** → API query\n7-day window (–3d lag)"
+    },
+    {
+      "id": "h-csv",
+      "type": "text",
+      "x": 560,
+      "y": 250,
+      "width": 260,
+      "height": 40,
+      "color": "5",
+      "text": "→ CSV: query, page, clicks, CTR, pos"
+    },
+
+    {
+      "id": "data-group",
+      "type": "group",
+      "x": -40,
+      "y": 420,
+      "width": 900,
+      "height": 130,
+      "label": "💾 SEO Data Stores"
+    },
+    {
+      "id": "db-clusters",
+      "type": "text",
+      "x": 0,
+      "y": 470,
+      "width": 180,
+      "height": 40,
+      "text": "**topic_clusters**\n(auto-discovered)"
+    },
+    {
+      "id": "db-keywords",
+      "type": "text",
+      "x": 200,
+      "y": 470,
+      "width": 160,
+      "height": 40,
+      "text": "**keywords**\n(all sources)"
+    },
+    {
+      "id": "cluster-json",
+      "type": "text",
+      "x": 380,
+      "y": 460,
+      "width": 200,
+      "height": 60,
+      "color": "1",
+      "text": "**flagship-clusters/**\n`{slug}.json` (curated)"
+    },
+    {
+      "id": "gsc-csv",
+      "type": "text",
+      "x": 600,
+      "y": 470,
+      "width": 140,
+      "height": 40,
+      "text": "**gsc-exports/**\n`latest.csv`"
+    },
+    {
+      "id": "freshness-cache",
+      "type": "text",
+      "x": 760,
+      "y": 470,
+      "width": 160,
+      "height": 40,
+      "text": "**.freshness-cache**\n`.json`"
+    },
+
+    {
+      "id": "e-group",
+      "type": "group",
+      "x": -40,
+      "y": 620,
+      "width": 560,
+      "height": 380,
+      "label": "E — Cluster Discovery (manual/cron)",
+      "color": "3"
+    },
+    {
+      "id": "e1",
+      "type": "text",
+      "x": 0,
+      "y": 670,
+      "width": 240,
+      "height": 40,
+      "text": "**S1** SERP demand (7 Serper queries)"
+    },
+    {
+      "id": "e1b",
+      "type": "text",
+      "x": 260,
+      "y": 670,
+      "width": 220,
+      "height": 40,
+      "text": "**S2** Exa semantic gap"
+    },
+    {
+      "id": "e2",
+      "type": "text",
+      "x": 0,
+      "y": 730,
+      "width": 240,
+      "height": 40,
+      "text": "**S3** Competitor audit (LLM)"
+    },
+    {
+      "id": "e3",
+      "type": "text",
+      "x": 260,
+      "y": 730,
+      "width": 220,
+      "height": 40,
+      "text": "**S4** News signals (14-day)"
+    },
+    {
+      "id": "e4",
+      "type": "text",
+      "x": 0,
+      "y": 790,
+      "width": 240,
+      "height": 40,
+      "text": "**S5** GSC import (unmatched)"
+    },
+    {
+      "id": "e5",
+      "type": "text",
+      "x": 260,
+      "y": 790,
+      "width": 220,
+      "height": 40,
+      "color": "3",
+      "text": "**S6** Score 0–100 + rank"
+    },
+    {
+      "id": "e6",
+      "type": "text",
+      "x": 0,
+      "y": 860,
+      "width": 220,
+      "height": 40,
+      "text": "**Glossary inference**"
+    },
+    {
+      "id": "e7",
+      "type": "text",
+      "x": 260,
+      "y": 860,
+      "width": 220,
+      "height": 60,
+      "color": "3",
+      "text": "**Promote / Dismiss**\nhuman decision → targets"
+    },
+
+    {
+      "id": "j-group",
+      "type": "group",
+      "x": 580,
+      "y": 620,
+      "width": 280,
+      "height": 200,
+      "label": "J — Weekly Strategy",
+      "color": "3"
+    },
+    {
+      "id": "j1",
+      "type": "text",
+      "x": 600,
+      "y": 670,
+      "width": 240,
+      "height": 40,
+      "text": "**Gap analysis**\nclusters × content"
+    },
+    {
+      "id": "j2",
+      "type": "text",
+      "x": 600,
+      "y": 730,
+      "width": 240,
+      "height": 40,
+      "text": "**Brave validation**\ntop 10 topics"
+    },
+    {
+      "id": "j3",
+      "type": "text",
+      "x": 600,
+      "y": 790,
+      "width": 240,
+      "height": 40,
+      "color": "3",
+      "text": "→ **content plan** JSON"
+    },
+
+    {
+      "id": "d-group",
+      "type": "group",
+      "x": -40,
+      "y": 1080,
+      "width": 420,
+      "height": 300,
+      "label": "D — SEO Daily (Reactive, 9:00 AM)",
+      "color": "4"
+    },
+    {
+      "id": "d1",
+      "type": "text",
+      "x": 0,
+      "y": 1130,
+      "width": 360,
+      "height": 40,
+      "text": "Load clusters with **mention ≥ 2**"
+    },
+    {
+      "id": "d2",
+      "type": "text",
+      "x": 0,
+      "y": 1190,
+      "width": 360,
+      "height": 50,
+      "text": "Find missing: **glossary · FAQ**\n**compare · topic hub**"
+    },
+    {
+      "id": "d3",
+      "type": "text",
+      "x": 0,
+      "y": 1260,
+      "width": 360,
+      "height": 40,
+      "color": "4",
+      "text": "**Generate** max 8/run · EN + ZH"
+    },
+    {
+      "id": "d4",
+      "type": "text",
+      "x": 0,
+      "y": 1320,
+      "width": 360,
+      "height": 30,
+      "text": "Mark `content_exists = 1`"
+    },
+
+    {
+      "id": "f-group",
+      "type": "group",
+      "x": 440,
+      "y": 1080,
+      "width": 420,
+      "height": 300,
+      "label": "F — Cluster Gen (Proactive, manual)",
+      "color": "4"
+    },
+    {
+      "id": "f1",
+      "type": "text",
+      "x": 480,
+      "y": 1130,
+      "width": 340,
+      "height": 40,
+      "text": "Load targets **status = missing**"
+    },
+    {
+      "id": "f2",
+      "type": "text",
+      "x": 480,
+      "y": 1190,
+      "width": 340,
+      "height": 40,
+      "text": "**Resolve sources**: curated → Exa → Brave"
+    },
+    {
+      "id": "f3",
+      "type": "text",
+      "x": 480,
+      "y": 1250,
+      "width": 340,
+      "height": 40,
+      "color": "4",
+      "text": "**Cornerstone** blog (2000–4000 tok)"
+    },
+    {
+      "id": "f4",
+      "type": "text",
+      "x": 480,
+      "y": 1310,
+      "width": 340,
+      "height": 40,
+      "color": "4",
+      "text": "**SEO pages**: compare/FAQ/glossary (max 8)"
+    },
+
+    {
+      "id": "g-group",
+      "type": "group",
+      "x": -40,
+      "y": 1460,
+      "width": 420,
+      "height": 220,
+      "label": "G — Refresh (detect + execute)",
+      "color": "2"
+    },
+    {
+      "id": "g1",
+      "type": "text",
+      "x": 0,
+      "y": 1510,
+      "width": 360,
+      "height": 40,
+      "text": "Freshness signals (cache or 7-day news)"
+    },
+    {
+      "id": "g2",
+      "type": "text",
+      "x": 0,
+      "y": 1570,
+      "width": 360,
+      "height": 40,
+      "text": "Map event → pages (pricing/feature/deprecation)"
+    },
+    {
+      "id": "g3",
+      "type": "text",
+      "x": 0,
+      "y": 1630,
+      "width": 160,
+      "height": 30,
+      "color": "2",
+      "text": "**LLM staleness**"
+    },
+    {
+      "id": "g4",
+      "type": "text",
+      "x": 180,
+      "y": 1630,
+      "width": 180,
+      "height": 30,
+      "color": "2",
+      "text": "**Re-generate** EN+ZH"
+    },
+
+    {
+      "id": "output-group",
+      "type": "group",
+      "x": -40,
+      "y": 1770,
+      "width": 820,
+      "height": 130,
+      "label": "📄 SEO Content Output"
+    },
+    {
+      "id": "out-glossary",
+      "type": "text",
+      "x": 0,
+      "y": 1810,
+      "width": 130,
+      "height": 50,
+      "color": "4",
+      "text": "**glossary/**\nen · zh"
+    },
+    {
+      "id": "out-faq",
+      "type": "text",
+      "x": 150,
+      "y": 1810,
+      "width": 120,
+      "height": 50,
+      "color": "4",
+      "text": "**faq/**\nen · zh"
+    },
+    {
+      "id": "out-compare",
+      "type": "text",
+      "x": 290,
+      "y": 1810,
+      "width": 130,
+      "height": 50,
+      "color": "4",
+      "text": "**compare/**\nen · zh"
+    },
+    {
+      "id": "out-topics",
+      "type": "text",
+      "x": 440,
+      "y": 1810,
+      "width": 120,
+      "height": 50,
+      "color": "4",
+      "text": "**topics/**\nen · zh"
+    },
+    {
+      "id": "out-blog",
+      "type": "text",
+      "x": 580,
+      "y": 1810,
+      "width": 160,
+      "height": 50,
+      "color": "4",
+      "text": "**blog/** (corner)\nen · zh"
+    }
+  ],
+  "edges": [
+    {"id": "f-in-news-a2", "fromNode": "in-news", "toNode": "a2-extract", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-in-claude-a2", "fromNode": "in-claude", "toNode": "a2-extract", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-a2-ext-ups", "fromNode": "a2-extract", "toNode": "a2-upsert", "fromSide": "right", "toSide": "left"},
+    {"id": "f-a2-ups-brave", "fromNode": "a2-upsert", "toNode": "a2-brave", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-in-brave-a2", "fromNode": "in-brave", "toNode": "a2-brave", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-in-gsc-h", "fromNode": "in-gsc", "toNode": "h-pull", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-h-pull-csv", "fromNode": "h-pull", "toNode": "h-csv", "fromSide": "bottom", "toSide": "top"},
+
+    {"id": "f-a2-db-cl", "fromNode": "a2-upsert", "toNode": "db-clusters", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-a2-db-kw", "fromNode": "a2-upsert", "toNode": "db-keywords", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-h-gsc-csv", "fromNode": "h-csv", "toNode": "gsc-csv", "fromSide": "bottom", "toSide": "top"},
+
+    {"id": "f-serper-e1", "fromNode": "in-serper", "toNode": "e1", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-exa-e1b", "fromNode": "in-exa", "toNode": "e1b", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-brave-e2", "fromNode": "in-brave", "toNode": "e2", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-news-e3", "fromNode": "in-news", "toNode": "e3", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-gsc-e4", "fromNode": "gsc-csv", "toNode": "e4", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-cl-e1", "fromNode": "cluster-json", "toNode": "e1", "fromSide": "bottom", "toSide": "top"},
+
+    {"id": "f-e1-e1b", "fromNode": "e1", "toNode": "e1b", "fromSide": "right", "toSide": "left"},
+    {"id": "f-e1b-e2", "fromNode": "e1b", "toNode": "e2", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-e2-e3", "fromNode": "e2", "toNode": "e3", "fromSide": "right", "toSide": "left"},
+    {"id": "f-e3-e4", "fromNode": "e3", "toNode": "e4", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-e4-e5", "fromNode": "e4", "toNode": "e5", "fromSide": "right", "toSide": "left"},
+    {"id": "f-e5-e6", "fromNode": "e5", "toNode": "e6", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-e6-e7", "fromNode": "e6", "toNode": "e7", "fromSide": "right", "toSide": "left"},
+
+    {"id": "f-e3-fresh", "fromNode": "e3", "toNode": "freshness-cache", "fromSide": "right", "toSide": "bottom", "label": "cache"},
+    {"id": "f-e6-kw", "fromNode": "e6", "toNode": "db-keywords", "fromSide": "top", "toSide": "bottom"},
+    {"id": "f-e7-cj", "fromNode": "e7", "toNode": "cluster-json", "fromSide": "top", "toSide": "bottom", "label": "promote"},
+
+    {"id": "f-dbcl-j1", "fromNode": "db-clusters", "toNode": "j1", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-dbkw-j1", "fromNode": "db-keywords", "toNode": "j1", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-brave-j2", "fromNode": "in-brave", "toNode": "j2", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-j1-j2", "fromNode": "j1", "toNode": "j2", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-j2-j3", "fromNode": "j2", "toNode": "j3", "fromSide": "bottom", "toSide": "top"},
+
+    {"id": "f-dbcl-d1", "fromNode": "db-clusters", "toNode": "d1", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-dbkw-d1", "fromNode": "db-keywords", "toNode": "d1", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-d1-d2", "fromNode": "d1", "toNode": "d2", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-d2-d3", "fromNode": "d2", "toNode": "d3", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-d3-d4", "fromNode": "d3", "toNode": "d4", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-claude-d3", "fromNode": "in-claude", "toNode": "d3", "fromSide": "bottom", "toSide": "right"},
+    {"id": "f-d4-kw", "fromNode": "d4", "toNode": "db-keywords", "fromSide": "left", "toSide": "bottom"},
+
+    {"id": "f-cj-f1", "fromNode": "cluster-json", "toNode": "f1", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-f1-f2", "fromNode": "f1", "toNode": "f2", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-f2-f3", "fromNode": "f2", "toNode": "f3", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-f2-f4", "fromNode": "f2", "toNode": "f4", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-exa-f2", "fromNode": "in-exa", "toNode": "f2", "fromSide": "bottom", "toSide": "right"},
+    {"id": "f-claude-f3", "fromNode": "in-claude", "toNode": "f3", "fromSide": "bottom", "toSide": "right"},
+    {"id": "f-f4-cj", "fromNode": "f4", "toNode": "cluster-json", "fromSide": "left", "toSide": "bottom", "label": "status → exists"},
+
+    {"id": "f-fresh-g1", "fromNode": "freshness-cache", "toNode": "g1", "fromSide": "bottom", "toSide": "right"},
+    {"id": "f-cj-g2", "fromNode": "cluster-json", "toNode": "g2", "fromSide": "bottom", "toSide": "right"},
+    {"id": "f-g1-g2", "fromNode": "g1", "toNode": "g2", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-g2-g3", "fromNode": "g2", "toNode": "g3", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-g3-g4", "fromNode": "g3", "toNode": "g4", "fromSide": "right", "toSide": "left"},
+    {"id": "f-g3-cj", "fromNode": "g3", "toNode": "cluster-json", "fromSide": "top", "toSide": "bottom", "label": "refresh flags"},
+
+    {"id": "f-d3-out", "fromNode": "d3", "toNode": "output-group", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-f3-out-blog", "fromNode": "f3", "toNode": "out-blog", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-f4-out", "fromNode": "f4", "toNode": "output-group", "fromSide": "bottom", "toSide": "top"},
+    {"id": "f-g4-out", "fromNode": "g4", "toNode": "output-group", "fromSide": "bottom", "toSide": "top", "label": "refreshed"}
+  ]
+}
