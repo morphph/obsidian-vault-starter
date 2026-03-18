@@ -1,0 +1,291 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 200,
+      "y": -160,
+      "width": 500,
+      "height": 60,
+      "text": "# SEO & Cluster Pipeline"
+    },
+
+    {
+      "id": "input-group",
+      "type": "group",
+      "x": -60,
+      "y": -60,
+      "width": 900,
+      "height": 200,
+      "label": "📥 Inputs (from upstream pipelines)"
+    },
+    {
+      "id": "a2-input",
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 340,
+      "height": 80,
+      "color": "5",
+      "text": "**A2 — Entity Extraction** (6:30 AM)\nNews → Sonnet 4.6 → entities\n→ `topic_clusters` + `keywords` tables"
+    },
+    {
+      "id": "h-input",
+      "type": "text",
+      "x": 400,
+      "y": 0,
+      "width": 380,
+      "height": 80,
+      "color": "5",
+      "text": "**H — GSC Export**\nGoogle Search Console → 7-day CSV\n→ `data/gsc-exports/latest.csv`"
+    },
+
+    {
+      "id": "e-discovery",
+      "type": "text",
+      "x": 0,
+      "y": 240,
+      "width": 400,
+      "height": 340,
+      "color": "3",
+      "text": "## E — Cluster Discovery\n`planner.ts` · Manual/Cron\n\n**6-stage candidate discovery:**\n1. SERP Demand (Serper.dev · 7 queries)\n2. Exa Semantic Gap (findSimilar)\n3. Competitor Audit (Exa/Brave + LLM)\n4. News Signals (14-day scan + LLM)\n5. GSC Import (unmatched queries)\n6. Multi-signal Scoring (0–100)\n\n**Management:**\n`--promote=<slug>` · `--dismiss=<slug>`\n`--promote-above=<score>` · `--status`"
+    },
+    {
+      "id": "j-strategy",
+      "type": "text",
+      "x": 480,
+      "y": 240,
+      "width": 360,
+      "height": 160,
+      "color": "3",
+      "text": "## J — Weekly Strategy\n`generate-seo.ts --weekly-strategy`\n\nGap analysis: clusters × content\nBrave demand validation (top 10)\n→ `data/content-plan/{week}.json`"
+    },
+
+    {
+      "id": "cluster-json",
+      "type": "text",
+      "x": 160,
+      "y": 660,
+      "width": 360,
+      "height": 80,
+      "color": "1",
+      "text": "**flagship-clusters/{slug}.json**\nTargets (status: missing → exists)\nCandidates · Refresh flags"
+    },
+
+    {
+      "id": "d-seo",
+      "type": "text",
+      "x": -60,
+      "y": 840,
+      "width": 380,
+      "height": 260,
+      "color": "4",
+      "text": "## D — SEO Daily Generation\n`generate-seo.ts` · **9:00 AM SGT**\n\nGap: `topic_clusters` × content existence\nTop 10 clusters (mention_count ≥ 2)\nMax 8 pages/run · EN + ZH\n\n**Page types:**\n- Glossary (pillar topic entry)\n- FAQ (from brave-discussion / blog)\n- Compare (vs pattern / blog)\n- Topic Hub (mention ≥ 5)"
+    },
+    {
+      "id": "f-cluster",
+      "type": "text",
+      "x": 400,
+      "y": 840,
+      "width": 380,
+      "height": 260,
+      "color": "4",
+      "text": "## F — Cluster Content Gen\n`generate-seo.ts --cluster=<SLUG>`\n\nLoad targets with status=missing\nSource resolution chain:\ncurated URL → Exa → Brave → empty\n\n**Generates:**\n- Cornerstone blog (2000–4000 tok)\n- Compare / FAQ / Glossary pages\n- Max 8 pages/run · EN + ZH\n→ Update cluster status"
+    },
+
+    {
+      "id": "content-output",
+      "type": "group",
+      "x": -60,
+      "y": 1200,
+      "width": 840,
+      "height": 160,
+      "label": "📄 Generated Content (→ Vercel)"
+    },
+    {
+      "id": "out-glossary",
+      "type": "text",
+      "x": 0,
+      "y": 1250,
+      "width": 150,
+      "height": 60,
+      "color": "4",
+      "text": "**glossary/**\nen · zh"
+    },
+    {
+      "id": "out-faq",
+      "type": "text",
+      "x": 170,
+      "y": 1250,
+      "width": 130,
+      "height": 60,
+      "color": "4",
+      "text": "**faq/**\nen · zh"
+    },
+    {
+      "id": "out-compare",
+      "type": "text",
+      "x": 320,
+      "y": 1250,
+      "width": 150,
+      "height": 60,
+      "color": "4",
+      "text": "**compare/**\nen · zh"
+    },
+    {
+      "id": "out-topics",
+      "type": "text",
+      "x": 490,
+      "y": 1250,
+      "width": 150,
+      "height": 60,
+      "color": "4",
+      "text": "**topics/**\nen · zh"
+    },
+    {
+      "id": "out-blog",
+      "type": "text",
+      "x": 660,
+      "y": 1250,
+      "width": 160,
+      "height": 60,
+      "color": "4",
+      "text": "**blog/** (cornerstone)\nen · zh"
+    },
+
+    {
+      "id": "g-refresh",
+      "type": "text",
+      "x": 880,
+      "y": 660,
+      "width": 360,
+      "height": 260,
+      "color": "2",
+      "text": "## G — Refresh Engine\n\n**Detection** `--refresh-check`:\nFreshness signals → page mapping\nLLM staleness → severity flags\n(pricing-change · new-feature ·\ndeprecation · platform-change)\n\n**Execution** `--refresh`:\nRe-generate with fresh sources\nEN + ZH independently\nPreserves internal links"
+    },
+    {
+      "id": "k-health",
+      "type": "text",
+      "x": 880,
+      "y": 1000,
+      "width": 360,
+      "height": 160,
+      "color": "0",
+      "text": "## K1 — Cluster Health\n`cluster-health.ts`\n\nCompleteness (targets by type)\nLink health (broken/orphan/density)\nRefresh status · GSC performance\n→ `data/reports/cluster-health-*.md`"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "a2-input",
+      "toNode": "e-discovery",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "clusters + keywords"
+    },
+    {
+      "id": "e2",
+      "fromNode": "h-input",
+      "toNode": "e-discovery",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "GSC queries"
+    },
+    {
+      "id": "e3",
+      "fromNode": "a2-input",
+      "toNode": "j-strategy",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "topic_clusters"
+    },
+    {
+      "id": "e4",
+      "fromNode": "a2-input",
+      "toNode": "d-seo",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "clusters + keywords"
+    },
+    {
+      "id": "e5",
+      "fromNode": "e-discovery",
+      "toNode": "cluster-json",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "candidates → promote"
+    },
+    {
+      "id": "e6",
+      "fromNode": "cluster-json",
+      "toNode": "f-cluster",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "targets (status=missing)"
+    },
+    {
+      "id": "e7",
+      "fromNode": "d-seo",
+      "toNode": "content-output",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "glossary · faq · compare · topics"
+    },
+    {
+      "id": "e8",
+      "fromNode": "f-cluster",
+      "toNode": "content-output",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "cornerstone + SEO pages"
+    },
+    {
+      "id": "e9",
+      "fromNode": "e-discovery",
+      "toNode": "g-refresh",
+      "fromSide": "right",
+      "toSide": "top",
+      "label": "freshness cache"
+    },
+    {
+      "id": "e10",
+      "fromNode": "g-refresh",
+      "toNode": "content-output",
+      "fromSide": "bottom",
+      "toSide": "right",
+      "label": "refreshed pages"
+    },
+    {
+      "id": "e11",
+      "fromNode": "cluster-json",
+      "toNode": "g-refresh",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "refresh flags"
+    },
+    {
+      "id": "e12",
+      "fromNode": "cluster-json",
+      "toNode": "k-health",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "health check"
+    },
+    {
+      "id": "e13",
+      "fromNode": "f-cluster",
+      "toNode": "cluster-json",
+      "fromSide": "left",
+      "toSide": "bottom",
+      "label": "status → exists"
+    },
+    {
+      "id": "e14",
+      "fromNode": "j-strategy",
+      "toNode": "cluster-json",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "content plan"
+    }
+  ]
+}
