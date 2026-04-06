@@ -17,9 +17,36 @@ Parse `$ARGUMENTS` for one of:
 
 ### 1. Acquire the source
 
-- **If URL:** Fetch content via WebFetch. Save to `raw/{YYYY-MM-DD}-{slug}.md` with the article content in markdown. The file is now immutable.
 - **If file path:** Verify the file exists in raw/. Read it.
 - **If "scan":** Read wiki/log.md, list all raw/ files. Find files not yet ingested (not mentioned in any log entry). Ingest each in order.
+- **If URL:** Use the smart fetch chain below.
+
+#### Smart URL Fetch Chain
+
+Detect the URL type and use the best fetching method. Try methods in order — if one fails or returns empty/unusable content, fall through to the next.
+
+**Step 1 — Classify the URL:**
+- **JS-heavy sites** (need browser rendering): twitter.com, x.com, youtube.com, reddit.com, linkedin.com, facebook.com, instagram.com, medium.com (paywalled), substack.com (paywalled)
+- **Static sites** (WebFetch works fine): most blogs, news sites, GitHub pages, documentation sites
+
+**Step 2 — Fetch using the right method:**
+
+For **JS-heavy / authenticated sites**:
+1. **Try Claude for Chrome** (if available): Use the `claude-in-chrome` MCP tools to navigate to the URL, wait for rendering, and extract the page content as text. This works best because it uses your real browser session with existing logins.
+2. **Fallback to Playwright MCP**: Use the `playwright` MCP server tools:
+   - `browser_navigate` to the URL
+   - Wait for page to load (use `browser_wait_for_load_state` or similar)
+   - `browser_snapshot` to get the accessibility tree as structured text
+   - Extract the main content from the snapshot
+   - Close the browser when done
+3. **Last resort — WebFetch**: Try anyway. May return partial content, which is better than nothing. Flag if content looks incomplete.
+
+For **static sites**:
+1. **WebFetch** (fast, simple) — try this first
+2. **Fallback to Playwright MCP** if WebFetch returns empty or error
+
+**Step 3 — Save the content:**
+Save to `raw/{YYYY-MM-DD}-{slug}.md` with the article content in markdown. Include a header with the source URL and fetch method used. The file is now immutable.
 
 ### 2. Read and extract
 

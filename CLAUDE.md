@@ -81,6 +81,16 @@ issues: orphans(N), stale(N), contradictions(N)
 auto-fixed: description
 ```
 
+## Source Fetching Tools
+
+For `/ingest` URL handling, use this priority chain:
+
+1. **WebFetch** — Built-in. Fast, works for static sites (blogs, docs, GitHub pages).
+2. **Claude for Chrome MCP** — Uses real browser with user's login sessions. Best for JS-heavy and authenticated sites (Twitter/X, YouTube, Reddit, LinkedIn). Requires Chrome extension installed.
+3. **Playwright MCP** — Headless browser automation. Fallback for JS-heavy sites when Chrome isn't available. Configured as `playwright` MCP server.
+
+JS-heavy sites (need browser): twitter.com, x.com, youtube.com, reddit.com, linkedin.com, facebook.com, instagram.com, medium.com, substack.com
+
 ## Repo Locations (for reference)
 - LoreAI: ~/Desktop/Project/loreai-v2
 - blog2video: ~/Desktop/Project/blog2video
