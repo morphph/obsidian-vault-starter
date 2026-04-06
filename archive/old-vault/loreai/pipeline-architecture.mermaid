@@ -1,0 +1,434 @@
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#3b82f6',
+  'secondaryColor': '#22c55e',
+  'tertiaryColor': '#eab308',
+  'background': '#0f172a',
+  'mainBkg': '#1e293b',
+  'textColor': '#f1f5f9'
+}}}%%
+
+flowchart TB
+
+  %% ═══════════════════════════════════════════════
+  %% EXTERNAL APIs & DATA SOURCES
+  %% ═══════════════════════════════════════════════
+
+  subgraph APIS["☁️  External APIs"]
+    direction LR
+    RSS["RSS Feeds<br/>(35 sources)"]
+    TWITTER["Twitter/X<br/>(36 accounts + 18 queries)"]
+    GITHUB["GitHub<br/>(trending + releases)"]
+    HF["HuggingFace<br/>(trending models)"]
+    HN["Hacker News<br/>(top stories)"]
+    REDDIT["Reddit<br/>(4 subreddits)"]
+    BLOGS["Official Blogs<br/>(Anthropic, OpenAI, DeepMind)"]
+    GSC_API["Google Search Console"]
+    BRAVE["Brave Search API"]
+    SERPER["Serper.dev API"]
+    EXA["Exa Search API"]
+    CLAUDE["Claude API<br/>(Opus / Sonnet)"]
+  end
+
+  %% ═══════════════════════════════════════════════
+  %% DATA STORES
+  %% ═══════════════════════════════════════════════
+
+  subgraph STORES["💾  Data Stores"]
+    direction LR
+    DB_NEWS[("news_items")]
+    DB_CONTENT[("content")]
+    DB_KEYWORDS[("keywords")]
+    DB_CLUSTERS[("topic_clusters")]
+    DB_SOURCES[("content_sources")]
+    DB_SUBS[("subscribers")]
+    CLUSTER_JSON["data/flagship-clusters/<br/>{slug}.json"]
+    SEEDS_JSON["data/blog-seeds/<br/>{DATE}.json"]
+    FILTERED_JSON["data/filtered-items/<br/>{DATE}.json"]
+    OUTLINE_JSON["data/outlines/<br/>{DATE}.json"]
+    GSC_CSV["data/gsc-exports/<br/>latest.csv"]
+    PLAN_JSON["data/content-plan/<br/>{week}.json"]
+    FRESHNESS_CACHE["data/flagship-clusters/<br/>.freshness-cache.json"]
+  end
+
+  subgraph CONTENT_FILES["📄  Content Files (Markdown)"]
+    direction LR
+    NL_EN["content/newsletters/<br/>en/{DATE}.md"]
+    NL_ZH["content/newsletters/<br/>zh/{DATE}.md"]
+    NL_WEEKLY["content/newsletters/<br/>weekly/{en,zh}/"]
+    NL_EMAIL["content/newsletters/<br/>email/{en,zh}/{DATE}.html"]
+    BLOG_MD["content/blog/<br/>{en,zh}/{slug}.md"]
+    GLOSSARY_MD["content/glossary/<br/>{en,zh}/{slug}.md"]
+    FAQ_MD["content/faq/<br/>{en,zh}/{slug}.md"]
+    COMPARE_MD["content/compare/<br/>{en,zh}/{slug}.md"]
+    TOPICS_MD["content/topics/<br/>{en,zh}/{slug}.md"]
+  end
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE A: SIGNAL INGESTION (blue)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_A["🔵 A — Signal Ingestion (4:00 AM SGT)"]
+    direction TB
+    A1["collect-news.ts<br/>6-tier ingestion"]
+    A2["Dedup by URL<br/>Score assignment"]
+  end
+
+  RSS --> A1
+  TWITTER --> A1
+  GITHUB --> A1
+  HF --> A1
+  HN --> A1
+  REDDIT --> A1
+  BLOGS --> A1
+  A1 --> A2
+  A2 --> DB_NEWS
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE A2: ENTITY EXTRACTION (blue)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_A2["🔵 A2 — Entity Extraction (6:30 AM SGT)"]
+    direction TB
+    E1["extract-entities.ts<br/>Sonnet 4.6 extraction"]
+    E2["upsertTopicCluster()"]
+    E3["braveExpandNewTopics()<br/>Related keyword discovery"]
+  end
+
+  DB_NEWS --> E1
+  CLAUDE --> E1
+  E1 --> E2
+  E2 --> DB_CLUSTERS
+  E2 --> DB_KEYWORDS
+  E2 --> E3
+  E3 --> BRAVE
+  E3 --> DB_CLUSTERS
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE B: NEWSLETTER (blue→green)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_B["🟢 B — Newsletter Generation (5:00 AM SGT)"]
+    direction TB
+    B1["Pre-filter<br/>Hard caps by source type"]
+    B2["Agent Filter (3-tier fallback)<br/>Agent → Opus → Rule-based"]
+    B2b["Outline Generator<br/>JSON structure plan"]
+    B3["EN Writer<br/>Claude Opus"]
+    B4["ZH Writer<br/>(Opus → Sonnet → Haiku)"]
+    B5["Blog Seed Extraction<br/>3-signal composite score"]
+    B6["Email HTML Generation"]
+  end
+
+  DB_NEWS --> B1
+  B1 --> B2
+  CLAUDE --> B2
+  B2 --> B2b
+  B2b --> OUTLINE_JSON
+  B2b --> B3
+  CLAUDE --> B3
+  B3 --> NL_EN
+  B3 --> B4
+  CLAUDE --> B4
+  B4 --> NL_ZH
+  B2 --> B5
+  BRAVE --> B5
+  B5 --> SEEDS_JSON
+  B2 --> FILTERED_JSON
+  B3 --> DB_CONTENT
+  B4 --> DB_CONTENT
+  B3 --> DB_SOURCES
+  B3 --> B6
+  B4 --> B6
+  B6 --> NL_EMAIL
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE C: BLOG (green)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_C["🟢 C — Blog Generation (7:00 AM SGT)"]
+    direction TB
+    C1["Load seeds<br/>today or yesterday"]
+    C2["Pick top 2-3 candidates<br/>dedup vs last 7 days"]
+    C3["Fetch source URL<br/>(3000 char excerpt)"]
+    C4["EN Writer — Opus"]
+    C5["ZH Writer — Opus<br/>(skip on failure)"]
+    C6["SEO entity extraction<br/>glossary, FAQ, compare terms"]
+  end
+
+  SEEDS_JSON --> C1
+  C1 --> C2
+  DB_NEWS --> C2
+  C2 --> C3
+  C3 --> C4
+  CLAUDE --> C4
+  C4 --> BLOG_MD
+  C4 --> C5
+  CLAUDE --> C5
+  C5 --> BLOG_MD
+  C4 --> DB_CONTENT
+  C5 --> DB_CONTENT
+  C4 --> C6
+  C6 --> DB_KEYWORDS
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE D: SEO DAILY (green)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_D["🟢 D — SEO Daily Generation (9:00 AM SGT)"]
+    direction TB
+    D1["Gap analysis<br/>keywords × content existence"]
+    D2["Identify missing pages<br/>(glossary, FAQ, compare, topic hub)"]
+    D3["Generate pages<br/>max 8/run, EN + ZH"]
+    D4["Update keywords<br/>content_exists = 1"]
+  end
+
+  DB_CLUSTERS --> D1
+  DB_KEYWORDS --> D1
+  D1 --> D2
+  D2 --> D3
+  CLAUDE --> D3
+  D3 --> GLOSSARY_MD
+  D3 --> FAQ_MD
+  D3 --> COMPARE_MD
+  D3 --> TOPICS_MD
+  D3 --> DB_CONTENT
+  D3 --> D4
+  D4 --> DB_KEYWORDS
+  D4 --> DB_CLUSTERS
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE E: CLUSTER PLANNING (yellow)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_E["🟡 E — Cluster Discovery & Planning"]
+    direction TB
+    E_D1["Stage 1: SERP Demand<br/>(Serper.dev — 7 queries)"]
+    E_D1b["Stage 1.5: Exa Semantic<br/>Gap Discovery"]
+    E_D2["Stage 2: Competitor Audit<br/>(Exa/Brave + LLM)"]
+    E_D3["Stage 3: News Signal<br/>(14-day DB scan + LLM)"]
+    E_D4["Stage 4: GSC Import<br/>(unmatched queries)"]
+    E_D5["Stage 5: Scoring<br/>(0-100, multi-signal)"]
+    E_D6["Stage 6: Glossary Inference"]
+    E_PROMOTE["promote / dismiss<br/>candidates → targets"]
+  end
+
+  SERPER --> E_D1
+  EXA --> E_D1b
+  CLUSTER_JSON --> E_D1
+  E_D1 --> E_D1b
+  E_D1b --> E_D2
+  EXA --> E_D2
+  BRAVE --> E_D2
+  CLAUDE --> E_D2
+  E_D2 --> E_D3
+  DB_NEWS --> E_D3
+  CLAUDE --> E_D3
+  E_D3 --> FRESHNESS_CACHE
+  E_D3 --> E_D4
+  GSC_CSV --> E_D4
+  E_D4 --> E_D5
+  E_D5 --> E_D6
+  E_D6 --> CLUSTER_JSON
+  E_D6 --> DB_KEYWORDS
+  E_PROMOTE --> CLUSTER_JSON
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE F: CLUSTER GENERATION (green)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_F["🟢 F — Cluster Content Generation"]
+    direction TB
+    F1["Load cluster JSON<br/>(targets with status=missing)"]
+    F2["Source resolution<br/>(curated → Exa → Brave)"]
+    F3["Generate cornerstone<br/>(2000-4000 tokens)"]
+    F4["Generate compare/FAQ/glossary<br/>(max 8 pages/run)"]
+    F5["Update cluster status<br/>(missing → exists)"]
+  end
+
+  CLUSTER_JSON --> F1
+  F1 --> F2
+  EXA --> F2
+  BRAVE --> F2
+  F2 --> F3
+  CLAUDE --> F3
+  F3 --> BLOG_MD
+  F2 --> F4
+  CLAUDE --> F4
+  F4 --> COMPARE_MD
+  F4 --> FAQ_MD
+  F4 --> GLOSSARY_MD
+  F4 --> DB_CONTENT
+  F3 --> DB_CONTENT
+  F4 --> F5
+  F3 --> F5
+  F5 --> CLUSTER_JSON
+  F5 --> DB_KEYWORDS
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE G: REFRESH ENGINE (yellow)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_G["🟡 G — Refresh Detection & Execution"]
+    direction TB
+    G1["collectFreshnessSignals()<br/>(cache or 7-day news scan)"]
+    G2["mapSignalToPages()<br/>(event type → affected slugs)"]
+    G3["LLM staleness check<br/>(per affected page)"]
+    G4["Refresh execution<br/>(re-generate with fresh sources)"]
+    G5["Update ZH independently"]
+  end
+
+  FRESHNESS_CACHE --> G1
+  DB_NEWS --> G1
+  G1 --> G2
+  CLUSTER_JSON --> G2
+  G2 --> G3
+  CLAUDE --> G3
+  G3 --> CLUSTER_JSON
+  G3 --> G4
+  CLAUDE --> G4
+  G4 --> COMPARE_MD
+  G4 --> FAQ_MD
+  G4 --> BLOG_MD
+  G4 --> G5
+  CLAUDE --> G5
+  G5 --> COMPARE_MD
+  G5 --> FAQ_MD
+  G5 --> BLOG_MD
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE H: GSC EXPORT (blue)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_H["🔵 H — GSC Export"]
+    direction TB
+    H1["gsc-export.ts<br/>JWT auth + API query"]
+    H2["7-day window<br/>(offset by 3 days)"]
+    H3["CSV: Query, Page,<br/>Clicks, Impressions, CTR, Pos"]
+  end
+
+  GSC_API --> H1
+  H1 --> H2
+  H2 --> H3
+  H3 --> GSC_CSV
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE I: WEEKLY DIGEST (purple)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_I["🟣 I — Weekly Digest (Saturday 5:00 AM)"]
+    direction TB
+    I1["Load Mon-Fri newsletters"]
+    I2["Load filtered-items JSONs"]
+    I3["Rank stories<br/>(freq × engagement × score)"]
+    I4["Load cluster changes"]
+    I5["EN Weekly — Opus<br/>(5-story synthesis)"]
+    I6["ZH Weekly<br/>(Opus → Sonnet → Haiku)"]
+  end
+
+  NL_EN --> I1
+  FILTERED_JSON --> I2
+  I1 --> I3
+  I2 --> I3
+  I3 --> I4
+  CLUSTER_JSON --> I4
+  I4 --> I5
+  CLAUDE --> I5
+  I5 --> NL_WEEKLY
+  I5 --> I6
+  CLAUDE --> I6
+  I6 --> NL_WEEKLY
+  I5 --> DB_CONTENT
+  I6 --> DB_CONTENT
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE J: WEEKLY STRATEGY (yellow)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_J["🟡 J — Weekly Strategy Planning"]
+    direction TB
+    J1["Gap analysis<br/>(clusters × content)"]
+    J2["Brave demand validation<br/>(top 10 topics)"]
+    J3["Generate content plan<br/>(priority-scored)"]
+  end
+
+  DB_CLUSTERS --> J1
+  DB_KEYWORDS --> J1
+  J1 --> J2
+  BRAVE --> J2
+  J2 --> J3
+  J3 --> PLAN_JSON
+
+  %% ═══════════════════════════════════════════════
+  %% PIPELINE K: MONITORING (gray)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_K["⚪ K — Monitoring & Reporting"]
+    direction TB
+    K1["cluster-health.ts<br/>(completeness, links, GSC)"]
+    K2["generate-review.ts<br/>(daily validation report)"]
+    K3["validate-pipeline.ts<br/>(quality gate checks)"]
+  end
+
+  CLUSTER_JSON --> K1
+  GSC_CSV --> K1
+  COMPARE_MD --> K1
+  FAQ_MD --> K1
+  GLOSSARY_MD --> K1
+  BLOG_MD --> K1
+
+  NL_EN --> K2
+  NL_ZH --> K2
+  BLOG_MD --> K2
+  GLOSSARY_MD --> K2
+  FAQ_MD --> K2
+  COMPARE_MD --> K2
+  SEEDS_JSON --> K2
+  FILTERED_JSON --> K2
+  DB_KEYWORDS --> K2
+
+  NL_EN --> K3
+  NL_ZH --> K3
+  BLOG_MD --> K3
+  GLOSSARY_MD --> K3
+
+  K1 --> REVIEW_REPORT["data/reports/<br/>cluster-health-*.md"]
+  K2 --> REVIEW_HTML["data/review/<br/>{DATE}.html"]
+
+  %% ═══════════════════════════════════════════════
+  %% DISTRIBUTION (purple)
+  %% ═══════════════════════════════════════════════
+
+  subgraph PIPELINE_L["🟣 L — Distribution"]
+    direction TB
+    L1["send-newsletter.ts<br/>(EN + ZH email)"]
+    L2["Git push → Vercel<br/>(SSG rebuild)"]
+  end
+
+  NL_EMAIL --> L1
+  DB_SUBS --> L1
+  NL_EN --> L2
+  NL_ZH --> L2
+  BLOG_MD --> L2
+  GLOSSARY_MD --> L2
+  FAQ_MD --> L2
+  COMPARE_MD --> L2
+  TOPICS_MD --> L2
+  NL_WEEKLY --> L2
+
+  %% ═══════════════════════════════════════════════
+  %% STYLING
+  %% ═══════════════════════════════════════════════
+
+  classDef ingestion fill:#1e40af,stroke:#3b82f6,color:#fff
+  classDef planning fill:#854d0e,stroke:#eab308,color:#fff
+  classDef generation fill:#166534,stroke:#22c55e,color:#fff
+  classDef distribution fill:#581c87,stroke:#a855f7,color:#fff
+  classDef monitoring fill:#374151,stroke:#9ca3af,color:#fff
+  classDef datastore fill:#0c4a6e,stroke:#38bdf8,color:#fff
+  classDef contentfile fill:#1e3a5f,stroke:#60a5fa,color:#fff
+  classDef api fill:#312e81,stroke:#818cf8,color:#fff
+
+  class PIPELINE_A,PIPELINE_A2,PIPELINE_H ingestion
+  class PIPELINE_E,PIPELINE_G,PIPELINE_J planning
+  class PIPELINE_B,PIPELINE_C,PIPELINE_D,PIPELINE_F generation
+  class PIPELINE_I,PIPELINE_L distribution
+  class PIPELINE_K monitoring

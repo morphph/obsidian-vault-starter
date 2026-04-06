@@ -1,0 +1,40 @@
+{
+	"nodes":[
+		{"id":"phase3-group","type":"group","x":-40,"y":770,"width":760,"height":380,"color":"4","label":"Phase 3 — Generation (two paths)"},
+		{"id":"phase2-group","type":"group","x":-40,"y":240,"width":760,"height":320,"color":"3","label":"Phase 2 — Planning (what to create?)"},
+		{"id":"phase4-group","type":"group","x":-40,"y":1480,"width":760,"height":220,"color":"2","label":"Phase 4 — Refresh (keep content fresh)"},
+		{"id":"phase1-group","type":"group","x":-40,"y":-40,"width":760,"height":180,"color":"5","label":"Phase 1 — Signal Collection"},
+		{"id":"output-group","type":"group","x":-40,"y":1780,"width":760,"height":140,"label":"📄 SEO Content Output (→ Vercel)"},
+		{"id":"title","type":"text","text":"# SEO Pipeline — Phase Overview","x":100,"y":-140,"width":520,"height":60},
+		{"id":"a2","type":"text","text":"**A2 — Entity Extraction** (daily 6:30 AM)\nNews → Sonnet 4.6 → entities\n→ `topic_clusters` + `keywords`","x":0,"y":10,"width":360,"height":80,"color":"5"},
+		{"id":"h","type":"text","text":"**H — GSC Export**\nSearch Console → 7-day CSV\n→ `gsc-exports/latest.csv`","x":400,"y":10,"width":280,"height":80,"color":"5"},
+		{"id":"cluster-json","type":"text","text":"**flagship-clusters/{slug}.json**\nCandidates → promote → targets","x":180,"y":620,"width":320,"height":70,"color":"1"},
+		{"id":"path1","type":"text","text":"## Path 1: Reactive (D)\n`generate-seo.ts` · **daily 9 AM**\n\n**Fully automatic** gap-fill\nfrom keyword inventory\n\nTop 10 clusters (mention ≥ 2)\nMax 8 pages/run · EN + ZH\n\n**Generates:**\n- Glossary (pillar topic)\n- FAQ (brave-discussion / blog)\n- Compare (vs pattern / blog)\n- Topic Hub (mention ≥ 5)","x":0,"y":820,"width":340,"height":280,"color":"4"},
+		{"id":"path2","type":"text","text":"## Path 2: Proactive (F)\n`generate-seo.ts --cluster`\n**Manual / on-demand**\n\n**Source-grounded** generation\nResolution: curated → Exa\n→ Brave → empty\n\n**Generates:**\n- Cornerstone (2000–4000 tok)\n- Glossary\n- FAQ\n- Compare\nMax 8 pages/run","x":380,"y":820,"width":300,"height":280,"color":"4"},
+		{"id":"comparison","type":"text","text":"### Path 1 vs Path 2\n\n| | Path 1 (Daily) | Path 2 (Cluster) |\n|---|---|---|\n| **Curation** | Fully automatic | Human-curated |\n| **Source material** | LLM knowledge only | Fetched + grounded |\n| **Scope** | Any cluster ≥ 2 mentions | Flagship topics |\n| **Quality** | Commodity SEO | Higher quality |","x":0,"y":1240,"width":680,"height":160},
+		{"id":"g-exec","type":"text","text":"**G — Execution**\nRe-generate with fresh sources\nEN + ZH independently\nPreserves internal links","x":380,"y":1530,"width":300,"height":120,"color":"2"},
+		{"id":"out-glossary","type":"text","text":"**glossary/**\nen · zh","x":0,"y":1820,"width":120,"height":50,"color":"4"},
+		{"id":"out-faq","type":"text","text":"**faq/**\nen · zh","x":140,"y":1820,"width":120,"height":50,"color":"4"},
+		{"id":"out-compare","type":"text","text":"**compare/**\nen · zh","x":280,"y":1820,"width":120,"height":50,"color":"4"},
+		{"id":"out-topics","type":"text","text":"**topics/**\nen · zh","x":420,"y":1820,"width":120,"height":50,"color":"4"},
+		{"id":"out-blog","type":"text","text":"**blog/** (corner)\nen · zh","x":560,"y":1820,"width":140,"height":50,"color":"4"},
+		{"id":"e","type":"text","text":"## E — Cluster Discovery\n`planner.ts` · 6-stage pipeline\n\n| Stage | Source |\n|---|---|\n| 1 | SERP demand (Serper.dev) |\n| 2 | Exa semantic gap |\n| 3 | Competitor audit (LLM) |\n| 4 | News signals (14-day) |\n| 5 | GSC unmatched queries |\n| 6 | Score 0–100 + promote/dismiss |","x":0,"y":290,"width":440,"height":220,"color":"3"},
+		{"id":"j","type":"text","text":"**J — Weekly Strategy**\nGap analysis +\nBrave demand\nvalidation\n→ content plan","x":480,"y":290,"width":200,"height":140,"color":"3"},
+		{"id":"g","type":"text","text":"**G — Detection**\nFreshness signals → page mapping\nLLM staleness check\n→ severity flags in cluster JSON","x":0,"y":1530,"width":340,"height":120,"color":"2"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a2","fromSide":"bottom","toNode":"e","toSide":"top","label":"clusters + keywords"},
+		{"id":"e2","fromNode":"h","fromSide":"bottom","toNode":"e","toSide":"top","label":"GSC queries"},
+		{"id":"e3","fromNode":"a2","fromSide":"bottom","toNode":"j","toSide":"top","label":"topic_clusters"},
+		{"id":"e4","fromNode":"e","fromSide":"bottom","toNode":"cluster-json","toSide":"top","label":"candidates → promote"},
+		{"id":"e5","fromNode":"a2","fromSide":"bottom","toNode":"path1","toSide":"top","label":"clusters + keywords"},
+		{"id":"e6","fromNode":"cluster-json","fromSide":"bottom","toNode":"path2","toSide":"top","label":"targets (missing)"},
+		{"id":"e7","fromNode":"path1","fromSide":"bottom","toNode":"output-group","toSide":"top"},
+		{"id":"e8","fromNode":"path2","fromSide":"bottom","toNode":"output-group","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"bottom","toNode":"g","toSide":"top","label":"freshness cache"},
+		{"id":"e10","fromNode":"g","fromSide":"right","toNode":"g-exec","toSide":"left"},
+		{"id":"e11","fromNode":"g-exec","fromSide":"bottom","toNode":"output-group","toSide":"top","label":"refreshed pages"},
+		{"id":"e12","fromNode":"path2","fromSide":"left","toNode":"cluster-json","toSide":"bottom","label":"status → exists"},
+		{"id":"e13","fromNode":"j","fromSide":"bottom","toNode":"cluster-json","toSide":"right","label":"content plan"}
+	]
+}

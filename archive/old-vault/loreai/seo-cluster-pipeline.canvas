@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"input-group","type":"group","x":-60,"y":-60,"width":900,"height":200,"label":"📥 Inputs (from upstream pipelines)"},
+		{"id":"content-output","type":"group","x":20,"y":1520,"width":840,"height":160,"label":"📄 Generated Content (→ Vercel)"},
+		{"id":"title","type":"text","text":"# SEO & Cluster Pipeline","x":200,"y":-160,"width":500,"height":60},
+		{"id":"a2-input","type":"text","text":"**A2 — Entity Extraction** (6:30 AM)\nNews → Sonnet 4.6 → entities\n→ `topic_clusters` + `keywords` tables","x":0,"y":0,"width":340,"height":80,"color":"5"},
+		{"id":"h-input","type":"text","text":"**H — GSC Export**\nGoogle Search Console → 7-day CSV\n→ `data/gsc-exports/latest.csv`","x":400,"y":0,"width":380,"height":80,"color":"5"},
+		{"id":"d-seo","type":"text","text":"## D — SEO Daily Generation\n`generate-seo.ts` · **9:00 AM SGT**\n\nGap: `topic_clusters` × content existence\nTop 10 clusters (mention_count ≥ 2)\nMax 8 pages/run · EN + ZH\n\n**Page types:**\n- Glossary (pillar topic entry)\n- FAQ (from brave-discussion / blog)\n- Compare (vs pattern / blog)\n- Topic Hub (mention ≥ 5)","x":-60,"y":840,"width":380,"height":260,"color":"4"},
+		{"id":"f-cluster","type":"text","text":"## F — Cluster Content Gen\n`generate-seo.ts --cluster=<SLUG>`\n\nLoad targets with status=missing\nSource resolution chain:\ncurated URL → Exa → Brave → empty\n\n**Generates:**\n- Cornerstone blog (2000–4000 tok)\n- Compare / FAQ / Glossary pages\n- Max 8 pages/run · EN + ZH\n→ Update cluster status","x":400,"y":840,"width":380,"height":260,"color":"4"},
+		{"id":"g-refresh","type":"text","text":"## G — Refresh Engine\n\n**Detection** `--refresh-check`:\nFreshness signals → page mapping\nLLM staleness → severity flags\n(pricing-change · new-feature ·\ndeprecation · platform-change)\n\n**Execution** `--refresh`:\nRe-generate with fresh sources\nEN + ZH independently\nPreserves internal links","x":880,"y":660,"width":360,"height":260,"color":"2"},
+		{"id":"out-blog","type":"text","text":"**blog/** (cornerstone)\nen · zh","x":660,"y":1250,"width":160,"height":60,"color":"4"},
+		{"id":"k-health","type":"text","text":"## K1 — Cluster Health\n`cluster-health.ts`\n\nCompleteness (targets by type)\nLink health (broken/orphan/density)\nRefresh status · GSC performance\n→ `data/reports/cluster-health-*.md`","x":880,"y":1000,"width":360,"height":160,"color":"0"},
+		{"id":"j-strategy","type":"text","text":"## J — Weekly Strategy\n`generate-seo.ts --weekly-strategy`\n\nGap analysis: clusters × content\nBrave demand validation (top 10)\n→ `data/content-plan/{week}.json`","x":600,"y":210,"width":360,"height":160,"color":"3"},
+		{"id":"e-discovery","type":"text","text":"## E — Cluster Discovery\n`planner.ts` · Manual/Cron\n\n**6-stage candidate discovery:**\n1. SERP Demand (Serper.dev · 7 queries)\n2. Exa Semantic Gap (findSimilar)\n3. Competitor Audit (Exa/Brave + LLM)\n4. News Signals (14-day scan + LLM)\n5. GSC Import (unmatched queries)\n6. Multi-signal Scoring (0–100)\n\n**Management:**\n`--promote=<slug>` · `--dismiss=<slug>`\n`--promote-above=<score>` · `--status`","x":80,"y":210,"width":400,"height":340,"color":"3"},
+		{"id":"cluster-json","type":"text","text":"**flagship-clusters/{slug}.json**\nTargets (status: missing → exists)\nCandidates · Refresh flags","x":170,"y":620,"width":360,"height":130,"color":"1"},
+		{"id":"out-glossary","type":"text","text":"**glossary/**\nen · zh","x":80,"y":1570,"width":150,"height":60,"color":"4"},
+		{"id":"out-faq","type":"text","text":"**faq/**\nen · zh","x":250,"y":1570,"width":130,"height":60,"color":"4"},
+		{"id":"out-compare","type":"text","text":"**compare/**\nen · zh","x":400,"y":1570,"width":150,"height":60,"color":"4"},
+		{"id":"out-topics","type":"text","text":"**topics/**\nen · zh","x":570,"y":1570,"width":150,"height":60,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a2-input","fromSide":"bottom","toNode":"e-discovery","toSide":"top","label":"clusters + keywords"},
+		{"id":"e2","fromNode":"h-input","fromSide":"bottom","toNode":"e-discovery","toSide":"top","label":"GSC queries"},
+		{"id":"e3","fromNode":"a2-input","fromSide":"bottom","toNode":"j-strategy","toSide":"top","label":"topic_clusters"},
+		{"id":"e4","fromNode":"a2-input","fromSide":"bottom","toNode":"d-seo","toSide":"top","label":"clusters + keywords"},
+		{"id":"e5","fromNode":"e-discovery","fromSide":"bottom","toNode":"cluster-json","toSide":"top","label":"candidates → promote"},
+		{"id":"e6","fromNode":"cluster-json","fromSide":"bottom","toNode":"f-cluster","toSide":"top","label":"targets (status=missing)"},
+		{"id":"e7","fromNode":"d-seo","fromSide":"bottom","toNode":"content-output","toSide":"top","label":"glossary · faq · compare · topics"},
+		{"id":"e8","fromNode":"f-cluster","fromSide":"bottom","toNode":"content-output","toSide":"top","label":"cornerstone + SEO pages"},
+		{"id":"e9","fromNode":"e-discovery","fromSide":"right","toNode":"g-refresh","toSide":"top","label":"freshness cache"},
+		{"id":"e10","fromNode":"g-refresh","fromSide":"bottom","toNode":"content-output","toSide":"right","label":"refreshed pages"},
+		{"id":"e11","fromNode":"cluster-json","fromSide":"right","toNode":"g-refresh","toSide":"left","label":"refresh flags"},
+		{"id":"e12","fromNode":"cluster-json","fromSide":"right","toNode":"k-health","toSide":"left","label":"health check"},
+		{"id":"e13","fromNode":"f-cluster","fromSide":"left","toNode":"cluster-json","toSide":"bottom","label":"status → exists"},
+		{"id":"e14","fromNode":"j-strategy","fromSide":"bottom","toNode":"cluster-json","toSide":"top","label":"content plan"}
+	]
+}

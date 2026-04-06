@@ -1,0 +1,245 @@
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#3b82f6',
+  'secondaryColor': '#22c55e',
+  'tertiaryColor': '#eab308',
+  'background': '#0f172a',
+  'mainBkg': '#1e293b',
+  'textColor': '#f1f5f9'
+}}}%%
+
+flowchart TB
+
+  %% ═══════════════════════════════════════════════
+  %% TITLE: SEO Pipeline Architecture
+  %% Covers: A2, D, E, F, G, H, J
+  %% ═══════════════════════════════════════════════
+
+  %% ─────────────────────────────────────────────
+  %% EXTERNAL INPUTS (what feeds the SEO system)
+  %% ─────────────────────────────────────────────
+
+  subgraph INPUTS["Inputs (from other pipelines + APIs)"]
+    direction LR
+    NEWS[("news_items<br/>(from Pipeline A)")]
+    SERPER["Serper.dev"]
+    EXA["Exa Search"]
+    BRAVE["Brave Search"]
+    GSC_API["Google Search Console"]
+    CLAUDE["Claude API"]
+  end
+
+  %% ─────────────────────────────────────────────
+  %% PHASE 1: SIGNAL COLLECTION
+  %% What topics exist? What are people searching?
+  %% ─────────────────────────────────────────────
+
+  subgraph PHASE1["Phase 1 — Signal Collection"]
+    direction TB
+
+    subgraph A2["A2: Entity Extraction (daily 6:30 AM)"]
+      direction TB
+      A2_1["Extract entities from news<br/>(Sonnet 4.6)"]
+      A2_2["Upsert topic_clusters<br/>+ keywords"]
+      A2_3["Brave expand<br/>related keywords"]
+      A2_1 --> A2_2 --> A2_3
+    end
+
+    subgraph H["H: GSC Export (manual/cron)"]
+      direction TB
+      H1["Pull 7-day search data<br/>(3-day lag offset)"]
+      H2["CSV: query, page,<br/>clicks, impressions, CTR, pos"]
+      H1 --> H2
+    end
+  end
+
+  NEWS --> A2_1
+  CLAUDE --> A2_1
+  BRAVE --> A2_3
+  GSC_API --> H1
+
+  %% ─────────────────────────────────────────────
+  %% CENTRAL DATA STORES
+  %% ─────────────────────────────────────────────
+
+  subgraph DATA["SEO Data Stores"]
+    direction LR
+    DB_CLUSTERS[("topic_clusters<br/>(auto-discovered)")]
+    DB_KEYWORDS[("keywords<br/>(all sources)")]
+    CLUSTER_JSON["flagship-clusters/<br/>{slug}.json<br/>(curated)"]
+    GSC_CSV["gsc-exports/<br/>latest.csv"]
+    FRESHNESS[".freshness-cache.json"]
+  end
+
+  A2_2 --> DB_CLUSTERS
+  A2_2 --> DB_KEYWORDS
+  A2_3 --> DB_CLUSTERS
+  H2 --> GSC_CSV
+
+  %% ─────────────────────────────────────────────
+  %% PHASE 2: PLANNING
+  %% What content should we create or refresh?
+  %% ─────────────────────────────────────────────
+
+  subgraph PHASE2["Phase 2 — Planning (what to create?)"]
+    direction TB
+
+    subgraph E["E: Cluster Discovery (manual/cron)"]
+      direction TB
+      E1["Stage 1: SERP demand<br/>(7 Serper queries)"]
+      E1b["Stage 2: Exa semantic<br/>gap discovery"]
+      E2["Stage 3: Competitor audit<br/>(Exa/Brave + LLM)"]
+      E3["Stage 4: News signals<br/>(14-day scan + LLM)"]
+      E4["Stage 5: GSC import<br/>(unmatched queries)"]
+      E5["Stage 6: Score & rank<br/>(0-100, multi-signal)"]
+      E6["Glossary inference"]
+      E7["Promote / Dismiss<br/>(human decision)"]
+      E1 --> E1b --> E2 --> E3 --> E4 --> E5 --> E6
+      E6 -.-> E7
+    end
+
+    subgraph J["J: Weekly Strategy"]
+      direction TB
+      J1["Gap analysis:<br/>clusters × content"]
+      J2["Brave demand validation<br/>(top 10 topics)"]
+      J3["Priority-scored<br/>content plan"]
+      J1 --> J2 --> J3
+    end
+  end
+
+  SERPER --> E1
+  EXA --> E1b
+  EXA --> E2
+  BRAVE --> E2
+  CLAUDE --> E2
+  NEWS --> E3
+  CLAUDE --> E3
+  GSC_CSV --> E4
+  CLUSTER_JSON --> E1
+
+  E6 --> CLUSTER_JSON
+  E6 --> DB_KEYWORDS
+  E7 --> CLUSTER_JSON
+  E3 --> FRESHNESS
+
+  DB_CLUSTERS --> J1
+  DB_KEYWORDS --> J1
+  BRAVE --> J2
+  J3 --> PLAN_JSON["content-plan/<br/>{week}.json"]
+
+  %% ─────────────────────────────────────────────
+  %% PHASE 3: GENERATION
+  %% Two paths: reactive (D) and proactive (F)
+  %% ─────────────────────────────────────────────
+
+  subgraph PHASE3["Phase 3 — Generation (two paths)"]
+    direction TB
+
+    subgraph D["D: SEO Daily — Reactive Gap Fill (9:00 AM)"]
+      direction TB
+      D1["Load clusters with<br/>mention_count ≥ 2"]
+      D2["Find missing pages:<br/>glossary / FAQ / compare / hub"]
+      D3["Generate up to 8 pages<br/>(EN + ZH each)"]
+      D4["Mark keywords<br/>content_exists = 1"]
+      D1 --> D2 --> D3 --> D4
+    end
+
+    subgraph F["F: Cluster Gen — Proactive Targeted"]
+      direction TB
+      F1["Load targets with<br/>status = missing"]
+      F2["Resolve sources:<br/>curated → Exa → Brave"]
+      F3["Generate cornerstone<br/>(2000-4000 tokens)"]
+      F4["Generate SEO pages<br/>(compare/FAQ/glossary, max 8)"]
+      F5["Update status:<br/>missing → exists"]
+      F1 --> F2 --> F3
+      F2 --> F4
+      F3 --> F5
+      F4 --> F5
+    end
+  end
+
+  DB_CLUSTERS --> D1
+  DB_KEYWORDS --> D1
+  CLAUDE --> D3
+
+  CLUSTER_JSON --> F1
+  EXA --> F2
+  BRAVE --> F2
+  CLAUDE --> F3
+  CLAUDE --> F4
+
+  %% ─────────────────────────────────────────────
+  %% PHASE 4: REFRESH
+  %% Keep existing content accurate
+  %% ─────────────────────────────────────────────
+
+  subgraph PHASE4["Phase 4 — Refresh (keep content fresh)"]
+    direction TB
+
+    subgraph G["G: Refresh Detection & Execution"]
+      direction TB
+      G1["Collect freshness signals<br/>(cache or 7-day news)"]
+      G2["Map event → affected pages<br/>(pricing/feature/deprecation)"]
+      G3["LLM staleness check<br/>(severity: high/med/low)"]
+      G4["Re-generate with<br/>fresh sources (EN + ZH)"]
+      G1 --> G2 --> G3 --> G4
+    end
+  end
+
+  FRESHNESS --> G1
+  NEWS --> G1
+  CLUSTER_JSON --> G2
+  CLAUDE --> G3
+  CLAUDE --> G4
+
+  %% ─────────────────────────────────────────────
+  %% OUTPUT: All generated SEO content
+  %% ─────────────────────────────────────────────
+
+  subgraph OUTPUT["SEO Content Output"]
+    direction LR
+    GLOSSARY["glossary/<br/>{en,zh}/{slug}.md"]
+    FAQ["faq/<br/>{en,zh}/{slug}.md"]
+    COMPARE["compare/<br/>{en,zh}/{slug}.md"]
+    TOPICS["topics/<br/>{en,zh}/{slug}.md"]
+    CORNERSTONE["blog/<br/>{en,zh}/{slug}.md<br/>(cornerstone)"]
+  end
+
+  D3 --> GLOSSARY
+  D3 --> FAQ
+  D3 --> COMPARE
+  D3 --> TOPICS
+  D4 --> DB_KEYWORDS
+  D4 --> DB_CLUSTERS
+
+  F3 --> CORNERSTONE
+  F4 --> COMPARE
+  F4 --> FAQ
+  F4 --> GLOSSARY
+  F5 --> CLUSTER_JSON
+  F5 --> DB_KEYWORDS
+
+  G4 --> COMPARE
+  G4 --> FAQ
+  G4 --> CORNERSTONE
+
+  G3 --> CLUSTER_JSON
+
+  %% ─────────────────────────────────────────────
+  %% STYLING
+  %% ─────────────────────────────────────────────
+
+  classDef signal fill:#1e40af,stroke:#3b82f6,color:#fff
+  classDef planning fill:#854d0e,stroke:#eab308,color:#fff
+  classDef generation fill:#166534,stroke:#22c55e,color:#fff
+  classDef refresh fill:#7c2d12,stroke:#f97316,color:#fff
+  classDef datastore fill:#0c4a6e,stroke:#38bdf8,color:#fff
+  classDef output fill:#581c87,stroke:#a855f7,color:#fff
+  classDef input fill:#312e81,stroke:#818cf8,color:#fff
+
+  class PHASE1,A2,H signal
+  class PHASE2,E,J planning
+  class PHASE3,D,F generation
+  class PHASE4,G refresh
+  class DATA datastore
+  class OUTPUT output
+  class INPUTS input

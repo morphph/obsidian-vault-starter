@@ -1,51 +1,86 @@
-# Vault Context
+# LLM Wiki — Schema
 
 ## Owner
-This vault belongs to vfan — a full-time builder based in Singapore.
-Growth marketer at a B2B LLM API company by day, independent AI content builder by night.
-Works comfortably in both English and Chinese. Prefers concise, action-oriented communication.
+vfan — builder based in Singapore. Growth marketer + independent AI content builder.
+Bilingual (EN/ZH). Concise, action-oriented.
 
-## Projects (detailed context in /projects/)
-- [[LoreAI]] — Bilingual AI developer content platform (loreai.dev)
-- [[blog2video]] — English tech blogs → Chinese narrated videos for Xiaohongshu/WeChat, brand "AI精读"
+## Architecture
 
-## Vault Structure
-- `inbox.md` — **Primary capture point.** Append-only file for building logs and learning notes. Written by `/build-log` (Claude Code) and OpenClaw Telegram bot.
-- `/projects/` — Project context files. Each has an AUTO-SYNCED section (from repo) and a HUMAN section (strategic thinking). Human section is never overwritten by agent.
-- `/references/` — Tool notes, strategy research, people notes, external resources. Agent-assisted content is allowed here but must be tagged with `source: agent`.
-- `/building-journal/` — Polished, ready-to-publish content (口播稿, scripts, articles). Use `status: ready/published` in frontmatter.
-- `/agent-output/` — Agent-generated reports, analyses, suggestions. Staging area for human review. Nothing here is part of the "real" vault.
-- `/loreai/` — LoreAI pipeline architecture docs and canvas visualizations.
-- `/archive/` — Archived folders and commands from the previous vault design.
+Three layers:
+- `raw/` — Immutable source documents. Human curates what goes in. LLM reads but never modifies.
+- `wiki/` — LLM-maintained knowledge base. LLM owns entirely. Creates, updates, cross-references pages.
+- This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
-## Capture System
-Two capture paths feed into `inbox.md`:
-1. **`/build-log`** — Global Claude Code command. Works from any project. Captures building learnings mid-session or auto-summarizes at session end.
-2. **OpenClaw Telegram bot** — Summarizes articles/videos in Chinese. Saves to inbox.md when user says "保存".
+Two special files in wiki/:
+- `wiki/index.md` — Content catalog. Every wiki page listed with link + one-line summary. Organized by category (entities, concepts, synthesis, sources). Updated on every ingest.
+- `wiki/log.md` — Chronological record. Append-only. Every operation (ingest, query, lint) logged with timestamp.
 
-## Human-Machine Separation Rules
-1. The HUMAN sections of `/projects/` files are **human-only**. Agent reads but NEVER writes here.
-2. `/agent-output/` is where all agent-generated content goes. Reports, ideas analysis, connection maps — all written here.
-3. `/references/` allows agent-assisted content but tag it with `source: agent` in frontmatter.
-4. `inbox.md` is shared — both human and agent can append, but NEVER delete or modify existing entries.
-5. When I say "write this down" or "save this" without specifying where, ask me where it should go.
+## Domain Focus
+AI Builder's Knowledge Base:
+- AI/LLM industry (companies, models, products, capabilities, pricing)
+- Content distribution (AEO, SEO, bilingual arbitrage, newsletter, social platforms)
+- Builder tools and workflows (Claude Code, Remotion, MCP, pipelines)
+- People and their ideas
+- My projects: LoreAI (loreai.dev), blog2video (AI精读)
 
-## Linking Conventions
-- Always link project names: [[LoreAI]], [[blog2video]]
-- Link people: [[Person Name]]
-- Link MY concepts and theories, NOT generic terms:
-  - ✅ [[AEO as distribution strategy]], [[bilingual content arbitrage]], [[owning subscribers vs renting SEO traffic]]
-  - ❌ [[AI]], [[marketing]], [[content]], [[Python]]
-- Unresolved links are fine — they'll become notes later
-- Don't link generic tech terms. Only link things that might appear across multiple notes.
+## Wiki Page Format
 
-## Repo Locations (for /sync-project)
-- loreai: ~/Desktop/Project/loreai-v2
-- blog2video: ~/Desktop/Project/blog2video
+Every wiki page uses this structure:
 
-## My Preferences
-- I don't enjoy journaling. I enjoy building. Build logs, not diaries.
+```
+---
+type: entity | concept | synthesis | source-summary
+created: YYYY-MM-DD
+last-updated: YYYY-MM-DD
+sources:
+  - raw/filename.md
+tags: []
+---
+
+# Title
+
+## Summary
+[2-3 sentences]
+
+## Details
+[Bullet points preferred over prose]
+
+## Connections
+- Related: [[other wiki pages]]
+
+## Source Log
+| Date | Source | What changed |
+|------|--------|-------------|
+```
+
+## Conventions
+- Flat file structure in wiki/ — no subdirectories. Use index.md categories for organization.
+- Wiki page filenames: kebab-case, descriptive (e.g., `anthropic.md`, `aeo-strategy.md`)
+- Link wiki pages to each other with [[wikilinks]]
+- Link concepts worth tracking: [[AEO as distribution strategy]], [[bilingual content arbitrage]]
+- Don't link generic terms: AI, marketing, Python
 - Chinese-English mixing is normal. Don't standardize.
-- I care about cross-project patterns more than single-project details.
-- When suggesting ideas, make them actionable — tools to build, experiments to run.
-- Keep output concise. I can always ask for more detail.
+- When sources contradict: use `> [!warning]` callout, keep both claims with sources
+- Every claim must trace to a source file in raw/
+
+## Log Format
+
+```
+## [YYYY-MM-DD] ingest | Source Title
+source: raw/filename.md
+pages-created: page1.md, page2.md
+pages-updated: page3.md
+
+## [YYYY-MM-DD] query | Question text
+pages-consulted: page1.md, page2.md
+answer-filed: synthesis-page.md (or "chat only")
+
+## [YYYY-MM-DD] lint
+pages-scanned: N
+issues: orphans(N), stale(N), contradictions(N)
+auto-fixed: description
+```
+
+## Repo Locations (for reference)
+- LoreAI: ~/Desktop/Project/loreai-v2
+- blog2video: ~/Desktop/Project/blog2video

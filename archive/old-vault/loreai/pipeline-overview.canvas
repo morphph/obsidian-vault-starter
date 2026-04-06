@@ -1,0 +1,40 @@
+{
+	"nodes":[
+		{"id":"gen-group","type":"group","x":1160,"y":0,"width":520,"height":1060,"color":"4","label":"🟢 Asset Generation"},
+		{"id":"signal-group","type":"group","x":-60,"y":0,"width":540,"height":740,"color":"5","label":"🔵 Signal Engine"},
+		{"id":"planner-group","type":"group","x":560,"y":0,"width":520,"height":740,"color":"3","label":"🟡 Graph Planner"},
+		{"id":"refresh-group","type":"group","x":-60,"y":820,"width":540,"height":380,"color":"3","label":"🟡 Refresh Engine"},
+		{"id":"dist-group","type":"group","x":560,"y":820,"width":520,"height":380,"color":"6","label":"🟣 Distribution Engine"},
+		{"id":"mon-group","type":"group","x":1160,"y":1140,"width":520,"height":280,"label":"⚪ Monitoring Layer (cross-cutting)"},
+		{"id":"title","type":"text","text":"# LoreAI v2 — Pipeline Architecture\n> Strategy-role grouping with timing & key data flows","x":300,"y":-140,"width":800,"height":80},
+		{"id":"pipe-a","type":"text","text":"## A — News Collection\n**⏰ 4:00 AM SGT** Mon–Fri\n\n`collect-news.ts`\n7 source tiers · ~350 items/day\nRSS · Twitter · GitHub · HF · HN · Reddit · Blogs\n→ `news_items` table (SQLite)","x":0,"y":60,"width":460,"height":180,"color":"5"},
+		{"id":"pipe-a2","type":"text","text":"## A2 — Entity Extraction\n**⏰ 6:30 AM SGT**\n\n`extract-entities.ts` · Claude Sonnet 4.6\nExtracts company/model/tech/framework entities\n→ `topic_clusters` + `keywords` tables\n+ Brave expansion for new topics","x":0,"y":280,"width":460,"height":180,"color":"5"},
+		{"id":"pipe-g","type":"text","text":"## G — Refresh Detection & Execution\n**Manual**\n\n**Detection** `--refresh-check`:\nFreshness signals → page mapping\nLLM staleness check → severity flags\n\n**Execution** `--refresh`:\nRe-generate with fresh sources\nEN + ZH independently\nPreserves internal links","x":0,"y":880,"width":460,"height":260,"color":"3"},
+		{"id":"pipe-b","type":"text","text":"## B — Newsletter\n**⏰ 5:00 AM SGT** Mon–Fri\n\n`write-newsletter.ts`\n3-tier agent filter → JSON outline\nEN (Opus) + ZH (3-tier fallback)\nBlog seed extraction (3-signal score)\nEmail HTML generation\n→ newsletters · seeds · filtered-items · email","x":1200,"y":60,"width":440,"height":220,"color":"4"},
+		{"id":"pipe-c","type":"text","text":"## C — Blog Generation\n**⏰ 7:00 AM SGT** Mon–Fri\n\n`write-blog.ts`\nTop 2–3 seeds · source URL fetch\nEN + ZH via Claude Opus\nSEO entity extraction → keywords","x":1200,"y":320,"width":440,"height":180,"color":"4"},
+		{"id":"pipe-d","type":"text","text":"## D — SEO Daily\n**⏰ 9:00 AM SGT**\n\n`generate-seo.ts`\nGap analysis: keywords × content existence\nMax 8 pages/run · EN + ZH\n\nTypes: Glossary · FAQ · Compare · Topic Hub\n→ `content/{type}/{lang}/{slug}.md`","x":1200,"y":540,"width":440,"height":220,"color":"4"},
+		{"id":"pipe-i","type":"text","text":"## I — Weekly Digest\n**⏰ Saturday 5:00 AM SGT**\n\n`write-weekly.ts`\n5 top stories + video posts + cluster updates\nEN + ZH (3-tier model fallback)","x":600,"y":880,"width":440,"height":140,"color":"6"},
+		{"id":"pipe-l","type":"text","text":"## L — Distribution\n**L1** `send-newsletter.ts` → Email to subscribers\n**L2** Git push → Vercel SSG → loreai.dev","x":600,"y":1060,"width":440,"height":100,"color":"6"},
+		{"id":"timeline","type":"text","text":"## Daily Timeline (SGT, Mon–Fri)\n\n```\n04:00  A  — collect-news         ~350 items → news_items\n05:00  B  — write-newsletter     EN + ZH newsletters + seeds + email\n06:30  A2 — extract-entities     Entities → topic_clusters + keywords\n07:00  C  — write-blog           2-3 blog posts (EN + ZH)\n09:00  D  — generate-seo         Up to 8 SEO pages (EN + ZH)\n  →    L  — git push             Vercel SSG rebuild → loreai.dev\n\nSat    I  — write-weekly         Weekly digest (EN + ZH)\n\nAd-hoc E/F/G/H/J/K              Discovery · cluster gen · refresh · monitoring\n```","x":150,"y":1500,"width":1100,"height":360},
+		{"id":"stores","type":"text","text":"## Data Stores\n\n**SQLite Tables**: `news_items` · `topic_clusters` · `keywords` · `content` · `content_sources` · `subscribers`\n\n**File Stores**:\n- `data/blog-seeds/{DATE}.json` — B → C\n- `data/filtered-items/{DATE}.json` — B → I, K\n- `data/flagship-clusters/{slug}.json` — E ↔ F ↔ G, K\n- `data/gsc-exports/latest.csv` — H → E, K\n- `data/content-plan/{week}.json` — J → manual\n- `content/{newsletters,blog,glossary,faq,compare,topics}/` — All generators → L (Vercel)","x":150,"y":1920,"width":1100,"height":280},
+		{"id":"pipe-k","type":"text","text":"## K — Monitoring & Reporting\n\n**K1** `cluster-health.ts` — Completeness · links · GSC\n**K2** `generate-review.ts` — Daily validation dashboard\n**K3** `validate-pipeline.ts` — Pre-commit quality gate","x":1200,"y":1200,"width":440,"height":160},
+		{"id":"pipe-j","type":"text","text":"## J — Weekly Strategy\n**Cron / Manual**\n\n`generate-seo.ts --weekly-strategy`\n\nGap analysis: clusters × existing content\nBrave demand validation (top 10 topics)\n→ Priority-scored content plan\n→ `data/content-plan/{week}.json`","x":600,"y":500,"width":440,"height":220,"color":"3"},
+		{"id":"pipe-h","type":"text","text":"## H — GSC Export\n**Manual / Cron**\n\n`gsc-export.ts`\nGoogle Search Console API → 7-day window\n→ `data/gsc-exports/latest.csv`","x":0,"y":530,"width":460,"height":160,"color":"5"},
+		{"id":"pipe-e","type":"text","text":"## E — Cluster Discovery\n**Manual / Cron**\n\n`planner.ts` + `lib/discover.ts`\n6-stage candidate discovery:\n\n1. SERP Demand (Serper.dev · 7 queries)\n2. Exa Semantic Gap (findSimilar)\n3. Competitor Audit (Exa/Brave + LLM)\n4. News Signals (14-day scan + LLM)\n5. GSC Import (unmatched queries)\n6. Multi-signal Scoring (0–100)\n\n→ `flagship-clusters/{slug}.json`\n+ promote / dismiss workflow","x":600,"y":30,"width":440,"height":340,"color":"3"},
+		{"id":"pipe-f","type":"text","text":"## F — Cluster Generation\n**Manual / Cron**\n\n`generate-seo.ts --cluster=<SLUG>`\nSource resolution: curated → Exa → Brave\nCornerstone (2000–4000 tokens)\n+ Compare/FAQ/Glossary (max 8/run)\n→ Update cluster JSON status","x":1200,"y":810,"width":440,"height":200,"color":"4"}
+	],
+	"edges":[
+		{"id":"e-a-a2","fromNode":"pipe-a","fromSide":"bottom","toNode":"pipe-a2","toSide":"top","label":"news_items"},
+		{"id":"e-a-b","fromNode":"pipe-a","fromSide":"right","toNode":"pipe-b","toSide":"left","label":"news_items"},
+		{"id":"e-b-c","fromNode":"pipe-b","fromSide":"bottom","toNode":"pipe-c","toSide":"top","label":"blog seeds"},
+		{"id":"e-a2-d","fromNode":"pipe-a2","fromSide":"right","toNode":"pipe-d","toSide":"left","label":"clusters + keywords"},
+		{"id":"e-h-e","fromNode":"pipe-h","fromSide":"right","toNode":"pipe-e","toSide":"left","label":"GSC data"},
+		{"id":"e-e-g","fromNode":"pipe-e","fromSide":"bottom","toNode":"pipe-g","toSide":"top","label":"freshness signals"},
+		{"id":"e-b-i","fromNode":"pipe-b","fromSide":"bottom","toNode":"pipe-i","toSide":"right","label":"newsletters"},
+		{"id":"e-b-l","fromNode":"pipe-b","fromSide":"bottom","toNode":"pipe-l","toSide":"right","label":"email HTML"},
+		{"id":"e-a2-j","fromNode":"pipe-a2","fromSide":"right","toNode":"pipe-j","toSide":"left","label":"topic_clusters"},
+		{"id":"e-gen-l","fromNode":"pipe-d","fromSide":"bottom","toNode":"pipe-l","toSide":"top","label":"content files"},
+		{"id":"e-gen-k","fromNode":"pipe-f","fromSide":"bottom","toNode":"pipe-k","toSide":"top","label":"health check"},
+		{"id":"e-e-f","fromNode":"pipe-e","fromSide":"right","toNode":"pipe-f","toSide":"left","label":"cluster targets"}
+	]
+}
