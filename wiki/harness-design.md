@@ -4,6 +4,7 @@ created: 2026-04-06
 last-updated: 2026-04-06
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
+  - raw/2026-04-06-claude-reviews-claude-overview.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -22,11 +23,13 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 - **Performance**: Solo agent = 20 min / $9 (broken output). Full harness = 6 hours / $200 (functional, polished output)
 - **Evolution**: As models improve (Sonnet → Opus), strip away components that are no longer load-bearing — [[assumptions-expire]]
 - **Evaluation tuning**: Out-of-the-box Claude QA agents approve mediocre work. Requires multiple calibration cycles against human judgment.
+- **Claude Code as concrete harness**: [[claude-code|Claude Code]] implements the harness pattern with 6 pillars. Its core design principle: "LLM as reasoning center; Harness provides perception, action, memory, and constraints." The [[query-loop]] (12-step state machine), [[context-management]] (4-layer compression), and [[permission-system]] (7-layer defense) are the harness infrastructure.
 
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[query-loop]], [[context-management]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Initial creation — full concept from engineering blog |
+| 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code as concrete harness implementation |

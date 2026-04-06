@@ -4,6 +4,7 @@ created: 2026-04-06
 last-updated: 2026-04-06
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
+  - raw/2026-04-06-claude-reviews-claude-overview.md
 tags: [wiki, failure-mode, agentic]
 ---
 
@@ -19,11 +20,13 @@ A failure mode where LLM agents prematurely wrap up work as they perceive approa
 - **Mitigation**: Context resets (clearing context and restarting with structured handoffs) proved more effective than compaction for Sonnet
 - Higher-capability models (Opus 4.6) handle this better — continuous sessions with automatic compaction work fine
 - This is one of two core failure modes in long-running agentic coding (the other being [[self-evaluation-bias]])
+- **In Claude Code**: [[context-management]] (4-layer compression system) is the architectural response to this problem. Context window is treated as the "scarcest resource" — all architecture decisions optimize for context efficiency.
 
 ## Connections
-- Related: [[harness-design]], [[claude-model-family]], [[self-evaluation-bias]]
+- Related: [[harness-design]], [[claude-model-family]], [[self-evaluation-bias]], [[context-management]], [[claude-code]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Initial creation |
+| 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code's 4-layer compression as architectural response |

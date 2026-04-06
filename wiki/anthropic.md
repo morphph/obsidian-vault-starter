@@ -4,6 +4,7 @@ created: 2026-04-06
 last-updated: 2026-04-06
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
+  - raw/2026-04-06-claude-reviews-claude-overview.md
 tags: [wiki, company, ai-lab]
 ---
 
@@ -13,15 +14,17 @@ tags: [wiki, company, ai-lab]
 AI safety company and creator of the Claude model family. Publishes engineering research on agentic architectures and long-running LLM applications. Operates Anthropic Labs where researchers explore multi-agent systems.
 
 ## Details
-- Builds the Claude model family (Sonnet, Opus, Haiku)
+- Builds the [[claude-model-family]] (Sonnet, Opus, Haiku)
+- Builds [[claude-code|Claude Code]] — official CLI tool with 6-pillar architecture (42+ tools, 12-step query loop, 4-layer context compression, 7-layer security)
 - Anthropic Labs publishes applied research on agentic coding patterns
 - Developed [[harness-design]] patterns for multi-agent architectures
 - Research staff includes [[Prithvi Rajasekaran]] (harness design work)
 
 ## Connections
-- Related: [[claude-model-family]], [[harness-design]], [[multi-agent-architecture]]
+- Related: [[claude-model-family]], [[claude-code]], [[harness-design]], [[multi-agent-architecture]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Initial creation from engineering blog post |
+| 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code as product, architecture details |

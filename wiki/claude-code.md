@@ -1,0 +1,38 @@
+---
+type: entity
+created: 2026-04-06
+last-updated: 2026-04-06
+sources:
+  - raw/2026-04-06-claude-reviews-claude-overview.md
+  - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
+tags: [wiki, product, tool, agentic]
+---
+
+# Claude Code
+
+## Summary
+[[Anthropic]]'s official CLI tool for agentic coding. Internally structured around six foundational pillars: System Prompt, Tool System, Query Loop, Context Management, Multi-Agent Coordination, and Security & Permissions. Embodies the [[harness-design]] principle: "LLM as reasoning center; Harness provides perception, action, memory, and constraints."
+
+## Details
+- **Six Pillars of Architecture:**
+  1. **System Prompt** — Identity, rules, 42+ tool descriptions
+  2. **Tool System** — 42 integrated modules, 30+ methods each
+  3. **[[query-loop]]** — 12-step state machine driving agentic iteration
+  4. **[[context-management]]** — Four-layer compression system; context window treated as "scarcest resource"
+  5. **[[multi-agent-architecture|Multi-Agent Coordination]]** — Distributed task execution
+  6. **[[permission-system|Security & Permissions]]** — Seven-layer defense-in-depth architecture
+- **Notable Engineering Patterns:**
+  - "35-line Store" — React 19 `useSyncExternalStore` replaces Redux for state management
+  - "Fork Ink" — Custom terminal rendering engine with proper event handling
+  - "Leaf Module Pattern" — Isolates bootstrap code, prevents circular dependencies via ESLint
+- **Scale:** 17-chapter analysis (8,600+ lines), 6 learning tracks (core loop, security, multi-agent, infrastructure, UI, operations)
+- Used as the harness in [[harness-design]] experiments — the evaluator agent uses Playwright MCP through Claude Code
+
+## Connections
+- Related: [[Anthropic]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]]
+
+## Source Log
+| Date | Source | What changed |
+|------|--------|-------------|
+| 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Initial creation — full architecture from 17-chapter analysis |
+| 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Context from harness design usage |
