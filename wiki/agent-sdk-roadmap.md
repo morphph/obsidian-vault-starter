@@ -12,6 +12,8 @@ tags: [wiki, synthesis, roadmap, harness-engineering]
 ## Summary
 Our wiki system uses Claude Code CLI for interactive operations (/ingest, /query, /lint, /visualize) and plans to use the Claude Agent SDK for all unattended operations — background knowledge capture, auto-compilation, connection discovery, and scheduled intelligence. This article captures the full picture: what we learned, what we decided, and what to build next.
 
+![[visual-agent-sdk-roadmap]]
+
 ## The Core Insight
 
 From [[claude-memory-compiler]]: **hooks must be fast, LLM work is slow, so they must be separated.** The hook does local I/O in <10 seconds, spawns a detached background Python process, and exits. The background process uses Agent SDK (not CLI) because Claude Code is already closed when it runs.
