@@ -16,3 +16,8 @@ pages-updated: anthropic.md, harness-design.md, multi-agent-architecture.md, con
 source: raw/2026-04-07-repo-claude-memory-compiler.md
 pages-created: claude-memory-compiler.md, zero-friction-capture.md, compiler-analogy.md, index-over-rag.md, time-gated-compilation.md, connection-articles.md, source-claude-memory-compiler.md
 pages-updated: harness-design.md, claude-code.md
+
+## [2026-04-07] internal-capture | Architecture discussion synthesis
+source: conversation (internal knowledge — first Pipeline B content)
+pages-created: agent-sdk-vs-claude-code.md, connection-context-anxiety-and-zero-friction-capture.md, two-pipeline-architecture.md
+pages-updated: index.md (added Connections category, renamed Synthesis → Connections)

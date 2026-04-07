@@ -23,15 +23,17 @@
 - [[index-over-rag]] — At personal scale, structured index outperforms vector similarity for retrieval
 - [[time-gated-compilation]] — Capture all day, compile after time gate (e.g., 6 PM)
 - [[connection-articles]] — Cross-cutting insights as first-class standalone wiki pages
+- [[agent-sdk-vs-claude-code]] — When to use Agent SDK (unattended) vs CLI (interactive)
+- [[two-pipeline-architecture]] — External + internal knowledge converging at raw/ into one wiki
 
-## Synthesis
+## Connections
 
-(none yet)
+- [[connection-context-anxiety-and-zero-friction-capture]] — Human context anxiety mirrors LLM context anxiety; both solved at harness level
 
 ## Visuals
 
 - [[visual-harness-design]] — Problem → pattern → architecture → implementation flow across the harness design ecosystem
-- [[visual-wiki-architecture]] — Full system: three input pipelines → raw/ → LLM compiler → wiki/ → four operations
+- [[visual-wiki-architecture]] — Full system: two pipelines → raw/ → LLM compiler → wiki/ → four operations
 
 ## Sources
 
