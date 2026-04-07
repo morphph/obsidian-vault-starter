@@ -5,6 +5,7 @@
 - [[anthropic]] — AI safety company, creator of Claude models and Claude Code
 - [[claude-code]] — Anthropic's official agentic CLI tool, 6-pillar architecture
 - [[claude-model-family]] — Anthropic's LLM models (Sonnet, Opus, Haiku) with different capability/cost tiers
+- [[akshay-pachaar]] — Tech content creator, co-author of "Anatomy of an Agent Harness"
 - [[claude-memory-compiler]] — Hook-based persistent memory for Claude Code, compiles conversations into knowledge articles
 - [[openclaw]] — Platform for building AI assistants, used by Ryan Sarver to build "Stella"
 - [[prithvi-rajasekaran]] — Anthropic Labs researcher, author of harness design blog post
@@ -19,6 +20,8 @@
 - [[self-evaluation-bias]] — Failure mode where agents overconfidently approve their own mediocre work
 - [[multi-agent-architecture]] — Specialized LLM agents collaborating with distinct roles
 - [[permission-system]] — Seven-layer defense-in-depth security architecture in Claude Code
+- [[orchestration-loop]] — TAO (Thought-Action-Observation) cycle; the heartbeat of any agent harness
+- [[verification-loops]] — Quality assurance via rules-based, visual, and LLM-as-judge approaches (2-3x improvement)
 - [[assumptions-expire]] — Principle: strip scaffolding as model capabilities improve
 - [[zero-friction-capture]] — Hook-based automatic knowledge capture without user action
 - [[compiler-analogy]] — Architecture framework: source → compiler → executable → test → runtime
@@ -51,3 +54,4 @@
 - [[source-claude-reviews-claude]] — 17-chapter Chinese-language deep-dive into Claude Code architecture (2026-04-06)
 - [[source-claude-memory-compiler]] — GitHub repo: hook-based persistent memory for Claude Code (2026-04-07)
 - [[source-rsarver-ai-chief-of-staff]] — Ryan Sarver's viral X post on building AI chief of staff "Stella" on OpenClaw (2026-04-07)
+- [[source-anatomy-of-agent-harness]] — 11 components + 7 decisions of production agent harnesses; benchmarks across frameworks (2026-04-07)

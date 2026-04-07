@@ -31,3 +31,8 @@ pages-updated: index.md (added Synthesis category, Visuals entries)
 source: raw/2026-04-07-rsarver-ai-chief-of-staff-openclaw.md
 pages-created: ryan-sarver.md, openclaw.md, kaizen-loop.md, llm-judgment-vs-scripts.md, source-rsarver-ai-chief-of-staff.md, connection-llm-judgment-vs-scripts-and-harness-design.md
 pages-updated: zero-friction-capture.md
+
+## [2026-04-07] ingest | The Anatomy of an Agent Harness
+source: raw/2026-04-07-anatomy-of-agent-harness.md
+pages-created: orchestration-loop.md, verification-loops.md, akshay-pachaar.md, source-anatomy-of-agent-harness.md
+pages-updated: harness-design.md, context-management.md, multi-agent-architecture.md, assumptions-expire.md, query-loop.md, permission-system.md
