@@ -5,6 +5,7 @@
 - [[anthropic]] — AI safety company, creator of Claude models and Claude Code
 - [[claude-code]] — Anthropic's official agentic CLI tool, 6-pillar architecture
 - [[claude-model-family]] — Anthropic's LLM models (Sonnet, Opus, Haiku) with different capability/cost tiers
+- [[claude-memory-compiler]] — Hook-based persistent memory for Claude Code, compiles conversations into knowledge articles
 - [[prithvi-rajasekaran]] — Anthropic Labs researcher, author of harness design blog post
 
 ## Concepts
@@ -17,6 +18,11 @@
 - [[multi-agent-architecture]] — Specialized LLM agents collaborating with distinct roles
 - [[permission-system]] — Seven-layer defense-in-depth security architecture in Claude Code
 - [[assumptions-expire]] — Principle: strip scaffolding as model capabilities improve
+- [[zero-friction-capture]] — Hook-based automatic knowledge capture without user action
+- [[compiler-analogy]] — Architecture framework: source → compiler → executable → test → runtime
+- [[index-over-rag]] — At personal scale, structured index outperforms vector similarity for retrieval
+- [[time-gated-compilation]] — Capture all day, compile after time gate (e.g., 6 PM)
+- [[connection-articles]] — Cross-cutting insights as first-class standalone wiki pages
 
 ## Synthesis
 
@@ -30,3 +36,4 @@
 
 - [[source-anthropic-harness-design]] — Anthropic engineering blog on GAN-inspired multi-agent coding architectures (2026-03-24)
 - [[source-claude-reviews-claude]] — 17-chapter Chinese-language deep-dive into Claude Code architecture (2026-04-06)
+- [[source-claude-memory-compiler]] — GitHub repo: hook-based persistent memory for Claude Code (2026-04-07)

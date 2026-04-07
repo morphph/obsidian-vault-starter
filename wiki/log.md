@@ -11,3 +11,8 @@ pages-updated: (none — first ingest)
 source: raw/2026-04-06-claude-reviews-claude-overview.md
 pages-created: claude-code.md, query-loop.md, context-management.md, permission-system.md, source-claude-reviews-claude.md
 pages-updated: anthropic.md, harness-design.md, multi-agent-architecture.md, context-anxiety.md
+
+## [2026-04-07] ingest | claude-memory-compiler (GitHub Deep Scan)
+source: raw/2026-04-07-repo-claude-memory-compiler.md
+pages-created: claude-memory-compiler.md, zero-friction-capture.md, compiler-analogy.md, index-over-rag.md, time-gated-compilation.md, connection-articles.md, source-claude-memory-compiler.md
+pages-updated: harness-design.md, claude-code.md

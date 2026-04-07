@@ -5,6 +5,7 @@ last-updated: 2026-04-06
 sources:
   - raw/2026-04-06-claude-reviews-claude-overview.md
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
+  - raw/2026-04-07-repo-claude-memory-compiler.md
 tags: [wiki, product, tool, agentic]
 ---
 
@@ -27,12 +28,15 @@ tags: [wiki, product, tool, agentic]
   - "Leaf Module Pattern" — Isolates bootstrap code, prevents circular dependencies via ESLint
 - **Scale:** 17-chapter analysis (8,600+ lines), 6 learning tracks (core loop, security, multi-agent, infrastructure, UI, operations)
 - Used as the harness in [[harness-design]] experiments — the evaluator agent uses Playwright MCP through Claude Code
+- **Hook system extensibility:** [[claude-memory-compiler]] uses SessionEnd, PreCompact, and SessionStart hooks for [[zero-friction-capture]] — demonstrates hooks as the integration point for persistent memory. 20 hook event types available.
+- **Claude Agent SDK:** Companion to Claude Code — runs LLM operations programmatically. Used by [[claude-memory-compiler]] for background knowledge extraction. Covered under existing Claude subscription.
 
 ## Connections
-- Related: [[Anthropic]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]]
+- Related: [[Anthropic]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Initial creation — full architecture from 17-chapter analysis |
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Context from harness design usage |
+| 2026-04-07 | raw/2026-04-07-repo-claude-memory-compiler.md | Added hook system extensibility, Agent SDK |

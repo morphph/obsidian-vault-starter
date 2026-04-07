@@ -5,6 +5,7 @@ last-updated: 2026-04-06
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
+  - raw/2026-04-07-repo-claude-memory-compiler.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -25,11 +26,14 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 - **Evaluation tuning**: Out-of-the-box Claude QA agents approve mediocre work. Requires multiple calibration cycles against human judgment.
 - **Claude Code as concrete harness**: [[claude-code|Claude Code]] implements the harness pattern with 6 pillars. Its core design principle: "LLM as reasoning center; Harness provides perception, action, memory, and constraints." The [[query-loop]] (12-step state machine), [[context-management]] (4-layer compression), and [[permission-system]] (7-layer defense) are the harness infrastructure.
 
+- **Harness as memory system**: [[claude-memory-compiler]] demonstrates harness providing persistent memory via hooks — [[zero-friction-capture]] (automatic), [[time-gated-compilation]] (efficient), [[index-over-rag]] (retrieval). The harness doesn't just orchestrate tasks; it accumulates and retrieves knowledge across sessions.
+
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[query-loop]], [[context-management]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Initial creation — full concept from engineering blog |
 | 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code as concrete harness implementation |
+| 2026-04-07 | raw/2026-04-07-repo-claude-memory-compiler.md | Added harness-as-memory-system pattern |
