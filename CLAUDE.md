@@ -124,6 +124,39 @@ Generates `.excalidraw` JSON files that make visual arguments. Installed at `.cl
 - Playwright-powered render pipeline for visual validation
 - Used by `/visualize` command
 
+## Pipeline B: Internal Knowledge Capture
+
+Automatic capture of knowledge from Claude Code sessions in LoreAI and blog2video.
+
+### How it works
+1. **SessionEnd / PreCompact hooks** fire automatically when you close a session or context compacts
+2. Hook extracts conversation context from JSONL transcript (fast, <10s, no API calls)
+3. Spawns `scripts/flush.py` as detached background process
+4. flush.py uses **Claude Agent SDK** to extract decisions, lessons, patterns
+5. Saves to `raw/{date}-session-{project}.md`
+6. After 6 PM: auto-triggers `scripts/compile.py` (time-gated compilation)
+7. compile.py uses Agent SDK to compile new raw files into wiki pages + discover connections
+
+### Scripts (`scripts/`)
+- `flush.py` — Background knowledge extraction. Spawned by hooks. Uses Agent SDK.
+- `compile.py` — Compiles raw → wiki pages + auto-discovers connections. CLI: `uv run python scripts/compile.py`
+- `config.py` — Path constants
+- `utils.py` — Shared helpers (file_hash, read_wiki_content, etc.)
+
+### Hooks (`hooks/`)
+- `session-start.py` — Injects wiki/index.md into every session (max 20K chars)
+- `session-end.py` — Captures transcript → spawns flush.py
+- `pre-compact.py` — Safety net before context compaction → spawns flush.py
+
+### Safety
+- **Recursion guard:** `CLAUDE_INVOKED_BY` env var prevents hook → Agent SDK → Claude Code → hook loops
+- **Deduplication:** Same session won't be flushed twice within 60 seconds
+- **Wiki repo excluded:** No hooks configured here — avoids meta-recursion
+
+### Hooks configured in:
+- `~/Desktop/Project/loreai-v2/.claude/settings.json`
+- `~/Desktop/Project/blog2video/.claude/settings.json`
+
 ## Source Types
 
 ### Articles & Posts

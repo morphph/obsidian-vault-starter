@@ -2,3 +2,18 @@
 .obsidian/workspace-mobile.json
 .trash/
 .DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+uv.lock
+
+# Pipeline state (regenerated automatically)
+scripts/state.json
+scripts/last-flush.json
+scripts/flush.log
+scripts/compile.log
+
+# Playwright MCP
+.playwright-mcp/
