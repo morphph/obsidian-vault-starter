@@ -28,7 +28,7 @@
 
 ## Synthesis
 
-- [[agent-sdk-roadmap]] — Full roadmap: 9 Agent SDK use cases across 3 phases (foundation → automation → intelligence)
+- [[knowledge-compiler-design]] — Full roadmap: 9 Agent SDK use cases across 3 phases (foundation → automation → intelligence)
 
 ## Connections
 
