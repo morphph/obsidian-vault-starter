@@ -31,6 +31,7 @@
 ## Visuals
 
 - [[visual-harness-design]] — Problem → pattern → architecture → implementation flow across the harness design ecosystem
+- [[visual-wiki-architecture]] — Full system: three input pipelines → raw/ → LLM compiler → wiki/ → four operations
 
 ## Sources
 
