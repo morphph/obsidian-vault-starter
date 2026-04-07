@@ -133,6 +133,29 @@ Pipeline A (外部知识)          Pipeline B (内部知识)
 
 **更重要的是**：将来 Agent SDK 在编译时会自动发现这类连接。每次 ingest 新内容，编译器不只是创建/更新页面，还会扫描所有已有概念，寻找新内容是否揭示了它们之间的非显然关系。这是知识的**自动复利**——不依赖人类去问对的问题。
 
+### 白天手动 vs 晚上自动：Connection 发现在哪一步？
+
+一个重要的澄清：**白天手动 `/ingest` 不会自动发现 connections。** 它只做基本编译——创建/更新 entity 和 concept 页面。
+
+Connection 发现发生在**晚上 6 PM 的 Agent SDK 自动编译**。原因：
+1. **慢**：扫描所有已有 wiki 页面（现在 27 个，将来可能几百个）+ LLM 判断每个关系是否非显然且有价值——这很耗时，不应该让你在 CLI 里等
+2. **全天上下文更好**：如果你一天 ingest 了 3 个源，6 PM 统一编译时 LLM 同时看到三个新源和所有已有概念，发现的连接质量比逐个 ingest 时高
+3. **批量更高效**：一次扫描发现所有连接，比每次 ingest 都扫描一遍省钱省时间
+
+```
+白天：/ingest <url>
+  → 快速编译：创建/更新 entity + concept 页面
+  → 不找 connection（快，交互，省时间）
+
+晚上 6 PM：Agent SDK 自动编译
+  → 编译当天所有新 raw 文件
+  → 额外步骤：扫描所有已有 wiki 概念
+  → 发现非显然关系 → 自动创建 connection articles
+  → 慢，深度，无人值守
+```
+
+当然，如果你在白天讨论中发现了一个 connection（像我们发现 context-anxiety × zero-friction-capture），你随时可以**手动创建** connection article。自动发现是补充，不是替代。
+
 ---
 
 ## Agent SDK：无人值守的 LLM 操作
@@ -183,6 +206,60 @@ Pipeline A (外部知识)          Pipeline B (内部知识)
 
 这就是 [[compiler-analogy|知识编译器]]的最终形态：你不手动整理知识，你有对话，你编码，你阅读——编译器处理综合、交叉引用和维护。
 
+---
+
+## 执行状态：已完成 vs 待建
+
+### ✅ 已完成
+
+| 组件 | 说明 | 完成时间 |
+|------|------|---------|
+| 三层架构 | `raw/` + `wiki/` + `CLAUDE.md` | 2026-04-06 |
+| `/ingest` 命令 | 手动 ingest，支持 URL、文件、scan | 2026-04-06 |
+| `/query` 命令 | 问 wiki 问题，可 file back | 2026-04-06 |
+| `/lint` 命令 | 7 项健康检查 | 2026-04-06 |
+| `/visualize` 命令 | Excalidraw 图表生成 | 2026-04-07 |
+| Smart URL fetch | WebFetch → Chrome → Playwright 分级 | 2026-04-06 |
+| Playwright MCP | 配置完成，JS-heavy 站点可抓取 | 2026-04-06 |
+| GitHub Deep Scan | `/ingest` 自动检测 GitHub URL，gh CLI 深度扫描 | 2026-04-07 |
+| 三个 Pattern 分类 | Harness Engineering / System Design / DX | 2026-04-07 |
+| Excalidraw skill | 安装并可用，Playwright 渲染验证 | 2026-04-07 |
+| Connection articles（手动） | 概念定义 + 第一篇 connection + index 分类 | 2026-04-07 |
+| CLAUDE.md 文档化 | 所有命令和 skills 有使用指南 | 2026-04-07 |
+| 3 次外部 ingest | Anthropic 文章 + Claude Reviews Claude + claude-memory-compiler repo | 2026-04-06~07 |
+| 2 次内部 capture | 架构讨论 + Agent SDK roadmap（手动） | 2026-04-07 |
+
+### 🔨 待建：Phase 1 — 基础
+
+| 组件 | 做什么 | 依赖 | 预估工作量 |
+|------|--------|------|-----------|
+| hooks (SessionEnd + PreCompact) | 在 LoreAI / blog2video 项目里安装 hooks，捕获对话 transcript | 需要修改项目 `.claude/settings.json` | 中等 |
+| flush.py | 后台进程，用 Agent SDK 从 transcript 提取知识，写到 wiki 的 `raw/` | hooks + Claude Agent SDK 安装 | 中等 |
+| 递归防护 | `CLAUDE_INVOKED_BY` env var 防止无限循环 | flush.py | 小 |
+| Time-Gated Compile | 6 PM 自动触发 `/ingest scan` 编译当天新 raw 文件 | flush.py（搭便车在最后一次 flush 上） | 小 |
+| Auto Connection Discovery | 编译时自动扫描已有概念，发现非显然关系 | Time-Gated Compile | 中等 |
+
+### 🔜 待建：Phase 2 — 自动化
+
+| 组件 | 做什么 | 依赖 | 预估工作量 |
+|------|--------|------|-----------|
+| Telegram Bot (Channels) | Claude Code Channels 配置，接收转发文章 → `raw/` | Phase 1 完成 + Claude Code Channels 功能 | 中等 |
+| Auto Weekly /lint | 每周日 Agent SDK 跑健康检查 → 报告写入 wiki | Phase 1 完成 | 小 |
+
+### 🔮 待建：Phase 3 — 智能化
+
+| 组件 | 做什么 | 依赖 | 预估工作量 |
+|------|--------|------|-----------|
+| Weekly Digest | 每周一生成知识周报 → Telegram/email | Phase 2 完成 | 中等 |
+| RSS Intelligent Filter | LLM 判断 RSS 文章相关性 → 只存相关的到 `raw/` | Phase 1 完成 | 中等 |
+| Auto /visualize | ingest 3+ 页后自动生成图表 | Phase 1 完成 + excalidraw skill | 小 |
+
+### 还有一个待完成的 ingest
+
+Ryan Sarver 的 X Article（AI Chief of Staff on OpenClaw）已经存到 `raw/2026-04-07-rsarver-ai-chief-of-staff-openclaw.md`，key takeaways 已讨论，但 wiki 页面尚未创建。
+
+---
+
 ## Connections
 - Related: [[agent-sdk-vs-claude-code]], [[two-pipeline-architecture]], [[zero-friction-capture]], [[time-gated-compilation]], [[connection-articles]], [[compiler-analogy]], [[claude-memory-compiler]], [[harness-design]], [[context-anxiety]], [[index-over-rag]]
 
@@ -191,3 +268,4 @@ Pipeline A (外部知识)          Pipeline B (内部知识)
 |------|--------|-------------|
 | 2026-04-07 | Internal discussion: multi-round architecture design | Initial creation — synthesized from Karpathy + claude-memory-compiler + discussion insights |
 | 2026-04-07 | Rewrite: expanded from Agent SDK roadmap to full system design narrative | Added inspiration sources analysis, decision rationale, connection articles as compounding engine |
+| 2026-04-07 | Added connection timing clarification + execution status tracking | CLI ingest 不找 connection，6 PM Agent SDK 编译时找；全面扫描已完成 vs 待建 |
