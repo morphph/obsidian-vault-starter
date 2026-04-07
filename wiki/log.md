@@ -20,4 +20,9 @@ pages-updated: harness-design.md, claude-code.md
 ## [2026-04-07] internal-capture | Architecture discussion synthesis
 source: conversation (internal knowledge — first Pipeline B content)
 pages-created: agent-sdk-vs-claude-code.md, connection-context-anxiety-and-zero-friction-capture.md, two-pipeline-architecture.md
-pages-updated: index.md (added Connections category, renamed Synthesis → Connections)
+pages-updated: index.md (added Connections category)
+
+## [2026-04-07] internal-capture | Agent SDK roadmap synthesis
+source: conversation (multi-round discussion on Agent SDK use cases)
+pages-created: agent-sdk-roadmap.md, visual-agent-sdk-roadmap.excalidraw
+pages-updated: index.md (added Synthesis category, Visuals entries)

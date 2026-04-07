@@ -26,14 +26,19 @@
 - [[agent-sdk-vs-claude-code]] — When to use Agent SDK (unattended) vs CLI (interactive)
 - [[two-pipeline-architecture]] — External + internal knowledge converging at raw/ into one wiki
 
+## Synthesis
+
+- [[agent-sdk-roadmap]] — Full roadmap: 9 Agent SDK use cases across 3 phases (foundation → automation → intelligence)
+
 ## Connections
 
 - [[connection-context-anxiety-and-zero-friction-capture]] — Human context anxiety mirrors LLM context anxiety; both solved at harness level
 
 ## Visuals
 
-- [[visual-harness-design]] — Problem → pattern → architecture → implementation flow across the harness design ecosystem
-- [[visual-wiki-architecture]] — Full system: two pipelines → raw/ → LLM compiler → wiki/ → four operations
+- [[visual-harness-design]] — Problem → pattern → architecture → implementation flow
+- [[visual-wiki-architecture]] — Two pipelines → raw/ → LLM compiler → wiki/ → four operations
+- [[visual-agent-sdk-roadmap]] — CLI (interactive) vs Agent SDK (unattended): 3-phase rollout plan
 
 ## Sources
 
