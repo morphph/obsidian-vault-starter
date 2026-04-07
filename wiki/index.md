@@ -22,6 +22,10 @@
 
 (none yet)
 
+## Visuals
+
+- [[visual-harness-design]] — Problem → pattern → architecture → implementation flow across the harness design ecosystem
+
 ## Sources
 
 - [[source-anthropic-harness-design]] — Anthropic engineering blog on GAN-inspired multi-agent coding architectures (2026-03-24)
