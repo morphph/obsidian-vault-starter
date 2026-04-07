@@ -81,6 +81,48 @@ issues: orphans(N), stale(N), contradictions(N)
 auto-fixed: description
 ```
 
+## Commands
+
+Four slash commands operate on the wiki:
+
+### `/ingest <url|file|scan>`
+Drop a source into the wiki. The core operation — one source fans out updates across multiple wiki pages.
+- **URL**: Fetches content (see Source Fetching Tools below), saves to `raw/`, then ingests
+- **File path**: Ingests an existing file in `raw/`
+- **scan**: Finds all files in `raw/` not yet in `wiki/log.md`, ingests each in order
+- Creates source summary + entity/concept pages, updates index + log
+- Discuss key takeaways with user before creating pages
+
+### `/query <question>`
+Ask a question against the wiki. Reads `wiki/index.md` to find relevant pages, synthesizes an answer with [[wikilink]] citations.
+- Optionally file good answers back as synthesis pages
+- Flags data gaps when the wiki can't fully answer
+- Logs every query to `wiki/log.md`
+
+### `/lint`
+Periodic health check of the wiki.
+- Checks: orphan pages, stale pages, missing cross-references, contradictions, index drift, unresolved links, thin coverage
+- Optionally auto-fixes index drift and missing links
+- Logs results to `wiki/log.md`
+
+### `/visualize <topic|source-path|blank>`
+Generate Excalidraw diagrams from wiki knowledge. Uses the excalidraw-diagram skill.
+- **Topic** (e.g., `/visualize harness-design`): Synthesizes from all connected wiki pages on that topic
+- **Source path** (e.g., `/visualize raw/article.md`): Diagrams just that one source
+- **Blank**: Full wiki map of all entities, concepts, and connections
+- Saves as `wiki/visual-{name}.excalidraw`, registered in index under Visuals category
+- Renders to PNG for validation, then deletes PNG (`.excalidraw` is the artifact)
+- Embed in wiki pages with `![[visual-{name}]]`
+
+## Skills
+
+### excalidraw-diagram
+Generates `.excalidraw` JSON files that make visual arguments. Installed at `.claude/skills/excalidraw-diagram/`.
+- Diagrams should argue, not just display — shapes embody meaning
+- Color palette in `references/color-palette.md` (customizable)
+- Playwright-powered render pipeline for visual validation
+- Used by `/visualize` command
+
 ## Source Fetching Tools
 
 For `/ingest` URL handling, use this priority chain:
