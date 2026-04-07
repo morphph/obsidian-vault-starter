@@ -26,6 +26,7 @@ Parse `$ARGUMENTS` for one of:
 Detect the URL type and use the best fetching method. Try methods in order — if one fails or returns empty/unusable content, fall through to the next.
 
 **Step 1 — Classify the URL:**
+- **GitHub repos** (github.com/{owner}/{repo} with no file path after): Use the GitHub Deep Scan (see below)
 - **JS-heavy sites** (need browser rendering): twitter.com, x.com, youtube.com, reddit.com, linkedin.com, facebook.com, instagram.com, medium.com (paywalled), substack.com (paywalled)
 - **Static sites** (WebFetch works fine): most blogs, news sites, GitHub pages, documentation sites
 
@@ -47,6 +48,87 @@ For **static sites**:
 
 **Step 3 — Save the content:**
 Save to `raw/{YYYY-MM-DD}-{slug}.md` with the article content in markdown. Include a header with the source URL and fetch method used. The file is now immutable.
+
+#### GitHub Deep Scan
+
+For GitHub repo URLs (e.g., `https://github.com/owner/repo`), run a deep architecture scan using `gh` CLI:
+
+**Step 1 — Fetch repo data:**
+```bash
+# Metadata
+gh repo view {owner}/{repo} --json name,description,stargazerCount,primaryLanguage,updatedAt
+
+# File tree
+gh api "repos/{owner}/{repo}/git/trees/main" --paginate --jq '.tree[] | select(.type=="blob") | .path'
+
+# README
+gh api repos/{owner}/{repo}/contents/README.md --jq '.content' | base64 -d
+
+# Dependencies (try each, take what exists)
+gh api repos/{owner}/{repo}/contents/package.json --jq '.content' | base64 -d
+gh api repos/{owner}/{repo}/contents/pyproject.toml --jq '.content' | base64 -d
+
+# Agentic config (if exists)
+gh api repos/{owner}/{repo}/contents/CLAUDE.md --jq '.content' | base64 -d
+gh api repos/{owner}/{repo}/contents/AGENTS.md --jq '.content' | base64 -d
+
+# Recent activity
+gh api "repos/{owner}/{repo}/commits?per_page=15" --jq '.[].commit.message' 
+```
+
+**Step 2 — Read key source files:**
+From the file tree, identify and fetch 2-3 key files:
+- Entry point (e.g., `src/index.ts`, `main.py`, `scripts/` directory)
+- Main config or schema file
+- Any file that reveals the core architecture pattern
+
+Use `gh api repos/{owner}/{repo}/contents/{path} --jq '.content' | base64 -d` to fetch each.
+
+**Step 3 — Synthesize into structured source document:**
+
+Save to `raw/{YYYY-MM-DD}-repo-{repo-name}.md` with this structure:
+
+```markdown
+# {Repo Name}
+
+**Source:** {github URL}
+**Author/Org:** {owner}
+**Stars:** {count} | **Language:** {lang} | **Last updated:** {date}
+**Fetch method:** GitHub Deep Scan (gh CLI)
+
+## What It Does
+[Problem it solves, who it's for, why it exists — from README]
+
+## Architecture
+[File structure analysis + key design decisions from reading source files]
+
+## Tech Stack
+[Language, dependencies, frameworks — from package.json/pyproject.toml]
+
+## Patterns & Best Practices
+
+### Harness Engineering
+[Patterns about building around LLMs: agents, tools, memory, evaluation, hooks, prompts, cost management, Claude Code patterns]
+
+### System Design
+[Architecture patterns, pipelines, data flow, modularity, error recovery — the non-LLM craft]
+
+### Developer Experience
+[Onboarding design, repo structure, documentation patterns, self-setup]
+
+## Ecosystem Connections
+[How this relates to existing wiki concepts — link with [[wikilinks]]]
+
+## Repo Vitals
+- Stars: {N} | Forks: {N}
+- Language: {lang}
+- Last commit: {date} — {message}
+- Active/stale assessment
+```
+
+**Important:** Only include pattern categories that actually have content. If a repo has no Harness Engineering patterns, omit that section. The Patterns section is the primary value — each pattern should state: what it is, why it works, where else it could apply.
+
+Then proceed with normal ingest steps 2-7 (extract, discuss, create/update pages, update index + log).
 
 ### 2. Read and extract
 
