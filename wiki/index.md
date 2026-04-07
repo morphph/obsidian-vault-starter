@@ -6,7 +6,9 @@
 - [[claude-code]] — Anthropic's official agentic CLI tool, 6-pillar architecture
 - [[claude-model-family]] — Anthropic's LLM models (Sonnet, Opus, Haiku) with different capability/cost tiers
 - [[claude-memory-compiler]] — Hook-based persistent memory for Claude Code, compiles conversations into knowledge articles
+- [[openclaw]] — Platform for building AI assistants, used by Ryan Sarver to build "Stella"
 - [[prithvi-rajasekaran]] — Anthropic Labs researcher, author of harness design blog post
+- [[ryan-sarver]] — VC who built "Stella," production-grade AI chief of staff on OpenClaw
 
 ## Concepts
 
@@ -24,6 +26,8 @@
 - [[time-gated-compilation]] — Capture all day, compile after time gate (e.g., 6 PM)
 - [[connection-articles]] — Cross-cutting insights as first-class standalone wiki pages
 - [[agent-sdk-vs-claude-code]] — When to use Agent SDK (unattended) vs CLI (interactive)
+- [[kaizen-loop]] — Self-improving AI system: scheduled environmental scanning + daily friction learning
+- [[llm-judgment-vs-scripts]] — Design principle: LLMs handle judgment, scripts handle deterministic operations
 - [[two-pipeline-architecture]] — External + internal knowledge converging at raw/ into one wiki
 
 ## Synthesis
@@ -33,6 +37,7 @@
 ## Connections
 
 - [[connection-context-anxiety-and-zero-friction-capture]] — Human context anxiety mirrors LLM context anxiety; both solved at harness level
+- [[connection-llm-judgment-vs-scripts-and-harness-design]] — Convergent evolution: VC and AI lab independently discover same LLM/scaffolding boundary
 
 ## Visuals
 
@@ -45,3 +50,4 @@
 - [[source-anthropic-harness-design]] — Anthropic engineering blog on GAN-inspired multi-agent coding architectures (2026-03-24)
 - [[source-claude-reviews-claude]] — 17-chapter Chinese-language deep-dive into Claude Code architecture (2026-04-06)
 - [[source-claude-memory-compiler]] — GitHub repo: hook-based persistent memory for Claude Code (2026-04-07)
+- [[source-rsarver-ai-chief-of-staff]] — Ryan Sarver's viral X post on building AI chief of staff "Stella" on OpenClaw (2026-04-07)

@@ -26,3 +26,8 @@ pages-updated: index.md (added Connections category)
 source: conversation (multi-round discussion on Agent SDK use cases)
 pages-created: agent-sdk-roadmap.md, visual-agent-sdk-roadmap.excalidraw
 pages-updated: index.md (added Synthesis category, Visuals entries)
+
+## [2026-04-07T17:58:32+08:00] compile | Ryan Sarver — AI Chief of Staff on OpenClaw
+source: raw/2026-04-07-rsarver-ai-chief-of-staff-openclaw.md
+pages-created: ryan-sarver.md, openclaw.md, kaizen-loop.md, llm-judgment-vs-scripts.md, source-rsarver-ai-chief-of-staff.md, connection-llm-judgment-vs-scripts-and-harness-design.md
+pages-updated: zero-friction-capture.md
