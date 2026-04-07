@@ -130,7 +130,6 @@ For each connection discovered, create a connection article:
 - Follow CLAUDE.md conventions exactly (flat structure, kebab-case, wikilinks)
 - Every claim must trace to a source file
 - Chinese-English mixing is normal
-- Pattern categories: Harness Engineering, System Design, Developer Experience
 """
 
     cost = 0.0

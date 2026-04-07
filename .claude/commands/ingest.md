@@ -105,16 +105,8 @@ Save to `raw/{YYYY-MM-DD}-repo-{repo-name}.md` with this structure:
 ## Tech Stack
 [Language, dependencies, frameworks — from package.json/pyproject.toml]
 
-## Patterns & Best Practices
-
-### Harness Engineering
-[Patterns about building around LLMs: agents, tools, memory, evaluation, hooks, prompts, cost management, Claude Code patterns]
-
-### System Design
-[Architecture patterns, pipelines, data flow, modularity, error recovery — the non-LLM craft]
-
-### Developer Experience
-[Onboarding design, repo structure, documentation patterns, self-setup]
+## Key Patterns & Takeaways
+[Reusable patterns, design decisions, best practices worth remembering]
 
 ## Ecosystem Connections
 [How this relates to existing wiki concepts — link with [[wikilinks]]]
@@ -126,7 +118,7 @@ Save to `raw/{YYYY-MM-DD}-repo-{repo-name}.md` with this structure:
 - Active/stale assessment
 ```
 
-**Important:** Only include pattern categories that actually have content. If a repo has no Harness Engineering patterns, omit that section. The Patterns section is the primary value — each pattern should state: what it is, why it works, where else it could apply.
+**Important:** The Patterns section is the primary value — each pattern should state: what it is, why it works, where else it could apply.
 
 Then proceed with normal ingest steps 2-7 (extract, discuss, create/update pages, update index + log).
 

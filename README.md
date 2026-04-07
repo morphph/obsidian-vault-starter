@@ -85,14 +85,6 @@ CLAUDE.md               Schema — the operating manual
 archive/                Everything from the pre-wiki vault
 ```
 
-## Pattern Categories
-
-Knowledge extracted from repos and articles is classified as:
-
-- **Harness Engineering** — Building around LLMs: agents, tools, memory, evaluation, hooks, prompts
-- **System Design** — Architecture, pipelines, data flow, modularity — the non-LLM craft
-- **Developer Experience** — Onboarding, repo structure, documentation, self-setup
-
 ## Changelog
 
 ### v0.2 — Pipeline B + Auto Connections (2026-04-07)
@@ -105,10 +97,9 @@ Knowledge extracted from repos and articles is classified as:
 - `scripts/compile.py` — manual or auto compilation with `--dry-run` support
 - Recursion guard via `CLAUDE_INVOKED_BY` env var
 
-### v0.1.3 — GitHub Deep Scan + Pattern Categories (2026-04-07)
+### v0.1.3 — GitHub Deep Scan (2026-04-07)
 
 - `/ingest` detects GitHub URLs → deep architecture scan via `gh` CLI
-- Three pattern categories: Harness Engineering, System Design, DX
 - First repo ingest: claude-memory-compiler (7 new concept pages)
 
 ### v0.1.2 — Excalidraw + /visualize (2026-04-07)

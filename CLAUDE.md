@@ -165,16 +165,6 @@ Standard web content — blogs, documentation, X/Twitter articles. Saved as-is t
 ### GitHub Repos (Deep Scan)
 For repo URLs, `/ingest` runs a deep architecture scan via `gh` CLI: README, file tree, dependencies, CLAUDE.md/AGENTS.md, key source files, recent commits. Synthesized into a structured summary in `raw/` covering: what it does, architecture, tech stack, patterns & best practices, ecosystem connections.
 
-## Pattern Categories
-
-When extracting patterns from repos (or any source), classify under these three categories:
-
-- **Harness Engineering** — Everything about building around LLMs: agents, tools, memory, evaluation loops, hooks, prompts, cost management, Claude Code patterns, MCP configurations
-- **System Design** — Architecture, pipelines, data flow, modularity, error recovery — the non-LLM craft
-- **Developer Experience** — Onboarding, repo structure, documentation design, self-setup patterns
-
-Only include categories that have actual content. These categories may expand over time.
-
 ## Source Fetching Tools
 
 For `/ingest` URL handling, use this priority chain:

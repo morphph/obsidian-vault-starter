@@ -116,9 +116,6 @@ Format your response as a structured session summary with these sections:
 **Lessons Learned:**
 - [Gotchas, patterns, or insights discovered]
 
-**Patterns & Best Practices:**
-- [Reusable patterns worth tracking — Harness Engineering, System Design, or DX]
-
 **Action Items:**
 - [Follow-ups or TODOs mentioned]
 
