@@ -3,115 +3,191 @@ type: synthesis
 created: 2026-04-07
 last-updated: 2026-04-07
 sources:
+  - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-07-repo-claude-memory-compiler.md
-tags: [wiki, synthesis, roadmap, harness-engineering]
+tags: [wiki, synthesis, roadmap, harness-engineering, architecture]
 ---
 
-# Agent SDK Roadmap: Unattended LLM Operations
+# 从两个灵感源到一套知识编译系统
 
 ## Summary
-Our wiki system uses Claude Code CLI for interactive operations (/ingest, /query, /lint, /visualize) and plans to use the Claude Agent SDK for all unattended operations — background knowledge capture, auto-compilation, connection discovery, and scheduled intelligence. This article captures the full picture: what we learned, what we decided, and what to build next.
+
+这篇文章记录了我们如何从 Karpathy 的 LLM Knowledge Base 和 coleam00 的 claude-memory-compiler 两个灵感源中各取所长，设计出一套同时捕获外部知识和内部知识的编译系统。不只是技术方案，更是决策过程——为什么选了这些能力，为什么放弃了那些，以及这套系统最终如何让知识自动流动、自动连接、自动复利。
+
+![[visual-wiki-architecture]]
 
 ![[visual-agent-sdk-roadmap]]
 
-## The Core Insight
+---
 
-From [[claude-memory-compiler]]: **hooks must be fast, LLM work is slow, so they must be separated.** The hook does local I/O in <10 seconds, spawns a detached background Python process, and exits. The background process uses Agent SDK (not CLI) because Claude Code is already closed when it runs.
+## 两个灵感源，各取所长
 
-This generalizes into a design rule: **any LLM task that doesn't need a human in the loop should use Agent SDK.** Claude Code CLI is the interactive tool; Agent SDK is the programmatic interface.
+### 灵感源 A：Karpathy 的 LLM Wiki
 
-See [[agent-sdk-vs-claude-code]] for the full decision framework.
+Andrej Karpathy 在 2026 年 4 月发布了一个 gist，描述了一种用 LLM 构建个人知识库的模式。核心思想：
 
-## Architecture Context
+> 不要每次查询都从原始文档重新推导（RAG 模式），而是让 LLM **增量构建并维护一个持久化的 wiki**。知识编译一次，持续更新，而不是每次重新推导。
 
-Our wiki has [[two-pipeline-architecture|two pipelines]]:
-- **Pipeline A (External Knowledge)**: manual /ingest + Telegram bot via Claude Code Channels → `raw/`
-- **Pipeline B (Internal Knowledge)**: Claude Code hooks → flush.py → Agent SDK → `raw/`
+**我们从 Karpathy 拿了什么：**
+- [[compiler-analogy|三层架构]]：`raw/`（不可变源文件）→ `wiki/`（LLM 维护的知识页面）→ `CLAUDE.md`（schema）
+- 两个结构文件：`index.md`（内容目录，LLM 的检索入口）和 `log.md`（操作日志）
+- 三个核心操作：Ingest（编译）、Query（查询）、Lint（健康检查）
+- [[index-over-rag]]：在个人规模（50-500 篇文章），LLM 读结构化 index 比向量相似度检索更准
 
-Both converge at `raw/`, compiled by the same LLM into `wiki/`. See [[visual-wiki-architecture]] for the full diagram.
+**我们没有用 Karpathy 的什么：**
+- 他的设计只处理外部文章（web clipper → 源文件 → wiki）。没有内部知识捕获的概念。
+- 没有自动化——所有操作都是手动触发的。
+- 没有跨概念连接发现的机制。
 
-## Agent SDK Use Cases: Current → Near-term → Future
+### 灵感源 B：claude-memory-compiler
 
-### ✅ Decided (design complete, ready to build)
+coleam00 构建了一个开源工具，让 Claude Code 拥有持久化记忆。他也是基于 Karpathy 的架构，但做了一个关键转向：**源数据不是外部文章，而是你自己的 AI 对话。**
 
-**1. Background Knowledge Flush (Pipeline B core)**
-- **What:** SessionEnd + PreCompact hooks capture conversation transcripts. Detached flush.py process uses Agent SDK to extract decisions, lessons, patterns from LoreAI and blog2video coding sessions.
-- **Why Agent SDK:** Runs after Claude Code closes. Headless, no user interaction.
-- **Pattern from:** [[claude-memory-compiler]]
-- **Recursion guard:** `CLAUDE_INVOKED_BY` env var prevents hook → SDK → Claude Code → hook loops
-- **Cost:** ~$0.02-0.05 per session flush
+**我们从 claude-memory-compiler 拿了什么：**
+- [[zero-friction-capture]]：Hook-based 零摩擦捕获。SessionEnd + PreCompact hooks 自动触发，hook 只做本地 I/O（<10秒），spawn 后台进程用 Agent SDK 做 LLM 提取。你什么都不用做。
+- [[time-gated-compilation]]：白天只积累，晚上 6 PM 统一编译。省钱（一次 vs 多次）、省心（不需要 cron）、质量更好（LLM 看到全天上下文）。
+- [[connection-articles]]：跨概念连接不只是页面底部的 "Related:" 链接，而是独立的一等公民文章，记录洞察、证据、和双向链接。
+- [[agent-sdk-vs-claude-code|Agent SDK vs CLI 的分工]]：交互任务用 CLI，无人值守任务用 Agent SDK。
+- 递归防护（`CLAUDE_INVOKED_BY` env var）：防止 hook → Agent SDK → Claude Code → hook 的无限循环。
 
-**2. Time-Gated Auto-Compilation**
-- **What:** After 6 PM, automatically run `/ingest scan` to compile all new `raw/` files accumulated during the day (from all three entry points: manual, Telegram, hooks).
-- **Why Agent SDK:** Unattended scheduled task. Piggybacks on the last session flush of the day — no cron needed.
-- **Pattern from:** [[time-gated-compilation]] in [[claude-memory-compiler]]
-- **Cost:** ~$0.45-0.65 per compilation pass
+**我们没有用 claude-memory-compiler 的什么：**
+- 他的 `daily/` 目录结构——我们不需要单独的日志目录，所有东西直接进 `raw/`
+- 他的 `concepts/` `connections/` `qa/` 子目录——我们的 wiki 保持扁平结构，用 `index.md` 分类组织
+- 他用 Agent SDK 跑 compile.py 做编译——我们继续用 Claude Code 的 `/ingest` 命令做编译（更灵活，支持交互讨论），Agent SDK 只用在后台无人值守任务
 
-**3. Auto Connection Discovery**
-- **What:** During compilation, Agent SDK reads all existing wiki pages + the new content being compiled. If it discovers a non-obvious relationship between 2+ concepts, it creates a [[connection-articles|connection article]] automatically.
-- **Why Agent SDK:** Requires LLM judgment (is this connection non-obvious and valuable?) but no human interaction.
-- **Pattern from:** [[claude-memory-compiler]]'s compile.py creates `knowledge/connections/` articles
-- **Example:** Our first connection article ([[connection-context-anxiety-and-zero-friction-capture]]) was created manually in this discussion. Future ones should be auto-discovered.
+---
 
-**4. GitHub Repo Deep Scan Extraction**
-- **What:** When `/ingest` encounters a GitHub URL, the deep scan fetches README, file tree, deps, key source files. The pattern extraction (Harness Engineering / System Design / DX) could be done by Agent SDK in the background, especially for batch-ingesting multiple repos.
-- **Why Agent SDK:** Heavy analysis (~60 seconds per repo). Background processing avoids blocking the CLI session.
+## 我们的设计：两条管道，一个知识库
 
-### 🔜 Near-term (next to build after Pipeline B works)
-
-**5. Telegram Bot Content Extraction**
-- **What:** OpenClaw bot receives forwarded articles/tweets via Telegram. Agent SDK extracts core content, saves structured markdown to `raw/`. Smarter than WebFetch because Agent SDK can use tools (Read, Write, Bash) and reason about relevance.
-- **Why Agent SDK:** Bot receives messages asynchronously. No human in the loop at extraction time.
-- **Integration:** Claude Code Channels for Telegram
-
-**6. Auto Weekly /lint**
-- **What:** Every Sunday, Agent SDK runs all 7 lint checks (or just structural ones for free). Writes report to wiki. Flags issues for human review on Monday morning.
-- **Why Agent SDK:** Scheduled, unattended.
-- **Cost:** ~$0.15-0.25 (full lint) or $0.00 (structural only)
-
-### 🔮 Future (when wiki grows bigger)
-
-**7. Weekly Knowledge Digest**
-- **What:** Every Monday 9 AM, Agent SDK runs: "What new knowledge was ingested this week? What cross-project patterns emerged? Any contradictions with prior knowledge?" Generates a digest → sends to Telegram or email.
-- **Why Agent SDK:** Scheduled reporting, no interaction needed.
-- **Value:** You see the wiki's growth without opening Obsidian.
-
-**8. RSS Feed Intelligent Filter**
-- **What:** Cron script fetches RSS feeds (AI newsletters, HN, etc.). Agent SDK reads each article title + summary, judges relevance to your domain focus (AI/LLM, content distribution, builder tools). Only saves relevant articles to `raw/`.
-- **Why Agent SDK:** LLM-based filtering is far better than keyword matching. Runs unattended on schedule.
-- **Scaling insight:** At ~2,000+ articles, add [[index-over-rag|hybrid RAG search]] (qmd by Tobi Lutke).
-
-**9. Auto /visualize on Ingest**
-- **What:** After each ingest that creates 3+ new pages, Agent SDK automatically generates an updated topic diagram showing how the new knowledge connects to existing wiki. Saves as `visual-*.excalidraw`.
-- **Why Agent SDK:** Diagram generation is slow (~30-60s) and doesn't need human guidance.
-
-## Implementation Priority
+### 核心架构
 
 ```
-Phase 1: Pipeline B core (hooks + flush.py + time-gated compile)
-    ↓
-Phase 2: Auto connection discovery (during compile)
-    ↓
-Phase 3: Telegram bot integration (Claude Code Channels)
-    ↓
-Phase 4: Scheduled operations (weekly lint, digest, RSS filter)
-    ↓
-Phase 5: Auto-visualize on ingest
+Pipeline A (外部知识)          Pipeline B (内部知识)
+  Desktop 手动 /ingest           Claude Code Hooks
+  Telegram bot (Channels)        SessionEnd + PreCompact
+  RSS feeds                      → flush.py → Agent SDK
+         ↘                              ↙
+              raw/ (Layer 1)
+                    ↓
+           LLM Compiler (/ingest scan)
+           ⏰ Time-gated 6 PM or manual
+                    ↓
+              wiki/ (Layer 2)
+         index.md + log.md + pages
+                    ↓
+      /query  /lint  /visualize (Operations)
 ```
 
-Each phase builds on the previous. Phase 1 is the foundation — once hooks + Agent SDK pipeline works, everything else is "just another Agent SDK script."
+### 为什么是两条管道？
 
-## Key Design Decisions
+**Pipeline A（外部知识）** 捕获别人构建的东西——文章、开源 repo、推文、newsletter。这是 Karpathy 设计的核心场景。
 
-1. **One wiki, not two systems.** Internal knowledge (Pipeline B) flows into the same `raw/` → `wiki/` as external knowledge. Enables cross-source queries.
-2. **Agent SDK for all unattended work.** CLI stays interactive. Background tasks use SDK. Clean separation.
-3. **Time-gated, not real-time.** Accumulate all day, compile once. Cheaper, better quality (LLM sees full day context).
-4. **Connection discovery is automatic.** Don't rely on humans to notice cross-concept bridges. LLM does this during compile.
+**Pipeline B（内部知识）** 捕获你自己构建时学到的东西——编码决策、踩过的坑、发现的 patterns、架构选择。这是 claude-memory-compiler 的核心场景。
+
+**为什么必须合二为一？** 因为最有价值的洞察往往出现在**交叉地带**。
+
+举例：你读了一篇关于 [[harness-design]] 的文章（Pipeline A），然后在 LoreAI 项目里实践了这个模式（Pipeline B）。如果两条管道分开，你永远不会发现："我在 LoreAI 里遇到的 bug 其实就是文章里说的 [[context-anxiety]]"。但在同一个 wiki 里，`/query` 可以同时搜索两个来源，connection articles 可以桥接外部理论和内部实践。
+
+### 为什么汇入同一个 raw/？
+
+这是一个关键的架构决策。两条管道的输出格式不同（文章 vs 对话摘要），但都是 markdown 文件。让它们共享 `raw/` 意味着：
+- 同一个 LLM Compiler（`/ingest scan`）处理所有输入
+- 同一个 `wiki/index.md` 检索所有知识
+- 同一个 `/query` 搜索所有来源
+- 同一个 Obsidian graph view 显示所有连接
+
+没有两套系统，没有知识孤岛。
+
+---
+
+## 时间节奏：白天积累，晚上编译
+
+| 时间 | 发生什么 | 管道 |
+|------|---------|------|
+| 全天 | 你手动 `/ingest` 感兴趣的文章/repo | Pipeline A |
+| 全天 | Telegram bot 收到你转发的内容，自动存到 `raw/` | Pipeline A |
+| 全天 | 你在 LoreAI / blog2video 里编码，hooks 自动提取对话知识到 `raw/` | Pipeline B |
+| 18:00 | [[time-gated-compilation]]：`/ingest scan` 自动编译当天所有新 raw 文件 | 统一编译 |
+| 随时 | `/query` 问问题、`/lint` 健康检查、`/visualize` 生成图表 | Wiki 操作 |
+
+这个节奏的好处：
+- **零摩擦**：你的日常工作流不受影响。编码就编码，阅读就阅读，知识在后台自动流动。
+- **成本可控**：编译一天只跑一次（~$0.45-0.65），而不是每个 session 都跑。
+- **质量更高**：LLM 在一次编译中看到全天的碎片，能做更好的综合和连接发现。
+
+---
+
+## Connection Articles：知识复利的引擎
+
+这是从 [[claude-memory-compiler]] 学到的最有价值的模式。
+
+**问题**：传统 wiki 里，连接只是页面底部的 "Related:" 链接列表。它告诉你"A 和 B 有关系"，但不告诉你**为什么有关系、关系的洞察是什么**。
+
+**解决方案**：把非显然的跨概念连接提升为独立的一等公民文章。
+
+我们的第一篇 connection article（[[connection-context-anxiety-and-zero-friction-capture]]）就是一个例子：
+
+> [[context-anxiety]]（LLM 在上下文快满时草率完成）和 [[zero-friction-capture]]（自动知识捕获）看起来完全不相关。但它们之间的桥梁是：**人类也有 context anxiety——在长编码 session 里认知负荷高时，你会跳过记录和反思。Zero-friction capture 是人类 context anxiety 的解药，就像 4-layer compression 是 LLM context anxiety 的解药。**
+
+这个洞察不属于任何一个页面。没有 connection article，它永远不会被 `/query` 检索到。
+
+**更重要的是**：将来 Agent SDK 在编译时会自动发现这类连接。每次 ingest 新内容，编译器不只是创建/更新页面，还会扫描所有已有概念，寻找新内容是否揭示了它们之间的非显然关系。这是知识的**自动复利**——不依赖人类去问对的问题。
+
+---
+
+## Agent SDK：无人值守的 LLM 操作
+
+从 claude-memory-compiler 学到的一个关键分工：
+
+> **Claude Code CLI 是给人用的交互工具。Agent SDK 是给代码用的编程接口。**
+
+所有需要人参与的操作（`/ingest`、`/query`、`/lint`、`/visualize`）用 CLI。所有在后台自动运行的操作用 Agent SDK。
+
+### Phase 1 — 基础（现在要建的）
+
+| 能力 | 做什么 | 为什么用 Agent SDK |
+|------|--------|-------------------|
+| Knowledge Flush | Hooks 提取对话知识 → `raw/` | Claude Code 已关闭，headless |
+| Time-Gated Compile | 6 PM 自动 `/ingest scan` | 无人值守定时任务 |
+| Auto Connections | 编译时发现跨概念桥梁 | 需要 LLM 判断但不需要人 |
+| GitHub Deep Scan | 后台 repo 分析 + pattern 提取 | 分析耗时 ~60s，不阻塞 CLI |
+
+### Phase 2 — 自动化（Pipeline B 跑通后）
+
+| 能力 | 做什么 | 为什么用 Agent SDK |
+|------|--------|-------------------|
+| Telegram Bot | Claude Code Channels 接收 → `raw/` | 异步消息，无人在场 |
+| Auto Weekly /lint | 每周日健康检查 → 报告 | 定时任务 |
+
+### Phase 3 — 智能化（wiki 规模变大后）
+
+| 能力 | 做什么 | 为什么用 Agent SDK |
+|------|--------|-------------------|
+| Weekly Digest | 生成周报 → Telegram/email | 定时生成 |
+| RSS Intelligent Filter | LLM 判断文章是否相关 | 比关键词过滤强得多 |
+| Auto /visualize | ingest 3+ 页后自动更新图表 | 图表生成慢，不需要人 |
+
+---
+
+## 最终效果：知识自动流动、自动连接、自动复利
+
+建成后的系统是这样的：
+
+1. **你只需要做两件事**：编码（内部知识自动流出）和阅读/分享（外部知识手动或自动流入）
+2. **编译器处理剩下的一切**：提取实体和概念、创建/更新 wiki 页面、发现跨概念连接、维护 index 和 log
+3. **知识在三个层面复利**：
+   - **页面层面**：每个新源让已有页面更丰富（多源交叉验证）
+   - **连接层面**：每次编译可能发现新的非显然关系
+   - **查询层面**：每个好答案可以 file back 成新页面，让未来的查询更智能
+4. **你随时可以问**：`/query "我见过哪些 pipeline 设计模式？"` 会同时搜索你读过的文章和你自己编码时积累的经验
+
+这就是 [[compiler-analogy|知识编译器]]的最终形态：你不手动整理知识，你有对话，你编码，你阅读——编译器处理综合、交叉引用和维护。
 
 ## Connections
-- Related: [[agent-sdk-vs-claude-code]], [[two-pipeline-architecture]], [[zero-friction-capture]], [[time-gated-compilation]], [[connection-articles]], [[compiler-analogy]], [[claude-memory-compiler]]
+- Related: [[agent-sdk-vs-claude-code]], [[two-pipeline-architecture]], [[zero-friction-capture]], [[time-gated-compilation]], [[connection-articles]], [[compiler-analogy]], [[claude-memory-compiler]], [[harness-design]], [[context-anxiety]], [[index-over-rag]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
-| 2026-04-07 | Internal discussion: Agent SDK use cases | Initial creation — full roadmap from multi-round discussion |
+| 2026-04-07 | Internal discussion: multi-round architecture design | Initial creation — synthesized from Karpathy + claude-memory-compiler + discussion insights |
+| 2026-04-07 | Rewrite: expanded from Agent SDK roadmap to full system design narrative | Added inspiration sources analysis, decision rationale, connection articles as compounding engine |
