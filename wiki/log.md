@@ -36,3 +36,8 @@ pages-updated: zero-friction-capture.md
 source: raw/2026-04-07-anatomy-of-agent-harness.md
 pages-created: orchestration-loop.md, verification-loops.md, akshay-pachaar.md, source-anatomy-of-agent-harness.md
 pages-updated: harness-design.md, context-management.md, multi-agent-architecture.md, assumptions-expire.md, query-loop.md, permission-system.md
+
+## [2026-04-08] ingest | Troy Hua — 7 Layers of Memory and Dreaming in Claude Code
+source: raw/2026-04-08-troyhua-claude-code-7-layers-memory.md
+pages-created: troy-hua.md, session-memory.md, dreaming.md, forked-agent-pattern.md, prompt-cache-optimization.md, source-troyhua-claude-code-7-layers.md
+pages-updated: context-management.md, claude-code.md, context-anxiety.md
