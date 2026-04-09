@@ -1,6 +1,8 @@
 ---
 status: draft
-source-wiki: wiki/connection-context-layers-and-best-practices.md
+sources:
+  - raw/2026-04-09-bcherny-claude-code-best-practices.md
+  - raw/2026-04-09-tw93-claude-code-architecture-governance.md
 platform: blog
 created: 2026-04-09
 last-updated: 2026-04-09

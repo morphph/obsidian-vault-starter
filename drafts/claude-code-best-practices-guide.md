@@ -1,6 +1,8 @@
 ---
 status: draft
-source-wiki: wiki/claude-code-best-practices-guide.md
+sources:
+  - raw/2026-04-09-bcherny-claude-code-best-practices.md
+  - raw/2026-04-09-claude-code-official-docs-best-practices.md
 platform: blog
 created: 2026-04-09
 last-updated: 2026-04-09
