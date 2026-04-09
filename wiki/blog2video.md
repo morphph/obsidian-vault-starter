@@ -30,7 +30,8 @@ User's video production pipeline that transforms articles/tweets into narrated s
 - **[[silent-fallback-antipattern]] lesson:** Pipeline once completed "successfully" with dramatically lower quality when Playwright MCP wasn't loaded — source content was only image captions instead of full article text. Fixed with preflight gate: ToolSearch must confirm `browser_navigate` available for X/Twitter URLs before proceeding.
 
 ## Connections
-- Related: [[loreai]], [[silent-fallback-antipattern]], [[content-distribution-china]], [[claude-code]]
+- Related: [[loreai]], [[silent-fallback-antipattern]], [[content-distribution-china]], [[claude-code]], [[compiler-analogy]]
+- Pipeline follows [[compiler-analogy]]: source article = source code, LLM stages = compiler passes, rendered video = executable
 
 ## Source Log
 | Date | Source | What changed |

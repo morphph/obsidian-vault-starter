@@ -6,6 +6,7 @@ sources:
   - raw/2026-04-08-session-unknown-1216.md
   - raw/2026-04-08-session-unknown-1644.md
   - raw/2026-04-09-session-unknown-1620.md
+  - raw/2026-04-09-session-unknown-1915.md
 tags: [wiki, project, seo, content-platform]
 ---
 
@@ -26,8 +27,19 @@ User's SEO/content platform at loreai.dev. Features a glossary, FAQ system, and 
   - No redirects to non-existent targets — defer until files exist
 - **Scale:** 273 queued pages in pipeline
 
+### Technical SEO Lessons (2026-04-09 audit — 9 issues fixed)
+- **Sitemap:** 31 `/newsletter/undefined` entries from missing slugs → added slug validation filter
+- **Title tags:** Doubled `| LoreAI | LoreAI` from Next.js template composition → removed redundant suffix from 19 pages
+- **Duplicate content:** Keep alphabetical page name as canonical, redirect the other (e.g., `claude-code-vs-codex` over `codex-vs-claude-code`) → added 301 redirects
+- **Canonical URLs:** Standardized to no trailing slash
+- **Content truncation:** LLM-generated content was the source, not code. `extractHeadlineFromBody` also truncated at 80 chars without word-boundary → fixed to 120 chars with word boundary
+- **Glossary semantic duplicates:** (e.g., `mcp-server` vs `mcp`) → added 6 redirects + deleted duplicates
+- **Topic pages:** Duplicate H1 from template `<h1>` + markdown `# ` → strip leading H1 from markdown before rendering
+
 ## Connections
-- Related: [[blog2video]], [[keyword-grouping-engine]], [[content-distribution-china]]
+- Related: [[blog2video]], [[keyword-grouping-engine]], [[content-distribution-china]], [[compiler-analogy]]
+- Content pipeline follows [[compiler-analogy]]: sources → extraction → structured pages
+- Pipeline B hooks in LoreAI capture session knowledge → `raw/` in wiki repo
 
 ## Source Log
 | Date | Source | What changed |
@@ -35,3 +47,4 @@ User's SEO/content platform at loreai.dev. Features a glossary, FAQ system, and 
 | 2026-04-09 | raw/2026-04-08-session-unknown-1216.md | Initial creation — keyword grouping engine |
 | 2026-04-09 | raw/2026-04-08-session-unknown-1644.md | Added dashboard, pipeline visualization |
 | 2026-04-09 | raw/2026-04-09-session-unknown-1620.md | Added content quality patterns, routing details |
+| 2026-04-09 | raw/2026-04-09-session-unknown-1915.md | Added technical SEO audit: 9 issues fixed |

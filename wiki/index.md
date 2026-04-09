@@ -58,6 +58,7 @@
 - [[connection-llm-judgment-vs-scripts-and-harness-design]] — Convergent evolution: VC and AI lab independently discover same LLM/scaffolding boundary
 - [[connection-assumptions-expire-and-tool-evolution]] — Tool evolution (AskUserQuestion, TodoWrite, Search) as concrete evidence that scaffolding built for weak models becomes shackles
 - [[connection-silent-fallback-and-verification-loops]] — Pipeline input degradation as the gap verification-loops miss; preflight gates as input guardrails
+- [[connection-compiler-analogy-and-content-pipelines]] — Compiler analogy generalizes beyond knowledge systems to video and content pipelines
 
 ## Visuals
 
