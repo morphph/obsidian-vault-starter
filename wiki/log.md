@@ -67,6 +67,11 @@ sources: raw/2026-04-09-bcherny-claude-code-best-practices.md, raw/2026-04-09-cl
 pages-created: claude-code-best-practices-guide.md
 pages-consulted: boris-cherny.md, claude-code.md, context-noise-governance.md, connection-context-layers-and-best-practices.md
 
+## [2026-04-09] visualize | Best Practices Guide — 22 practices × 6 categories
+scope: topic (claude-code-best-practices-guide)
+source-pages: claude-code-best-practices-guide.md
+output: visual-best-practices-guide.excalidraw
+
 ## [2026-04-09] visualize | Boris Best Practices × Tw93 Context Layers
 scope: topic (connection-context-layers-and-best-practices)
 source-pages: connection-context-layers-and-best-practices.md, boris-cherny.md, tw93.md, context-noise-governance.md
