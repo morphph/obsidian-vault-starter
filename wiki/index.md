@@ -47,24 +47,17 @@
 
 - [[knowledge-compiler-design]] — Full roadmap: 9 Agent SDK use cases across 3 phases (foundation → automation → intelligence)
 
-## Guides
-
-- [[claude-code-best-practices-guide]] — Boris Cherny全部best practices × 官方文档交叉对照，含配置示例
-
 ## Connections
 
 - [[connection-context-anxiety-and-zero-friction-capture]] — Human context anxiety mirrors LLM context anxiety; both solved at harness level
 - [[connection-llm-judgment-vs-scripts-and-harness-design]] — Convergent evolution: VC and AI lab independently discover same LLM/scaffolding boundary
 - [[connection-assumptions-expire-and-tool-evolution]] — Tool evolution (AskUserQuestion, TodoWrite, Search) as concrete evidence that scaffolding built for weak models becomes shackles
-- [[connection-context-layers-and-best-practices]] — Boris best practices用Tw93的context分层+成本框架解释：每条tip对应一个系统约束
 
 ## Visuals
 
 - [[visual-harness-design]] — Problem → pattern → architecture → implementation flow
 - [[visual-wiki-architecture]] — Two pipelines → raw/ → LLM compiler → wiki/ → four operations
 - [[visual-agent-sdk-roadmap]] — CLI (interactive) vs Agent SDK (unattended): 3-phase rollout plan
-- [[visual-context-layers-best-practices]] — Boris的每条best practice对应Tw93的哪个context层（visual weight = context presence）
-- [[visual-best-practices-guide]] — 22个practices × 6个类别：基础/并行/自动化/验证/移动/高级
 
 ## Sources
 

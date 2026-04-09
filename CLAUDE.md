@@ -6,9 +6,10 @@ Bilingual (EN/ZH). Concise, action-oriented.
 
 ## Architecture
 
-Three layers:
+Four layers:
 - `raw/` — Immutable source documents. Human curates what goes in. LLM reads but never modifies.
 - `wiki/` — LLM-maintained knowledge base. LLM owns entirely. Creates, updates, cross-references pages.
+- `drafts/` — Human-polished articles graduated from wiki. Human owns. LLM creates initial draft via `/draft`, human polishes to publish.
 - This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
 Two special files in wiki/:
@@ -42,7 +43,7 @@ AI Builder's Knowledge Base:
 
 ## Commands
 
-Four slash commands. Each has full instructions in `.claude/commands/`.
+Five slash commands. Each has full instructions in `.claude/commands/`.
 
 | Command | What it does |
 |---------|-------------|
@@ -50,6 +51,7 @@ Four slash commands. Each has full instructions in `.claude/commands/`.
 | `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
+| `/draft <wiki-page>` | Graduate a wiki page to a draft article in `drafts/`. Adds `status: draft` to wiki page. |
 
 ## Skills
 

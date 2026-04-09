@@ -1,17 +1,17 @@
 ---
-type: synthesis
+status: draft
+source-wiki: wiki/claude-code-best-practices-guide.md
+platform: blog
 created: 2026-04-09
 last-updated: 2026-04-09
-sources:
-  - raw/2026-04-09-bcherny-claude-code-best-practices.md
-  - raw/2026-04-09-claude-code-official-docs-best-practices.md
-tags: [wiki, guide, claude-code, best-practices]
+tags: [draft]
 ---
+
+<!-- HOOK: Claude Code创始人Boris Cherny发了3条viral thread（合计数百万views）分享他的使用技巧。我把他的每条建议和Anthropic官方文档交叉对照，整理成这份完全指南——Boris怎么说、官方文档怎么写、具体怎么配置。 -->
 
 # Claude Code Best Practices完全指南
 
-## Summary
-[[boris-cherny|Boris Cherny]]（Claude Code创始人）发了三条viral thread分享他的Claude Code使用技巧。我把他的每条建议和Anthropic官方文档交叉对照，整理成这份指南。每个实践都标注了：Boris怎么说、官方文档怎么写、具体怎么配置。
+Boris Cherny（Claude Code创始人）发了三条viral thread分享他的Claude Code使用技巧。我把他的每条建议和Anthropic官方文档交叉对照，整理成这份指南。每个实践都标注了：Boris怎么说、官方文档怎么写、具体怎么配置。
 
 官方文档地址：[code.claude.com/docs](https://code.claude.com/docs/en/)
 
@@ -547,12 +547,4 @@ Claude自动生成脚本，显示你要的信息。可用数据：model名称、
 | **用语音提升prompt质量** | /voice — 说比打字快3x，prompt更详细 |
 | **没有唯一正确的用法** | "Experiment to see what works for you" |
 
-## Connections
-- Related: [[boris-cherny]], [[claude-code]], [[context-noise-governance]], [[connection-context-layers-and-best-practices]]
-- 本文是WHAT + HOW（每个feature怎么配置）；[[connection-context-layers-and-best-practices]]是WHY（为什么这些practices有效）
-
-## Source Log
-| Date | Source | What changed |
-|------|--------|-------------|
-| 2026-04-09 | raw/2026-04-09-bcherny-claude-code-best-practices.md | Boris的3条thread |
-| 2026-04-09 | raw/2026-04-09-claude-code-official-docs-best-practices.md | 官方文档交叉对照 |
+<!-- CTA: [placeholder for closing call-to-action] -->

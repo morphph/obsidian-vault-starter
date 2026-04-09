@@ -27,7 +27,7 @@ Applied [[boris-cherny]]'s best practices and [[tw93]]'s context layering framew
 - Added: NEVER list, Compact Instructions, [[documentation-layers]] table
 
 ## Connections
-- Related: [[context-noise-governance]], [[claude-code-best-practices-guide]], [[connection-context-layers-and-best-practices]], [[documentation-layers]]
+- Related: [[context-noise-governance]], [[documentation-layers]]
 
 ## Source Log
 | Date | Source | What changed |

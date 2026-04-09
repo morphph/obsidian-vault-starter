@@ -56,9 +56,8 @@ Pipeline B had 30 lines describing scripts/ and hooks/ file by file. Claude can 
 The table itself is ~10 lines in CLAUDE.md (Layer 1). Its purpose is to prevent other Layer 1 additions. Every time Claude or a human is about to add documentation, this table redirects them to the correct layer. The cost (10 always-resident lines) prevents much larger costs (50-100+ lines of misplaced content).
 
 ## Connections
-- Related: [[context-noise-governance]], [[claude-code]], [[claude-code-best-practices-guide]]
+- Related: [[context-noise-governance]], [[claude-code]]
 - This is the governance mechanism that [[context-noise-governance]] recommends but doesn't specify how to implement
-- Complements [[connection-context-layers-and-best-practices]] — that page explains WHY layers matter; this page provides a concrete implementation pattern
 
 ## Source Log
 | Date | Source | What changed |
