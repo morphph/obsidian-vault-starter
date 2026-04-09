@@ -11,174 +11,179 @@ tags: [wiki, connection, practice, context]
 # 为什么Boris的Best Practices有效——用Tw93的框架理解
 
 ## Summary
-[[boris-cherny|Boris Cherny]]发了三条viral thread教大家怎么用好[[claude-code|Claude Code]]。[[tw93]]写了一篇2.8M views的深度文章拆解Claude Code的底层逻辑。我把两篇放在一起读，发现Boris的每条建议都能用Tw93的框架解释清楚：不只是"这样做更好"，而是"因为系统是这样运作的，所以必须这样做"。
+[[boris-cherny|Boris Cherny]]发了三条viral thread教大家怎么用好[[claude-code|Claude Code]]。[[tw93]]写了一篇2.8M views的深度文章拆解Claude Code的底层逻辑。我把两篇放在一起读，发现：**先理解Tw93的框架，再看Boris的建议，每一条都变成了"显而易见"的事。**
 
-## 先理解一件事：Claude为什么会变笨
+这篇文章先完整介绍Tw93的context分层框架，再用它来解释Boris的全部best practices。
 
-用Claude Code久了都会发现：对话刚开始时它很聪明，越往后越不靠谱。大多数人以为是"context太满了，装不下了"。
+## 第一件事：Context是噪音问题
 
-Tw93纠正了这个认知：
+用Claude Code久了都会发现：对话刚开始时很聪明，越往后越不靠谱。大多数人以为是"context太满了"。
 
-> **Context问题不是容量问题，是噪音问题。**
+[[tw93]]纠正了这个认知：**Context问题不是容量问题，是噪音问题。**
 
-200K token的窗口其实很大。问题是：Claude每一轮对话都要"看"窗口里所有的内容——系统指令、工具定义、MCP server描述、CLAUDE.md、历史对话、工具输出……当有用的信息被大量无关内容淹没时，Claude就开始找不到重点，表现下降。
+200K token的窗口很大。真正的问题是：Claude每一轮对话都要"看"窗口里所有的内容。当有用的信息被无关内容淹没时，它找不到重点，表现就下降了。
 
-Tw93给了一个具体的数字让我非常震撼：
+Tw93算过一笔账让我很震撼：
 
-| 内容 | 大概占多少token |
-|------|----------------|
-| 系统指令 | ~2K |
-| Skill描述 | ~1-5K |
-| MCP工具定义 | ~10-20K |
-| CLAUDE.md | ~2-5K |
-| Memory | ~1-2K |
-| **真正留给对话的** | **~160-180K** |
+| 内容 | Token开销 | 特点 |
+|------|----------|------|
+| 系统指令 | ~2K | 固定，每轮都在 |
+| Skill描述 | ~1-5K | 固定，每轮都在 |
+| MCP工具定义 | ~10-20K | 固定，每轮都在 |
+| CLAUDE.md | ~2-5K | 固定，每轮都在 |
+| Memory | ~1-2K | 固定，每轮都在 |
+| **真正留给对话的** | **~160-180K** | 动态 |
 
-一个典型的MCP Server就要吃掉4,000-6,000 token。连5个server = 25,000 token，光固定开销就占了12.5%。这些token**每一轮API调用都在**，无论你用不用它们。
+一个MCP Server就吃掉4,000-6,000 token。连5个 = 25,000 token，光固定开销就占12.5%。
 
-理解了这个成本结构，Boris的建议就不再是"经验之谈"，而是对系统约束的精确回应。
+理解了这个成本结构，下面的框架就有了动机。
+
+---
 
 ## Tw93的五层Context分层
 
-Tw93的核心框架是：不同类型的信息应该放在不同的"层"里，按需加载，避免所有东西都挤在context窗口里。
+这是整篇文章的核心。理解了这五层，后面Boris的所有建议都不需要死记——你自己就能推导出来。
 
-| 层 | 机制 | 什么时候在context里 |
-|---|------|-------------------|
-| **Always resident** | CLAUDE.md | 永远在，每轮都加载 |
-| **Path-loaded** | `.claude/rules/` | 进入对应目录/文件类型时自动加载 |
-| **On-demand** | Skills / Commands | 用户触发时才加载 |
-| **Isolated** | Subagents | 完全独立的context窗口，只返回结果 |
-| **Not in context** | Hooks | 不进context，在外部执行 |
+Tw93的指导原则只有一句话：**偶尔用的东西就不要每次都加载进来。**
 
-从上到下，**对context的占用递减，对context的保护递增**。这个分层的指导原则是Tw93的一句话：
+五层从"永远在"到"完全不在"，每一层对context的占用递减，对context的保护递增。
 
-> 偶尔用的东西就不要每次都加载进来。
+### Layer 1: Always Resident — CLAUDE.md
 
-有了这个框架，我们一条一条看Boris的建议。
+CLAUDE.md在Claude Code里有特殊地位：**每一轮API调用，Claude都会读它。** 无论你在对话里聊什么、做什么，CLAUDE.md都在那里。
 
-## Boris的建议 × Tw93的解释
+这意味着几件事：
+- 2-5K token固定开销——无法避免
+- 它是唯一一个你能完全控制、并且每轮都在的用户自定义信息
+- 它的质量有**乘法效应**——写得精准，每轮都在给Claude正确方向；写得差，每轮都在注入噪音
 
-### 1. "投资CLAUDE.md，每次纠正后都更新"
+什么该放：构建命令、关键目录结构、编码规范、环境陷阱、NEVER list
+什么不该放：长篇背景介绍、完整API文档、"write high quality code"之类模糊原则、Claude自己能从代码推断的信息
 
-**Tw93的解释：** CLAUDE.md在"Always resident"层——它是唯一一个每轮API调用都会被Claude看到的用户自定义内容。2-5K token的固定开销，无法避免。
+Tw93的建议很实际："Start with nothing. When you find yourself repeating the same thing, add it."
 
-这意味着CLAUDE.md的质量有**乘法效应**：
-- 写得精准 → 每轮对话都在给Claude正确的方向
-- 写得模糊 → 每轮对话都在注入噪音
-- 写得太长 → 真正重要的规则被淹没
+还有一个关键机制叫**Compact Instructions**。Claude Code在context满时会压缩对话历史。默认的压缩算法会丢掉"可以重新读取"的内容（比如文件内容、工具输出），但也可能丢掉架构决策。你可以在CLAUDE.md里写一段Compact Instructions，明确告诉Claude压缩时什么必须保留、什么可以丢。不写的话，两小时后Claude可能忘了之前做的关键决定。
 
-Boris说"ruthlessly edit over time until error rates measurably drop"。Tw93给了同样的建议："Start with nothing. When you find yourself repeating the same thing, add it."
+### Layer 2: Path-loaded — .claude/rules/
 
-Tw93进一步指出CLAUDE.md**不该放什么**：长篇背景介绍、完整API文档、"write high quality code"这种模糊原则、Claude自己能从代码推断的信息。只放**每个session都必须为true的东西**：构建命令、关键目录结构、编码规范、环境陷阱、NEVER list。
+这一层的东西**不是一直在的**。它们在你进入特定目录或编辑特定文件类型时自动加载，离开时释放。
 
-**怎么做得更好：** 在CLAUDE.md里加一个"Compact Instructions"section，告诉Claude压缩context时保留什么、可以丢什么。Tw93说默认压缩算法会丢掉架构决策——如果你不主动管理，两小时后Claude就忘了之前的关键决定。
+例如：TypeScript编码规范只在编辑.ts文件时才需要。如果放在CLAUDE.md里，它每轮都占空间，但90%的时间没用。放在`.claude/rules/ts.md`里，只在需要时才出现。
 
-### 2. "用slash commands做重复操作"
+原则：如果某个规则只适用于特定语言、特定目录或特定文件类型，不要让它常驻CLAUDE.md——放到rules里，让系统按需加载。
 
-**Tw93的解释：** Commands和Skills在"On-demand"层——只有你主动触发时才加载进context。
+### Layer 3: On-demand — Skills / Commands
 
-Boris每天用几十次`/commit-push-pr`。如果把这些指令写进CLAUDE.md，就是把偶尔用的东西放进了"Always resident"层——每轮都在占空间，但大部分时间没用。
+Skills和Commands的完整内容只在你主动触发时才加载（比如输入`/commit-push-pr`）。用完之后，内容就释放了，不占常驻空间。
 
-Tw93还给了一个Skill descriptor优化的具体建议：每个启用的Skill的描述**都会常驻context**。一个啰嗦的描述~45 token，一个精简的描述~9 token。如果你有10个Skill，差距就是360 token的固定开销差异。数字不大，但原则重要：**每一个常驻item都应该被优化**。
+但这里有一个容易忽略的细节：**每个启用的Skill的描述文字是常驻的。** Claude需要看到描述才知道什么时候该调用某个Skill。Tw93测量过：
 
-更细的策略：
-- 每天用>1次的Skill → 保持auto-invoke，但把描述写精简
+- 一个啰嗦的描述 ~45 token
+- 一个精简的描述 ~9 token
+
+单个差异不大，但如果你有10个Skill，差距就是360 token常驻开销。更重要的原则是频率管理：
+
+- 每天用>1次 → 保持auto-invoke，但精简描述
 - 每天用<1次 → 关掉auto-invoke，需要时手动触发
-- 每月<1次 → 直接删掉，放进docs
+- 每月用<1次 → 直接删掉Skill，把内容移进文档
 
-### 3. "用Subagents保持main context focus"
+### Layer 4: Isolated — Subagents
 
-**Tw93的解释：** Subagents在"Isolated"层——完全独立的context窗口，干完活只把结论带回来。
+Subagent有自己完全独立的context窗口。它做完任务后，只把结论带回主session——过程中产生的所有中间结果（搜索输出、文件内容、分析细节）都留在它自己的context里，不会污染你的主对话。
 
-Boris说"append 'use subagents' to any request where you want Claude to throw more compute at the problem"。但Tw93纠正了一个常见误解：**Subagent的核心价值不是并行，是隔离。**
+Tw93特别强调一个关键认知：**Subagent的核心价值是隔离，不是并行。**
 
-场景：你让Claude扫描整个codebase找一个pattern。搜索结果可能有几千行。如果在主session里做，这些结果全部进入context，把有用的对话历史挤出去。如果交给subagent做，主session只收到一段总结。
+一个典型场景：让Claude搜索整个codebase找一个pattern。搜索结果可能有几千行。如果在主session里做，这些结果全部进入context，把之前有用的对话历史挤出去。交给subagent做，主session只收到一段总结。
 
-Tw93的反面教材也值得注意：
-- 不要给subagent和主线程一样宽的权限（这让隔离失去意义）
-- 要规定输出格式（否则主线程无法有效消费结果）
-- 不要让子任务之间有强依赖（需要共享中间状态的任务不适合拆分）
+subagent也有使用规则：
+- 不要给subagent和主线程一样宽的权限——这让隔离失去意义
+- 要规定输出格式——否则主线程无法有效消费结果
+- 不要让子任务之间有强依赖——需要共享中间状态的任务不适合拆分
 
-### 4. "用Hooks做自动格式化"
+### Layer 5: Not in Context — Hooks
 
-**Tw93的解释：** Hooks在"Not in context"层——完全不进入Claude的context窗口，在外部执行。
+Hooks完全在context外部执行。**Claude甚至不知道它们在运行。** 当Claude修改了代码，PostToolUse hook可以自动跑格式化——Claude不需要"想"要不要格式化，不需要在context里加载格式化规则，格式化结果也不进入context。
 
-Boris的PostToolUse hook在每次代码修改后自动格式化。如果让Claude自己来做格式化，它需要在context里加载格式化规则、执行检查、修复问题——这些全都占context空间，而且结果是确定性的（不需要LLM判断）。
+什么适合Hook：阻止编辑受保护文件、自动格式化、SessionStart注入动态context、完成推送通知
+什么不适合：需要大量context的语义判断、多步推理决策、长时间运行的业务逻辑
 
-Tw93给了一个更完整的框架来判断什么该用Hook：
+Tw93总结了一个三层协作模型，把Layer 1、3、5串起来：
+- **CLAUDE.md** 声明规则："提交前必须通过测试和lint"
+- **Skills** 提供方法：告诉Claude测试顺序、如何读failure、如何修复
+- **Hooks** 硬执行：在关键路径上做验证，该阻止时阻止
 
-| 适合Hook | 不适合Hook |
-|----------|-----------|
-| 阻止编辑受保护文件 | 需要大量context的语义判断 |
-| 自动格式化 | 长时间运行的业务流程 |
-| SessionStart注入动态context | 多步推理决策 |
-| 完成时推送通知 | |
+"三层都在才是稳定的setup。缺一层就有gap。"
 
-原则：**Hook做确定性的事，Skill做需要判断的事，CLAUDE.md声明规则。** 三层协作才是完整的治理体系。Tw93说"少一层就有gap"。
+还有一个实操细节：Hook的输出也要控制长度。用`| head -30`限制输出，否则Hook本身也会往context里塞太多东西。
 
-还有一个实操细节：Hook的输出也要控制长度，用`| head -30`限制，否则Hook输出本身也会污染context。
+---
 
-### 5. "给Claude一种验证自己工作的方式"
+## 超越分层的三个原则
 
-**Tw93的解释：** Claude Code的核心循环是 **收集上下文 → 采取行动 → 验证结果 → 完成或回到收集**。瓶颈几乎从来不是模型智能——而是context错误或者无法验证。
+五层分层解决的是"什么信息放在哪"。但还有三个原则不属于某一层，而是影响整体context效率。
 
-Boris说Chrome extension是他最重要的建议。Tw93从架构层面解释了为什么：**如果Claude无法验证自己的输出，核心循环里"验证结果"这一步就是空的**——它只能凭记忆猜测自己做得对不对，然后告诉你"done"。但"Claude saying it's done" is useless。
+### 在context最干净时做最重要的决策
 
-Tw93给了验证的层次：
-- 最基础：exit codes、lint、typecheck、unit test
-- 中间层：integration tests、截图对比、contract tests
-- 更高层：生产日志验证、monitoring metrics、人工review
+对话越长，context里堆积的内容越多，噪音越多。Plan mode把探索和执行分开——先在read-only状态下反复讨论方案，确认方向后再执行。这样最关键的决策是在context最干净的时候做的。执行阶段即使context变杂，Claude也只是在跑已确认的计划，不需要再做高难度判断。
 
-以及一个很好的判断标准：**如果你说不清"做完长什么样"，这个任务可能不适合让Claude自主完成。**
+### 给Claude验证自己工作的方式
 
-Boris的Chrome extension就是中间层的截图验证——让Claude能看到自己写的前端实际渲染出来是什么样，然后迭代。
+Claude Code的核心循环是：收集上下文 → 采取行动 → 验证结果 → 完成或回到收集。Tw93说瓶颈几乎从来不是模型智能——**而是context错误或无法验证**。如果Claude无法看到自己的输出效果，核心循环里"验证结果"这一步就是空的。
 
-### 6. "跑5个并行session + Git worktrees"
+Tw93的判断标准：**如果你说不清"做完长什么样"，这个任务可能不适合让Claude自主完成。**
 
-**Tw93的context框架解释：** 每个session有独立的context窗口。一个session做一件事 = 每个context窗口保持干净和聚焦。把多个任务塞进同一个session = context里混入了不相关的工具输出、文件内容、讨论历史，信噪比快速下降。
+### 不要打破Prompt Cache
 
-Boris的团队还有一个做法值得注意：有人维护专门的analysis worktree跑日志查询和BigQuery分析——这些数据密集型操作会产生大量输出，和常规开发session共用一个context是灾难。
+Prompt Cache是Claude Code架构的核心优化，cache hit vs miss的成本差距可达200倍。两个实操影响：
+- **不要中途切模型**——cache按模型隔离。用Opus跑了100K token的对话，切到Sonnet，之前的cache全废了。需要换模型时，用Subagent（Layer 4的隔离就是为此设计的）
+- **Plan Mode不破坏cache**——它通过Claude调用EnterPlanMode工具实现，工具集不变，所以cache不受影响
 
-### 7. "Plan mode先规划，然后一次执行"
+---
 
-**Tw93的解释：** Plan mode把探索和执行分开。"For complex refactors, migrations, cross-module changes, this is much better than rushing to code."
+## Boris的Best Practices——现在它们显而易见了
 
-从context角度理解：对话越长，context里堆积的内容越多，噪音越多，Claude的判断力越差。Plan mode的价值是**在context最干净的时候做最重要的决策**——方向确认后，执行阶段即使context变杂，Claude也只是在执行已确认的计划，不需要再做高难度判断。
+理解了上面的框架，再来看[[boris-cherny]]的建议。每一条都是对某个层或原则的直接应用：
 
-还有一个Tw93提到的prompt cache考量：Plan mode的实现方式是让Claude调用EnterPlanMode工具——而不是切换到只读工具集。因为如果切换工具集，会打破prompt cache，代价很高。Boris可能不知道这个技术细节，但他的用法刚好是cache-friendly的。
+| Boris的Best Practice | 对应的层/原则 | 为什么有效 |
+|---------------------|-------------|-----------|
+| 每次纠正后都更新CLAUDE.md | Layer 1 Always Resident | 2-5K token每轮都在，质量有乘法效应 |
+| 用slash commands做重复操作 | Layer 3 On-demand | 写进CLAUDE.md=每轮占空间；做成command=用时才加载 |
+| 用subagents保持main context focus | Layer 4 Isolated | 大任务输出不污染主session |
+| PostToolUse hook自动格式化 | Layer 5 Not in Context | 确定性的事不需要占Claude的注意力 |
+| Chrome extension验证前端 | 验证闭环 | 让核心循环的"验证"步骤不再是空的 |
+| Plan mode先规划再执行 | context最干净时做决策 | 关键判断在噪音最少时完成 |
+| 跑5个并行session | 所有层 | 一个session一件事=每个context保持单一focus |
+| 不中途切模型 | Prompt Cache | cache按模型隔离，切模型=cache全废 |
 
-### 8. "不要中途切换模型"
+你会发现：Boris没有一条建议是"凭经验"的。每一条都是对Claude Code系统约束的精确回应。
 
-这条Boris没有直接说，但Tw93的Prompt Cache分析解释了一个很多人会犯的错误：在同一个session里从Opus切到Sonnet（或反过来），想着省钱。
+### 几条值得展开的
 
-**实际情况：** Prompt cache是按模型隔离的。你用Opus跑了100K token的对话，切到Sonnet——Sonnet需要从零建立自己的cache，之前Opus的cache全废了。不但没省钱，反而更贵。
+**CLAUDE.md的乘法效应**：Boris说团队"after every correction, end with: update your CLAUDE.md so you don't make that mistake again"。不是因为怕忘——是因为CLAUDE.md是Layer 1，每轮都在。纠正一次进入CLAUDE.md，等于纠正了之后所有的对话。不进入CLAUDE.md，你可能在下一个session还要纠正同样的事。
 
-正确做法：需要用不同模型时，用Subagent。Subagent有自己的cache，不影响主session的cache。
+**Subagent不是"更多算力"**：Boris说"append 'use subagents' to any request where you want Claude to throw more compute at the problem"。表面看是"更多计算"，但Tw93的框架告诉我们真正的价值是Layer 4的隔离——大量搜索输出和中间结果不进入你的主context。
 
-## 用Tw93的三个阶段检验自己
+**Slash command vs CLAUDE.md的界限**：Boris每天用几十次`/commit-push-pr`。为什么不写进CLAUDE.md？因为CLAUDE.md是Layer 1（每轮都在），command是Layer 3（触发才加载）。一个每天用几十次的操作，99%的时间还是不在用的——不应该常驻。
 
-Tw93把Claude Code的使用分成三个阶段：
+---
 
-1. **"这个功能怎么用"** — 学feature
-2. **"学会了功能和pattern"** — 用feature  
-3. **"怎么让agent在约束下自主运行"** — 这才是真正的质变
+## 自检清单
 
-Boris的best practices几乎全部属于第三阶段。如果你看完Boris的tips觉得"有道理但不知道怎么落地"，可能是因为还在第一或第二阶段——先把Tw93文章里的成本结构和分层逻辑理解了，Boris的建议自然就知道怎么做了。
+1. **我的CLAUDE.md有没有Compact Instructions？** → 没有的话，压缩时架构决策会丢失
+2. **CLAUDE.md里有没有只在特定场景用的规则？** → 移到.claude/rules/（Layer 2）
+3. **有几个MCP server常开？** → 每多一个 = 4-6K token常驻开销，不用的关掉
+4. **有没有在同一个session里做太多事？** → /clear或开新session
+5. **Claude犯的错，是因为能力不够还是看到了错误的信息？** → Tw93说大多数时候是后者
 
-一个自检清单：
-1. **我的CLAUDE.md有没有Compact Instructions？** → 如果没有，压缩时架构决策会丢失
-2. **我有几个MCP server常开？** → 每多一个 = 4-6K token固定开销，不用的关掉
-3. **我是不是在同一个session里做太多事？** → /clear或开新session
-4. **Claude犯的错，是因为能力不够还是看到了错误的信息？** → Tw93说"大多数时候是后者"
-5. **我有没有在CLAUDE.md里塞了不需要每次都看的东西？** → 移到Skills或Rules里
+Tw93把Claude Code使用分成三个阶段：学feature → 用feature → **让agent在约束下自主运行**。Boris的best practices全部属于第三阶段。理解了Tw93的框架，你就有了到达第三阶段的认知基础。
 
 ## Connections
 - Related: [[boris-cherny]], [[tw93]], [[claude-code]], [[context-noise-governance]], [[context-management]], [[prompt-cache-optimization]]
-- Boris给的是"怎么做"；Tw93解释的是"系统为什么是这样的"。结合起来才能从"照着做"升级到"理解了所以这样做"
-- Tw93的三层协作栈（CLAUDE.md + Skills + Hooks）是理解Boris tips分层的最好框架
+- Boris给的是"怎么做"；Tw93解释的是"系统为什么是这样的"
+- 两者结合：从"照着做" → "理解了所以这样做" → "自己能推导出正确做法"
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-09 | raw/2026-04-09-bcherny-claude-code-best-practices.md, raw/2026-04-09-tw93-claude-code-architecture-governance.md | Initial creation |
-| 2026-04-09 | (same) | Rewrite: removed metaphor, used Tw93's framework directly, added first-person voice |
+| 2026-04-09 | (same) | Rewrite v2: framework-first structure, teach layers then apply practices |
