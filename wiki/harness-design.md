@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-04-06
-last-updated: 2026-04-07
+last-updated: 2026-04-09
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
   - raw/2026-04-07-repo-claude-memory-compiler.md
   - raw/2026-04-07-anatomy-of-agent-harness.md
+  - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -35,8 +36,10 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 
 - **Harness as memory system**: [[claude-memory-compiler]] demonstrates harness providing persistent memory via hooks — [[zero-friction-capture]] (automatic), [[time-gated-compilation]] (efficient), [[index-over-rag]] (retrieval). The harness doesn't just orchestrate tasks; it accumulates and retrieves knowledge across sessions.
 
+- **The 4th layer — [[infrastructure-layer]]**: Rohit (@rohit4verse) argues the standard 3-layer model (weights, context, harness) misses a critical 4th layer: infrastructure. Multi-tenancy, RBAC, resource isolation, state persistence, distributed coordination. "Most teams talk about the first three because they are interesting. The fourth is where products die." Claude Code is the first agent system taking all four seriously. Retrofitting infrastructure is 10x harder than designing for it from day one.
+
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -45,3 +48,4 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 | 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code as concrete harness implementation |
 | 2026-04-07 | raw/2026-04-07-repo-claude-memory-compiler.md | Added harness-as-memory-system pattern |
 | 2026-04-07 | raw/2026-04-07-anatomy-of-agent-harness.md | Added formal definition, 11 components, 7 decisions, benchmarks, Ralph Loop |
+| 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added 4th layer (infrastructure) thesis |

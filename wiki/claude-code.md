@@ -1,19 +1,21 @@
 ---
 type: entity
 created: 2026-04-06
-last-updated: 2026-04-08
+last-updated: 2026-04-09
 sources:
   - raw/2026-04-06-claude-reviews-claude-overview.md
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-07-repo-claude-memory-compiler.md
   - raw/2026-04-08-troyhua-claude-code-7-layers-memory.md
+  - raw/2026-04-09-bcherny-claude-code-best-practices.md
+  - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
 tags: [wiki, product, tool, agentic]
 ---
 
 # Claude Code
 
 ## Summary
-[[Anthropic]]'s official CLI tool for agentic coding. Internally structured around six foundational pillars: System Prompt, Tool System, Query Loop, Context Management, Multi-Agent Coordination, and Security & Permissions. Embodies the [[harness-design]] principle: "LLM as reasoning center; Harness provides perception, action, memory, and constraints."
+[[Anthropic]]'s official CLI tool for agentic coding, created by [[boris-cherny|Boris Cherny]]. 55 directories, 331 modules. Internally structured around six foundational pillars: System Prompt, Tool System, Query Loop, Context Management, Multi-Agent Coordination, and Security & Permissions. Embodies the [[harness-design]] principle: "LLM as reasoning center; Harness provides perception, action, memory, and constraints."
 
 ## Details
 - **Six Pillars of Architecture:**
@@ -36,9 +38,21 @@ tags: [wiki, product, tool, agentic]
   - **[[dreaming]]** — Background cross-session memory consolidation, modeled after biological sleep. 4-phase process with PID-based locking
   - **[[forked-agent-pattern]]** — Foundation for all background operations. Isolated context with cloned state, but shares prompt cache prefix
   - **[[prompt-cache-optimization]]** — Obsessive cache preservation across all systems. Cache hit vs miss at 200K = $0.003 vs $0.60
+- **Creator's workflow** ([[boris-cherny]]):
+  - Runs 5+ parallel sessions + Plan mode → auto-accept for one-shot execution
+  - Slash commands for every daily workflow (`.claude/commands/`), committed to git
+  - Subagents for focused tasks (code-simplifier, verify-app)
+  - Chrome extension for frontend verification — "give Claude a way to verify its work"
+  - Voice input (`/voice`) — "I do most of my coding by speaking to Claude"
+  - Team invests heavily in shared CLAUDE.md: "After every correction, update CLAUDE.md"
+- **[[infrastructure-layer]]** — Beyond harness: multi-tenancy, RBAC, state persistence, distributed coordination. "Where products die."
+- **Agent loop architecture** (Rohit): `async function*` generator in `query.ts` (1,729 lines) — streaming, cancellation, composability, backpressure. 5-phase iteration per turn. Dependency injection via QueryDeps makes it testable.
+- **Streaming tool executor:** Tools start executing mid-stream before the model finishes generating. 2-5s latency savings per multi-tool turn. Tool concurrency classification: read-only parallel (up to 10), write serial.
+- **823-line retry system:** Per-error-class recovery (429, 529, 400, 401, network). Error recovery is a first-class state in the loop, not outer try-catch.
+- **4 extensibility mechanisms:** Skills (markdown), Hooks (25+ events), MCP (5 transports), Plugins (composition)
 
 ## Connections
-- Related: [[Anthropic]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[troy-hua]]
+- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -47,3 +61,5 @@ tags: [wiki, product, tool, agentic]
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Context from harness design usage |
 | 2026-04-07 | raw/2026-04-07-repo-claude-memory-compiler.md | Added hook system extensibility, Agent SDK |
 | 2026-04-08 | raw/2026-04-08-troyhua-claude-code-7-layers-memory.md | Added session memory, dreaming, forked agent pattern, prompt cache optimization |
+| 2026-04-09 | raw/2026-04-09-bcherny-claude-code-best-practices.md | Added Boris Cherny as creator, team practices, hidden features |
+| 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added async generator loop, streaming tool executor, 823-line retry, infrastructure layer |

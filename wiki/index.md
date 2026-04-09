@@ -11,6 +11,7 @@
 - [[prithvi-rajasekaran]] — Anthropic Labs researcher, author of harness design blog post
 - [[ryan-sarver]] — VC who built "Stella," production-grade AI chief of staff on OpenClaw
 - [[troy-hua]] — Researcher at EverMind, PhD CMU; reverse-engineered Claude Code's 7-layer memory system
+- [[boris-cherny]] — Creator of Claude Code at Anthropic; 388K followers, published viral best practices threads
 
 ## Concepts
 
@@ -37,6 +38,7 @@
 - [[dreaming]] — Claude Code Layer 6: cross-session memory consolidation, modeled after biological sleep
 - [[forked-agent-pattern]] — Foundation for all Claude Code background ops; isolated context + shared cache
 - [[prompt-cache-optimization]] — Cross-cutting: 200x cost difference drives every architectural decision
+- [[infrastructure-layer]] — The "4th layer" beyond weights/context/harness: multi-tenancy, RBAC, state persistence, coordination
 
 ## Synthesis
 
@@ -61,3 +63,5 @@
 - [[source-rsarver-ai-chief-of-staff]] — Ryan Sarver's viral X post on building AI chief of staff "Stella" on OpenClaw (2026-04-07)
 - [[source-anatomy-of-agent-harness]] — 11 components + 7 decisions of production agent harnesses; benchmarks across frameworks (2026-04-07)
 - [[source-troyhua-claude-code-7-layers]] — Troy Hua's 135K-view reverse-engineering of Claude Code's 7-layer memory architecture (2026-04-01)
+- [[source-bcherny-claude-code-best-practices]] — Boris Cherny's 3 viral threads: personal setup, team tips, hidden features (2026-03/04)
+- [[source-rohit-harness-from-claude-code-leaks]] — Rohit's 298K-view blueprint for building agent harness from Claude Code source (2026-04-08)

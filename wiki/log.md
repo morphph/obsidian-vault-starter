@@ -41,3 +41,13 @@ pages-updated: harness-design.md, context-management.md, multi-agent-architectur
 source: raw/2026-04-08-troyhua-claude-code-7-layers-memory.md
 pages-created: troy-hua.md, session-memory.md, dreaming.md, forked-agent-pattern.md, prompt-cache-optimization.md, source-troyhua-claude-code-7-layers.md
 pages-updated: context-management.md, claude-code.md, context-anxiety.md
+
+## [2026-04-09] ingest | Boris Cherny's Claude Code Best Practices (3 threads)
+source: raw/2026-04-09-bcherny-claude-code-best-practices.md
+pages-created: boris-cherny.md, source-bcherny-claude-code-best-practices.md
+pages-updated: claude-code.md
+
+## [2026-04-09] ingest | Rohit — How I Built Harness from Claude Code Leaks
+source: raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
+pages-created: infrastructure-layer.md, source-rohit-harness-from-claude-code-leaks.md
+pages-updated: claude-code.md, query-loop.md, harness-design.md, prompt-cache-optimization.md
