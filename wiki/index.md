@@ -46,6 +46,10 @@
 
 - [[knowledge-compiler-design]] — Full roadmap: 9 Agent SDK use cases across 3 phases (foundation → automation → intelligence)
 
+## Guides
+
+- [[claude-code-best-practices-guide]] — Boris Cherny全部best practices × 官方文档交叉对照，含配置示例
+
 ## Connections
 
 - [[connection-context-anxiety-and-zero-friction-capture]] — Human context anxiety mirrors LLM context anxiety; both solved at harness level

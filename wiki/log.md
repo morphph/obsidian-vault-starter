@@ -62,6 +62,11 @@ pages-created: connection-context-layers-and-best-practices.md
 pages-consulted: boris-cherny.md, tw93.md, source-bcherny-claude-code-best-practices.md, context-noise-governance.md
 answer-filed: connection-context-layers-and-best-practices.md
 
+## [2026-04-09] synthesis | Claude Code Best Practices完全指南
+sources: raw/2026-04-09-bcherny-claude-code-best-practices.md, raw/2026-04-09-claude-code-official-docs-best-practices.md
+pages-created: claude-code-best-practices-guide.md
+pages-consulted: boris-cherny.md, claude-code.md, context-noise-governance.md, connection-context-layers-and-best-practices.md
+
 ## [2026-04-09] visualize | Boris Best Practices × Tw93 Context Layers
 scope: topic (connection-context-layers-and-best-practices)
 source-pages: connection-context-layers-and-best-practices.md, boris-cherny.md, tw93.md, context-noise-governance.md
