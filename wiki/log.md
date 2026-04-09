@@ -76,3 +76,8 @@ output: visual-best-practices-guide.excalidraw
 scope: topic (connection-context-layers-and-best-practices)
 source-pages: connection-context-layers-and-best-practices.md, boris-cherny.md, tw93.md, context-noise-governance.md
 output: visual-context-layers-best-practices.excalidraw
+
+## [2026-04-09] ingest | CLAUDE.md Self-Audit
+source: raw/2026-04-09-claude-md-self-audit.md
+pages-created: documentation-layers.md, source-claude-md-self-audit.md
+pages-updated: context-noise-governance.md

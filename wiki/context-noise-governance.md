@@ -64,11 +64,13 @@ Every enabled Skill's descriptor is always in context:
 - Low-freq (<1/session): disable-auto-invoke, manual trigger only
 
 ## Connections
-- Related: [[context-management]], [[claude-code]], [[prompt-cache-optimization]], [[session-memory]], [[dreaming]]
+- Related: [[context-management]], [[claude-code]], [[prompt-cache-optimization]], [[session-memory]], [[dreaming]], [[documentation-layers]]
 - This is the practitioner's complement to [[context-management]] — Troy Hua documents the internal 7-layer mechanism; Tw93 documents external governance strategies
 - HANDOFF.md pattern parallels [[zero-friction-capture]] — both ensure knowledge survives context boundaries
+- [[documentation-layers]] is a concrete implementation of the layering strategy described here — a self-regulating table that prevents Layer 1 bloat
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-09 | raw/2026-04-09-tw93-claude-code-architecture-governance.md | Initial creation |
+| 2026-04-09 | raw/2026-04-09-claude-md-self-audit.md | Added link to documentation-layers as concrete implementation |

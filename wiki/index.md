@@ -41,6 +41,7 @@
 - [[prompt-cache-optimization]] — Cross-cutting: 200x cost difference drives every architectural decision
 - [[infrastructure-layer]] — The "4th layer" beyond weights/context/harness: multi-tenancy, RBAC, state persistence, coordination
 - [[context-noise-governance]] — Context as noise problem, not capacity; MCP cost breakdown, layering strategy, Compact Instructions
+- [[documentation-layers]] — Meta-convention: table in CLAUDE.md mapping change types to correct documentation layers, prevents Layer 1 bloat
 
 ## Synthesis
 
@@ -76,3 +77,4 @@
 - [[source-bcherny-claude-code-best-practices]] — Boris Cherny's 3 viral threads: personal setup, team tips, hidden features (2026-03/04)
 - [[source-rohit-harness-from-claude-code-leaks]] — Rohit's 298K-view blueprint for building agent harness from Claude Code source (2026-04-08)
 - [[source-tw93-claude-code-architecture-governance]] — Tw93's 2.8M-view Chinese guide on Claude Code architecture, governance & engineering (2026-03-12)
+- [[source-claude-md-self-audit]] — Internal exercise: applied Boris + Tw93 frameworks to audit and restructure our own CLAUDE.md (2026-04-09)
