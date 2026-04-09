@@ -58,6 +58,7 @@
 - [[visual-harness-design]] — Problem → pattern → architecture → implementation flow
 - [[visual-wiki-architecture]] — Two pipelines → raw/ → LLM compiler → wiki/ → four operations
 - [[visual-agent-sdk-roadmap]] — CLI (interactive) vs Agent SDK (unattended): 3-phase rollout plan
+- [[visual-context-layers-best-practices]] — Boris的每条best practice对应Tw93的哪个context层（visual weight = context presence）
 
 ## Sources
 

@@ -61,3 +61,8 @@ pages-updated: assumptions-expire.md
 pages-created: connection-context-layers-and-best-practices.md
 pages-consulted: boris-cherny.md, tw93.md, source-bcherny-claude-code-best-practices.md, context-noise-governance.md
 answer-filed: connection-context-layers-and-best-practices.md
+
+## [2026-04-09] visualize | Boris Best Practices × Tw93 Context Layers
+scope: topic (connection-context-layers-and-best-practices)
+source-pages: connection-context-layers-and-best-practices.md, boris-cherny.md, tw93.md, context-noise-governance.md
+output: visual-context-layers-best-practices.excalidraw
