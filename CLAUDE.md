@@ -9,7 +9,7 @@ Bilingual (EN/ZH). Concise, action-oriented.
 Four layers:
 - `raw/` — Immutable source documents. Human curates what goes in. LLM reads but never modifies.
 - `wiki/` — LLM-maintained knowledge base. LLM owns entirely. Creates, updates, cross-references pages.
-- `drafts/` — Human-polished articles graduated from wiki. Human owns. LLM creates initial draft via `/draft`, human polishes to publish.
+- `drafts/` — Articles for publication. Human owns. LLM creates initial draft via `/draft` (from wiki page, raw source, or topic), human polishes to publish.
 - This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
 Two special files in wiki/:
@@ -51,7 +51,7 @@ Five slash commands. Each has full instructions in `.claude/commands/`.
 | `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
-| `/draft <wiki-page>` | Graduate a wiki page to a draft article in `drafts/`. Adds `status: draft` to wiki page. |
+| `/draft <wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from wiki page, raw source, or topic. |
 
 ## Skills
 
