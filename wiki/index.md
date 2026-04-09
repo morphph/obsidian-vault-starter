@@ -15,6 +15,7 @@
 - [[tw93]] — Chinese open-source dev (Kaku, Pake); published 2.8M-view Claude Code engineering guide
 - [[blog2video]] — AI精读 video pipeline: articles/tweets → narrated slide videos for Chinese platforms
 - [[loreai]] — loreai.dev SEO/content platform with glossary, FAQ, and programmatic content pipeline
+- [[claude-managed-agents]] — Anthropic's managed agent hosting service (beta 2026-04-09): containers, tools, events, sessions
 
 ## Concepts
 
@@ -47,6 +48,10 @@
 - [[silent-fallback-antipattern]] — Hard stops over silent quality degradation; preflight gate pattern as remedy
 - [[content-distribution-china]] — 微信视频号 + 小红书 platform strategies: social-driven vs search-driven
 - [[keyword-grouping-engine]] — SEO keyword clustering: intent classification, content type assignment, reusable prompt engine
+- [[managed-agents-architecture]] — Brain/hands/session decoupling: stateless harness, lazy containers, append-only event log
+- [[managed-agents-outcomes]] — Rubric-driven self-evaluation with separate grader context (research preview)
+- [[managed-agents-multiagent]] — Coordinator + specialized agent threads sharing container (research preview)
+- [[managed-agents-memory-stores]] — Persistent workspace-scoped memory across sessions with versioning (research preview)
 
 ## Synthesis
 
@@ -80,3 +85,6 @@
 - [[source-claude-md-self-audit]] — Internal exercise: applied Boris + Tw93 frameworks to audit and restructure our own CLAUDE.md (2026-04-09)
 - [[source-internal-sessions-2026-04-08-09]] — 9 Pipeline B session captures: blog2video, LoreAI, SEO tooling (2026-04-08~09)
 - [[source-claude-code-official-docs]] — Official Anthropic docs cross-reference for Claude Code features (2026-04-09)
+- [[source-anthropic-managed-agents-docs]] — Complete official docs for Claude Managed Agents: 10 pages, launch day (2026-04-09)
+- [[source-managed-agents-engineering-blog]] — "Scaling Managed Agents: Decoupling the brain from the hands" (2026-04-09)
+- [[source-agent-capabilities-announcement]] — New API capabilities announcement: code exec, MCP connector, Files API, caching (2026-04-09)

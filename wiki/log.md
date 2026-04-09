@@ -96,3 +96,18 @@ pages-updated: claude-code.md, permission-system.md
 source: raw/2026-04-09-session-unknown-1915.md (LoreAI SEO audit details)
 pages-created: connection-compiler-analogy-and-content-pipelines.md
 pages-updated: loreai.md (added SEO audit findings), verification-loops.md (added preflight gate pattern), blog2video.md (added compiler-analogy connection), index.md
+
+## [2026-04-09] ingest | Claude Managed Agents — Official Documentation Suite (10 pages)
+source: raw/2026-04-09-anthropic-managed-agents-docs.md
+pages-created: claude-managed-agents.md, managed-agents-architecture.md, managed-agents-outcomes.md, managed-agents-multiagent.md, managed-agents-memory-stores.md, source-anthropic-managed-agents-docs.md
+pages-updated: anthropic.md, harness-design.md, index.md
+
+## [2026-04-09] ingest | Scaling Managed Agents: Decoupling the Brain from the Hands
+source: raw/2026-04-09-anthropic-managed-agents-engineering-blog.md
+pages-created: source-managed-agents-engineering-blog.md
+pages-updated: managed-agents-architecture.md, harness-design.md
+
+## [2026-04-09] ingest | New Capabilities for Building Agents on the Anthropic API
+source: raw/2026-04-09-anthropic-agent-capabilities-announcement.md
+pages-created: source-agent-capabilities-announcement.md
+pages-updated: anthropic.md

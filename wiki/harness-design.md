@@ -8,6 +8,7 @@ sources:
   - raw/2026-04-07-repo-claude-memory-compiler.md
   - raw/2026-04-07-anatomy-of-agent-harness.md
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
+  - raw/2026-04-09-anthropic-managed-agents-engineering-blog.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -38,8 +39,10 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 
 - **The 4th layer — [[infrastructure-layer]]**: Rohit (@rohit4verse) argues the standard 3-layer model (weights, context, harness) misses a critical 4th layer: infrastructure. Multi-tenancy, RBAC, resource isolation, state persistence, distributed coordination. "Most teams talk about the first three because they are interesting. The fourth is where products die." Claude Code is the first agent system taking all four seriously. Retrofitting infrastructure is 10x harder than designing for it from day one.
 
+- **Managed Agents — Anthropic productizes the harness**: [[claude-managed-agents]] (2026-04-09) is Anthropic's first-party managed harness service. Architecture decouples brain (Claude + stateless loop), hands (containers + tools), and session (append-only event log as source of truth). See [[managed-agents-architecture]]. Validates the harness-as-product thesis — developers get the [[infrastructure-layer]] for free. Research previews include [[managed-agents-outcomes]] (rubric-driven grading, separate grader context — the GAN-inspired evaluator role built into the platform) and [[managed-agents-multiagent]] (coordinator + thread delegation).
+
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -49,3 +52,4 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 | 2026-04-07 | raw/2026-04-07-repo-claude-memory-compiler.md | Added harness-as-memory-system pattern |
 | 2026-04-07 | raw/2026-04-07-anatomy-of-agent-harness.md | Added formal definition, 11 components, 7 decisions, benchmarks, Ralph Loop |
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added 4th layer (infrastructure) thesis |
+| 2026-04-09 | raw/2026-04-09-anthropic-managed-agents-engineering-blog.md | Added Managed Agents as Anthropic's productized harness |
