@@ -12,8 +12,8 @@ Three layers:
 - This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
 Two special files in wiki/:
-- `wiki/index.md` — Content catalog. Every wiki page listed with link + one-line summary. Organized by category (entities, concepts, synthesis, sources). Updated on every ingest.
-- `wiki/log.md` — Chronological record. Append-only. Every operation (ingest, query, lint) logged with timestamp.
+- `wiki/index.md` — Content catalog. Every wiki page listed with link + one-line summary. Updated on every ingest.
+- `wiki/log.md` — Chronological record. Append-only. Every operation logged with timestamp.
 
 ## Domain Focus
 AI Builder's Knowledge Base:
@@ -23,158 +23,65 @@ AI Builder's Knowledge Base:
 - People and their ideas
 - My projects: LoreAI (loreai.dev), blog2video (AI精读)
 
-## Wiki Page Format
-
-Every wiki page uses this structure:
-
-```
----
-type: entity | concept | synthesis | source-summary
-created: YYYY-MM-DD
-last-updated: YYYY-MM-DD
-sources:
-  - raw/filename.md
-tags: []
----
-
-# Title
-
-## Summary
-[2-3 sentences]
-
-## Details
-[Bullet points preferred over prose]
-
-## Connections
-- Related: [[other wiki pages]]
-
-## Source Log
-| Date | Source | What changed |
-|------|--------|-------------|
-```
+## NEVER
+- Never modify files in `raw/` — they are immutable source documents
+- Never create subdirectories in `wiki/` — flat structure only, use index.md categories
+- Never create wiki pages without updating `wiki/index.md`
+- Never make claims in wiki pages without tracing to a source file in `raw/`
+- Never link generic terms (AI, marketing, Python) — only link concepts worth tracking
 
 ## Conventions
-- Flat file structure in wiki/ — no subdirectories. Use index.md categories for organization.
 - Wiki page filenames: kebab-case, descriptive (e.g., `anthropic.md`, `aeo-strategy.md`)
 - Link wiki pages to each other with [[wikilinks]]
 - Link concepts worth tracking: [[AEO as distribution strategy]], [[bilingual content arbitrage]]
-- Don't link generic terms: AI, marketing, Python
 - Chinese-English mixing is normal. Don't standardize.
 - When sources contradict: use `> [!warning]` callout, keep both claims with sources
 - Every claim must trace to a source file in raw/
-
-## Log Format
-
-```
-## [YYYY-MM-DD] ingest | Source Title
-source: raw/filename.md
-pages-created: page1.md, page2.md
-pages-updated: page3.md
-
-## [YYYY-MM-DD] query | Question text
-pages-consulted: page1.md, page2.md
-answer-filed: synthesis-page.md (or "chat only")
-
-## [YYYY-MM-DD] lint
-pages-scanned: N
-issues: orphans(N), stale(N), contradictions(N)
-auto-fixed: description
-```
+- Wiki page format template: `.claude/rules/wiki-page-format.md` (auto-loaded when editing wiki/)
+- Log entry format: `.claude/rules/log-format.md` (auto-loaded when editing wiki/log.md)
 
 ## Commands
 
-Four slash commands operate on the wiki:
+Four slash commands. Each has full instructions in `.claude/commands/`.
 
-### `/ingest <url|file|scan>`
-Drop a source into the wiki. The core operation — one source fans out updates across multiple wiki pages.
-- **URL**: Fetches content (see Source Fetching Tools below), saves to `raw/`, then ingests
-- **GitHub repo URL**: Deep scan — fetches README, file tree, deps, key source files, synthesizes architecture summary (see Source Types below)
-- **File path**: Ingests an existing file in `raw/`
-- **scan**: Finds all files in `raw/` not yet in `wiki/log.md`, ingests each in order
-- Creates source summary + entity/concept pages, updates index + log
-- Discuss key takeaways with user before creating pages
-
-### `/query <question>`
-Ask a question against the wiki. Reads `wiki/index.md` to find relevant pages, synthesizes an answer with [[wikilink]] citations.
-- Optionally file good answers back as synthesis pages
-- Flags data gaps when the wiki can't fully answer
-- Logs every query to `wiki/log.md`
-
-### `/lint`
-Periodic health check of the wiki.
-- Checks: orphan pages, stale pages, missing cross-references, contradictions, index drift, unresolved links, thin coverage
-- Optionally auto-fixes index drift and missing links
-- Logs results to `wiki/log.md`
-
-### `/visualize <topic|source-path|blank>`
-Generate Excalidraw diagrams from wiki knowledge. Uses the excalidraw-diagram skill.
-- **Topic** (e.g., `/visualize harness-design`): Synthesizes from all connected wiki pages on that topic
-- **Source path** (e.g., `/visualize raw/article.md`): Diagrams just that one source
-- **Blank**: Full wiki map of all entities, concepts, and connections
-- Saves as `wiki/visual-{name}.excalidraw`, registered in index under Visuals category
-- Renders to PNG for validation, then deletes PNG (`.excalidraw` is the artifact)
-- Embed in wiki pages with `![[visual-{name}]]`
+| Command | What it does |
+|---------|-------------|
+| `/ingest <url\|file\|scan>` | Drop a source into the wiki. One source fans out across multiple pages. |
+| `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
+| `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
+| `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
 
 ## Skills
 
-### excalidraw-diagram
-Generates `.excalidraw` JSON files that make visual arguments. Installed at `.claude/skills/excalidraw-diagram/`.
-- Diagrams should argue, not just display — shapes embody meaning
-- Color palette in `references/color-palette.md` (customizable)
-- Playwright-powered render pipeline for visual validation
-- Used by `/visualize` command
+| Skill | Purpose |
+|-------|---------|
+| excalidraw-diagram | Generate `.excalidraw` JSON diagrams that make visual arguments. Used by `/visualize`. |
 
 ## Pipeline B: Internal Knowledge Capture
 
-Automatic capture of knowledge from Claude Code sessions in LoreAI and blog2video.
+SessionEnd/PreCompact hooks in LoreAI and blog2video capture session knowledge → `scripts/flush.py` → `raw/`.
+After 6 PM: `scripts/compile.py` auto-compiles new raw files into wiki pages.
+Safety: `CLAUDE_INVOKED_BY` env var prevents recursion. No hooks configured in THIS repo.
 
-### How it works
-1. **SessionEnd / PreCompact hooks** fire automatically when you close a session or context compacts
-2. Hook extracts conversation context from JSONL transcript (fast, <10s, no API calls)
-3. Spawns `scripts/flush.py` as detached background process
-4. flush.py uses **Claude Agent SDK** to extract decisions, lessons, patterns
-5. Saves to `raw/{date}-session-{project}.md`
-6. After 6 PM: auto-triggers `scripts/compile.py` (time-gated compilation)
-7. compile.py uses Agent SDK to compile new raw files into wiki pages + discover connections
+## Documentation Layers
 
-### Scripts (`scripts/`)
-- `flush.py` — Background knowledge extraction. Spawned by hooks. Uses Agent SDK.
-- `compile.py` — Compiles raw → wiki pages + auto-discovers connections. CLI: `uv run python scripts/compile.py`
-- `config.py` — Path constants
-- `utils.py` — Shared helpers (file_hash, read_wiki_content, etc.)
+When adding or changing features, put information in the right layer:
 
-### Hooks (`hooks/`)
-- `session-start.py` — Injects wiki/index.md into every session (max 20K chars)
-- `session-end.py` — Captures transcript → spawns flush.py
-- `pre-compact.py` — Safety net before context compaction → spawns flush.py
+| What changed | Update where |
+|-------------|-------------|
+| New convention (applies every session) | This file (CLAUDE.md) |
+| Rule for specific file types/directories | `.claude/rules/{name}.md` with `paths:` glob |
+| New slash command | `.claude/commands/{name}.md` + add row to Commands table above |
+| New skill | `.claude/skills/{name}/SKILL.md` + add row to Skills table above |
+| Skill/command behavior details | Inside the skill/command file, NOT here |
 
-### Safety
-- **Recursion guard:** `CLAUDE_INVOKED_BY` env var prevents hook → Agent SDK → Claude Code → hook loops
-- **Deduplication:** Same session won't be flushed twice within 60 seconds
-- **Wiki repo excluded:** No hooks configured here — avoids meta-recursion
+Principle: **CLAUDE.md declares WHAT exists. Skills and commands define HOW they work.**
 
-### Hooks configured in:
-- `~/Desktop/Project/loreai-v2/.claude/settings.json`
-- `~/Desktop/Project/blog2video/.claude/settings.json`
+## Compact Instructions
 
-## Source Types
-
-### Articles & Posts
-Standard web content — blogs, documentation, X/Twitter articles. Saved as-is to `raw/`.
-
-### GitHub Repos (Deep Scan)
-For repo URLs, `/ingest` runs a deep architecture scan via `gh` CLI: README, file tree, dependencies, CLAUDE.md/AGENTS.md, key source files, recent commits. Synthesized into a structured summary in `raw/` covering: what it does, architecture, tech stack, patterns & best practices, ecosystem connections.
-
-## Source Fetching Tools
-
-For `/ingest` URL handling, use this priority chain:
-
-1. **WebFetch** — Built-in. Fast, works for static sites (blogs, docs, GitHub pages).
-2. **Claude for Chrome MCP** — Uses real browser with user's login sessions. Best for JS-heavy and authenticated sites (Twitter/X, YouTube, Reddit, LinkedIn). Requires Chrome extension installed.
-3. **Playwright MCP** — Headless browser automation. Fallback for JS-heavy sites when Chrome isn't available. Configured as `playwright` MCP server.
-
-JS-heavy sites (need browser): twitter.com, x.com, youtube.com, reddit.com, linkedin.com, facebook.com, instagram.com, medium.com, substack.com
-
-## Repo Locations (for reference)
-- LoreAI: ~/Desktop/Project/loreai-v2
-- blog2video: ~/Desktop/Project/blog2video
+When compressing context, preserve in priority order:
+1. Architecture decisions and the three-layer model (raw → wiki → CLAUDE.md)
+2. NEVER list — always re-check before acting
+3. Which files have been modified and key changes made
+4. Current task state and open TODOs
+5. Tool outputs can be discarded — keep only pass/fail status
