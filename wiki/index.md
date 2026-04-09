@@ -13,6 +13,8 @@
 - [[troy-hua]] — Researcher at EverMind, PhD CMU; reverse-engineered Claude Code's 7-layer memory system
 - [[boris-cherny]] — Creator of Claude Code at Anthropic; 388K followers, published viral best practices threads
 - [[tw93]] — Chinese open-source dev (Kaku, Pake); published 2.8M-view Claude Code engineering guide
+- [[blog2video]] — AI精读 video pipeline: articles/tweets → narrated slide videos for Chinese platforms
+- [[loreai]] — loreai.dev SEO/content platform with glossary, FAQ, and programmatic content pipeline
 
 ## Concepts
 
@@ -42,6 +44,9 @@
 - [[infrastructure-layer]] — The "4th layer" beyond weights/context/harness: multi-tenancy, RBAC, state persistence, coordination
 - [[context-noise-governance]] — Context as noise problem, not capacity; MCP cost breakdown, layering strategy, Compact Instructions
 - [[documentation-layers]] — Meta-convention: table in CLAUDE.md mapping change types to correct documentation layers, prevents Layer 1 bloat
+- [[silent-fallback-antipattern]] — Hard stops over silent quality degradation; preflight gate pattern as remedy
+- [[content-distribution-china]] — 微信视频号 + 小红书 platform strategies: social-driven vs search-driven
+- [[keyword-grouping-engine]] — SEO keyword clustering: intent classification, content type assignment, reusable prompt engine
 
 ## Synthesis
 
@@ -52,6 +57,7 @@
 - [[connection-context-anxiety-and-zero-friction-capture]] — Human context anxiety mirrors LLM context anxiety; both solved at harness level
 - [[connection-llm-judgment-vs-scripts-and-harness-design]] — Convergent evolution: VC and AI lab independently discover same LLM/scaffolding boundary
 - [[connection-assumptions-expire-and-tool-evolution]] — Tool evolution (AskUserQuestion, TodoWrite, Search) as concrete evidence that scaffolding built for weak models becomes shackles
+- [[connection-silent-fallback-and-verification-loops]] — Pipeline input degradation as the gap verification-loops miss; preflight gates as input guardrails
 
 ## Visuals
 
@@ -71,3 +77,5 @@
 - [[source-rohit-harness-from-claude-code-leaks]] — Rohit's 298K-view blueprint for building agent harness from Claude Code source (2026-04-08)
 - [[source-tw93-claude-code-architecture-governance]] — Tw93's 2.8M-view Chinese guide on Claude Code architecture, governance & engineering (2026-03-12)
 - [[source-claude-md-self-audit]] — Internal exercise: applied Boris + Tw93 frameworks to audit and restructure our own CLAUDE.md (2026-04-09)
+- [[source-internal-sessions-2026-04-08-09]] — 9 Pipeline B session captures: blog2video, LoreAI, SEO tooling (2026-04-08~09)
+- [[source-claude-code-official-docs]] — Official Anthropic docs cross-reference for Claude Code features (2026-04-09)

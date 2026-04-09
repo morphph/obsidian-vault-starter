@@ -9,6 +9,7 @@ sources:
   - raw/2026-04-08-troyhua-claude-code-7-layers-memory.md
   - raw/2026-04-09-bcherny-claude-code-best-practices.md
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
+  - raw/2026-04-09-claude-code-official-docs-best-practices.md
 tags: [wiki, product, tool, agentic]
 ---
 
@@ -31,7 +32,7 @@ tags: [wiki, product, tool, agentic]
   - "Leaf Module Pattern" — Isolates bootstrap code, prevents circular dependencies via ESLint
 - **Scale:** 17-chapter analysis (8,600+ lines), 6 learning tracks (core loop, security, multi-agent, infrastructure, UI, operations)
 - Used as the harness in [[harness-design]] experiments — the evaluator agent uses Playwright MCP through Claude Code
-- **Hook system extensibility:** [[claude-memory-compiler]] uses SessionEnd, PreCompact, and SessionStart hooks for [[zero-friction-capture]] — demonstrates hooks as the integration point for persistent memory. 20 hook event types available.
+- **Hook system extensibility:** [[claude-memory-compiler]] uses SessionEnd, PreCompact, and SessionStart hooks for [[zero-friction-capture]] — demonstrates hooks as the integration point for persistent memory. 26 hook event types, 4 handler types (command, http, prompt, agent).
 - **Claude Agent SDK:** Companion to Claude Code — runs LLM operations programmatically. Used by [[claude-memory-compiler]] for background knowledge extraction. Covered under existing Claude subscription.
 - **Key internal systems revealed by [[troy-hua]]'s reverse-engineering:**
   - **[[session-memory]]** — Forked subagent continuously maintains structured notes; when compaction needed, summary already exists (no API call)
@@ -49,7 +50,10 @@ tags: [wiki, product, tool, agentic]
 - **Agent loop architecture** (Rohit): `async function*` generator in `query.ts` (1,729 lines) — streaming, cancellation, composability, backpressure. 5-phase iteration per turn. Dependency injection via QueryDeps makes it testable.
 - **Streaming tool executor:** Tools start executing mid-stream before the model finishes generating. 2-5s latency savings per multi-tool turn. Tool concurrency classification: read-only parallel (up to 10), write serial.
 - **823-line retry system:** Per-error-class recovery (429, 529, 400, 401, network). Error recovery is a first-class state in the loop, not outer try-catch.
-- **4 extensibility mechanisms:** Skills (markdown), Hooks (25+ events), MCP (5 transports), Plugins (composition)
+- **4 extensibility mechanisms:** Skills (markdown, replaces Commands), Hooks (26 events, 4 handler types), MCP (3 transports: HTTP/SSE/stdio, 3 scopes), Plugins (composition)
+- **Session mobility:** `/teleport` (cloud→terminal), `/remote-control` (phone→local CLI), Cowork Dispatch (mobile→Desktop app)
+- **Automation features:** `/loop` (recurring tasks), `/schedule` (cloud cron), `/batch` (parallel worktree changes), `/branch` (fork conversation), `/btw` (side queries)
+- **Input modes:** `/voice` (push-to-talk, 20 languages), Chrome extension (live debugging, GIF recording), `--bare` (10x faster headless startup)
 
 ## Connections
 - Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]]
@@ -63,3 +67,4 @@ tags: [wiki, product, tool, agentic]
 | 2026-04-08 | raw/2026-04-08-troyhua-claude-code-7-layers-memory.md | Added session memory, dreaming, forked agent pattern, prompt cache optimization |
 | 2026-04-09 | raw/2026-04-09-bcherny-claude-code-best-practices.md | Added Boris Cherny as creator, team practices, hidden features |
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added async generator loop, streaming tool executor, 823-line retry, infrastructure layer |
+| 2026-04-09 | raw/2026-04-09-claude-code-official-docs-best-practices.md | Corrected hook count (26), added session mobility, automation features, input modes |

@@ -81,3 +81,13 @@ output: visual-context-layers-best-practices.excalidraw
 source: raw/2026-04-09-claude-md-self-audit.md
 pages-created: documentation-layers.md, source-claude-md-self-audit.md
 pages-updated: context-noise-governance.md
+
+## [2026-04-09T19:15:10+08:00] compile | Internal Sessions 2026-04-08~09 (Pipeline B)
+source: raw/2026-04-08-session-unknown-{0953,1017,1126,1139,1216,1421,1644}.md, raw/2026-04-09-session-unknown-{1620,1915}.md
+pages-created: blog2video.md, loreai.md, silent-fallback-antipattern.md, content-distribution-china.md, keyword-grouping-engine.md, source-internal-sessions-2026-04-08-09.md, connection-silent-fallback-and-verification-loops.md
+pages-updated: claude-code.md, permission-system.md
+
+## [2026-04-09T19:15:10+08:00] compile | Claude Code Official Docs Reference
+source: raw/2026-04-09-claude-code-official-docs-best-practices.md
+pages-created: source-claude-code-official-docs.md
+pages-updated: claude-code.md, permission-system.md
