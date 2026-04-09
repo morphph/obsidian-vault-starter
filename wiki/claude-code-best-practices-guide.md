@@ -15,7 +15,7 @@ tags: [wiki, guide, claude-code, best-practices]
 
 官方文档地址：[code.claude.com/docs](https://code.claude.com/docs/en/)
 
-![[visual-best-practices-guide]]
+![[visual-best-practices-guide.png]]
 
 ---
 
