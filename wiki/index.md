@@ -51,6 +51,7 @@
 - [[connection-context-anxiety-and-zero-friction-capture]] — Human context anxiety mirrors LLM context anxiety; both solved at harness level
 - [[connection-llm-judgment-vs-scripts-and-harness-design]] — Convergent evolution: VC and AI lab independently discover same LLM/scaffolding boundary
 - [[connection-assumptions-expire-and-tool-evolution]] — Tool evolution (AskUserQuestion, TodoWrite, Search) as concrete evidence that scaffolding built for weak models becomes shackles
+- [[connection-context-layers-and-best-practices]] — Boris的best practices用Tw93的"办公桌"分层理解：噪音管理，不是容量问题
 
 ## Visuals
 

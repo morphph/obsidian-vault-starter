@@ -56,3 +56,8 @@ pages-updated: claude-code.md, query-loop.md, harness-design.md, prompt-cache-op
 source: raw/2026-04-09-tw93-claude-code-architecture-governance.md
 pages-created: tw93.md, context-noise-governance.md, connection-assumptions-expire-and-tool-evolution.md, source-tw93-claude-code-architecture-governance.md
 pages-updated: assumptions-expire.md
+
+## [2026-04-09] synthesis | 办公桌比喻：Tw93分层 × Boris Best Practices
+pages-created: connection-context-layers-and-best-practices.md
+pages-consulted: boris-cherny.md, tw93.md, source-bcherny-claude-code-best-practices.md, context-noise-governance.md
+answer-filed: connection-context-layers-and-best-practices.md
