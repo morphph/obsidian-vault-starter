@@ -17,3 +17,6 @@ scripts/compile.log
 
 # Playwright MCP
 .playwright-mcp/
+
+# Machine-local Claude Code settings (paths differ per machine)
+.claude/settings.local.json
