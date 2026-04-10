@@ -15,6 +15,8 @@ pair-article: drafts/how-to-create-first-claude-managed-agent.md
 
 # Claude Managed Agents 全面解析
 
+![[managed-agents-architecture.png]]
+
 > 配套实战教程：[How to Create My First Claude Managed Agent](how-to-create-first-claude-managed-agent.md)
 
 2026 年 4 月 9 日，Anthropic 正式发布 Claude Managed Agents（公开 Beta）。这不是一个 SDK 或 framework——它是一个**全托管的 agent 运行平台**。你不需要自己写 agent loop、不需要管容器、不需要处理 tool execution 的基础设施。你定义好 agent、environment、session，平台帮你跑。
