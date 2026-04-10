@@ -11,64 +11,46 @@ tags: [draft, tutorial, anthropic, agents]
 pair-article: drafts/claude-managed-agents-overview.md
 ---
 
-<!-- HOOK: Anthropic 刚发布了 Claude Managed Agents——一个托管服务，让你不用自建基础设施就能部署自主 AI agent。这篇教程带你从零到跑通，10 分钟以内。 -->
+<!-- HOOK: 自己搭 agent 基础设施要 3-6 个月。用 Claude Managed Agents，10 分钟从零到跑通。这篇教程用一个真实场景带你走一遍。 -->
 
 # 手把手创建你的第一个 Claude Managed Agent
 
-> 配套概念解析：[Claude Managed Agents 全面解析](claude-managed-agents-overview.md)
+> 概念深入解析：[Claude Managed Agents 全面解析](claude-managed-agents-overview.md)
 
-Anthropic 在 2026 年 4 月 9 日发布了 Claude Managed Agents。不用自己写 agent loop，不用管容器沙盒，不用处理工具执行层——这些全部托管。Claude 可以在安全的云端容器里读写文件、跑 shell 命令、搜索网页、执行代码，全程自主完成。
+自己搭 agent 基础设施的痛，做过的人都知道：agent loop、容器沙盒、工具执行调度、上下文管理、断点恢复——光这套基础设施就要 3-6 个月，而你真正想做的事（定义 agent 的行为）只占 10% 的时间。
 
-这篇教程带你从环境搭建到流式获取结果，完整走一遍。
+Claude Managed Agents 把这些全包了。**你定义 agent 做什么，Anthropic 负责跑。**
 
-## 你会构建什么
+这篇教程用一个真实场景带你从零跑通。不是 Fibonacci——我们让 agent 分析一个 Python 项目，找出所有 TODO 注释，生成一份结构化的清单。这是你日常可能真的会用到的东西。
 
-一个 coding assistant agent，能够：
-- 在云端容器里写代码、执行代码
-- 读写文件
-- 搜索网页获取信息
-- 实时流式返回结果
+## 心智模型：三样东西
 
-整个教程花费：几美分的 token + $0.08/session-hour。
+开始之前，你只需要理解三个资源：
 
-## 心智模型：你只需要创建三样东西
+| 资源 | 类比 | 创建频率 |
+|------|------|---------|
+| **Agent** | 大脑——模型 + system prompt + 工具 | 创建一次，反复复用 |
+| **Environment** | 工位——容器配置、包、网络 | 创建一次，反复复用 |
+| **Session** | 一次任务——绑定大脑和工位，开始干活 | 每个任务一个 |
 
-写代码之前，先理解三个核心资源：
-
-| 资源 | 它是什么 | 创建一次还是每次？ |
-|------|---------|-------------------|
-| **Agent** | "谁"——模型、system prompt、工具 | 创建一次，跨 session 复用 |
-| **Environment** | "在哪"——容器配置、包、网络 | 创建一次，跨 session 复用 |
-| **Session** | "做什么"——一个正在执行具体任务的运行实例 | 每个任务创建一个 |
-
-类比：你定义一个 Agent（大脑）和一个 Environment（工作台），然后按需启动 Session（具体的活）。
+就这么简单。定义大脑，准备工位，启动任务。
 
 ## 前置准备
 
-- Anthropic API key（[在这里获取](https://console.anthropic.com/settings/keys)）
-- Python 3.8+ 或 Node.js 18+（或者直接用 curl）
-
-安装 SDK：
-
 ```bash
-# Python
-pip install anthropic
+# 安装 SDK（选一个）
+pip install anthropic        # Python
+npm install @anthropic-ai/sdk  # TypeScript
 
-# TypeScript
-npm install @anthropic-ai/sdk
-```
-
-设置 API key：
-
-```bash
+# 设置 API key
 export ANTHROPIC_API_KEY="your-api-key-here"
 ```
 
-## 第一步：创建 Agent
+## 从零到跑通
 
-Agent 是一个可复用的配置——模型、system prompt 和工具打包在一起。创建一次，之后用 ID 引用就行。
+### 定义 Agent
 
-### Python
+第一步是告诉平台"这个 agent 是谁"。Agent 是一个可复用的配置——创建一次，以后每个任务都引用同一个 ID。
 
 ```python
 from anthropic import Anthropic
@@ -76,66 +58,33 @@ from anthropic import Anthropic
 client = Anthropic()
 
 agent = client.beta.agents.create(
-    name="Coding Assistant",
+    name="Code Analyst",
     model="claude-sonnet-4-6",
-    system="You are a helpful coding assistant. Write clean, well-documented code.",
+    system="You are a code analysis assistant. When given a codebase, analyze it thoroughly and produce structured reports.",
     tools=[
         {"type": "agent_toolset_20260401"},
     ],
 )
 
-print(f"Agent ID: {agent.id}")
-# 保存这个 ID——每次创建 session 都要用
+print(f"Agent ID: {agent.id}")  # 保存这个 ID
 ```
 
-### TypeScript
+`agent_toolset_20260401` 一行代码启用全部 8 个内置工具：Bash、Read、Write、Edit、Glob、Grep、Web Fetch、Web Search。和 Claude Code 的工具集完全一致。
 
-```typescript
-import Anthropic from "@anthropic-ai/sdk";
+模型怎么选？**Sonnet 4.6 是 agent 任务的最佳平衡点。** 别默认用 Opus——贵 5 倍但对大多数 agent 任务没必要。Haiku 适合简单、高频的轻量任务。
 
-const client = new Anthropic();
+### 准备 Environment
 
-const agent = await client.beta.agents.create({
-  name: "Coding Assistant",
-  model: "claude-sonnet-4-6",
-  system: "You are a helpful coding assistant. Write clean, well-documented code.",
-  tools: [{ type: "agent_toolset_20260401" }],
-});
-
-console.log(`Agent ID: ${agent.id}`);
-```
-
-### curl
-
-```bash
-curl -s https://api.anthropic.com/v1/agents \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d '{
-    "name": "Coding Assistant",
-    "model": "claude-sonnet-4-6",
-    "system": "You are a helpful coding assistant. Write clean, well-documented code.",
-    "tools": [{"type": "agent_toolset_20260401"}]
-  }'
-```
-
-**`agent_toolset_20260401` 是什么？** 一次性启用全部 8 个内置工具：Bash、Read、Write、Edit、Glob、Grep、Web Fetch、Web Search。需要更细粒度的控制可以单独禁用——后面会讲。
-
-**模型怎么选？** 所有 Claude 4.5+ 模型都支持。`claude-sonnet-4-6` 是大多数 agent 任务的最佳平衡点。复杂任务用 `claude-opus-4-6`，追求速度用 `claude-haiku-4-5`。
-
-## 第二步：创建 Environment
-
-Environment 定义 agent 运行的容器——安装什么包、能访问什么网络。
-
-### Python
+接下来告诉平台"agent 跑在什么环境里"。
 
 ```python
 environment = client.beta.environments.create(
-    name="quickstart-env",
+    name="analysis-env",
     config={
         "type": "cloud",
+        "packages": {
+            "pip": ["pylint", "black"],
+        },
         "networking": {"type": "unrestricted"},
     },
 )
@@ -143,82 +92,22 @@ environment = client.beta.environments.create(
 print(f"Environment ID: {environment.id}")
 ```
 
-### TypeScript
+Environment 定义容器模板——安装什么包、能访问什么网络。同样创建一次，所有相关 session 都引用同一个。每个 session 获得自己隔离的容器实例，互不干扰。
 
-```typescript
-const environment = await client.beta.environments.create({
-  name: "quickstart-env",
-  config: {
-    type: "cloud",
-    networking: { type: "unrestricted" },
-  },
-});
+### 启动 Session，发消息
 
-console.log(`Environment ID: ${environment.id}`);
-```
-
-这会创建一个拥有完全出站网络权限的基础容器。生产环境建议锁紧：
+现在万事俱备。创建 session，发消息，看 agent 工作。
 
 ```python
-# 生产环境：限制网络到特定域名
-environment = client.beta.environments.create(
-    name="prod-env",
-    config={
-        "type": "cloud",
-        "packages": {
-            "pip": ["pandas", "numpy", "requests"],
-            "npm": ["express"],
-        },
-        "networking": {
-            "type": "limited",
-            "allowed_hosts": ["api.yourapp.com"],
-            "allow_package_managers": True,
-        },
-    },
-)
-```
-
-支持的包管理器：`pip`、`npm`、`apt`、`cargo`、`gem`、`go`。包会在共享同一 environment 的 session 间缓存。
-
-## 第三步：启动 Session
-
-Session 是一个正在运行的 agent 实例。它引用你的 agent 配置和 environment，然后开始干活。
-
-### Python
-
-```python
+# 创建 session
 session = client.beta.sessions.create(
     agent=agent.id,
     environment_id=environment.id,
-    title="My first agent session",
+    title="Analyze TODO items",
 )
 
-print(f"Session ID: {session.id}")
-```
-
-### TypeScript
-
-```typescript
-const session = await client.beta.sessions.create({
-  agent: agent.id,
-  environment_id: environment.id,
-  title: "My first agent session",
-});
-
-console.log(`Session ID: ${session.id}`);
-```
-
-到这里 session 已经创建，但 agent 处于 idle 状态——等你告诉它做什么。
-
-## 第四步：发送消息，流式获取响应
-
-这是最有趣的部分。你发一条用户消息，agent 就开始工作——写代码、跑命令、搜索网页——通过 SSE（Server-Sent Events）实时把一切流式返回给你。
-
-### Python
-
-```python
+# 打开 stream，发消息，实时获取结果
 with client.beta.sessions.events.stream(session.id) as stream:
-    # 打开 stream 后发送用户消息
     client.beta.sessions.events.send(
         session.id,
         events=[
@@ -227,93 +116,74 @@ with client.beta.sessions.events.stream(session.id) as stream:
                 "content": [
                     {
                         "type": "text",
-                        "text": "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt",
+                        "text": """Clone https://github.com/pallets/flask (shallow clone).
+Find all TODO and FIXME comments in the Python files.
+Generate a report saved to /mnt/session/outputs/todo-report.md with:
+- Total count
+- Each item with file path, line number, and the comment content
+- Grouped by directory""",
                     },
                 ],
             },
         ],
     )
 
-    # 处理流式事件
     for event in stream:
         match event.type:
             case "agent.message":
                 for block in event.content:
                     print(block.text, end="")
             case "agent.tool_use":
-                print(f"\n[使用工具: {event.name}]")
+                print(f"\n[工具: {event.name}]")
             case "session.status_idle":
-                print("\n\nAgent 完成。")
+                print("\n\n✅ 完成。")
                 break
 ```
 
-### TypeScript
-
-```typescript
-const stream = await client.beta.sessions.events.stream(session.id);
-
-await client.beta.sessions.events.send(session.id, {
-  events: [
-    {
-      type: "user.message",
-      content: [
-        {
-          type: "text",
-          text: "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt",
-        },
-      ],
-    },
-  ],
-});
-
-for await (const event of stream) {
-  if (event.type === "agent.message") {
-    for (const block of event.content) {
-      process.stdout.write(block.text);
-    }
-  } else if (event.type === "agent.tool_use") {
-    console.log(`\n[使用工具: ${event.name}]`);
-  } else if (event.type === "session.status_idle") {
-    console.log("\n\nAgent 完成。");
-    break;
-  }
-}
-```
-
-### 你会看到的输出
+### 你会看到什么
 
 ```
-I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
-[使用工具: write]
-[使用工具: bash]
-The script ran successfully. Let me verify the output file.
-[使用工具: bash]
-fibonacci.txt contains the first 20 Fibonacci numbers (0 through 4181).
+I'll clone the Flask repository and analyze it for TODO/FIXME comments.
+[工具: bash]
+Repository cloned. Now scanning for TODO and FIXME comments...
+[工具: grep]
+[工具: bash]
+Found 23 TODO/FIXME items across 12 files. Generating the report...
+[工具: write]
 
-Agent 完成。
+Report saved to /mnt/session/outputs/todo-report.md
+
+✅ 完成。
 ```
 
-Agent 自主决定了：写一个 Python 文件、执行它、验证输出。你只说了"做什么"，没说"怎么做"。
+停一下，想想刚才发生了什么。
 
-## 底层发生了什么
+你只说了"做什么"——clone repo、找 TODO、生成报告。**agent 自己决定了怎么做：** 用 bash 执行 git clone，用 grep 搜索注释，再用 write 生成报告文件。没有人告诉它用哪个工具、按什么顺序。
 
-当你发送一个用户事件，平台会：
+这就是 Managed Agents 的核心价值：你描述目标，agent 自主规划和执行。
 
-1. **启动容器**——根据你的 environment 配置。容器是惰性创建的（只在工具需要时才启动），所以 p50 首 token 时间很快。
-2. **运行 agent loop**——Claude 读取你的消息，决定用什么工具，执行，读取结果，决定下一步。循环。
-3. **流式推送事件**——每个工具调用、每个回复、每个状态变化都作为 SSE 事件返回。
-4. **进入 idle**——当 agent 没有更多事情要做，它发出 `session.status_idle`。
+### 为什么这能工作
 
-Session 是一个 append-only 的事件日志。Harness 是无状态的。任何组件崩溃都不会丢失 session 数据——session 而不是 harness 才是 source of truth。这是核心架构洞察。
+底层的架构设计让这成为可能：
 
-## 控制 Agent 的工具权限
+1. **容器惰性创建** — session 创建时不启动容器，只有当 agent 第一次调用 bash 或 write 时才 provision。这就是为什么启动速度很快。
+2. **Harness 无状态** — 控制循环不持有任何状态。状态全在 session 的事件日志里。如果 harness 崩溃，重启后从日志恢复。
+3. **Session 是 source of truth** — 一个 append-only 的事件日志，记录了所有对话、工具调用和结果。任何组件挂了都不影响这份日志。
 
-`agent_toolset_20260401` 默认全部开启。要限制：
+> 想深入了解这个架构？看 [Anthropic 工程博客: Decoupling the Brain from the Hands](https://www.anthropic.com/engineering/managed-agents)
+
+---
+
+## 进阶：从 Hello World 到生产级
+
+### 限制工具权限
+
+默认全部 8 个工具都开启。生产环境应该只给 agent 需要的：
 
 ```python
-# 只允许文件操作——禁用 bash 和 web
+# 只读分析 agent——不能写文件、不能跑命令
 agent = client.beta.agents.create(
-    name="File Editor Only",
+    name="Read-Only Analyst",
     model="claude-sonnet-4-6",
     tools=[
         {
@@ -321,69 +191,88 @@ agent = client.beta.agents.create(
             "default_config": {"enabled": False},
             "configs": [
                 {"name": "read", "enabled": True},
-                {"name": "write", "enabled": True},
-                {"name": "edit", "enabled": True},
+                {"name": "glob", "enabled": True},
+                {"name": "grep", "enabled": True},
             ],
         },
     ],
 )
 ```
 
-还可以添加自定义工具——你定义 schema，Claude 调用你的代码：
+最小权限原则：code review agent 不需要 bash，调研 agent 不需要 write。
+
+### 自定义工具
+
+内置工具不够用？你可以定义自己的：
 
 ```python
 agent = client.beta.agents.create(
-    name="Weather Agent",
+    name="Ticket Agent",
     model="claude-sonnet-4-6",
     tools=[
         {"type": "agent_toolset_20260401"},
         {
             "type": "custom",
-            "name": "get_weather",
-            "description": "Get current weather for a location. Use this when the user asks about weather conditions.",
+            "name": "create_ticket",
+            "description": "Create a ticket in the project tracker. Use when you identify an issue that needs follow-up.",
             "input_schema": {
                 "type": "object",
                 "properties": {
-                    "location": {"type": "string", "description": "City name"},
+                    "title": {"type": "string"},
+                    "priority": {"type": "string", "enum": ["low", "medium", "high"]},
+                    "body": {"type": "string"},
                 },
-                "required": ["location"],
+                "required": ["title", "priority", "body"],
             },
         },
     ],
 )
 ```
 
-当 agent 调用你的自定义工具时，session 暂停。你在自己这边执行工具、发回结果，agent 继续工作。
+当 agent 调用自定义工具时，session 暂停（`requires_action`）。你在自己这边执行，发回结果，agent 继续。
 
-## 执行中途引导方向
+### 中途引导和中断
 
-Session 是交互式的。你可以在 agent 工作过程中重定向它：
+Session 是交互式的。agent 在工作过程中，你可以改变方向或直接叫停：
 
 ```python
-# 发送后续消息改变方向
+# 改变方向
 client.beta.sessions.events.send(
     session.id,
-    events=[
-        {
-            "type": "user.message",
-            "content": [{"type": "text", "text": "Actually, also add a plot using matplotlib."}],
-        },
-    ],
+    events=[{
+        "type": "user.message",
+        "content": [{"type": "text", "text": "也把 HACK 和 XXX 注释加上。"}],
+    }],
 )
-```
 
-或者直接中断：
-
-```python
+# 或者直接中断
 client.beta.sessions.events.send(
     session.id,
     events=[{"type": "user.interrupt"}],
 )
 ```
 
+---
+
+## 踩坑提醒
+
+写完 happy path，说几个实际会遇到的问题：
+
+**成本意识。** $0.08/session-hour + token 费用。一个 session 跑 30 分钟 ≈ $0.04 运行费 + 几美分 token。很便宜。但如果你跑 24/7 常驻 agent，那是 $58/月/agent 纯运行费。间歇式任务最划算。
+
+**模型选择。** 别默认 Opus。Sonnet 4.6 是 agent 任务的最佳平衡——更快、更便宜（$3/$15 vs $15/$75 per million tokens），对大多数任务效果一样好。先用 Sonnet，只在任务确实需要更强推理时升级 Opus。
+
+**网络策略。** 开发时 `unrestricted` 没问题，但生产环境**一定要用 `limited` + 白名单**。默认的 unrestricted 有安全黑名单，但你不会想让你的 agent 可以访问整个互联网。
+
+**Session 清理。** Session 不会自动消失。完成后记得 archive 或 delete，否则它们会一直挂在那里。
+
+**Beta 状态。** 这是公开 Beta，不是 GA。API 可能调整，功能可能变化。不要在 mission-critical 场景中当作唯一方案。
+
+---
+
 ## 速查表
 
-### 所有请求必需的 Headers
+### Headers
 
 ```
 anthropic-version: 2023-06-01
@@ -391,33 +280,36 @@ anthropic-beta: managed-agents-2026-04-01
 x-api-key: YOUR_API_KEY
 ```
 
+### 模型
+
+| 模型 | 适用 | Token 价格 (input/output per M) |
+|------|------|------|
+| `claude-sonnet-4-6` | 推荐默认 | $3 / $15 |
+| `claude-opus-4-6` | 复杂推理 | $15 / $75 |
+| `claude-haiku-4-5` | 轻量高频 | $0.80 / $4 |
+
 ### 定价
 
-| 组成 | 费用 |
-|------|------|
-| Token 消耗 | 标准 Claude 费率 |
-| Session 运行时间 | $0.08/session-hour |
-
-### 模型选择
-
-| 模型 | 适用场景 |
-|------|---------|
-| `claude-opus-4-6` | 最强智能，复杂 agent 任务 |
-| `claude-sonnet-4-6` | 速度与智能的最佳平衡 |
-| `claude-haiku-4-5` | 最快，简单任务 |
+标准 Claude token 费率 + $0.08/session-hour。
 
 ### SDK
 
-Python、TypeScript、Go、Java、C#、Ruby、PHP——全部通过 `anthropic` 包。另有 `ant` CLI（Homebrew: `brew install anthropics/tap/ant`）。
+Python、TypeScript、Go、Java、C#、Ruby、PHP — 全部通过 `anthropic` 包。另有 `ant` CLI。
 
-## 接下来看什么
+---
 
-这篇教程覆盖了基础用法。Claude Managed Agents 还有三个更强大的研究预览功能：
+## 接下来
 
-- **Outcomes（目标驱动）**——定义"完成"的标准（rubric），agent 自动迭代直到达标。独立的 grader agent 评估，避免自我评估偏差。
-- **Multi-Agent（多智能体）**——一个 coordinator agent 委派任务给专业 agent，每个 agent 在自己的上下文隔离线程里运行。
-- **Memory（持久化记忆）**——跨 session 的 memory stores，agent 记住用户偏好、项目惯例和过去的教训。
+试着把例子换成你自己的场景。几个方向：
 
-> 想深入了解所有概念？看配套文章：[Claude Managed Agents 全面解析](claude-managed-agents-overview.md)
+- 让 agent 审查 PR diff 并生成 review 报告
+- 让 agent 爬取竞品网站并生成对比分析
+- 让 agent 读取日志文件并做根因分析
 
-<!-- CTA: 现在就试试创建你的第一个 Claude Managed Agent——Beta 已对所有 API 账户开放。从 Sonnet 4.6 + 完全网络权限 + 全工具集开始，之后再按需收紧。 -->
+三个研究预览功能值得关注：**Outcomes**（定义评分标准，agent 自动迭代到达标）、**Multi-Agent**（coordinator 委派专业 agent）、**Memory**（跨 session 记住上下文）。这些功能 GA 后会让 Managed Agents 的价值再上一个台阶。
+
+Notion、Asana、Sentry、Rakuten 已经在用 Managed Agents 构建产品。如果你的场景是异步长任务、不想管基础设施——现在是最好的上手时机。
+
+> 想深入了解所有概念和架构？看 [Claude Managed Agents 全面解析](claude-managed-agents-overview.md)
+
+<!-- CTA: Beta 已开放给所有 API 账户。从 Sonnet 4.6 + 全工具集开始，跑起来再说。 -->
