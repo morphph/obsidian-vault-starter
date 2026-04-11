@@ -16,12 +16,12 @@ else
     echo "✗ tmux session: NOT RUNNING"
 fi
 
-# Check Claude Code process
-CLAUDE_PROCS=$(pgrep -f "claude.*obsidian" || true)
-if [ -n "$CLAUDE_PROCS" ]; then
+# Check Claude Code process (check if process exists in the tmux session)
+if tmux list-panes -t "$TMUX_SESSION" -F "#{pane_pid}" 2>/dev/null | xargs -I {} pgrep -P {} -f claude >/dev/null 2>&1; then
+    CLAUDE_PROCS=$(tmux list-panes -t "$TMUX_SESSION" -F "#{pane_pid}" 2>/dev/null | xargs -I {} pgrep -P {} -f claude || true)
     echo "✓ Claude process: RUNNING (PIDs: $CLAUDE_PROCS)"
 else
-    echo "✗ Claude process: NOT RUNNING"
+    echo "✗ Claude process: NOT RUNNING in tmux session"
 fi
 
 # Check log file
@@ -39,12 +39,15 @@ fi
 
 echo ""
 echo "--- Overall Status ---"
-if tmux has-session -t "$TMUX_SESSION" 2>/dev/null && [ -n "$CLAUDE_PROCS" ]; then
-    echo "Status: HEALTHY"
-    exit 0
-elif tmux has-session -t "$TMUX_SESSION" 2>/dev/null || [ -n "$CLAUDE_PROCS" ]; then
-    echo "Status: PARTIAL (session or process exists but not both)"
-    exit 1
+if tmux has-session -t "$TMUX_SESSION" 2>/dev/null; then
+    # Check if Claude is actually running in the session
+    if tmux list-panes -t "$TMUX_SESSION" -F "#{pane_pid}" 2>/dev/null | xargs -I {} pgrep -P {} -f claude >/dev/null 2>&1; then
+        echo "Status: HEALTHY ✓"
+        exit 0
+    else
+        echo "Status: SESSION EXISTS but Claude not running"
+        exit 1
+    fi
 else
     echo "Status: NOT RUNNING"
     exit 2
