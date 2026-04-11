@@ -111,3 +111,8 @@ pages-updated: managed-agents-architecture.md, harness-design.md
 source: raw/2026-04-09-anthropic-agent-capabilities-announcement.md
 pages-created: source-agent-capabilities-announcement.md
 pages-updated: anthropic.md
+
+## [2026-04-11] ingest | Claude Code Monitor Tool — Official Docs + Community Analysis
+source: raw/claude-code-monitor-tool-docs-2026-04.md
+pages-created: claude-code-monitor-tool.md, source-claude-code-monitor-tool-docs.md
+pages-updated: claude-code.md

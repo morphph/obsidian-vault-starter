@@ -16,6 +16,7 @@
 - [[blog2video]] — AI精读 video pipeline: articles/tweets → narrated slide videos for Chinese platforms
 - [[loreai]] — loreai.dev SEO/content platform with glossary, FAQ, and programmatic content pipeline
 - [[claude-managed-agents]] — Anthropic's managed agent hosting service (beta 2026-04-09): containers, tools, events, sessions
+- [[claude-code-monitor-tool]] — Event-driven background monitoring tool in Claude Code (v2.1.98): stdout lines wake the session
 
 ## Concepts
 
@@ -88,3 +89,4 @@
 - [[source-anthropic-managed-agents-docs]] — Complete official docs for Claude Managed Agents: 10 pages, launch day (2026-04-09)
 - [[source-managed-agents-engineering-blog]] — "Scaling Managed Agents: Decoupling the brain from the hands" (2026-04-09)
 - [[source-agent-capabilities-announcement]] — New API capabilities announcement: code exec, MCP connector, Files API, caching (2026-04-09)
+- [[source-claude-code-monitor-tool-docs]] — Official docs + community analysis on Monitor tool (2026-04-11)

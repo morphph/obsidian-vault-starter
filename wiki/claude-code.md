@@ -10,6 +10,7 @@ sources:
   - raw/2026-04-09-bcherny-claude-code-best-practices.md
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
   - raw/2026-04-09-claude-code-official-docs-best-practices.md
+  - raw/claude-code-monitor-tool-docs-2026-04.md
 tags: [wiki, product, tool, agentic]
 ---
 
@@ -53,10 +54,11 @@ tags: [wiki, product, tool, agentic]
 - **4 extensibility mechanisms:** Skills (markdown, replaces Commands), Hooks (26 events, 4 handler types), MCP (3 transports: HTTP/SSE/stdio, 3 scopes), Plugins (composition)
 - **Session mobility:** `/teleport` (cloud→terminal), `/remote-control` (phone→local CLI), Cowork Dispatch (mobile→Desktop app)
 - **Automation features:** `/loop` (recurring tasks), `/schedule` (cloud cron), `/batch` (parallel worktree changes), `/branch` (fork conversation), `/btw` (side queries)
+- **[[claude-code-monitor-tool|Monitor tool]]** (v2.1.98, April 9 2026): Event-driven background monitoring — runs a shell command whose stdout wakes the session. Replaces polling with event-driven automation. Two patterns: stream filters (`tail -f | grep --line-buffered`) and poll-and-if loops. Zero token cost when idle. Not available on Bedrock/Vertex/Foundry.
 - **Input modes:** `/voice` (push-to-talk, 20 languages), Chrome extension (live debugging, GIF recording), `--bare` (10x faster headless startup)
 
 ## Connections
-- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]]
+- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -68,3 +70,4 @@ tags: [wiki, product, tool, agentic]
 | 2026-04-09 | raw/2026-04-09-bcherny-claude-code-best-practices.md | Added Boris Cherny as creator, team practices, hidden features |
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added async generator loop, streaming tool executor, 823-line retry, infrastructure layer |
 | 2026-04-09 | raw/2026-04-09-claude-code-official-docs-best-practices.md | Corrected hook count (26), added session mobility, automation features, input modes |
+| 2026-04-11 | raw/claude-code-monitor-tool-docs-2026-04.md | Added Monitor tool — event-driven background monitoring |
