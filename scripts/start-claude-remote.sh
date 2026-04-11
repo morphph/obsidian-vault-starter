@@ -19,17 +19,13 @@ if tmux has-session -t "$TMUX_SESSION" 2>/dev/null; then
     exit 0
 fi
 
-# Create new tmux session ready for Claude Code
-echo "Creating tmux session '$TMUX_SESSION' for Claude Code..."
+# Create new tmux session and start Claude Code Remote Control server
+echo "Starting Claude Code Remote Control server in tmux session '$TMUX_SESSION'..."
 
-# Create tmux session and start Claude Code interactively
-# The session will show a starting prompt and wait for Remote Control connection
-tmux new-session -d -s "$TMUX_SESSION" -c "$PROJECT_DIR"
-
-# Start Claude Code with a simple prompt to initialize the session
-# Remove --chrome as it seems to cause issues
-# The --remote-control-session-name-prefix allows Remote Control to find this session
-tmux send-keys -t "$TMUX_SESSION" "claude --permission-mode bypassPermissions --remote-control-session-name-prefix Obsidian --name 'Obsidian Remote' 'Ready for Remote Control. This session is running and waiting for connections.'" C-m
+# Create tmux session and run the remote-control subcommand
+# Auto-answer prompts: y (enable) and 1 (same-dir mode)
+tmux new-session -d -s "$TMUX_SESSION" -c "$PROJECT_DIR" \
+    "echo -e 'y\n1' | claude remote-control --name 'Obsidian' --permission-mode bypassPermissions --spawn same-dir 2>&1 | tee -a '$LOG_FILE'"
 
 echo "✓ Started successfully"
 echo "  Session: $TMUX_SESSION"
