@@ -29,7 +29,7 @@ tmux new-session -d -s "$TMUX_SESSION" -c "$PROJECT_DIR" \
 
 echo "✓ Started successfully"
 echo "  Session: $TMUX_SESSION"
-echo "  Log: $LOG_FILE (currently not logging)"
+echo "  Log: $LOG_FILE"
 echo "  Attach: tmux attach -t $TMUX_SESSION"
 echo ""
 echo "Note: Claude Code session is active and ready."

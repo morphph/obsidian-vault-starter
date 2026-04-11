@@ -31,8 +31,8 @@ if [ -f "$LOG_FILE" ]; then
     LOG_LINES=$(wc -l < "$LOG_FILE")
     echo "  Size: $LOG_SIZE, Lines: $LOG_LINES"
     echo ""
-    echo "--- Last 30 lines of log ---"
-    tail -n 30 "$LOG_FILE"
+    echo "--- Last 20 lines of log ---"
+    tail -n 20 "$LOG_FILE"
 else
     echo "✗ Log file not found"
 fi
