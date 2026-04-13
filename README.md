@@ -51,12 +51,12 @@ Pipeline A (External)              Pipeline B (Internal)
 
 ## Commands
 
-| Command | What it does |
-|---------|-------------|
-| `/ingest <url\|file\|scan>` | Drop a source → wiki pages fan out. Supports articles, GitHub repos (deep scan), tweets (Playwright). |
-| `/query <question>` | Ask the wiki. Optionally file answer back as synthesis page. |
-| `/lint` | Health check: orphans, contradictions, stale pages, missing links. |
-| `/visualize <topic\|source\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
+| Command                             | What it does                                                                                          |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `/ingest <url\|file\|scan>`         | Drop a source → wiki pages fan out. Supports articles, GitHub repos (deep scan), tweets (Playwright). |
+| `/query <question>`                 | Ask the wiki. Optionally file answer back as synthesis page.                                          |
+| `/lint`                             | Health check: orphans, contradictions, stale pages, missing links.                                    |
+| `/visualize <topic\|source\|blank>` | Generate Excalidraw diagram from wiki knowledge.                                                      |
 
 ## Pipeline B (Auto-Capture)
 
