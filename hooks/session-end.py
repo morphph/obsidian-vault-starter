@@ -138,6 +138,8 @@ def main() -> None:
     # Spawn flush.py as a detached background process
     flush_script = SCRIPTS_DIR / "flush.py"
 
+    project_dir = os.environ.get("CLAUDE_PROJECT_DIR", "unknown")
+
     cmd = [
         "uv",
         "run",
@@ -147,17 +149,22 @@ def main() -> None:
         str(flush_script),
         str(context_file),
         session_id,
+        project_dir,
     ]
 
     # Cross-platform detached process
-    creation_flags = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
+    kwargs: dict = {}
+    if sys.platform == "win32":
+        kwargs["creationflags"] = subprocess.CREATE_NO_WINDOW
+    else:
+        kwargs["start_new_session"] = True
 
     try:
         subprocess.Popen(
             cmd,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
-            creationflags=creation_flags,
+            **kwargs,
         )
         logging.info(
             "Spawned flush.py for session %s (%d turns, %d chars)",

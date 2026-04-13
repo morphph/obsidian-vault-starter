@@ -51,18 +51,18 @@ def save_flush_state(state: dict) -> None:
     STATE_FILE.write_text(json.dumps(state), encoding="utf-8")
 
 
-def detect_project_name() -> str:
-    """Detect project name from the context or default to 'unknown'."""
-    # The hook passes session context — we can infer from CWD recorded in context
-    # For now, use a simple heuristic based on common project paths
-    cwd = os.environ.get("CLAUDE_CWD", "")
-    if "loreai" in cwd.lower():
+def detect_project_name(project_dir: str = "") -> str:
+    """Detect project name from CLI arg, env var, or default to 'unknown'."""
+    # Priority: CLI arg (from hook) > env var > fallback
+    path = project_dir or os.environ.get("CLAUDE_PROJECT_DIR", "") or os.environ.get("CLAUDE_CWD", "")
+    if not path:
+        return "unknown"
+    name = path.lower()
+    if "loreai" in name:
         return "loreai"
-    elif "blog2video" in cwd.lower():
+    elif "blog2video" in name:
         return "blog2video"
-    elif cwd:
-        return Path(cwd).name.lower()
-    return "unknown"
+    return Path(path).name.lower() or "unknown"
 
 
 def save_to_raw(content: str, project: str) -> Path:
@@ -220,6 +220,7 @@ def main():
 
     context_file = Path(sys.argv[1])
     session_id = sys.argv[2]
+    project_dir = sys.argv[3] if len(sys.argv) > 3 else ""
 
     logging.info("flush.py started for session %s, context: %s", session_id, context_file)
 
@@ -244,7 +245,7 @@ def main():
         context_file.unlink(missing_ok=True)
         return
 
-    project = detect_project_name()
+    project = detect_project_name(project_dir)
     logging.info("Flushing session %s (project: %s): %d chars", session_id, project, len(context))
 
     # Run the LLM extraction
