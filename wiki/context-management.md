@@ -15,6 +15,9 @@ tags: [wiki, architecture, agentic]
 ## Summary
 The system for handling LLM context window limits in [[claude-code|Claude Code]]. Uses a **7-layer memory architecture** spanning from sub-millisecond token pruning to multi-hour background "dreaming" consolidation. Each layer is progressively more expensive but more powerful, designed so **Layer N prevents Layer N+1 from firing**. Treats the context window as the "scarcest resource." Directly addresses [[context-anxiety]].
 
+> [!note] Layer count varies by source
+> Official Anthropic docs don't use numbered layers — they describe two memory systems (CLAUDE.md + auto memory). The "7-layer" breakdown here comes from [[troy-hua]]'s reverse-engineering of Claude Code internals (135K-view analysis). Earlier sources like "Claude Reviews Claude" counted 4 layers at a coarser granularity. Other community analyses count 3 or 5. All describe the same system at different zoom levels.
+
 ## Details
 
 ### The 7 Layers

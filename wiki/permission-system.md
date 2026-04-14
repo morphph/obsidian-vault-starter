@@ -12,7 +12,7 @@ tags: [wiki, security, architecture]
 # Permission System
 
 ## Summary
-[[Claude Code]]'s seven-layer defense-in-depth security architecture. Uses two key design principles: fail-closed defaults (unknown = deny) for safety-critical operations, and fail-open degradation for configuration and external services.
+[[claude-code|Claude Code]]'s seven-layer defense-in-depth security architecture. Uses two key design principles: fail-closed defaults (unknown = deny) for safety-critical operations, and fail-open degradation for configuration and external services.
 
 ## Details
 - **Seven-layer defense-in-depth** — security is not a single gate but multiple overlapping layers

@@ -116,3 +116,8 @@ pages-updated: anthropic.md
 source: raw/claude-code-monitor-tool-docs-2026-04.md
 pages-created: claude-code-monitor-tool.md, source-claude-code-monitor-tool-docs.md
 pages-updated: claude-code.md
+
+## [2026-04-14] lint
+pages-scanned: 70
+issues: orphans(0), stale(0), contradictions(1), index-drift(0), unresolved-links(7), thin(21)
+auto-fixed: fixed 2× [[silent-fallback-degradation]]→[[silent-fallback-antipattern]] in connection-compiler-analogy-and-content-pipelines.md; fixed [[Claude Code]]→[[claude-code|Claude Code]] in permission-system.md; fixed 3× [[Prithvi Rajasekaran]]→[[prithvi-rajasekaran|Prithvi Rajasekaran]] in anthropic.md + source-anthropic-harness-design.md; added layer-count clarification note to context-management.md

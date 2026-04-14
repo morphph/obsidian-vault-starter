@@ -10,7 +10,7 @@ tags: [wiki, source, engineering-blog]
 # Source: Harness Design for Long-Running Application Development
 
 ## Summary
-[[Anthropic]] Labs engineering blog post by [[Prithvi Rajasekaran]] (March 24, 2026) exploring GAN-inspired multi-agent architectures for improving Claude's performance on complex, long-running coding tasks.
+[[Anthropic]] Labs engineering blog post by [[prithvi-rajasekaran|Prithvi Rajasekaran]] (March 24, 2026) exploring GAN-inspired multi-agent architectures for improving Claude's performance on complex, long-running coding tasks.
 
 ## Key Takeaways
 - Two core failure modes in agentic coding: [[context-anxiety]] and [[self-evaluation-bias]]
@@ -22,7 +22,7 @@ tags: [wiki, source, engineering-blog]
 - Evaluation tuning is real work — default QA agents are too lenient
 
 ## Entities Extracted
-- [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-model-family]]
+- [[Anthropic]], [[prithvi-rajasekaran|Prithvi Rajasekaran]], [[claude-model-family]]
 
 ## Concepts Extracted
 - [[harness-design]], [[context-anxiety]], [[self-evaluation-bias]], [[multi-agent-architecture]], [[assumptions-expire]]

@@ -32,7 +32,7 @@ The structural parallel runs deep:
 
 ## The Failure Modes Transfer Too
 
-[[silent-fallback-degradation]] in blog2video is structurally identical to **compiling with corrupted source code:**
+[[silent-fallback-antipattern]] in blog2video is structurally identical to **compiling with corrupted source code:**
 - Blog2video: Playwright unavailable → vision transcription of images → pipeline "compiled" but with garbage input → video rendered but shallow
 - Wiki equivalent: if `/ingest` fetched a truncated article → entities extracted from partial content → wiki pages created but incomplete
 - LoreAI equivalent: LLM-generated content with truncated titles → pages published with bad metadata → SEO damage
@@ -52,7 +52,7 @@ For each: identify the "source code" (immutable), the "compiler" (LLM passes), t
 - [[compiler-analogy]] — The original framework (knowledge systems)
 - [[blog2video]] — Video pipeline as compiler
 - [[loreai]] — Content platform as compiler
-- [[silent-fallback-degradation]] — The shared failure mode
+- [[silent-fallback-antipattern]] — The shared failure mode
 - [[verification-loops]] — The shared solution (validate before compile)
 
 ## Source Log

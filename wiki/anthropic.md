@@ -23,7 +23,7 @@ AI safety company and creator of the Claude model family. Publishes engineering 
 - Anthropic Labs publishes applied research on agentic coding patterns
 - Developed [[harness-design]] patterns for multi-agent architectures
 - New API capabilities (2026-04-09): code execution tool, MCP connector, Files API, extended prompt caching (1-hour TTL)
-- Research staff includes [[Prithvi Rajasekaran]] (harness design work)
+- Research staff includes [[prithvi-rajasekaran|Prithvi Rajasekaran]] (harness design work)
 
 ## Connections
 - Related: [[claude-model-family]], [[claude-code]], [[claude-managed-agents]], [[harness-design]], [[multi-agent-architecture]]
