@@ -7,21 +7,20 @@
 
 ---
 
-**Context:** Generated a LoreAI newsletter issue for 2026-04-15 covering major AI launches, tools, and research.
+**Context:** Processing an AI news digest (April 15, 2026) covering Claude Code, robotics, cybersecurity models, and alignment research.
 
 **Key Exchanges:**
-- Newsletter draft produced covering: Claude Code multi-session desktop redesign, OpenAI GPT-5.4-Cyber, Anthropic alignment research with Opus 4.6, data poisoning research, and 27-tool security MCP server.
+- No interactive Q&A — this was a newsletter ingestion/review session.
 
 **Decisions Made:**
-- Pick of the Day: Anthropic's recursive alignment bet (using Opus 4.6 to accelerate alignment research) chosen as the highest-stakes story — framed around the virtuous cycle thesis vs. failure mode of appearance-optimized alignment.
-- Model Literacy section focused on data poisoning attacks, chosen because of practical relevance to builders fine-tuning on external data.
+- N/A (no user decisions recorded in this context)
 
 **Lessons Learned:**
-- OpenAI's domain-specific frontier model (GPT-5.4-Cyber) with tiered gated access may become the template for healthcare and finance verticals — worth tracking as a pattern.
-- Data poisoning findings: model scale (7B vs 70B) does NOT protect against poisoning — attack exploits the learning process, not model capacity. Defense starts with data provenance.
-- Claude Code Routines shift Claude Code from interactive tool to programmable automation platform (GitHub events, API calls, cron) — significant for CI/CD workflows.
+- **Data poisoning is model-size-agnostic**: Anthropic/UK AISI/Turing Institute joint research shows a 70B model is as vulnerable as a 7B — the attack exploits the learning process, not model capacity. Defense requires data provenance audits, not scaling.
+- **Cybersecurity framing shift**: Simon Willison's "proof of work" framing — as AI makes attacks cheaper to generate, defense increasingly means proving computational effort was spent, not just detecting attacks.
+- **MCP implementations widely misused**: Samuel Colvin (Pydantic creator) identified widespread protocol misuse — authoritative source to track.
 
 **Action Items:**
-- Track Anthropic Fellows alignment research outcomes — will signal whether recursive AI safety research is viable at scale.
-- Monitor GPT-5.4-Cyber tiered access model — if successful, expect domain-specific frontier models in healthcare/finance.
-- Consider ingesting the Pydantic creator's MCP masterclass content into wiki (MCP best practices / common implementation mistakes).
+- Ingest this digest into wiki — touches multiple active topics: [[anthropic]], [[claude-code]], alignment research, data poisoning, MCP, AI sovereignty (Mistral Compute), cybersecurity
+- Consider creating/updating pages for: data-poisoning-attacks, gpt-5-cybersecurity, mistral-compute, claude-code-desktop
+- Claude Code Desktop multi-session redesign (20K+ likes) is significant enough to warrant a dedicated wiki note under claude-code
