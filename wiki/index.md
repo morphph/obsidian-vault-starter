@@ -19,6 +19,7 @@
 - [[loreai]] — loreai.dev SEO/content platform with glossary, FAQ, and programmatic content pipeline
 - [[claude-managed-agents]] — Anthropic's managed agent hosting service (beta 2026-04-09): containers, tools, events, sessions
 - [[claude-code-monitor-tool]] — Event-driven background monitoring tool in Claude Code (v2.1.98): stdout lines wake the session
+- [[ralph-orchestrator]] — Production Rust implementation of Ralph Wiggum (2,702 stars): hats, waves, Telegram HITL, multi-backend
 
 ## Concepts
 
@@ -103,3 +104,4 @@
 - [[source-humanlayer-brief-history-ralph]] — Dex Horthy's complete timeline of Ralph Wiggum (Jun 2025 → Jan 2026)
 - [[source-devinterrupted-ralph-wiggum]] — Geoffrey Huntley interview on Ralph philosophy, Gas Town, MEOW
 - [[source-aihero-getting-started-ralph]] — Matt Pocock's step-by-step Ralph quickstart guide
+- [[source-ralph-orchestrator]] — Ralph Orchestrator GitHub Deep Scan: Rust framework, hat system, waves (2,702 stars)

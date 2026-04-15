@@ -12,6 +12,7 @@ sources:
   - raw/2026-04-15-devinterrupted-inventing-ralph-wiggum-loop.md
   - raw/2026-04-15-aihero-getting-started-with-ralph.md
   - raw/2026-04-15-mattpocockuk-ralph-wiggum-xthread.md
+  - raw/2026-04-15-repo-ralph-orchestrator.md
 tags: [wiki, architecture, agentic, automation]
 ---
 
@@ -143,6 +144,17 @@ ONLY DO ONE TASK AT A TIME."
 | Jan 2026 | Matt Pocock viral thread (204K views); bash vs plugin showdown video |
 | 2026+ | Mainstream adoption; workshops, awesome-ralph (849 stars), multiple implementations |
 
+### Production Implementation: [[ralph-orchestrator]]
+- **2,702-star Rust framework** by Mikey O'Brien — the most mature Ralph implementation
+- **Multi-backend**: Claude, Gemini, Codex, Kiro, Amp, Copilot, OpenCode, Roo
+- **Hat system**: Specialized agent personas coordinating through event bus — lightweight [[multi-agent-architecture]]
+- **Agent Waves**: Intra-loop parallelism via scatter-gather. Breaks "one thing per loop" for parallelizable work (e.g., reviewing N files).
+- **Parallel loops**: Multiple loops on same repo via `git worktree` with merge queue
+- **RObot (Telegram HITL)**: Third mode between pure HITL and AFK. Agent asks questions via Telegram, blocks until response. Human sends proactive guidance from phone.
+- **Web Dashboard**: React + Vite frontend, Rust RPC API
+- **MCP Server**: `ralph mcp serve` for integration with MCP-compatible clients
+- **Six Ralph Tenets**: Fresh Context Is Reliability / Backpressure Over Prescription / The Plan Is Disposable / Disk Is State, Git Is Memory / Steer With Signals / Let Ralph Ralph
+
 ### Future Directions
 - **Gas Town** (Steve Yegge concept): "Kubernetes for agents" — distributed orchestration of multiple Ralph loops
 - **MEOW** (Molecular Expression of Work): Granular task definitions enabling parallel agent coordination at scale
@@ -156,7 +168,7 @@ ONLY DO ONE TASK AT A TIME."
 - Context compaction in long sessions poses drift risk ("compaction is the devil")
 
 ## Connections
-- Related: [[harness-design]], [[orchestration-loop]], [[verification-loops]], [[context-anxiety]], [[software-entropy]], [[claude-code]], [[claude-code-sandboxing]], [[anthropic]], [[geoffrey-huntley]], [[matt-pocock]], [[boris-cherny]]
+- Related: [[harness-design]], [[orchestration-loop]], [[verification-loops]], [[context-anxiety]], [[software-entropy]], [[claude-code]], [[claude-code-sandboxing]], [[anthropic]], [[geoffrey-huntley]], [[matt-pocock]], [[boris-cherny]], [[ralph-orchestrator]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -170,3 +182,4 @@ ONLY DO ONE TASK AT A TIME."
 | 2026-04-15 | raw/2026-04-15-devinterrupted-inventing-ralph-wiggum-loop.md | Added philosophy ("loop is hero"), Gas Town, MEOW |
 | 2026-04-15 | raw/2026-04-15-aihero-getting-started-with-ralph.md | Added quickstart steps, Docker 4.50+, script templates |
 | 2026-04-15 | raw/2026-04-15-mattpocockuk-ralph-wiggum-xthread.md | Added viral X thread content (204K views) |
+| 2026-04-15 | raw/2026-04-15-repo-ralph-orchestrator.md | Added Ralph Orchestrator: production Rust framework, hat system, waves, Telegram HITL |

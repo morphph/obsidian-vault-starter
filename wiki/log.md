@@ -131,3 +131,8 @@ pages-updated: harness-design.md, orchestration-loop.md, verification-loops.md, 
 sources: raw/2026-04-15-ghuntley-ralph-wiggum-original.md, raw/2026-04-15-anthropic-ralph-wiggum-plugin.md, raw/2026-04-15-ghuntley-how-to-ralph-wiggum.md, raw/2026-04-15-anthropic-claude-code-sandboxing.md, raw/2026-04-15-humanlayer-brief-history-of-ralph.md, raw/2026-04-15-devinterrupted-inventing-ralph-wiggum-loop.md, raw/2026-04-15-aihero-getting-started-with-ralph.md, raw/2026-04-15-mattpocockuk-ralph-wiggum-xthread.md
 pages-created: geoffrey-huntley.md, claude-code-sandboxing.md, source-ghuntley-ralph-wiggum-original.md, source-anthropic-ralph-wiggum-plugin.md, source-ghuntley-how-to-ralph-wiggum.md, source-anthropic-sandboxing.md, source-humanlayer-brief-history-ralph.md, source-devinterrupted-ralph-wiggum.md, source-aihero-getting-started-ralph.md
 pages-updated: ralph-wiggum.md (major expansion — 9 sources total), claude-code.md, matt-pocock.md, index.md
+
+## [2026-04-15] ingest | Ralph Orchestrator (GitHub Deep Scan)
+source: raw/2026-04-15-repo-ralph-orchestrator.md
+pages-created: ralph-orchestrator.md, source-ralph-orchestrator.md
+pages-updated: ralph-wiggum.md (added production implementation section), index.md
