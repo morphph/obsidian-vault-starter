@@ -41,5 +41,5 @@ Creator of the [[ralph-wiggum]] technique — the autonomous AI coding loop that
 |------|--------|-------------|
 | 2026-04-15 | raw/2026-04-15-ghuntley-ralph-wiggum-original.md | Initial creation — original blog post |
 | 2026-04-15 | raw/2026-04-15-ghuntley-how-to-ralph-wiggum.md | Added playbook methodology |
-| 2026-04-15 | raw/2026-04-15-devinterrupted-inventing-ralph-wiggum-loop.md | Added philosophy, Gas Town, MEOW |
+| 2026-04-15 | raw/2026-04-15-devinterrupted-inventing-ralph-wiggum-loop.md | Added Gas Town, MEOW (from newsletter text; 58-min podcast audio not transcribed) |
 | 2026-04-15 | raw/2026-04-15-humanlayer-brief-history-of-ralph.md | Added timeline context |
