@@ -126,3 +126,8 @@ auto-fixed: fixed 2× [[silent-fallback-degradation]]→[[silent-fallback-antipa
 source: raw/2026-04-15-tips-ai-coding-ralph-wiggum.md
 pages-created: ralph-wiggum.md, matt-pocock.md, software-entropy.md, source-tips-ai-coding-ralph-wiggum.md
 pages-updated: harness-design.md, orchestration-loop.md, verification-loops.md, context-anxiety.md
+
+## [2026-04-15] ingest | Ralph Wiggum Comprehensive Knowledge Base (7 sources)
+sources: raw/2026-04-15-ghuntley-ralph-wiggum-original.md, raw/2026-04-15-anthropic-ralph-wiggum-plugin.md, raw/2026-04-15-ghuntley-how-to-ralph-wiggum.md, raw/2026-04-15-anthropic-claude-code-sandboxing.md, raw/2026-04-15-humanlayer-brief-history-of-ralph.md, raw/2026-04-15-devinterrupted-inventing-ralph-wiggum-loop.md, raw/2026-04-15-aihero-getting-started-with-ralph.md, raw/2026-04-15-mattpocockuk-ralph-wiggum-xthread.md
+pages-created: geoffrey-huntley.md, claude-code-sandboxing.md, source-ghuntley-ralph-wiggum-original.md, source-anthropic-ralph-wiggum-plugin.md, source-ghuntley-how-to-ralph-wiggum.md, source-anthropic-sandboxing.md, source-humanlayer-brief-history-ralph.md, source-devinterrupted-ralph-wiggum.md, source-aihero-getting-started-ralph.md
+pages-updated: ralph-wiggum.md (major expansion — 9 sources total), claude-code.md, matt-pocock.md, index.md

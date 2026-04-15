@@ -13,6 +13,7 @@
 - [[troy-hua]] — Researcher at EverMind, PhD CMU; reverse-engineered Claude Code's 7-layer memory system
 - [[boris-cherny]] — Creator of Claude Code at Anthropic; 388K followers, published viral best practices threads
 - [[tw93]] — Chinese open-source dev (Kaku, Pake); published 2.8M-view Claude Code engineering guide
+- [[geoffrey-huntley]] — Creator of the Ralph Wiggum technique; built CURSED lang, coined "the loop is the hero"
 - [[matt-pocock]] — Developer and content creator behind AI Hero; authored definitive Ralph Wiggum practical guide
 - [[blog2video]] — AI精读 video pipeline: articles/tweets → narrated slide videos for Chinese platforms
 - [[loreai]] — loreai.dev SEO/content platform with glossary, FAQ, and programmatic content pipeline
@@ -54,6 +55,7 @@
 - [[managed-agents-outcomes]] — Rubric-driven self-evaluation with separate grader context (research preview)
 - [[managed-agents-multiagent]] — Coordinator + specialized agent threads sharing container (research preview)
 - [[managed-agents-memory-stores]] — Persistent workspace-scoped memory across sessions with versioning (research preview)
+- [[claude-code-sandboxing]] — OS-level filesystem + network isolation for Claude Code; security foundation for AFK Ralph
 - [[ralph-wiggum]] — Autonomous AI coding loop: agent chooses tasks from PRD, HITL→AFK progression, feedback loops
 - [[software-entropy]] — AI-accelerated codebase deterioration; "the repo wins" — agents amplify existing code quality
 
@@ -94,3 +96,10 @@
 - [[source-agent-capabilities-announcement]] — New API capabilities announcement: code exec, MCP connector, Files API, caching (2026-04-09)
 - [[source-claude-code-monitor-tool-docs]] — Official docs + community analysis on Monitor tool (2026-04-11)
 - [[source-tips-ai-coding-ralph-wiggum]] — Matt Pocock's 11 tips for autonomous AI coding with Ralph Wiggum (2026-04-15)
+- [[source-ghuntley-ralph-wiggum-original]] — Geoffrey Huntley's original Ralph Wiggum blog post (2025-07)
+- [[source-anthropic-ralph-wiggum-plugin]] — Official Anthropic Ralph Wiggum plugin for Claude Code (2025-12)
+- [[source-ghuntley-how-to-ralph-wiggum]] — Geoffrey Huntley's official Ralph methodology playbook
+- [[source-anthropic-sandboxing]] — Anthropic's Claude Code sandboxing engineering blog + official docs
+- [[source-humanlayer-brief-history-ralph]] — Dex Horthy's complete timeline of Ralph Wiggum (Jun 2025 → Jan 2026)
+- [[source-devinterrupted-ralph-wiggum]] — Geoffrey Huntley interview on Ralph philosophy, Gas Town, MEOW
+- [[source-aihero-getting-started-ralph]] — Matt Pocock's step-by-step Ralph quickstart guide

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-04-06
-last-updated: 2026-04-09
+last-updated: 2026-04-15
 sources:
   - raw/2026-04-06-claude-reviews-claude-overview.md
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
@@ -11,6 +11,8 @@ sources:
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
   - raw/2026-04-09-claude-code-official-docs-best-practices.md
   - raw/claude-code-monitor-tool-docs-2026-04.md
+  - raw/2026-04-15-anthropic-ralph-wiggum-plugin.md
+  - raw/2026-04-15-anthropic-claude-code-sandboxing.md
 tags: [wiki, product, tool, agentic]
 ---
 
@@ -56,9 +58,11 @@ tags: [wiki, product, tool, agentic]
 - **Automation features:** `/loop` (recurring tasks), `/schedule` (cloud cron), `/batch` (parallel worktree changes), `/branch` (fork conversation), `/btw` (side queries)
 - **[[claude-code-monitor-tool|Monitor tool]]** (v2.1.98, April 9 2026): Event-driven background monitoring — runs a shell command whose stdout wakes the session. Replaces polling with event-driven automation. Two patterns: stream filters (`tail -f | grep --line-buffered`) and poll-and-if loops. Zero token cost when idle. Not available on Bedrock/Vertex/Foundry.
 - **Input modes:** `/voice` (push-to-talk, 20 languages), Chrome extension (live debugging, GIF recording), `--bare` (10x faster headless startup)
+- **[[ralph-wiggum|Ralph Wiggum]] plugin** (Dec 2025): Official autonomous loop implementation using Stop hook architecture. `/ralph-loop` starts the loop, `/cancel-ralph` stops it. Plugin intercepts exit attempts and feeds same prompt back — loop runs inside the session without external bash scripts. Formalized by [[boris-cherny]]. Community debate: bash loop (fresh context per iteration) vs Stop hook (same session) — see [[ralph-wiggum#Two Implementations]].
+- **[[claude-code-sandboxing|Native sandboxing]]**: OS-level filesystem + network isolation using Seatbelt (macOS) / bubblewrap (Linux). Reduces permission prompts by 84%. Two modes: auto-allow (best for autonomous/AFK) and regular permissions. Docker sandboxes (`docker sandbox run claude`) provide maximum isolation for AFK [[ralph-wiggum|Ralph]] loops. Open-sourced as `@anthropic-ai/sandbox-runtime`.
 
 ## Connections
-- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]]
+- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]], [[ralph-wiggum]], [[claude-code-sandboxing]], [[geoffrey-huntley]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -71,3 +75,5 @@ tags: [wiki, product, tool, agentic]
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added async generator loop, streaming tool executor, 823-line retry, infrastructure layer |
 | 2026-04-09 | raw/2026-04-09-claude-code-official-docs-best-practices.md | Corrected hook count (26), added session mobility, automation features, input modes |
 | 2026-04-11 | raw/claude-code-monitor-tool-docs-2026-04.md | Added Monitor tool — event-driven background monitoring |
+| 2026-04-15 | raw/2026-04-15-anthropic-ralph-wiggum-plugin.md | Added Ralph Wiggum plugin — Stop hook autonomous loop |
+| 2026-04-15 | raw/2026-04-15-anthropic-claude-code-sandboxing.md | Added native sandboxing — OS-level isolation for autonomous coding |
