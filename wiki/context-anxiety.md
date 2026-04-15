@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-04-06
-last-updated: 2026-04-08
+last-updated: 2026-04-15
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
   - raw/2026-04-08-troyhua-claude-code-7-layers-memory.md
+  - raw/2026-04-15-tips-ai-coding-ralph-wiggum.md
 tags: [wiki, failure-mode, agentic]
 ---
 
@@ -15,8 +16,9 @@ tags: [wiki, failure-mode, agentic]
 A failure mode where LLM agents prematurely wrap up work as they perceive approaching context window limits. Part of the broader problem of context window degradation in long-running agentic tasks.
 
 ## Details
-- Models lose coherence as context fills — this is the general "context window degradation" problem
+- Models lose coherence as context fills — this is the general "context window degradation" problem, also called **context rot** ([[matt-pocock]]): "the longer you go, the stupider the output"
 - Context anxiety is the specific behavior of rushing to finish or cutting corners as the model senses it's running out of space
+- **In [[ralph-wiggum|Ralph]] loops**: Context rot is the primary argument for keeping PRD items small and taking small steps. Each iteration has startup costs (pick task, explore repo), but larger tasks mean more context, lower quality. Bias small — especially for AFK runs where you're not watching.
 - Observed particularly in [[claude-model-family|Claude Sonnet 4.5]]
 - **Mitigation**: Context resets (clearing context and restarting with structured handoffs) proved more effective than compaction for Sonnet
 - Higher-capability models (Opus 4.6) handle this better — continuous sessions with automatic compaction work fine
@@ -26,7 +28,7 @@ A failure mode where LLM agents prematurely wrap up work as they perceive approa
 - **Circuit breaker lesson:** Before adding a 3-strike limit on autocompact retries, 1,279 sessions had 50+ consecutive compaction failures (up to 3,272 in a single session), wasting ~250K API calls/day globally. Context anxiety wasn't just degrading quality — the system's own recovery mechanism was spiraling.
 
 ## Connections
-- Related: [[harness-design]], [[claude-model-family]], [[self-evaluation-bias]], [[context-management]], [[claude-code]], [[session-memory]]
+- Related: [[harness-design]], [[claude-model-family]], [[self-evaluation-bias]], [[context-management]], [[claude-code]], [[session-memory]], [[ralph-wiggum]], [[software-entropy]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -34,3 +36,4 @@ A failure mode where LLM agents prematurely wrap up work as they perceive approa
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Initial creation |
 | 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code's 4-layer compression as architectural response |
 | 2026-04-08 | raw/2026-04-08-troyhua-claude-code-7-layers-memory.md | Corrected 4→7 layers, added session memory mechanism + circuit breaker stats |
+| 2026-04-15 | raw/2026-04-15-tips-ai-coding-ralph-wiggum.md | Added "context rot" as alias term, Ralph small-step rationale |

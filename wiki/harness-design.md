@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-04-06
-last-updated: 2026-04-09
+last-updated: 2026-04-15
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
@@ -9,6 +9,7 @@ sources:
   - raw/2026-04-07-anatomy-of-agent-harness.md
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
   - raw/2026-04-09-anthropic-managed-agents-engineering-blog.md
+  - raw/2026-04-15-tips-ai-coding-ralph-wiggum.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -33,7 +34,7 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 - **7 architectural decisions**: single vs multi-agent, ReAct vs plan-and-execute (3.6x speedup), context strategy, verification approach, permission architecture, tool scoping, harness thickness
 - **Benchmark proof**: LangChain jumped from outside top-30 to #5 on TerminalBench 2.0 by modifying only the harness — same model
 - **Thin vs thick harness**: Thin bets on model improvement; graph frameworks (LangGraph) bet on explicit control. Both valid depending on model trajectory.
-- **Ralph Loop** pattern: Initializer Agent + iterative Coding Agents across context windows for long-running tasks
+- **[[ralph-wiggum|Ralph Loop]]** pattern: Same prompt runs in a loop against PRD + progress file. Agent chooses the task, not the human. Two modes: HITL (watch and intervene) and AFK (set and forget, capped iterations). [[matt-pocock|Matt Pocock]] documents 11 practical tips: scope definition with JSON `passes` field, progress tracking via `progress.txt`, mandatory [[verification-loops|feedback loops]], small steps to avoid [[context-rot]], Docker sandboxes for AFK safety. Key principle: "The repo wins" — agents amplify existing code quality ([[software-entropy]]). Alternative loops: test coverage, linting, duplication, entropy reversal.
 
 - **Harness as memory system**: [[claude-memory-compiler]] demonstrates harness providing persistent memory via hooks — [[zero-friction-capture]] (automatic), [[time-gated-compilation]] (efficient), [[index-over-rag]] (retrieval). The harness doesn't just orchestrate tasks; it accumulates and retrieves knowledge across sessions.
 
@@ -42,7 +43,7 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 - **Managed Agents — Anthropic productizes the harness**: [[claude-managed-agents]] (2026-04-09) is Anthropic's first-party managed harness service. Architecture decouples brain (Claude + stateless loop), hands (containers + tools), and session (append-only event log as source of truth). See [[managed-agents-architecture]]. Validates the harness-as-product thesis — developers get the [[infrastructure-layer]] for free. Research previews include [[managed-agents-outcomes]] (rubric-driven grading, separate grader context — the GAN-inspired evaluator role built into the platform) and [[managed-agents-multiagent]] (coordinator + thread delegation).
 
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]], [[ralph-wiggum]], [[matt-pocock]], [[software-entropy]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -53,3 +54,4 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 | 2026-04-07 | raw/2026-04-07-anatomy-of-agent-harness.md | Added formal definition, 11 components, 7 decisions, benchmarks, Ralph Loop |
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added 4th layer (infrastructure) thesis |
 | 2026-04-09 | raw/2026-04-09-anthropic-managed-agents-engineering-blog.md | Added Managed Agents as Anthropic's productized harness |
+| 2026-04-15 | raw/2026-04-15-tips-ai-coding-ralph-wiggum.md | Expanded Ralph Loop with 11 practical tips, HITL/AFK modes, software entropy |

@@ -13,6 +13,7 @@
 - [[troy-hua]] — Researcher at EverMind, PhD CMU; reverse-engineered Claude Code's 7-layer memory system
 - [[boris-cherny]] — Creator of Claude Code at Anthropic; 388K followers, published viral best practices threads
 - [[tw93]] — Chinese open-source dev (Kaku, Pake); published 2.8M-view Claude Code engineering guide
+- [[matt-pocock]] — Developer and content creator behind AI Hero; authored definitive Ralph Wiggum practical guide
 - [[blog2video]] — AI精读 video pipeline: articles/tweets → narrated slide videos for Chinese platforms
 - [[loreai]] — loreai.dev SEO/content platform with glossary, FAQ, and programmatic content pipeline
 - [[claude-managed-agents]] — Anthropic's managed agent hosting service (beta 2026-04-09): containers, tools, events, sessions
@@ -53,6 +54,8 @@
 - [[managed-agents-outcomes]] — Rubric-driven self-evaluation with separate grader context (research preview)
 - [[managed-agents-multiagent]] — Coordinator + specialized agent threads sharing container (research preview)
 - [[managed-agents-memory-stores]] — Persistent workspace-scoped memory across sessions with versioning (research preview)
+- [[ralph-wiggum]] — Autonomous AI coding loop: agent chooses tasks from PRD, HITL→AFK progression, feedback loops
+- [[software-entropy]] — AI-accelerated codebase deterioration; "the repo wins" — agents amplify existing code quality
 
 ## Synthesis
 
@@ -90,3 +93,4 @@
 - [[source-managed-agents-engineering-blog]] — "Scaling Managed Agents: Decoupling the brain from the hands" (2026-04-09)
 - [[source-agent-capabilities-announcement]] — New API capabilities announcement: code exec, MCP connector, Files API, caching (2026-04-09)
 - [[source-claude-code-monitor-tool-docs]] — Official docs + community analysis on Monitor tool (2026-04-11)
+- [[source-tips-ai-coding-ralph-wiggum]] — Matt Pocock's 11 tips for autonomous AI coding with Ralph Wiggum (2026-04-15)
