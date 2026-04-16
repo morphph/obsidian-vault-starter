@@ -3,9 +3,11 @@ status: draft
 sources:
   - raw/2026-04-09-bcherny-claude-code-best-practices.md
   - raw/2026-04-09-claude-code-official-docs-best-practices.md
+  - raw/2026-04-16-thariq-claude-code-session-management-1m.md
+  - raw/2026-04-09-tw93-claude-code-architecture-governance.md
 platform: blog
 created: 2026-04-09
-last-updated: 2026-04-09
+last-updated: 2026-04-16
 tags: [draft]
 ---
 
@@ -106,21 +108,51 @@ Plan确认后的选项：
 
 6种权限模式一览：`default`、`acceptEdits`、`plan`、`auto`、`dontAsk`、`bypassPermissions`
 
-### 4. Context管理
+### 4. Context管理：每次回复后的那个决定
 
-**Boris没有直接提到，但这是高效使用的基础。**
+**Thariq（Anthropic）:** "升级到100万token后，用得差的人和用得好的人，差距反而越大。差距不在提示词，而在每次Claude回复完之后你做的那个决定。"
+
+**Tw93:** "Context的问题不是容量问题，是噪音问题。5个MCP server = 25K token固定开销（12.5%），还没开始对话就被占了。"
 
 **官方文档:** [Commands](https://code.claude.com/docs/en/commands)
 
-三个关键命令：
-- **`/context`** — 可视化context占用（彩色网格），给出优化建议
-- **`/compact [instructions]`** — 压缩对话，可指定保留重点。例：`/compact focus on the auth module changes`
-- **`/clear`**（别名 `/reset`, `/new`）— 清空对话历史，释放context
+#### Context Rot：越满越笨
 
-什么时候用哪个：
-- 换任务 → `/clear`
-- 同一任务进入新阶段 → `/compact`
-- 想知道还剩多少空间 → `/context`
+Context window不是无限的内存——它会**腐烂**。随着context增长，模型注意力被分散到更多token上，旧的不相关内容干扰当前任务。100万token不意味着可以无脑塞满，而是给你更多时间在质量下降前主动干预。
+
+#### 每次回复后的5个选项
+
+| 选项 | 操作 | 什么时候用 |
+|------|------|-----------|
+| **Continue** | 直接发消息 | 当前任务继续，context正常 |
+| **Rewind** | `esc esc` 或 `/rewind` | Claude走错方向，想回退到出错前重新来 |
+| **Clear** | `/clear` | 切换到完全不同的任务 |
+| **Compact** | `/compact [指令]` | 同一任务太长了，需要减负 |
+| **Subagent** | "开一个subagent去..." | 预见大量中间输出，只需最终结论 |
+
+大多数人只会continue——这恰恰是context rot的来源。
+
+#### Rewind：最重要的一个习惯
+
+Thariq原话："如果只能选一个习惯来衡量好的context management，就是rewind。"
+
+Claude读了5个文件 → 尝试方案A → 失败。**不要说"那个不行，试试X"**（失败的尝试还留在context里占空间产生干扰）。**Rewind到读完文件之后**，带着新知识重新prompt："不要用方案A，foo模块没暴露那个接口——直接用B。"
+
+进阶：rewind前用 "summarize from here" 让Claude总结它学到的东西，生成交接信息。
+
+#### Compact vs Clear
+
+- **`/compact [指令]`** — 让Claude决定保留什么（有损）。可以加方向：`/compact focus on auth, drop test debugging`
+- **`/clear`** — 你自己写简述决定保留什么（精准）。切换任务方向时用这个。
+
+**Bad compact的根因：** 模型在context满的时候做compact，但此时恰恰是context rot最严重、模型最不聪明的时候。解决：**主动compact**（在context健康时），附带方向说明。
+
+#### 降低噪音（Tw93）
+
+- 不常用的MCP server关掉（每个吃4-6K token）
+- 用 `/context` 检查占用
+- Skill描述保持精简（9 token好过45 token）
+- 在CLAUDE.md里加Compact Instructions告诉Claude压缩时保留什么
 
 ---
 
@@ -277,6 +309,8 @@ Exit codes很重要：
 ### 10. Subagents
 
 **Boris:** "Uses subagents: code-simplifier, verify-app. Append 'use subagents' to any request where you want Claude to throw more compute at the problem. Routes permission requests to Opus 4.5 for attack scanning."
+
+**Thariq:** "Subagents are a form of context management. Mental test: will I need this tool output again, or just the conclusion? Three patterns: verify work against spec, research another codebase then implement, write docs from git changes."
 
 **官方文档:** [Sub-agents](https://code.claude.com/docs/en/sub-agents)
 
@@ -545,7 +579,7 @@ Claude自动生成脚本，显示你要的信息。可用数据：model名称、
 | **让Claude能验证自己的工作** | Chrome extension、测试、lint |
 | **并行化一切** | Worktrees、多session、/batch |
 | **投资可复用的自动化** | Skills、Hooks、CLAUDE.md |
-| **保持context聚焦** | Subagents隔离、/clear、单session单任务 |
+| **保持context聚焦** | 每次回复后5选1、Rewind > 纠正、Subagents隔离、主动compact |
 | **用语音提升prompt质量** | /voice — 说比打字快3x，prompt更详细 |
 | **没有唯一正确的用法** | "Experiment to see what works for you" |
 
