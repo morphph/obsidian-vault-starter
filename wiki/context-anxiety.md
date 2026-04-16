@@ -19,6 +19,7 @@ A failure mode where LLM agents prematurely wrap up work as they perceive approa
 - Models lose coherence as context fills — this is the general "context window degradation" problem, also called **context rot** ([[matt-pocock]]): "the longer you go, the stupider the output"
 - Context anxiety is the specific behavior of rushing to finish or cutting corners as the model senses it's running out of space
 - **In [[ralph-wiggum|Ralph]] loops**: Context rot is the primary argument for keeping PRD items small and taking small steps. Each iteration has startup costs (pick task, explore repo), but larger tasks mean more context, lower quality. Bias small — especially for AFK runs where you're not watching.
+- **Bad compact = context rot's worst consequence** (Thariq, Anthropic): The model is at its **least intelligent point when compacting** — context rot means attention is maximally spread. Bad compacts happen when the model can't predict the user's next direction (e.g., autocompact after debugging summarizes the debug, but user's next task needs a different detail). Solution: proactively compact while context is healthy with direction description, or use `/clear` when switching directions.
 - Observed particularly in [[claude-model-family|Claude Sonnet 4.5]]
 - **Mitigation**: Context resets (clearing context and restarting with structured handoffs) proved more effective than compaction for Sonnet
 - Higher-capability models (Opus 4.6) handle this better — continuous sessions with automatic compaction work fine
@@ -37,3 +38,4 @@ A failure mode where LLM agents prematurely wrap up work as they perceive approa
 | 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code's 4-layer compression as architectural response |
 | 2026-04-08 | raw/2026-04-08-troyhua-claude-code-7-layers-memory.md | Corrected 4→7 layers, added session memory mechanism + circuit breaker stats |
 | 2026-04-15 | raw/2026-04-15-tips-ai-coding-ralph-wiggum.md | Added "context rot" as alias term, Ralph small-step rationale |
+| 2026-04-16 | raw/2026-04-16-thariq-claude-code-session-management-1m.md | Added bad compact analysis: model least intelligent at compact time |

@@ -105,3 +105,4 @@
 - [[source-devinterrupted-ralph-wiggum]] — Geoffrey Huntley interview on Ralph philosophy, Gas Town, MEOW
 - [[source-aihero-getting-started-ralph]] — Matt Pocock's step-by-step Ralph quickstart guide
 - [[source-ralph-orchestrator]] — Ralph Orchestrator GitHub Deep Scan: Rust framework, hat system, waves (2,702 stars)
+- [[source-thariq-session-management-1m]] — Thariq (Anthropic): session management with 1M context, rewind, compact vs clear (2026-04-16)

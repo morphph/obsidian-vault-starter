@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-04-06
-last-updated: 2026-04-08
+last-updated: 2026-04-16
 sources:
   - raw/2026-04-06-claude-reviews-claude-overview.md
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-07-anatomy-of-agent-harness.md
   - raw/2026-04-08-troyhua-claude-code-7-layers-memory.md
+  - raw/2026-04-16-thariq-claude-code-session-management-1m.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -77,7 +78,7 @@ See [[dreaming]] — cross-session memory consolidation running in background. 4
 - **Feature flags as kill switches** — nearly every system gated by GrowthBook
 
 ### Context Thresholds
-- Default context window: 200K tokens (expandable to 1M with `[1m]` suffix)
+- Default context window: 1M tokens (upgraded April 2026; previously 200K expandable with `[1m]` suffix)
 - Effective window: context window - 20K (reserved for compaction output)
 - Autocompact threshold: effective window - 13K
 - Token estimation: 4 bytes/token (text), 2 bytes/token (JSON), 2K flat (images)
@@ -86,6 +87,16 @@ See [[dreaming]] — cross-session memory consolidation running in background. 4
 - Context resets (clear + restart with structured handoffs) — better for [[claude-model-family|Claude Sonnet 4.5]]
 - Automatic compaction — works for Claude Opus 4.6
 - The right strategy depends on model capability level
+
+### Session Management with 1M Context (Thariq, Anthropic)
+- **Every turn is a branching point** — after Claude finishes, you have 5 options: continue, rewind (`esc esc`), `/clear`, `/compact`, or spawn a subagent. Most users only continue; the other four are core context management.
+- **Rewind is THE habit** — "If I had to pick one habit that signals good context management, it's rewind." Better than correction: instead of "that didn't work, try X" (which leaves failed attempt in context), rewind to before the attempt and re-prompt with learnings. Use "summarize from here" before rewind to capture learnings as a handoff message.
+- **Compact vs Clear**:
+  - `/compact` = let Claude decide what matters (lossy, can steer with instructions: `/compact focus on auth, drop test debugging`)
+  - `/clear` = you decide what matters (write your own brief, start fresh — precise but more work)
+- **Bad compact root cause**: Model can't predict your next direction + context rot means model is at its least intelligent when compacting. Solution: proactively compact while context is healthy, with direction description.
+- **Subagents as context management**: Fresh context window isolates intermediate output. Mental test: "Will I need the tool output again, or just the conclusion?" Three patterns: verify work against spec, research another codebase then implement, write docs from git changes.
+- **1M context = more time to intervene proactively**, not unlimited space. New task → new session. Related tasks → keep session (avoids re-reading files). Long session → proactive compact with direction.
 
 ### Additional insights (from Pachaar/Chawla)
 - **Performance impact:** Degrades 30%+ when key content falls in mid-window positions — prioritize beginning and end positioning
@@ -102,3 +113,4 @@ See [[dreaming]] — cross-session memory consolidation running in background. 4
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Added mitigation strategies from harness design research |
 | 2026-04-07 | raw/2026-04-07-anatomy-of-agent-harness.md | Added 30% degradation stat, 4 strategies, prompt construction hierarchy |
 | 2026-04-08 | raw/2026-04-08-troyhua-claude-code-7-layers-memory.md | Major upgrade: 4 layers → 7 layers with full technical breakdown |
+| 2026-04-16 | raw/2026-04-16-thariq-claude-code-session-management-1m.md | Added session management strategies: 5 branching options, rewind, compact vs clear, bad compact analysis |

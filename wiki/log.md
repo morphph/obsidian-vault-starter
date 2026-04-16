@@ -136,3 +136,8 @@ pages-updated: ralph-wiggum.md (major expansion — 9 sources total), claude-cod
 source: raw/2026-04-15-repo-ralph-orchestrator.md
 pages-created: ralph-orchestrator.md, source-ralph-orchestrator.md
 pages-updated: ralph-wiggum.md (added production implementation section), index.md
+
+## [2026-04-16] ingest | Using Claude Code: Session Management & 1M Context
+source: raw/2026-04-16-thariq-claude-code-session-management-1m.md
+pages-created: source-thariq-session-management-1m.md
+pages-updated: context-management.md, context-anxiety.md, index.md

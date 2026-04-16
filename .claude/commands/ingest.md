@@ -132,7 +132,15 @@ Read the source document. Extract:
 
 ### 3. Discuss with user
 
-Briefly share 3-5 key takeaways from the source. Ask if there's anything specific to emphasize or skip.
+用中文提供 3-5 个**详细深入的要点解读**（不是简短 bullet point）。每个要点需要：
+- 解释概念是什么、为什么重要
+- 如果原文有理论框架或心智模型，用中文重新阐述
+- 如果有实操建议（how to practice），明确列出
+- 中文为主，英文要点可附在后面保持简短
+
+目的：用户英文阅读有限，通过中文要点尽可能快速、深入地理解原文内容。
+
+Ask if there's anything specific to emphasize or skip.
 
 ### 4. Create/update wiki pages
 
@@ -153,7 +161,7 @@ For each entity and concept worth a page:
 - Write Summary, Details, Connections, Source Log sections
 - Link to other wiki pages with [[wikilinks]]
 
-Also create a source summary page: `wiki/source-{slug}.md` with type: source-summary
+Also create a source summary page: `wiki/source-{slug}.md` with type: source-summary. Include a `## 要点解读` section with the detailed Chinese takeaways from step 3 — this preserves the analysis for future reference.
 
 ### 5. Update index
 
