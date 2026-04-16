@@ -7,20 +7,22 @@
 
 ---
 
-**Context:** Produced a Chinese-language newsletter issue (2026-04-16) covering AI developer tools, model releases, and research highlights.
+**Context:** Reviewing an AI newsletter digest (April 16, 2026) for knowledge base capture.
 
 **Key Exchanges:**
-- Newsletter covers: Claude Code Routines (Research Preview), OpenAI Agents SDK sandbox/memory updates, Gemini 3.1 Flash TTS with Audio Tags, Humwork MCP Server (YC, human-in-the-loop for stuck agents), Gemini Robotics-ER 1.6 spatial reasoning, VAKRA benchmark (IBM), Notion's AI rebuild story, Baidu ERNIE-Image open-source.
+- No Q&A — this was a solo newsletter review session.
 
 **Decisions Made:**
-- Lead angle: "AI coding tools cross a threshold from chat → autonomous infrastructure" — Claude Code Routines as the anchor story
-- Event-driven Agent Architecture chosen as the 模型小课堂 concept (cron / webhook / API trigger paradigm)
-- 今日精选 editorial conclusion: competition is shifting from best model → best orchestration layer
+- None recorded.
 
 **Lessons Learned:**
-- Claude Code Routines and OpenAI Agents SDK dropped same day — framing them as competing philosophies ("configure-and-run" vs "give you all the parts") works well editorially
-- VAKRA finding worth highlighting: most Agent failures are edge-case tool-call handling, not model capability
+- **Event-driven agents are the new paradigm**: Both Claude Code Routines and OpenAI Agents SDK launched on the same day with the same architectural bet — agents fire on events (cron, GitHub webhooks, API calls), not human prompts. This is the microservices pattern applied to AI.
+- **VAKRA benchmark finding**: IBM Research found agents fail more on tool selection and parameter formatting than on reasoning itself — important signal for anyone building agent evals.
+- **MCP gap is large**: The delta between "using Claude bare" vs "Claude wired via MCP" is described as enormous — persistent memory, database reads, API calls across sessions.
 
 **Action Items:**
-- Consider ingesting Claude Code Routines as a wiki page (new product capability worth tracking)
-- May want a wiki update on OpenAI Agents SDK feature state (sandbox, memory, open-source harness)
+- Ingest Claude Code Routines launch into wiki — significant enough to warrant its own page or update to `claude-code.md`
+- Ingest OpenAI Agents SDK sandbox update — production-grade agent isolation is now a shipping feature
+- Note Baidu ERNIE-Image on Hugging Face as signal of Chinese labs entering global open-source ecosystem
+- Consider capturing the $0 production stack (Ollama + Gemma 4 + LangGraph + ChromaDB + MCP + Next.js + SQLite + Langfuse) as a reference architecture page
+- Notion's 5-rebuild story (Latent Space) is worth ingesting — concrete lessons on shipping AI-native products with 100+ MCP/CLI tools
