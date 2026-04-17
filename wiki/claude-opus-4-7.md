@@ -4,6 +4,7 @@ created: 2026-04-17
 last-updated: 2026-04-17
 sources:
   - raw/2026-04-16-anthropic-opus-4-7-announcement.md
+  - raw/2026-04-16-claude-docs-opus-4-7-whats-new.md
 tags: [wiki, product, llm, model]
 ---
 
@@ -24,7 +25,21 @@ tags: [wiki, product, llm, model]
   - **Better file-system memory** — improved at maintaining notes/scratchpads across turns
 - **New control primitives:**
   - [[xhigh-effort-level]] — new effort tier between `high` and `max`, recommended for agentic coding
-  - [[task-budgets]] — token budget hint for the full agentic loop
+  - [[task-budgets]] — token budget hint for the full agentic loop (beta; header `task-budgets-2026-03-13`; minimum 20k)
+  - [[adaptive-thinking]] — now the only thinking-on mode; **off by default** on 4.7
+- **Breaking API changes (Messages API only; Managed Agents unaffected):**
+  - Extended thinking budgets removed — `thinking: {type: "enabled", budget_tokens: N}` returns 400
+  - Sampling parameters removed — `temperature`, `top_p`, `top_k` at non-default values return 400
+  - Thinking content omitted from response by default — set `display: "summarized"` to opt in
+  - 1M context available at standard API pricing — no long-context premium
+- **Behavior changes (non-breaking but may require prompt updates):**
+  - More literal instruction following (especially at lower effort); won't silently generalize
+  - Response length calibrates to task complexity (no fixed verbosity)
+  - Fewer tool calls by default — uses reasoning more; raise effort to get more tool use
+  - More direct, opinionated tone; less validation-forward; fewer emoji than 4.6
+  - More regular progress updates during long agentic traces — remove scaffolding that forced interim messages
+  - Fewer subagents spawned by default — steerable via prompting
+  - Real-time cybersecurity safeguards active on prohibited/high-risk requests
 - **Benchmark quotes from early testers:**
   - Cursor CEO: 70% vs 58% (4.6) on their internal benchmark
   - Notion AI Lead: +14% over 4.6 with fewer tokens and 1/3 the tool errors
@@ -37,9 +52,10 @@ tags: [wiki, product, llm, model]
   - Extended auto mode for Max subscribers
 
 ## Connections
-- Related: [[Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]]
+- Related: [[Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[adaptive-thinking]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-17 | raw/2026-04-16-anthropic-opus-4-7-announcement.md | Initial creation from official announcement |
+| 2026-04-17 | raw/2026-04-16-claude-docs-opus-4-7-whats-new.md | Added breaking API changes, behavior changes, adaptive thinking |

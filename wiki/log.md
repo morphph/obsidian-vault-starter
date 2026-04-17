@@ -146,3 +146,8 @@ pages-updated: context-management.md, context-anxiety.md, index.md
 source: raw/2026-04-16-anthropic-opus-4-7-announcement.md
 pages-created: claude-opus-4-7.md, task-budgets.md, xhigh-effort-level.md, source-anthropic-opus-4-7-announcement.md
 pages-updated: claude-model-family.md, anthropic.md, claude-code.md, index.md
+
+## [2026-04-17] ingest | What's new in Claude Opus 4.7 (official API docs)
+source: raw/2026-04-16-claude-docs-opus-4-7-whats-new.md
+pages-created: adaptive-thinking.md, source-claude-docs-opus-4-7-whats-new.md
+pages-updated: claude-opus-4-7.md, task-budgets.md, xhigh-effort-level.md, index.md

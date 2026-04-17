@@ -62,6 +62,7 @@
 - [[software-entropy]] — AI-accelerated codebase deterioration; "the repo wins" — agents amplify existing code quality
 - [[xhigh-effort-level]] — Opus 4.7's new effort tier between `high` and `max`; recommended for agentic coding
 - [[task-budgets]] — Opus 4.7's token-budget hint for an entire agentic loop; model-native context-anxiety remedy
+- [[adaptive-thinking]] — Opus 4.7's only thinking-on mode; off by default; replaces extended thinking budgets
 
 ## Synthesis
 
@@ -110,3 +111,4 @@
 - [[source-ralph-orchestrator]] — Ralph Orchestrator GitHub Deep Scan: Rust framework, hat system, waves (2,702 stars)
 - [[source-thariq-session-management-1m]] — Thariq (Anthropic): session management with 1M context, rewind, compact vs clear (2026-04-16)
 - [[source-anthropic-opus-4-7-announcement]] — Anthropic's official Opus 4.7 release announcement with detailed 中文要点 (2026-04-16)
+- [[source-claude-docs-opus-4-7-whats-new]] — Official "What's new" API docs: breaking changes, task-budget API, tokenizer, behavior changes (2026-04-16)
