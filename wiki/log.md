@@ -141,3 +141,8 @@ pages-updated: ralph-wiggum.md (added production implementation section), index.
 source: raw/2026-04-16-thariq-claude-code-session-management-1m.md
 pages-created: source-thariq-session-management-1m.md
 pages-updated: context-management.md, context-anxiety.md, index.md
+
+## [2026-04-17] ingest | Introducing Claude Opus 4.7
+source: raw/2026-04-16-anthropic-opus-4-7-announcement.md
+pages-created: claude-opus-4-7.md, task-budgets.md, xhigh-effort-level.md, source-anthropic-opus-4-7-announcement.md
+pages-updated: claude-model-family.md, anthropic.md, claude-code.md, index.md

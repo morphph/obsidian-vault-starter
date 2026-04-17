@@ -20,6 +20,7 @@
 - [[claude-managed-agents]] — Anthropic's managed agent hosting service (beta 2026-04-09): containers, tools, events, sessions
 - [[claude-code-monitor-tool]] — Event-driven background monitoring tool in Claude Code (v2.1.98): stdout lines wake the session
 - [[ralph-orchestrator]] — Production Rust implementation of Ralph Wiggum (2,702 stars): hats, waves, Telegram HITL, multi-backend
+- [[claude-opus-4-7]] — Anthropic's flagship model (2026-04-16): high-res vision, literal instruction following, self-verification, new agentic control primitives
 
 ## Concepts
 
@@ -59,6 +60,8 @@
 - [[claude-code-sandboxing]] — OS-level filesystem + network isolation for Claude Code; security foundation for AFK Ralph
 - [[ralph-wiggum]] — Autonomous AI coding loop: agent chooses tasks from PRD, HITL→AFK progression, feedback loops
 - [[software-entropy]] — AI-accelerated codebase deterioration; "the repo wins" — agents amplify existing code quality
+- [[xhigh-effort-level]] — Opus 4.7's new effort tier between `high` and `max`; recommended for agentic coding
+- [[task-budgets]] — Opus 4.7's token-budget hint for an entire agentic loop; model-native context-anxiety remedy
 
 ## Synthesis
 
@@ -106,3 +109,4 @@
 - [[source-aihero-getting-started-ralph]] — Matt Pocock's step-by-step Ralph quickstart guide
 - [[source-ralph-orchestrator]] — Ralph Orchestrator GitHub Deep Scan: Rust framework, hat system, waves (2,702 stars)
 - [[source-thariq-session-management-1m]] — Thariq (Anthropic): session management with 1M context, rewind, compact vs clear (2026-04-16)
+- [[source-anthropic-opus-4-7-announcement]] — Anthropic's official Opus 4.7 release announcement with detailed 中文要点 (2026-04-16)

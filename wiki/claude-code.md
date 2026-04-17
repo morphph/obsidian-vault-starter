@@ -13,6 +13,7 @@ sources:
   - raw/claude-code-monitor-tool-docs-2026-04.md
   - raw/2026-04-15-anthropic-ralph-wiggum-plugin.md
   - raw/2026-04-15-anthropic-claude-code-sandboxing.md
+  - raw/2026-04-16-anthropic-opus-4-7-announcement.md
 tags: [wiki, product, tool, agentic]
 ---
 
@@ -60,6 +61,7 @@ tags: [wiki, product, tool, agentic]
 - **Input modes:** `/voice` (push-to-talk, 20 languages), Chrome extension (live debugging, GIF recording), `--bare` (10x faster headless startup)
 - **[[ralph-wiggum|Ralph Wiggum]] plugin** (Dec 2025): Official autonomous loop implementation using Stop hook architecture. `/ralph-loop` starts the loop, `/cancel-ralph` stops it. Plugin intercepts exit attempts and feeds same prompt back — loop runs inside the session without external bash scripts. Formalized by [[boris-cherny]]. Community debate: bash loop (fresh context per iteration) vs Stop hook (same session) — see [[ralph-wiggum#Two Implementations]].
 - **[[claude-code-sandboxing|Native sandboxing]]**: OS-level filesystem + network isolation using Seatbelt (macOS) / bubblewrap (Linux). Reduces permission prompts by 84%. Two modes: auto-allow (best for autonomous/AFK) and regular permissions. Docker sandboxes (`docker sandbox run claude`) provide maximum isolation for AFK [[ralph-wiggum|Ralph]] loops. Open-sourced as `@anthropic-ai/sandbox-runtime`.
+- **`/ultrareview` command** (2026-04-16, shipped with [[claude-opus-4-7]]): dedicated code-review session, Pro/Max subscribers get 3 free per month. Official "AI code review" as first-class primitive — pairs naturally with [[ralph-wiggum|Ralph]] loops (generate → ultrareview → fix). Max tier also gets extended auto mode.
 
 ## Connections
 - Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]], [[ralph-wiggum]], [[claude-code-sandboxing]], [[geoffrey-huntley]]
@@ -77,3 +79,4 @@ tags: [wiki, product, tool, agentic]
 | 2026-04-11 | raw/claude-code-monitor-tool-docs-2026-04.md | Added Monitor tool — event-driven background monitoring |
 | 2026-04-15 | raw/2026-04-15-anthropic-ralph-wiggum-plugin.md | Added Ralph Wiggum plugin — Stop hook autonomous loop |
 | 2026-04-15 | raw/2026-04-15-anthropic-claude-code-sandboxing.md | Added native sandboxing — OS-level isolation for autonomous coding |
+| 2026-04-17 | raw/2026-04-16-anthropic-opus-4-7-announcement.md | Added `/ultrareview` command shipped with Opus 4.7 |
