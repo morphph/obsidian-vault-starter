@@ -15,7 +15,6 @@
 - [[tw93]] — Chinese open-source dev (Kaku, Pake); published 2.8M-view Claude Code engineering guide
 - [[geoffrey-huntley]] — Creator of the Ralph Wiggum technique; built CURSED lang, coined "the loop is the hero"
 - [[matt-pocock]] — Developer and content creator behind AI Hero; authored definitive Ralph Wiggum practical guide
-- [[garry-tan]] — President & CEO of Y Combinator; coined "Thin Harness, Fat Skills" — the canonical 5-definition agent architecture (1.3M views)
 - [[blog2video]] — AI精读 video pipeline: articles/tweets → narrated slide videos for Chinese platforms
 - [[loreai]] — loreai.dev SEO/content platform with glossary, FAQ, and programmatic content pipeline
 - [[claude-managed-agents]] — Anthropic's managed agent hosting service (beta 2026-04-09): containers, tools, events, sessions
@@ -64,15 +63,11 @@
 - [[xhigh-effort-level]] — Opus 4.7's new effort tier between `high` and `max`; recommended for agentic coding
 - [[task-budgets]] — Opus 4.7's token-budget hint for an entire agentic loop; model-native context-anxiety remedy
 - [[adaptive-thinking]] — Opus 4.7's only thinking-on mode; off by default; replaces extended thinking budgets
-- [[thin-harness-fat-skills]] — Garry Tan's index-card thesis: push intelligence up to skills, execution down to deterministic, keep harness ~200 LOC
-- [[skill-as-method-call]] — Skill files are parameterized procedures, not prompts; same skill, different inputs, radically different capabilities
-- [[latent-vs-deterministic]] — Every agent step is judgment (LLM) or repeatable computation (code); confusing them is the #1 design mistake
-- [[diarization]] — Model reads everything about a subject and synthesizes a structured profile; no SQL/RAG/embedding produces this
-- [[resolvers]] — Routing tables for context: when task X appears, load doc Y first; the fix for bloated CLAUDE.md
 
 ## Synthesis
 
 - [[knowledge-compiler-design]] — Full roadmap: 9 Agent SDK use cases across 3 phases (foundation → automation → intelligence)
+- [[claude-daily-sources]] — Verified 18-source list (websites + X handles) for daily Anthropic/Claude newsletter ingestion
 
 ## Connections
 
@@ -118,4 +113,3 @@
 - [[source-thariq-session-management-1m]] — Thariq (Anthropic): session management with 1M context, rewind, compact vs clear (2026-04-16)
 - [[source-anthropic-opus-4-7-announcement]] — Anthropic's official Opus 4.7 release announcement with detailed 中文要点 (2026-04-16)
 - [[source-claude-docs-opus-4-7-whats-new]] — Official "What's new" API docs: breaking changes, task-budget API, tokenizer, behavior changes (2026-04-16)
-- [[source-garrytan-thin-harness-fat-skills]] — Garry Tan's 1.3M-view "Thin Harness, Fat Skills" essay: 5-definition agent architecture (2026-04-11)
