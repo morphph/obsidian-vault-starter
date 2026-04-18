@@ -151,3 +151,8 @@ pages-updated: claude-model-family.md, anthropic.md, claude-code.md, index.md
 source: raw/2026-04-16-claude-docs-opus-4-7-whats-new.md
 pages-created: adaptive-thinking.md, source-claude-docs-opus-4-7-whats-new.md
 pages-updated: claude-opus-4-7.md, task-budgets.md, xhigh-effort-level.md, index.md
+
+## [2026-04-18] ingest | Garry Tan — Thin Harness, Fat Skills
+source: raw/2026-04-18-garrytan-thin-harness-fat-skills.md
+pages-created: garry-tan.md, thin-harness-fat-skills.md, skill-as-method-call.md, latent-vs-deterministic.md, diarization.md, resolvers.md, source-garrytan-thin-harness-fat-skills.md
+pages-updated: harness-design.md, claude-code.md, index.md
