@@ -152,7 +152,7 @@ source: raw/2026-04-16-claude-docs-opus-4-7-whats-new.md
 pages-created: adaptive-thinking.md, source-claude-docs-opus-4-7-whats-new.md
 pages-updated: claude-opus-4-7.md, task-budgets.md, xhigh-effort-level.md, index.md
 
-## [2026-04-18] internal-capture | Claude Daily-Fetch Source Verification
+## [2026-04-18] internal-capture | Anthropic & Claude Daily-Fetch Source Verification
 source: raw/2026-04-18-claude-daily-source-verification.md (Playwright-verified 10 X handles + WebFetch-tested 12 sites)
-pages-created: claude-daily-sources.md
+pages-created: anthropic-daily-sources.md
 pages-updated: index.md (added Synthesis entry)

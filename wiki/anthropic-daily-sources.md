@@ -7,10 +7,10 @@ sources:
 tags: [wiki, ops, newsletter, ingestion]
 ---
 
-# Claude Daily-Fetch Sources
+# Anthropic & Claude Daily-Fetch Sources
 
 ## Summary
-Verified source list for daily ingestion of Anthropic/Claude model, product, and developer-feature updates. 18 sources total: 9 websites, 8 X accounts, 1 RSS feed. All websites tested via WebFetch; all X handles verified live via Playwright MCP on 2026-04-18.
+Master source list for daily ingestion across **all Anthropic + Claude products** — covers Anthropic (company-level news, engineering), Claude (consumer product), Claude API, Claude Code, and Claude Cowork. 18 sources total: 9 websites, 8 X accounts, 1 RSS feed. All websites tested via WebFetch; all X handles verified live via Playwright MCP on 2026-04-18. Used by `/ingest-anthropic-daily` for automated sweeps.
 
 ## Final Source List
 

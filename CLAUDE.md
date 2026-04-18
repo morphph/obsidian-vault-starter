@@ -48,6 +48,7 @@ Five slash commands. Each has full instructions in `.claude/commands/`.
 | Command | What it does |
 |---------|-------------|
 | `/ingest <url\|file\|scan>` | Drop a source into the wiki. One source fans out across multiple pages. |
+| `/ingest-anthropic-daily [window]` | Sweep all Anthropic + Claude sources, dedupe, write category-grouped digest. |
 | `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
