@@ -14,7 +14,6 @@ sources:
   - raw/2026-04-15-anthropic-ralph-wiggum-plugin.md
   - raw/2026-04-15-anthropic-claude-code-sandboxing.md
   - raw/2026-04-16-anthropic-opus-4-7-announcement.md
-  - raw/2026-04-18-garrytan-thin-harness-fat-skills.md
 tags: [wiki, product, tool, agentic]
 ---
 
@@ -63,10 +62,9 @@ tags: [wiki, product, tool, agentic]
 - **[[ralph-wiggum|Ralph Wiggum]] plugin** (Dec 2025): Official autonomous loop implementation using Stop hook architecture. `/ralph-loop` starts the loop, `/cancel-ralph` stops it. Plugin intercepts exit attempts and feeds same prompt back — loop runs inside the session without external bash scripts. Formalized by [[boris-cherny]]. Community debate: bash loop (fresh context per iteration) vs Stop hook (same session) — see [[ralph-wiggum#Two Implementations]].
 - **[[claude-code-sandboxing|Native sandboxing]]**: OS-level filesystem + network isolation using Seatbelt (macOS) / bubblewrap (Linux). Reduces permission prompts by 84%. Two modes: auto-allow (best for autonomous/AFK) and regular permissions. Docker sandboxes (`docker sandbox run claude`) provide maximum isolation for AFK [[ralph-wiggum|Ralph]] loops. Open-sourced as `@anthropic-ai/sandbox-runtime`.
 - **`/ultrareview` command** (2026-04-16, shipped with [[claude-opus-4-7]]): dedicated code-review session, Pro/Max subscribers get 3 free per month. Official "AI code review" as first-class primitive — pairs naturally with [[ralph-wiggum|Ralph]] loops (generate → ultrareview → fix). Max tier also gets extended auto mode.
-- **2026-03-31 npm leak event**: Anthropic accidentally published the entire Claude Code source — 512,000 lines — to the npm registry. [[garry-tan|Garry Tan]] read it end-to-end; the event triggered his [[thin-harness-fat-skills]] thesis (2026-04-11). Public source confirmed the architectural patterns the community had been reverse-engineering ([[troy-hua]], [[boris-cherny]] threads). Validated that the value sits in *the wrapper around the model* — live repo context, prompt caching, purpose-built tools, context bloat minimization, structured session memory, parallel sub-agents.
 
 ## Connections
-- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]], [[ralph-wiggum]], [[claude-code-sandboxing]], [[geoffrey-huntley]], [[garry-tan]], [[thin-harness-fat-skills]], [[resolvers]], [[skill-as-method-call]]
+- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]], [[ralph-wiggum]], [[claude-code-sandboxing]], [[geoffrey-huntley]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -82,4 +80,3 @@ tags: [wiki, product, tool, agentic]
 | 2026-04-15 | raw/2026-04-15-anthropic-ralph-wiggum-plugin.md | Added Ralph Wiggum plugin — Stop hook autonomous loop |
 | 2026-04-15 | raw/2026-04-15-anthropic-claude-code-sandboxing.md | Added native sandboxing — OS-level isolation for autonomous coding |
 | 2026-04-17 | raw/2026-04-16-anthropic-opus-4-7-announcement.md | Added `/ultrareview` command shipped with Opus 4.7 |
-| 2026-04-18 | raw/2026-04-18-garrytan-thin-harness-fat-skills.md | Added 2026-03-31 npm-leak event + Garry Tan's thin-harness-fat-skills synthesis |

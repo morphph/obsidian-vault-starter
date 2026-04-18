@@ -10,7 +10,6 @@ sources:
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
   - raw/2026-04-09-anthropic-managed-agents-engineering-blog.md
   - raw/2026-04-15-tips-ai-coding-ralph-wiggum.md
-  - raw/2026-04-18-garrytan-thin-harness-fat-skills.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -41,12 +40,10 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 
 - **The 4th layer — [[infrastructure-layer]]**: Rohit (@rohit4verse) argues the standard 3-layer model (weights, context, harness) misses a critical 4th layer: infrastructure. Multi-tenancy, RBAC, resource isolation, state persistence, distributed coordination. "Most teams talk about the first three because they are interesting. The fourth is where products die." Claude Code is the first agent system taking all four seriously. Retrofitting infrastructure is 10x harder than designing for it from day one.
 
-- **[[thin-harness-fat-skills|Thin harness, fat skills]]** ([[garry-tan|Garry Tan]], 2026-04-11): The strongest articulation of *which* harness to build. Push intelligence **up** into reusable markdown skills (parameterized via [[skill-as-method-call]]); push execution **down** into deterministic tools (see [[latent-vs-deterministic]]); keep the harness ~200 LOC doing only 4 things (loop, file I/O, context, safety). Triggered by reading the leaked Claude Code source (2026-03-31). Adds three composing concepts to harness theory: [[resolvers]] (context routing tables), [[diarization]] (the synthesis step that beats RAG), and skill-as-method-call. Garry's discipline rule: "If I have to ask you for something twice, you failed" — every recurring task must be codified into a skill.
-
 - **Managed Agents — Anthropic productizes the harness**: [[claude-managed-agents]] (2026-04-09) is Anthropic's first-party managed harness service. Architecture decouples brain (Claude + stateless loop), hands (containers + tools), and session (append-only event log as source of truth). See [[managed-agents-architecture]]. Validates the harness-as-product thesis — developers get the [[infrastructure-layer]] for free. Research previews include [[managed-agents-outcomes]] (rubric-driven grading, separate grader context — the GAN-inspired evaluator role built into the platform) and [[managed-agents-multiagent]] (coordinator + thread delegation).
 
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]], [[ralph-wiggum]], [[matt-pocock]], [[software-entropy]], [[thin-harness-fat-skills]], [[skill-as-method-call]], [[latent-vs-deterministic]], [[resolvers]], [[diarization]], [[garry-tan]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]], [[ralph-wiggum]], [[matt-pocock]], [[software-entropy]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -58,4 +55,3 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added 4th layer (infrastructure) thesis |
 | 2026-04-09 | raw/2026-04-09-anthropic-managed-agents-engineering-blog.md | Added Managed Agents as Anthropic's productized harness |
 | 2026-04-15 | raw/2026-04-15-tips-ai-coding-ralph-wiggum.md | Expanded Ralph Loop with 11 practical tips, HITL/AFK modes, software entropy |
-| 2026-04-18 | raw/2026-04-18-garrytan-thin-harness-fat-skills.md | Added Garry Tan's thin-harness-fat-skills thesis: 5 definitions, 3-layer architecture, "skills are permanent upgrades" discipline |
