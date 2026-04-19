@@ -40,7 +40,7 @@ Master source list for daily ingestion across **all Anthropic + Claude products*
 ## Method Notes
 
 - **WebFetch** works for most listed websites. Use canonical `platform.claude.com/docs/...` (not `docs.claude.com/...` — redirects).
-- **Playwright MCP** required for X. WebFetch returns HTTP 402 on every x.com URL. `browser_navigate` → page title in format `Display Name (@handle) / X` confirms both handle and identity.
+- **Playwright MCP for X — verification yes, content scraping NO.** `browser_navigate` → page title `Display Name (@handle) / X` reliably verifies handle existence. **However**, content scraping (timeline tweets) is unreliable without authentication — X serves only pinned/featured posts to logged-out browsers, and some active accounts (e.g., @felixrieseberg with 2,744 posts) explicitly return "hasn't posted." The only handle reliably showing recent content is **@AnthropicAI** (likely because of high-engagement reposts). For trustworthy daily X capture, wire up an X API key or persisted authenticated Playwright session. (Documented 2026-04-19, see `raw/2026-04-19-anthropic-daily-run.md`.)
 - **Playwright also required for `code.claude.com/docs`** — JS-rendered SPA, WebFetch returns "Not Found - Loading...".
 - **claude.com/blog pagination** uses Webflow-style `?<token>_page=N` query params and is not reliably fetchable via WebFetch — use Playwright + `browser_evaluate` to dump dated cards.
 - **GitHub CHANGELOG**: use `raw/refs/heads/main/...` URL. Blob URLs return an HTML wrapper that hides content. Note: the file has no per-version dates — pair with `gh api releases` for timestamps.
@@ -66,3 +66,4 @@ If a "policy/vision" digest is added later, re-include @DarioAmodei + @jackclark
 |------|--------|-------------|
 | 2026-04-18 | raw/2026-04-18-claude-daily-source-verification.md | Initial creation — 18 verified sources after WebFetch + Playwright testing |
 | 2026-04-19 | raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md | Updated Claude Code docs URL → code.claude.com/docs (Playwright); added gh CLI as preferred releases source; documented Webflow pagination caveat for claude.com/blog |
+| 2026-04-19 | raw/2026-04-19-anthropic-daily-run.md | Documented X content-scraping limitation: page-title verification works, timeline scraping does not without authentication |

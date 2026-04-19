@@ -168,3 +168,11 @@ gaps-flagged: claude.com/blog pagination, code.claude.com/docs (JS-rendered), gh
 fixes: (1) confirmed claude.com/blog has 16 posts in window — added 1 missing (claude-builds-visuals 03-12); (2) updated docs URL to code.claude.com/docs (Playwright); (3) fetched 88 dated CC releases via gh api
 pages-updated: digest-anthropic-2026-01-01-to-2026-04-18.md, anthropic-daily-sources.md
 raw-saved: raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md
+
+## [2026-04-19] anthropic-daily | First daily run after backfill
+window: 2026-04-18..2026-04-19
+items: 0 new across 6 websites + gh-api releases
+findings: X content scraping unreliable without auth — only @AnthropicAI returns recent posts; @felixrieseberg shows "hasn't posted" despite 2,744 lifetime posts
+pages-created: digest-anthropic-2026-04-19.md
+pages-updated: anthropic-daily-sources.md (X-scraping caveat), index.md
+raw-saved: raw/2026-04-19-anthropic-daily-run.md
