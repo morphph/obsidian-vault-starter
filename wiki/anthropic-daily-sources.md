@@ -1,9 +1,10 @@
 ---
 type: synthesis
 created: 2026-04-18
-last-updated: 2026-04-18
+last-updated: 2026-04-19
 sources:
   - raw/2026-04-18-claude-daily-source-verification.md
+  - raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md
 tags: [wiki, ops, newsletter, ingestion]
 ---
 
@@ -26,8 +27,9 @@ Master source list for daily ingestion across **all Anthropic + Claude products*
 | Claude | X | @alexalbert__ — Alex Albert *(double `_`)* | Playwright |
 | **Claude API** | Website | platform.claude.com/docs/en/release-notes | WebFetch |
 | Claude API | Website | platform.claude.com/docs/en/about-claude/models/overview | WebFetch |
-| **Claude Code** | Website | platform.claude.com/docs/en/claude-code | WebFetch |
+| **Claude Code** | Website | code.claude.com/docs *(canonical; old `platform.claude.com/docs/en/claude-code` redirects here)* | Playwright |
 | Claude Code | Website | github.com/anthropics/claude-code/raw/refs/heads/main/CHANGELOG.md | WebFetch |
+| Claude Code | API | `gh api repos/anthropics/claude-code/releases?per_page=100` *(dated releases — preferred over atom)* | gh CLI |
 | Claude Code | X | @bcherny — Boris Cherny | Playwright |
 | Claude Code | X | @_catwu — cat (Cat Wu) *(leading `_`)* | Playwright |
 | Claude Code | X | @trq212 — Thariq | Playwright |
@@ -37,10 +39,13 @@ Master source list for daily ingestion across **all Anthropic + Claude products*
 
 ## Method Notes
 
-- **WebFetch** works for all listed websites. Use canonical `platform.claude.com/docs/...` (not `docs.claude.com/...` — redirects).
+- **WebFetch** works for most listed websites. Use canonical `platform.claude.com/docs/...` (not `docs.claude.com/...` — redirects).
 - **Playwright MCP** required for X. WebFetch returns HTTP 402 on every x.com URL. `browser_navigate` → page title in format `Display Name (@handle) / X` confirms both handle and identity.
-- **GitHub CHANGELOG**: use `raw/refs/heads/main/...` URL. Blob URLs return an HTML wrapper that hides content.
-- **RSS/Atom**: standard feed reader.
+- **Playwright also required for `code.claude.com/docs`** — JS-rendered SPA, WebFetch returns "Not Found - Loading...".
+- **claude.com/blog pagination** uses Webflow-style `?<token>_page=N` query params and is not reliably fetchable via WebFetch — use Playwright + `browser_evaluate` to dump dated cards.
+- **GitHub CHANGELOG**: use `raw/refs/heads/main/...` URL. Blob URLs return an HTML wrapper that hides content. Note: the file has no per-version dates — pair with `gh api releases` for timestamps.
+- **GitHub releases**: `gh api repos/.../releases?per_page=100` returns all dated releases. The `releases.atom` feed only returns latest 10 entries.
+- **RSS/Atom**: standard feed reader for entries within the feed window.
 
 ## Excluded Sources (low signal for product newsletter)
 
@@ -60,3 +65,4 @@ If a "policy/vision" digest is added later, re-include @DarioAmodei + @jackclark
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-18 | raw/2026-04-18-claude-daily-source-verification.md | Initial creation — 18 verified sources after WebFetch + Playwright testing |
+| 2026-04-19 | raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md | Updated Claude Code docs URL → code.claude.com/docs (Playwright); added gh CLI as preferred releases source; documented Webflow pagination caveat for claude.com/blog |

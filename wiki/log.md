@@ -156,3 +156,15 @@ pages-updated: claude-opus-4-7.md, task-budgets.md, xhigh-effort-level.md, index
 source: raw/2026-04-18-claude-daily-source-verification.md (Playwright-verified 10 X handles + WebFetch-tested 12 sites)
 pages-created: anthropic-daily-sources.md
 pages-updated: index.md (added Synthesis entry)
+
+## [2026-04-18] anthropic-daily | 2026-01-01..2026-04-18 (backfill, Option B)
+window: 2026-01-01..2026-04-18
+items: ~70 raw across 10 sources, ~70 unique after dedupe
+pages-created: digest-anthropic-2026-01-01-to-2026-04-18.md
+raw-saved: raw/2026-04-18-anthropic-daily-backfill-2026-q1-q2.md
+gaps-flagged: claude.com/blog pagination, code.claude.com/docs (JS-rendered), gh-api dated releases
+
+## [2026-04-19] anthropic-daily | Backfill gap-fix pass
+fixes: (1) confirmed claude.com/blog has 16 posts in window — added 1 missing (claude-builds-visuals 03-12); (2) updated docs URL to code.claude.com/docs (Playwright); (3) fetched 88 dated CC releases via gh api
+pages-updated: digest-anthropic-2026-01-01-to-2026-04-18.md, anthropic-daily-sources.md
+raw-saved: raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md

@@ -1,21 +1,25 @@
 ---
 type: synthesis
 created: 2026-04-18
-last-updated: 2026-04-18
+last-updated: 2026-04-19
 sources:
   - raw/2026-04-18-anthropic-daily-backfill-2026-q1-q2.md
   - raw/2026-04-18-claude-daily-source-verification.md
+  - raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md
 tags: [wiki, digest, anthropic, claude, backfill]
 ---
 
 # Anthropic + Claude Digest — 2026-01-01 → 2026-04-18
 
 ## Summary
-**~70 unique items** across 5 categories, fetched 2026-04-18, window 2026-01-01..2026-04-18. Dedupe collapsed ~25 cross-source duplicates (e.g., Opus 4.7 launch appeared on news + API release notes + blog + Claude Code changelog → single item).
+**~71 unique items** across 5 categories, fetched 2026-04-18, gap-filled 2026-04-19. Window 2026-01-01..2026-04-18. Dedupe collapsed ~25 cross-source duplicates (e.g., Opus 4.7 launch appeared on news + API release notes + blog + Claude Code changelog → single item).
 
-**Backfill scope (Option B):** Websites + RSS only. X handles will be included in daily mode going forward.
+**Backfill scope (Option B):** Websites + RSS + gh-api releases. X handles will be included in daily mode going forward.
 
-**Known gaps:** claude.com/blog pagination (pages 2-8) not fetched — older Q1 blog posts may be missing. Claude Code CHANGELOG has no explicit per-version dates; ~45 versions in window with dates correlated only for v2.1.105-v2.1.114 via Atom feed.
+**Gap-fix pass (2026-04-19):**
+- Confirmed claude.com/blog has only **16 posts in window** (sparse Jan-Feb 2026 — blog jumps from 2026-03-12 to 2025-12-09). Added 1 missing post: `claude-builds-visuals` (2026-03-12).
+- Replaced Claude Code docs source: `platform.claude.com/docs/en/claude-code` → **`code.claude.com/docs`** (canonical, JS-rendered, requires Playwright).
+- Fetched **88 dated Claude Code releases** via `gh api` (vs 10 from atom feed). All v2.0.76 → v2.1.114 in window now have UTC timestamps.
 
 ---
 
@@ -65,7 +69,7 @@ tags: [wiki, digest, anthropic, claude, backfill]
 - **Enterprise Analytics API (2026-02-13)** — Programmatic usage/engagement data.
 - **Memory for free users (2026-03-02)** — Chat memory available to all tiers.
 - **Excel/PowerPoint integration improved (2026-03-11)** — Conversation context sharing, LLM gateway.
-- **Custom charts & visualizations (2026-03-12)** — Interactive diagrams inline.
+- **Custom charts & visualizations (2026-03-12)** — Interactive diagrams inline. (Sources: support release-notes; also: claude.com/blog/claude-builds-visuals)
 - **Computer Use research preview (2026-03-23)** — Pro/Max access to control computer functionality.
 - **Interactive apps on mobile (2026-03-25)** — iOS/Android with live charts and shareable assets.
 - **Role-Based Access Controls (2026-04-09)** — Enterprise admin user groups with custom permissions.
@@ -103,6 +107,20 @@ tags: [wiki, digest, anthropic, claude, backfill]
 - **Subagents in Claude Code (2026-04-07, blog)** — When and how to use them.
 - **Best practices for Opus 4.7 with Claude Code (2026-04-16, blog)** — Already documented in [[claude-opus-4-7]].
 - **Seeing like an agent (2026-04-10, blog)** — Tool design philosophy.
+
+### Claude Code release timeline (88 dated releases, gh api)
+
+Full list in `raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md`. Cadence: **~22 releases/month**, near-daily during active periods. Major version anchors aligned with Anthropic milestones:
+
+- v2.0.76 → v2.1.5 (2026-01-07 → 2026-01-12) — Cowork research preview launch period
+- v2.1.32 (2026-02-05) — Opus 4.6 launch alignment
+- v2.1.45 (2026-02-17) — Sonnet 4.6 launch alignment
+- v2.1.75 (2026-03-13) — 1M context GA + Claude Code 1M default
+- v2.1.83 (2026-03-25) — Auto mode launch (with engineering blog post)
+- v2.1.94 (2026-04-07) — Bedrock Mantle support
+- v2.1.98 (2026-04-09) — Monitor tool, native sandboxing
+- v2.1.111 (2026-04-16) — Opus 4.7 + xhigh + /ultrareview shipped same day as Opus 4.7 launch
+- v2.1.114 (2026-04-18) — Latest at time of digest
 
 ### Notable feature additions (CHANGELOG, undated but in window)
 
@@ -175,3 +193,4 @@ These are NOT created in this run — too many to do well in a single sweep. Fla
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-18 | raw/2026-04-18-anthropic-daily-backfill-2026-q1-q2.md | Initial backfill digest, 10 sources, ~70 items deduped |
+| 2026-04-19 | raw/2026-04-19-anthropic-daily-backfill-gap-fixes.md | Gap fixes: +1 blog post (claude-builds-visuals 03-12), +88 dated CC releases via gh api, replaced docs URL with code.claude.com/docs |

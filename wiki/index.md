@@ -68,6 +68,7 @@
 
 - [[knowledge-compiler-design]] — Full roadmap: 9 Agent SDK use cases across 3 phases (foundation → automation → intelligence)
 - [[anthropic-daily-sources]] — Master 18-source list (websites + X handles) for daily ingestion across all Anthropic + Claude products
+- [[digest-anthropic-2026-01-01-to-2026-04-18]] — Backfill digest: ~71 deduped items across 5 categories (Models, Anthropic, Claude product, Claude API, Claude Code, Cowork)
 
 ## Connections
 
