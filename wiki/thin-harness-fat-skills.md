@@ -4,13 +4,14 @@ created: 2026-04-19
 last-updated: 2026-04-19
 sources:
   - raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
+  - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
 tags: [wiki, architecture, agentic, principle]
 ---
 
 # Thin Harness, Fat Skills
 
 ## Summary
-Architectural slogan from [[garry-tan]] (2026-04-11): the wrapper around the LLM should be small (~200 lines, JSON-in/text-out, read-only by default), and the procedural knowledge should live in markdown skill files. Inverts the common anti-pattern of fat harnesses with 40+ tool definitions and thin skills. Explains the gap between 2x and 100x AI-coding productivity using the same models.
+Architectural slogan from [[garry-tan]] (2026-04-11): the wrapper around the LLM should be small (~200 lines, JSON-in/text-out, read-only by default), and the procedural knowledge should live in markdown skill files. Inverts the common anti-pattern of fat harnesses with 40+ tool definitions and thin skills. Explains the gap between 2x and 100x AI-coding productivity using the same models. **Follow-up (2026-04-15):** Garry published "Resolvers: The Routing Table for Intelligence," zooming into the [[resolvers]] primitive and reframing it as the governance layer of an agent system — see [[source-garry-tan-resolvers]].
 
 ## Details
 
@@ -60,9 +61,10 @@ Anthropic's formal frame: "LLM as reasoning center; harness provides perception,
 - [[ralph-wiggum]] / [[orchestration-loop]] → the loop *is* the thin harness; Garry's contribution is pushing the procedural content out of the loop and into skill files.
 
 ## Connections
-- Related: [[garry-tan]], [[skill-as-method-call]], [[resolvers]], [[diarization]], [[latent-vs-deterministic]], [[harness-design]], [[llm-judgment-vs-scripts]], [[claude-code]], [[openclaw]], [[orchestration-loop]], [[context-management]], [[infrastructure-layer]]
+- Related: [[garry-tan]], [[skill-as-method-call]], [[resolvers]], [[trigger-evals]], [[check-resolvable]], [[context-rot]], [[gbrain]], [[gstack]], [[diarization]], [[latent-vs-deterministic]], [[harness-design]], [[llm-judgment-vs-scripts]], [[claude-code]], [[openclaw]], [[orchestration-loop]], [[context-management]], [[infrastructure-layer]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-19 | raw/2026-04-11-garry-tan-thin-harness-fat-skills.md | Initial creation — full concept from Garry Tan's longform |
+| 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Noted follow-up article; added governance-layer concepts (trigger evals, check-resolvable, context rot) to Connections |

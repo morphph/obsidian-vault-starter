@@ -182,3 +182,9 @@ source: raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
 fetch-method: api.fxtwitter.com (WebFetch + Playwright to x.com both failed; fxtwitter API exposed full long-form article body)
 pages-created: garry-tan.md, thin-harness-fat-skills.md, skill-as-method-call.md, diarization.md, resolvers.md, latent-vs-deterministic.md, source-garry-tan-thin-harness-fat-skills.md
 pages-updated: harness-design.md, openclaw.md, claude-code.md, llm-judgment-vs-scripts.md, index.md
+
+## [2026-04-19] ingest | Garry Tan — Resolvers: The Routing Table for Intelligence
+source: raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
+fetch-method: Playwright MCP (x.com JS-heavy, WebFetch gated)
+pages-created: check-resolvable.md, trigger-evals.md, context-rot.md, gbrain.md, gstack.md, source-garry-tan-resolvers.md
+pages-updated: resolvers.md (major expansion — fractal layers, Manidis misfiling, invisible skills, governance stack, management reframe, self-healing RLM), garry-tan.md, thin-harness-fat-skills.md, openclaw.md, claude-code.md, index.md

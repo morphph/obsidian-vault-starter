@@ -21,7 +21,9 @@
 - [[claude-code-monitor-tool]] — Event-driven background monitoring tool in Claude Code (v2.1.98): stdout lines wake the session
 - [[ralph-orchestrator]] — Production Rust implementation of Ralph Wiggum (2,702 stars): hats, waves, Telegram HITL, multi-backend
 - [[claude-opus-4-7]] — Anthropic's flagship model (2026-04-16): high-res vision, literal instruction following, self-verification, new agentic control primitives
-- [[garry-tan]] — YC President & CEO; OpenClaw practitioner; author of "Thin Harness, Fat Skills" — most accessible field guide to harness design (2026-04-11)
+- [[garry-tan]] — YC President & CEO; OpenClaw practitioner; author of "Thin Harness, Fat Skills" (2026-04-11) and "Resolvers: Routing Table for Intelligence" (2026-04-15); creator of GBrain + GStack
+- [[gbrain]] — Garry Tan's open-source knowledge-base scaffold; ships RESOLVER.md + filing rules + check-resolvable out of the box
+- [[gstack]] — Garry Tan's open-source skills library for Claude Code; 72K+ GitHub stars; fat-skills pattern
 
 ## Concepts
 
@@ -68,6 +70,9 @@
 - [[skill-as-method-call]] — Skills are method definitions with parameters (TARGET/QUESTION/DATASET); same procedure produces radically different capabilities
 - [[diarization]] — Model reads everything about a subject and writes one structured page; SAYS-vs-ACTUALLY-BUILDING gap; what makes AI useful for knowledge work
 - [[resolvers]] — Routing tables for context: when X appears, load Y first; the "skill description" field is the canonical resolver
+- [[trigger-evals]] — 50-sample test suite for resolver routing: does the right skill fire for the right input? false-negative + false-positive failure modes
+- [[check-resolvable]] — Meta-skill that walks AGENTS.md → skill → code and finds dead links; Garry's first run: 6/40 = 15% dark capability
+- [[context-rot]] — 90-day decay curve for resolvers: Day 1 perfect → Day 90 historical document; defended by trigger-evals + check-resolvable + self-healing RLM
 - [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
 
 ## Synthesis
@@ -122,3 +127,4 @@
 - [[source-anthropic-opus-4-7-announcement]] — Anthropic's official Opus 4.7 release announcement with detailed 中文要点 (2026-04-16)
 - [[source-claude-docs-opus-4-7-whats-new]] — Official "What's new" API docs: breaking changes, task-budget API, tokenizer, behavior changes (2026-04-16)
 - [[source-garry-tan-thin-harness-fat-skills]] — Garry Tan's longform field guide to harness design: 5 primitives, YC Startup School worked example (2026-04-11)
+- [[source-garry-tan-resolvers]] — Garry Tan's follow-up: resolvers as governance layer; check-resolvable; trigger evals; context rot; GBrain + GStack open-source drop (2026-04-15)
