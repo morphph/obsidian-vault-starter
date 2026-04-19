@@ -176,3 +176,9 @@ findings: X content scraping unreliable without auth — only @AnthropicAI retur
 pages-created: digest-anthropic-2026-04-19.md
 pages-updated: anthropic-daily-sources.md (X-scraping caveat), index.md
 raw-saved: raw/2026-04-19-anthropic-daily-run.md
+
+## [2026-04-19] ingest | Garry Tan — Thin Harness, Fat Skills
+source: raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
+fetch-method: api.fxtwitter.com (WebFetch + Playwright to x.com both failed; fxtwitter API exposed full long-form article body)
+pages-created: garry-tan.md, thin-harness-fat-skills.md, skill-as-method-call.md, diarization.md, resolvers.md, latent-vs-deterministic.md, source-garry-tan-thin-harness-fat-skills.md
+pages-updated: harness-design.md, openclaw.md, claude-code.md, llm-judgment-vs-scripts.md, index.md

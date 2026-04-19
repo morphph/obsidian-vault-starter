@@ -10,6 +10,7 @@ sources:
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
   - raw/2026-04-09-anthropic-managed-agents-engineering-blog.md
   - raw/2026-04-15-tips-ai-coding-ralph-wiggum.md
+  - raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -40,10 +41,11 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 
 - **The 4th layer — [[infrastructure-layer]]**: Rohit (@rohit4verse) argues the standard 3-layer model (weights, context, harness) misses a critical 4th layer: infrastructure. Multi-tenancy, RBAC, resource isolation, state persistence, distributed coordination. "Most teams talk about the first three because they are interesting. The fourth is where products die." Claude Code is the first agent system taking all four seriously. Retrofitting infrastructure is 10x harder than designing for it from day one.
 
+- **[[thin-harness-fat-skills|Thin Harness, Fat Skills]]** ([[garry-tan|Garry Tan]], 2026-04-11): the most accessible field-guide framing. Three layers — fat skills (markdown procedures, 90% of value) on top, thin ~200-line CLI harness in the middle, deterministic application (QueryDB/ReadDoc/Search) on the bottom. Directional principle: push intelligence up, push execution down, keep the harness thin. Five primitives compose the architecture: [[skill-as-method-call|skill-as-method-call]], harness, [[resolvers]], [[latent-vs-deterministic]], [[diarization]]. Garry's reading of the 3/31/2026 [[claude-code]] npm source leak (512K lines) is what confirmed the pattern publicly. Anti-pattern called out: 40+ tool definitions eating context, god-tools with 2-5s MCP round-trips, REST wrappers turning every endpoint into a tool — 3x tokens, 3x latency, 3x failure rate. Counter-example: purpose-built Playwright CLI doing browser ops in 100ms vs Chrome MCP at 15s = 75x faster.
 - **Managed Agents — Anthropic productizes the harness**: [[claude-managed-agents]] (2026-04-09) is Anthropic's first-party managed harness service. Architecture decouples brain (Claude + stateless loop), hands (containers + tools), and session (append-only event log as source of truth). See [[managed-agents-architecture]]. Validates the harness-as-product thesis — developers get the [[infrastructure-layer]] for free. Research previews include [[managed-agents-outcomes]] (rubric-driven grading, separate grader context — the GAN-inspired evaluator role built into the platform) and [[managed-agents-multiagent]] (coordinator + thread delegation).
 
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]], [[ralph-wiggum]], [[matt-pocock]], [[software-entropy]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]], [[ralph-wiggum]], [[matt-pocock]], [[software-entropy]], [[garry-tan]], [[thin-harness-fat-skills]], [[skill-as-method-call]], [[resolvers]], [[diarization]], [[latent-vs-deterministic]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -55,3 +57,4 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added 4th layer (infrastructure) thesis |
 | 2026-04-09 | raw/2026-04-09-anthropic-managed-agents-engineering-blog.md | Added Managed Agents as Anthropic's productized harness |
 | 2026-04-15 | raw/2026-04-15-tips-ai-coding-ralph-wiggum.md | Expanded Ralph Loop with 11 practical tips, HITL/AFK modes, software entropy |
+| 2026-04-19 | raw/2026-04-11-garry-tan-thin-harness-fat-skills.md | Added Garry Tan's "Thin Harness, Fat Skills" three-layer formulation and five primitives |

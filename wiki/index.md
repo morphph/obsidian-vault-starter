@@ -21,6 +21,7 @@
 - [[claude-code-monitor-tool]] — Event-driven background monitoring tool in Claude Code (v2.1.98): stdout lines wake the session
 - [[ralph-orchestrator]] — Production Rust implementation of Ralph Wiggum (2,702 stars): hats, waves, Telegram HITL, multi-backend
 - [[claude-opus-4-7]] — Anthropic's flagship model (2026-04-16): high-res vision, literal instruction following, self-verification, new agentic control primitives
+- [[garry-tan]] — YC President & CEO; OpenClaw practitioner; author of "Thin Harness, Fat Skills" — most accessible field guide to harness design (2026-04-11)
 
 ## Concepts
 
@@ -63,6 +64,11 @@
 - [[xhigh-effort-level]] — Opus 4.7's new effort tier between `high` and `max`; recommended for agentic coding
 - [[task-budgets]] — Opus 4.7's token-budget hint for an entire agentic loop; model-native context-anxiety remedy
 - [[adaptive-thinking]] — Opus 4.7's only thinking-on mode; off by default; replaces extended thinking budgets
+- [[thin-harness-fat-skills]] — Garry Tan's three-layer architecture slogan: fat markdown skills on top, ~200-line CLI harness in middle, deterministic tooling below
+- [[skill-as-method-call]] — Skills are method definitions with parameters (TARGET/QUESTION/DATASET); same procedure produces radically different capabilities
+- [[diarization]] — Model reads everything about a subject and writes one structured page; SAYS-vs-ACTUALLY-BUILDING gap; what makes AI useful for knowledge work
+- [[resolvers]] — Routing tables for context: when X appears, load Y first; the "skill description" field is the canonical resolver
+- [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
 
 ## Synthesis
 
@@ -115,3 +121,4 @@
 - [[source-thariq-session-management-1m]] — Thariq (Anthropic): session management with 1M context, rewind, compact vs clear (2026-04-16)
 - [[source-anthropic-opus-4-7-announcement]] — Anthropic's official Opus 4.7 release announcement with detailed 中文要点 (2026-04-16)
 - [[source-claude-docs-opus-4-7-whats-new]] — Official "What's new" API docs: breaking changes, task-budget API, tokenizer, behavior changes (2026-04-16)
+- [[source-garry-tan-thin-harness-fat-skills]] — Garry Tan's longform field guide to harness design: 5 primitives, YC Startup School worked example (2026-04-11)
