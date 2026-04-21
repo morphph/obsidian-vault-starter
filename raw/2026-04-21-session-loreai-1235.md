@@ -7,32 +7,20 @@
 
 ---
 
-**Context:** Automated daily ingest run surfaced 11 Claude Code signals (GitHub trending + Twitter) with recommended wiki/blog actions for 2026-04-21.
+**Context:** Content routing session — evaluating 3 fresh signals against the OpenAI Codex wiki and deciding what to refresh or create.
 
 **Key Exchanges:**
-- Signal batch covered signals #21–31, all in the Claude Code domain
-- Actions split between `refresh` (update existing pages) and `refresh_and_create` / `create` (new blog needed)
+- Processed 3 signals: Anthropic's public `anthropics/skills` repo launch, a crypto MCP tweet (Printr), and `intertwine/dspy-agent-skills` repo targeting Codex CLI + Claude Code.
+- Signal 2 (Printr crypto MCP) was ignored as off-topic for Codex's software engineering scope.
 
 **Decisions Made:**
-- **New blogs to create** (gaps confirmed):
-  - `blog/claude-code-workflow-templates-starter-kit` — reusable workflow templates (Blink-h/agent-startup-kit)
-  - `blog/claude-code-security-vulnerability-scanning` — pen testing MCP + hooks backdoor attack surface (CarbeneAI/Talon + s0ld13rr/claude-code-backdoor)
-  - `blog/claude-code-macos-session-companion` — Notch-Pilot / session visibility on macOS
-  - `blog/claude-code-unity-editor-game-development` — UniClaude with 60+ MCP tools for Unity
-  - `blog/claude-code-design-prototyping` — HTML decks/prototypes via skills + Chrome DevTools MCP (bluzir/claude-code-design)
-
-- **Pages to refresh** (add sections):
-  - Hooks mastery blog: add reliability/stability tradeoffs + hooks-as-backdoor security warning
-  - Non-technical use cases blog: add language learning (english-immersion) + OSINT/threat-intel (huntkit)
-  - MCP setup blog: add Talon (pen testing), huntkit (OSINT), claude-code-design
-  - `faq/claude-code-skills`: add english-immersion and design workflow as non-coding skill examples
+- `anthropics/skills` → refresh `codex-skills`, `codex-vs-competitors`, `compare/codex-vs-claude-code` — Anthropic publicly shipping a skills repo is a direct competitive parallel to Codex skills, worth noting as ecosystem convergence.
+- `intertwine/dspy-agent-skills` → refresh `codex-skills`, `codex-cli`, `blog/codex-for-open-source` + **create** a new tutorial page on DSPy-powered agent skill patterns for Codex CLI (`suggested_keyword: "codex cli dspy agent skills examples"`).
 
 **Lessons Learned:**
-- Hooks in `settings.json` are a real attack surface — public PoC (`claude-code-backdoor`) demonstrates backdooring via shared/cloned project configs. Any hooks content must include a trust warning.
-- Hooks reliability is questioned by practitioners for production use; agent platforms recommended instead for high-stakes automation.
-- Claude Code is expanding into non-dev verticals: game dev (Unity), security/OSINT, language learning, UI design — all via MCP + skills pattern.
+- Crypto/blockchain signals that incidentally mention Claude or Codex via MCP should be filtered out — support for a tool doesn't make a signal on-topic.
+- Community repos that explicitly name both Claude Code and Codex CLI as targets are strong signals for both `codex-vs-competitors` and `codex-cookbook-and-examples` subtopics.
 
 **Action Items:**
-- Create 5 new blog drafts listed above
-- Refresh hooks mastery, MCP setup, non-technical use cases, and skills FAQ pages with new examples and security section
-- Tag `s0ld13rr/claude-code-backdoor` as high-urgency — add to security scanning page ASAP
+- Create tutorial page: `codex cli dspy agent skills examples` — reference `intertwine/dspy-agent-skills` as primary source.
+- Refresh `compare/codex-vs-claude-code` to note Anthropic's `anthropics/skills` public launch as a parity signal on the skills/workflow packaging front.
