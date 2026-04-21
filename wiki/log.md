@@ -188,3 +188,15 @@ source: raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
 fetch-method: Playwright MCP (x.com JS-heavy, WebFetch gated)
 pages-created: check-resolvable.md, trigger-evals.md, context-rot.md, gbrain.md, gstack.md, source-garry-tan-resolvers.md
 pages-updated: resolvers.md (major expansion — fractal layers, Manidis misfiling, invisible skills, governance stack, management reframe, self-healing RLM), garry-tan.md, thin-harness-fat-skills.md, openclaw.md, claude-code.md, index.md
+
+## [2026-04-21] ingest | Anthropic — Extend Claude with Skills (official docs)
+source: raw/2026-04-21-anthropic-agent-skills-docs.md
+fetch-method: WebFetch (3 redirects: docs.anthropic.com → docs.claude.com → code.claude.com)
+pages-created: agent-skills-standard.md, source-anthropic-agent-skills-docs.md
+pages-updated: resolvers.md (added official "description as canonical resolver" wording, 1,536-char cap, SLASH_COMMAND_TOOL_CHAR_BUDGET), check-resolvable.md, trigger-evals.md, context-rot.md (mechanistic explanation), claude-code.md, thin-harness-fat-skills.md, index.md
+
+## [2026-04-21] ingest | GitHub Deep Scan — GBrain + GStack (Garry Tan's open-source stack)
+source: raw/2026-04-21-gbrain-gstack-github-deep-scan.md
+fetch-method: gh CLI (tree + README + RESOLVER.md + _brain-filing-rules.md + manifest.json + CLAUDE.md + SKILL.md samples)
+pages-created: source-gbrain-gstack-deep-scan.md
+pages-updated: gbrain.md (massive expansion — 9,718⭐, 17,888 pages production scale, 26 skills, real TS for check-resolvable & dry-fix, Minions job queue, BrainBench numbers, PGLite/Postgres pluggable engine), gstack.md (massive expansion — 78,692⭐, 23-skill specialist roster, 10-host template system, team mode), resolvers.md (three-layer artifact: RESOLVER.md + manifest.json + SKILL.md; two-dialect table), check-resolvable.md (confirmed as real code), trigger-evals.md (three-layer integrity reframe), thin-harness-fat-skills.md (10-host cross-vendor proof), agent-skills-standard.md, index.md

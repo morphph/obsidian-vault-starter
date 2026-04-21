@@ -73,6 +73,7 @@
 - [[trigger-evals]] — 50-sample test suite for resolver routing: does the right skill fire for the right input? false-negative + false-positive failure modes
 - [[check-resolvable]] — Meta-skill that walks AGENTS.md → skill → code and finds dead links; Garry's first run: 6/40 = 15% dark capability
 - [[context-rot]] — 90-day decay curve for resolvers: Day 1 perfect → Day 90 historical document; defended by trigger-evals + check-resolvable + self-healing RLM
+- [[agent-skills-standard]] — Open standard (agentskills.io) for portable SKILL.md files; YAML frontmatter reference; 1,536-char description cap; progressive disclosure; two dialects (Anthropic description-matching vs GBrain triggers: array)
 - [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
 
 ## Synthesis
@@ -128,3 +129,5 @@
 - [[source-claude-docs-opus-4-7-whats-new]] — Official "What's new" API docs: breaking changes, task-budget API, tokenizer, behavior changes (2026-04-16)
 - [[source-garry-tan-thin-harness-fat-skills]] — Garry Tan's longform field guide to harness design: 5 primitives, YC Startup School worked example (2026-04-11)
 - [[source-garry-tan-resolvers]] — Garry Tan's follow-up: resolvers as governance layer; check-resolvable; trigger evals; context rot; GBrain + GStack open-source drop (2026-04-15)
+- [[source-anthropic-agent-skills-docs]] — Anthropic official Claude Code Skills docs: Agent Skills open standard, YAML frontmatter reference, 1,536-char cap, progressive disclosure lifecycle (2026-04-21 fetch)
+- [[source-gbrain-gstack-deep-scan]] — GitHub Deep Scan of Garry Tan's production stack: 9.7K⭐ + 78.7K⭐; concrete RESOLVER.md; check-resolvable as real TS code; 10-host template system (2026-04-21)

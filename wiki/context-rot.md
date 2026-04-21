@@ -4,6 +4,7 @@ created: 2026-04-19
 last-updated: 2026-04-19
 sources:
   - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
+  - raw/2026-04-21-anthropic-agent-skills-docs.md
 tags: [wiki, principle, agentic, failure-mode, governance]
 ---
 
@@ -55,6 +56,20 @@ Not a human maintaining a table. **The table maintaining itself.**
 Context rot is the agentic-system equivalent of documentation drift, config drift, and dead-code accumulation. Any document that sits between **intent** and **execution** and is updated asymmetrically (easy to add paths, hard to audit) will rot. The pattern:
 - Low write cost + no reachability signal → additions exceed corrections → drift
 - Cure: make the reachability signal automatic (trigger evals + check-resolvable)
+
+### The mechanism, quantified (2026-04-21 Anthropic Skills docs)
+Context rot isn't just a metaphor — it has a **specific mechanical cause** in Claude Code:
+
+> "All skill names are always included, but if you have many skills, **descriptions are shortened to fit the character budget, which can strip the keywords Claude needs to match your request.** The budget scales dynamically at 1% of the context window, with a fallback of 8,000 characters."
+
+Thresholds:
+- **1,536 chars per skill** (combined `description` + `when_to_use`)
+- **1% of context window** total listing budget
+- Escape hatch: `SLASH_COMMAND_TOOL_CHAR_BUDGET`
+
+**Concrete failure mode:** you add the 30th skill. Its description is 2,000 chars (over cap). Claude Code truncates to 1,536 chars, **slicing off your `when_to_use` trigger phrases**. User asks a question that would have matched those phrases. No skill fires. You think the skill doesn't work. It works — Claude just can't see the trigger anymore.
+
+Garry's 90-day decay curve is the same phenomenon across multiple skills simultaneously: additions + silent truncation + user-phrasing drift = the routing table becomes invisible.
 
 ## Connections
 - Related: [[resolvers]], [[trigger-evals]], [[check-resolvable]], [[garry-tan]], [[thin-harness-fat-skills]], [[context-management]], [[context-noise-governance]], [[assumptions-expire]], [[dreaming]], [[silent-fallback-antipattern]]

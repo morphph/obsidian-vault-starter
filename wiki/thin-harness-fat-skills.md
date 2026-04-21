@@ -68,3 +68,5 @@ Anthropic's formal frame: "LLM as reasoning center; harness provides perception,
 |------|--------|-------------|
 | 2026-04-19 | raw/2026-04-11-garry-tan-thin-harness-fat-skills.md | Initial creation — full concept from Garry Tan's longform |
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Noted follow-up article; added governance-layer concepts (trigger evals, check-resolvable, context rot) to Connections |
+| 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Added GStack's 10-host template system as first cross-vendor proof of the architecture (same skill source → Claude Code / Codex / Cursor / Factory / Hermes / OpenClaw / etc.) |
+| 2026-04-21 | raw/2026-04-21-anthropic-agent-skills-docs.md | Reinforced "thin harness" claim — Claude Code's full skill invocation is a single-message injection with 25K-token post-compaction budget, not a per-turn reload |

@@ -1,10 +1,12 @@
 ---
 type: concept
 created: 2026-04-19
-last-updated: 2026-04-19
+last-updated: 2026-04-21
 sources:
   - raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
   - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
+  - raw/2026-04-21-anthropic-agent-skills-docs.md
+  - raw/2026-04-21-gbrain-gstack-github-deep-scan.md
 tags: [wiki, principle, context-management, agentic, governance]
 ---
 
@@ -38,6 +40,41 @@ Resolvers compose. They exist at every layer of the system, not just the top:
 | **Context resolver** | Inside each skill | Sub-routing within a skill (email triage vs. scheduling vs. signature tracking) |
 
 [[claude-code]] has this pattern already: every skill has a `description` field and the model matches user intent to descriptions automatically. You never have to remember that `/ship` exists. **The description *is* the resolver.** It's resolvers all the way down.
+
+**Official confirmation (2026-04-21)** — from the [[agent-skills-standard|Agent Skills docs]]: *"`description`: What the skill does and when to use it. **Claude uses this to decide when to apply the skill.**"* Not a metaphor; the documented routing mechanism.
+
+### The three-layer resolver artifact (from GBrain production)
+Garry's own [[gbrain]] implements the resolver as **three coupled artifacts**:
+
+1. **`RESOLVER.md`** — human-readable trigger → skill table in pure markdown
+2. **`manifest.json`** — machine-readable skill registry: `{name, path, description}`
+3. **Each `SKILL.md`** — the procedure itself, with required sections (Contract / Phases / Output Format / Anti-Patterns) and `triggers: []` frontmatter
+
+**Integrity rule (enforced by `skills/testing/SKILL.md`):** every skill in `manifest.json` must have an entry in `RESOLVER.md`, and every `RESOLVER.md` entry must point at an existing `SKILL.md`. If any three-way link breaks, testing reports it.
+
+Example of GBrain's actual `RESOLVER.md`:
+```markdown
+| Trigger | Skill |
+|---------|-------|
+| Every inbound message (spawn parallel, don't block) | skills/signal-detector/SKILL.md |
+| "What do we know about", "tell me about", "search for" | skills/query/SKILL.md |
+| User shares a link, article, tweet, or idea | skills/idea-ingest/SKILL.md |
+| Meeting transcript received | skills/meeting-ingestion/SKILL.md |
+```
+
+Plus explicit **"Disambiguation rules"** when multiple skills match (prefer most specific; route by content type; ask user if ambiguous).
+
+### Two dialects of the same pattern
+
+| Dimension | Anthropic Claude Code | GBrain (Garry) |
+|-----------|----------------------|------------------|
+| Trigger field | `description` + `when_to_use` (free-text) | `triggers: [...]` (canonical array) |
+| Registry | Filesystem scan of `.claude/skills/**/SKILL.md` | Explicit `manifest.json` + `RESOLVER.md` |
+| Routing | LLM matches user intent → description string | LLM match **+** deterministic table lookup |
+| Reachability audit | None built-in | `src/core/check-resolvable.ts` |
+| DRY enforcement | None | `gbrain doctor --fix` rewrites inlined rules to callouts |
+
+**GBrain layers explicit routing ON TOP of Anthropic's implicit description-matching** — belt-and-suspenders.
 
 ### The misfiling that revealed everything (the Manidis story)
 Garry asked his agent to ingest Will Manidis's essay "No New Deal for OpenAI" — a policy analysis of OpenAI's industrial policy brief.
@@ -102,10 +139,12 @@ This wiki already implements the resolver pattern in three ways:
 - The [[context-rot]] risk applies here too: if a slash command is added without updating CLAUDE.md's Commands table, it's effectively dark.
 
 ## Connections
-- Related: [[trigger-evals]], [[check-resolvable]], [[context-rot]], [[thin-harness-fat-skills]], [[garry-tan]], [[skill-as-method-call]], [[gbrain]], [[gstack]], [[index-over-rag]], [[context-management]], [[context-noise-governance]], [[documentation-layers]], [[dreaming]], [[claude-code]], [[openclaw]]
+- Related: [[trigger-evals]], [[check-resolvable]], [[context-rot]], [[agent-skills-standard]], [[thin-harness-fat-skills]], [[garry-tan]], [[skill-as-method-call]], [[gbrain]], [[gstack]], [[index-over-rag]], [[context-management]], [[context-noise-governance]], [[documentation-layers]], [[dreaming]], [[claude-code]], [[openclaw]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-19 | raw/2026-04-11-garry-tan-thin-harness-fat-skills.md | Initial creation |
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Major expansion: fractal resolvers, Manidis misfiling story, invisible-skill problem, context rot, governance stack (trigger evals + check-resolvable), self-healing RLM idea, management reframe |
+| 2026-04-21 | raw/2026-04-21-anthropic-agent-skills-docs.md | Added official Anthropic confirmation of `description` as canonical resolver; 1,536-char cap; 1% context-window budget; SLASH_COMMAND_TOOL_CHAR_BUDGET escape hatch |
+| 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Added three-layer artifact (RESOLVER.md + manifest.json + SKILL.md); concrete GBrain RESOLVER.md example; two-dialect comparison table |
