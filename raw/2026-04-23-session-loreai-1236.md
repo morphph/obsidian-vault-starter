@@ -7,28 +7,23 @@
 
 ---
 
-**Context:** Reviewing a batch of 39 content signals (indices roughly 21–39 shown) from an automated daily sweep of Claude Code ecosystem sources, routing each to wiki pages or blog content actions.
+**Context:** Signal triage session for OpenAI Codex content — evaluating 4 fresh Twitter signals against approved subtopics and existing content inventory.
 
 **Key Exchanges:**
-- No interactive Q&A — this is a structured signal-routing output from what appears to be an `/ingest-anthropic-daily` run dated 2026-04-22/23.
+- Reviewed 4 signals (Twitter searches on coding agent workflows, Claude Code skills, AI agent frameworks, CLAUDE.md config) for Codex content relevance
+- 2 signals marked `ignore`, 2 marked `refresh_and_create`
 
 **Decisions Made:**
-- **High-priority refresh targets:** `faq/claude-code-pricing` (hit by 5+ signals: Pro tier removal, WindsurfPoolAPI, OpenCode Go, ask-local), `faq/claude-code-skills` (design principles, academic research, UI design, legal contracts), `blog/claude-code-is-not-a-coding-tool` (non-technical use cases)
-- **New pages flagged for creation:**
-  - Blog: multi-agent debate plugin pattern (design-council), cross-tool plugin packaging (agentrig), Claude Code Pro tier removal explainer
-  - Tutorial: DAG orchestration via `orchestra`, local LLM delegation via `ask-local`
-  - FAQ: third-party persistent memory (`claude-reforge`)
-  - Compare: AtomCode as open-source Claude Code alternative
-- **Ignored signals (3):** Injective MCP duplicate (signal 26), generic hooks tutorial tweet (38), Japanese promo tweet (39)
-- **Memory blog needs update** to include "auto dream" — async background memory consolidation as a third layer alongside CLAUDE.md and auto memory
+- **Signal 2 (Google Cloud Agent Skills):** Actionable — Google Cloud launched an official GitHub repo with 13 Agent Skills explicitly supporting Codex, Claude Code, Gemini CLI, OpenCode. Maps to `codex-skills`, `codex-plugins`, `codex-vs-competitors`, `codex-changelog`. Suggested blog: "Google Cloud agent skills Codex"
+- **Signal 4 (CLAUDE.md/AGENTS.md as universal config layer):** Actionable — community articulating AGENTS.md as a multi-agent coordination standard (alongside CLAUDE.md for behavior, DESIGN.md for visuals). Maps to `codex-agents-md`, `codex-prompting`. Suggested blog: "AGENTS.md multi-agent configuration Codex"
+- **Signals 1 & 3:** Ignored — generic tool promotions with no Codex-specific mention or content gap
 
 **Lessons Learned:**
-- The Pro tier pricing change (signal 35) is high-stakes — existing `faq/claude-code-pricing` and `faq/claude-code-install` pages likely contain outdated information and need immediate refresh
-- Community skills ecosystem has expanded significantly: 48-skill marketplace, domain-specific skill packs (legal, academic, UI design) — skills FAQ is underrepresenting breadth
-- Cross-tool interoperability is emerging as a theme: agentrig (plugin portability), WindsurfPoolAPI (multi-tool proxy), ask-local (hybrid local/cloud) — may warrant a dedicated page
+- Google Cloud's official skills repo validates Codex's skills system as a cross-vendor standard — ecosystem momentum signal worth tracking
+- AGENTS.md is gaining traction as a cross-agent config pattern beyond just Codex; framing it as a multi-agent orchestration layer (not just setup docs) is a differentiated content angle
+- Tweets with no summary field and no Codex-specific mention should be ignored even if topically adjacent
 
 **Action Items:**
-- Refresh `faq/claude-code-pricing` with Pro tier change + cost alternatives (ask-local, WindsurfPoolAPI, OpenCode Go)
-- Refresh `blog/claude-code-memory` with 3-layer model including auto dream
-- Create new pages for: AtomCode compare, DAG orchestration tutorial, cross-tool plugin blog, Pro tier change blog, third-party memory FAQ
-- Refresh `faq/claude-code-skills` with marketplace link and domain-specific examples
+- Create blog post: Google Cloud Agent Skills + Codex integration
+- Create blog/FAQ: AGENTS.md as multi-agent coordination config pattern
+- Update `topics/codex` hub page to reflect Google Cloud ecosystem addition
