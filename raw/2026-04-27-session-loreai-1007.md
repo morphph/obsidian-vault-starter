@@ -7,26 +7,21 @@
 
 ---
 
-**Context:** Generated a Chinese-language AI newsletter (blog2video/AI精读 style) covering major AI news for April 27, 2026.
+**Context:** Reviewing an AI industry newsletter digest (April 27, 2026) for knowledge worth preserving in the wiki.
 
 **Key Exchanges:**
-- No interactive Q&A — this was a single-turn article generation session.
+- No interactive exchanges — this was a read/review task over a newsletter digest
 
 **Decisions Made:**
-- Article framing: led with DeepSeek V4 on Huawei Ascend + OpenAI retiring SWE-bench as the paired narrative ("一个在造路，一个在拆桥")
-- Included a "模型小课堂" section explaining benchmark saturation for general readers
-- 今日精选 focused on the SWE-bench retirement as the deepest insight
+- N/A
 
 **Lessons Learned:**
-- **DeepSeek V4 Pro**: 1.6T params / 49B activated, runs on Huawei Ascend — first frontier-class model on domestic Chinese chips; also fully open-source
-- **OpenAI retired SWE-bench Verified**: official rationale — frontier models saturated near ceiling, score differences reflect test-taking skill not real ability
-- **GPT-5.5**: 50% token reduction, 33% speed gain, slight accuracy uptick (Notion benchmark)
-- **Opus 4.7 regression warning**: Abacus AI reports it underperforms Opus 4.6 — upgrade ≠ improvement
-- **AI Agent production DB deletion**: real incident, reinforces need for sandbox + least-privilege permissions before granting DB write access to agents
-- **MCP supply chain attack**: already happening in the wild; MCP servers hold credentials and system access — treat them like privileged processes, not browser plugins
-- **NVIDIA $5T market cap**: fastest company to reach this milestone (~2 years from $1T)
+- **Benchmark saturation is now official**: OpenAI abandoned SWE-bench Verified; frontier models cluster so tightly at the ceiling that score differences measure test artifacts, not capability. Task-specific evals on your own codebase are now the only reliable signal for coding agent selection.
+- **Opus 4.7 may regress from 4.6** (Bindu Reddy / Abacus AI claim, unconfirmed broadly): Never assume next version = better. Always benchmark on your own tasks before upgrading.
+- **MCP security model is not sandboxed**: MCP servers run as full processes with credentials — not browser extensions. Supply chain attacks already observed in the wild. Organizations need explicit MCP installation policies.
+- **DeepSeek V4 Pro on Huawei Ascend** breaks the export-control compute bottleneck assumption — China now has a frontier-tier open-source model on domestic silicon (1.6T params, 49B active, free).
+- **AI agent deleted a production database** — concrete incident reinforcing need for explicit permission scoping before giving agents real credentials.
 
 **Action Items:**
-- Ingest DeepSeek V4 and SWE-bench retirement as wiki pages if raw sources are added
-- Consider adding MCP security as a standalone wiki topic (supply chain risk angle)
-- Flag Opus 4.7 regression finding — worth re-checking when more eval data arrives
+- Consider ingesting this digest into the wiki: covers Nvidia $5T, GPT-5.5 vs Claude regression, MCP supply chain security, SWE-bench abandonment, YourMemory decay model, OpenClaude, Codex weekly ship log, DeepSeek V4 Pro
+- Wiki pages worth creating/updating: `benchmark-saturation.md`, `mcp-security.md`, `deepseek.md`, `codex.md`, `agent-memory.md`
