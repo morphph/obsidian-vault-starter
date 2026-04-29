@@ -7,21 +7,26 @@
 
 ---
 
-**Context:** Drafted the April 29, 2026 AI daily newsletter (Chinese), covering major industry developments.
+**Context:** User compiled and formatted the daily AI newsletter digest for April 29, 2026.
 
 **Key Exchanges:**
-- Full newsletter draft produced covering: Claude Blender MCP connector, Mistral Workflows, GPT-5.4 solving Erdős conjecture, Microsoft VibeVoice, OpenAI on Bedrock, and more
+- Newsletter covers 20+ items across AI industry news, model releases, and tooling updates
+- Three headline stories: Claude's Blender MCP connector, Mistral Workflows (durable execution), GPT-5.4 Pro cracking an Erdős conjecture
+- Model Literacy section explains "durable execution" — checkpointed agent state that survives crashes
 
 **Decisions Made:**
-- **Top story pick:** GPT-5.4 Pro cracking a 60-year Erdős conjecture chosen as 今日精选 — rationale: strongest evidence yet of frontier models contributing original reasoning to open research problems, not just pattern matching
-- **模型小课堂 topic:** Durable Execution — ties together Mistral Workflows and Sakana Fugu as both highlighting this as the key gap between demo and production agents
+- Pick of the Day: GPT-5.4 Pro + Erdős conjecture — framed as a category shift from "useful assistant" to "research collaborator"
+- Durable execution selected as the conceptual explainer — ties together Mistral Workflows and Sakana Fugu launches
 
 **Lessons Learned:**
-- Two independent companies (Mistral, Sakana AI) both launched agent orchestration with durable execution as core selling point on the same day — signals market consensus that reliability/persistence is the bottleneck for production agents
-- OpenAI multi-cloud move (Bedrock) fundamentally changes enterprise procurement dynamics
-- Creative tool integration (Blender MCP) marks Anthropic's expansion beyond developer tooling into creative professional workflows
+- **OpenAI is now multi-cloud**: Models coming to Amazon Bedrock after Microsoft exclusivity dissolution — enterprise procurement implications
+- **Durable execution** is the missing reliability layer separating demo agents from production agents (checkpoint + resume on failure)
+- **IP ownership of AI-generated code** is becoming a real legal question as agentic coding scales to enterprise codebases
+- **Claude entering creative tooling** via Blender MCP connector signals Anthropic expanding beyond coding assistant positioning
 
 **Action Items:**
-- Newsletter content should be ingested into wiki: update pages for [[anthropic]], [[mistral]], [[openai]], [[durable-execution]], [[mcp-ecosystem]], [[vibeVoice]]
-- Track OpenAI $8 ChatGPT pricing impact on API pricing over coming weeks
-- Monitor Claude Code copyright discussion — potential wiki page on AI code ownership
+- Wiki pages to create/update: [[openai-bedrock]], [[durable-execution]], [[mistral-workflows]], [[talkie-model]], [[vibevoice]], [[claude-blender-mcp]], [[erdos-conjecture-ai]], [[claude-code-ip-ownership]]
+- Track OpenAI's $8 tier impact on consumer AI economics — 122M subscriber projection vs Pro cannibalization
+- Track Anthropic APAC expansion (Sydney office, Theo Hourmouzis as ANZ GM)
+- Update [[anthropic]] with Blender connector and Sydney office
+- Update [[openai]] with Bedrock deal, $8 tier, Erdős result, Codex GPT-5.5 migration
