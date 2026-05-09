@@ -206,3 +206,9 @@ source: raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md
 fetch-method: Playwright MCP (x.com long-form article)
 pages-created: 3-agent-starter-team.md, prompt-architecture-three-layer.md, quality-gate-loop.md, eng-khairallah.md, source-eng-khairallah-3-ai-hires.md
 pages-updated: ryan-sarver.md (Stella as canonical Operations Agent), multi-agent-architecture.md (added 3-agent business templating), gbrain.md (shared-knowledge-base-for-agent-team use case), verification-loops.md (cross-link quality-gate-loop as sister pattern), index.md
+
+## [2026-05-09] ingest | Thariq — The Unreasonable Effectiveness of HTML
+source: raw/2026-05-08-thariq-unreasonable-effectiveness-of-html.md
+fetch-method: Playwright MCP (x.com long-form article)
+pages-created: html-as-output-format.md, throwaway-editors.md, thariq.md (entity, promoted from prior source-only mention), source-thariq-html-effectiveness.md
+pages-updated: claude-code.md (HTML-output-format insight + throwaway editors), claude-opus-4-7.md (1M-context second-order effect on output formats), diarization.md (HTML as natural form factor for one-page profiles), index.md

@@ -25,6 +25,7 @@
 - [[gbrain]] — Garry Tan's open-source knowledge-base scaffold; ships RESOLVER.md + filing rules + check-resolvable out of the box
 - [[gstack]] — Garry Tan's open-source skills library for Claude Code; 72K+ GitHub stars; fat-skills pattern
 - [[eng-khairallah]] — Solo-founder author of viral 3-agent starter team playbook (2.4M views); mainstream temperature read on agent adoption
+- [[thariq]] — Claude Code team @ Anthropic; insider voice on session management (1M context) and HTML-as-output-format
 
 ## Concepts
 
@@ -78,6 +79,8 @@
 - [[3-agent-starter-team]] — Khairallah's solo-founder template: Research + Content + Operations agents replace the first 3 hires; coordinated through shared knowledge base; 70-80% coverage claim
 - [[prompt-architecture-three-layer]] — Khairallah's System / Workflow / Output prompt split — separate concerns by lifetime and authority; sibling to thin-harness-fat-skills
 - [[quality-gate-loop]] — Score → rewrite-if-below-threshold → loop → human pass for "soul"; sister pattern to verification-loops; the 80/20 production split
+- [[html-as-output-format]] — Thariq's case for HTML > Markdown for agent outputs; 100-line markdown threshold; output format as agent governance; 1M context makes 2-4× token cost negligible
+- [[throwaway-editors]] — Single-purpose HTML files purpose-built for one piece of data; always end with a copy-as-prompt export; anti-product ergonomics
 - [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
 
 ## Synthesis
@@ -136,3 +139,4 @@
 - [[source-anthropic-agent-skills-docs]] — Anthropic official Claude Code Skills docs: Agent Skills open standard, YAML frontmatter reference, 1,536-char cap, progressive disclosure lifecycle (2026-04-21 fetch)
 - [[source-gbrain-gstack-deep-scan]] — GitHub Deep Scan of Garry Tan's production stack: 9.7K⭐ + 78.7K⭐; concrete RESOLVER.md; check-resolvable as real TS code; 10-host template system (2026-04-21)
 - [[source-eng-khairallah-3-ai-hires]] — Khairallah's 2.4M-view solo-founder playbook: 3-agent starter team, three-layer prompt architecture, quality-gate loop, shared knowledge base coordination (2026-05-05)
+- [[source-thariq-html-effectiveness]] — Thariq (Claude Code team) on HTML > Markdown as agent output format: 100-line threshold, 1M context economics, throwaway editors, "stay in the loop" reframe (2026-05-08, 3.5M views)

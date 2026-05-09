@@ -47,10 +47,14 @@ The second loop is how systems get better without anyone editing code — the [[
 - [[knowledge-compiler-design]] / [[time-gated-compilation]] — wiki pages in this vault are themselves diarizations of raw/ sources.
 - [[session-memory]] — Claude Code's continuous note-taking by forked subagent is real-time diarization of the session.
 
+### The output-format question: HTML vs Markdown
+Diarization produces a "one-page structured profile." [[thariq|Thariq]]'s 2026-05-08 case for [[html-as-output-format|HTML as output format]] applies directly: the canonical SAYS-vs-ACTUALLY-BUILDING profile reads dramatically better as a styled HTML card with diff markers, photos, and color-coded confidence badges than as plain markdown. **HTML diarization** is the natural next form factor — same content, same compositional position, much higher read-rate. Worth experimenting in `/enrich-founder` style skills.
+
 ## Connections
-- Related: [[thin-harness-fat-skills]], [[garry-tan]], [[skill-as-method-call]], [[latent-vs-deterministic]], [[index-over-rag]], [[knowledge-compiler-design]], [[session-memory]], [[time-gated-compilation]]
+- Related: [[thin-harness-fat-skills]], [[garry-tan]], [[skill-as-method-call]], [[latent-vs-deterministic]], [[index-over-rag]], [[knowledge-compiler-design]], [[session-memory]], [[time-gated-compilation]], [[html-as-output-format]], [[thariq]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-19 | raw/2026-04-11-garry-tan-thin-harness-fat-skills.md | Initial creation |
+| 2026-05-09 | raw/2026-05-08-thariq-unreasonable-effectiveness-of-html.md | Added HTML-output-format note: diarization profiles read dramatically better as HTML than markdown |

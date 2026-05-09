@@ -47,15 +47,17 @@ tags: [wiki, product, llm, model]
 - **Safety posture (Project Glasswing):** cyber offensive capabilities deliberately reduced relative to the unreleased Mythos Preview. Automated safeguards block high-risk cyber requests. Legitimate security researchers can apply to the Cyber Verification Program.
 - **Alignment:** similar profile to 4.6; improved honesty and prompt-injection resistance; modest regression on controlled-substance harm-reduction guidance.
 - **Migration gotcha:** updated tokenizer inflates token counts 1.0–1.35× depending on content type; higher effort levels also generate more thinking tokens.
+- **Second-order effect on output formats** ([[thariq]] 2026-05-08): the 1M context window quietly enables a workflow shift — [[html-as-output-format|HTML over Markdown]] for specs/plans/reports. HTML output is 2-4× more tokens than markdown, but that cost is no longer noticeable at 1M context. Combined with HTML's information density and the "100-line markdown threshold" past which people stop reading, the **right output format for many agentic tasks has flipped** since 4.6.
 - **Claude Code updates tied to 4.7:**
   - `/ultrareview` — dedicated code-review session (Pro/Max get 3 free/month)
   - Extended auto mode for Max subscribers
 
 ## Connections
-- Related: [[Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[adaptive-thinking]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]]
+- Related: [[Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[adaptive-thinking]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]], [[html-as-output-format]], [[thariq]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-17 | raw/2026-04-16-anthropic-opus-4-7-announcement.md | Initial creation from official announcement |
 | 2026-04-17 | raw/2026-04-16-claude-docs-opus-4-7-whats-new.md | Added breaking API changes, behavior changes, adaptive thinking |
+| 2026-05-09 | raw/2026-05-08-thariq-unreasonable-effectiveness-of-html.md | Added second-order effect: 1M context unlocks HTML-over-Markdown as default output format |
