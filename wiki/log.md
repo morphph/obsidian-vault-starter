@@ -200,3 +200,9 @@ source: raw/2026-04-21-gbrain-gstack-github-deep-scan.md
 fetch-method: gh CLI (tree + README + RESOLVER.md + _brain-filing-rules.md + manifest.json + CLAUDE.md + SKILL.md samples)
 pages-created: source-gbrain-gstack-deep-scan.md
 pages-updated: gbrain.md (massive expansion — 9,718⭐, 17,888 pages production scale, 26 skills, real TS for check-resolvable & dry-fix, Minions job queue, BrainBench numbers, PGLite/Postgres pluggable engine), gstack.md (massive expansion — 78,692⭐, 23-skill specialist roster, 10-host template system, team mode), resolvers.md (three-layer artifact: RESOLVER.md + manifest.json + SKILL.md; two-dialect table), check-resolvable.md (confirmed as real code), trigger-evals.md (three-layer integrity reframe), thin-harness-fat-skills.md (10-host cross-vendor proof), agent-skills-standard.md, index.md
+
+## [2026-05-09] ingest | Khairallah — Build a Team of AI Agents That Replace Your First 3 Hires
+source: raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md
+fetch-method: Playwright MCP (x.com long-form article)
+pages-created: 3-agent-starter-team.md, prompt-architecture-three-layer.md, quality-gate-loop.md, eng-khairallah.md, source-eng-khairallah-3-ai-hires.md
+pages-updated: ryan-sarver.md (Stella as canonical Operations Agent), multi-agent-architecture.md (added 3-agent business templating), gbrain.md (shared-knowledge-base-for-agent-team use case), verification-loops.md (cross-link quality-gate-loop as sister pattern), index.md

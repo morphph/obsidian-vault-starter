@@ -27,9 +27,10 @@ Architectural pattern where multiple specialized LLM agents collaborate on a tas
 - **Subagent execution models** (Pachaar/Chawla): Fork (identical copy), Teammate (separate terminal with mailbox), Worktree (isolated git branch)
 - **OpenAI patterns**: agents-as-tools (subtasks, return results) vs handoffs (full control transfer)
 - **CrewAI**: role-based multi-agent with deterministic Flows backbone
+- **[[3-agent-starter-team|3-agent starter team]] (Khairallah, 2026-05)** — business-team templating of multi-agent architecture: **Research / Content / Operations** as the three roles every solo founder should build. Coordinated through a shared knowledge base ("not three separate tools, that is a team"). Each agent follows a four-component contract: role + tools + knowledge base + workflow. Less novel than Planner/Generator/Evaluator architecturally, but the role specialization to *business functions* (vs *engineering primitives*) is what made it 2.4M-view viral.
 
 ## Connections
-- Related: [[harness-design]], [[self-evaluation-bias]], [[Anthropic]], [[claude-code]], [[orchestration-loop]], [[verification-loops]]
+- Related: [[harness-design]], [[self-evaluation-bias]], [[Anthropic]], [[claude-code]], [[orchestration-loop]], [[verification-loops]], [[3-agent-starter-team]], [[eng-khairallah]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -37,3 +38,4 @@ Architectural pattern where multiple specialized LLM agents collaborate on a tas
 | 2026-04-06 | raw/2026-04-06-anthropic-harness-design-long-running-apps.md | Initial creation |
 | 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code multi-agent coordination pillar |
 | 2026-04-07 | raw/2026-04-07-anatomy-of-agent-harness.md | Added when-to-split heuristic, subagent models, OpenAI/CrewAI patterns |
+| 2026-05-09 | raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md | Added 3-agent starter team as the business-team templating of multi-agent architecture |

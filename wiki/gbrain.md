@@ -121,14 +121,18 @@ GBrain implements the Agent Skills standard + adds:
 
 The Anthropic standard is minimal; GBrain is opinionated. Both are valid.
 
+### Use case: shared knowledge base for an agent team
+The same GBrain primitive maps directly to [[eng-khairallah|Khairallah]]'s [[3-agent-starter-team|3-agent starter team]] coordination layer. Khairallah's "build a shared knowledge base that all three agents can read and write to" *is* GBrain at the personal-founder scale. Research agent writes competitor signals → Content agent reads them when generating responses → Operations agent reads them when drafting customer outreach. **Three agents, one brain, one team.** This is the use case mainstream founders care about, packaged for them rather than for builders.
+
 ### Relationship to this wiki
 This vault is philosophically the same thing at a smaller scale: immutable `raw/`, LLM-compiled `wiki/`, flat structure with [[index-over-rag]]. GBrain is a more opinionated scaffold — it enforces the resolver pattern and ships [[check-resolvable]]. Potential inspiration for hardening this vault's ingest skills ([[resolvers]], [[context-rot]]).
 
 ## Connections
-- Related: [[garry-tan]], [[gstack]], [[openclaw]], [[resolvers]], [[check-resolvable]], [[trigger-evals]], [[context-rot]], [[agent-skills-standard]], [[thin-harness-fat-skills]], [[latent-vs-deterministic]], [[index-over-rag]], [[two-pipeline-architecture]]
+- Related: [[garry-tan]], [[gstack]], [[openclaw]], [[resolvers]], [[check-resolvable]], [[trigger-evals]], [[context-rot]], [[agent-skills-standard]], [[thin-harness-fat-skills]], [[latent-vs-deterministic]], [[index-over-rag]], [[two-pipeline-architecture]], [[3-agent-starter-team]], [[eng-khairallah]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Initial creation |
 | 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Major expansion from GitHub Deep Scan: 9,718 stars; 17,888 pages/4,383 people/723 companies production scale; 26 skills; real TS code for check-resolvable & dry-fix; Minions job queue; BrainBench numbers; stricter SKILL.md contract; pluggable PGLite/Postgres engine |
+| 2026-05-09 | raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md | Added "shared knowledge base for an agent team" use case — same GBrain primitive packaged for Khairallah's 3-agent starter team |

@@ -24,11 +24,13 @@ VC and AI builder who constructed "Stella," an AI chief of staff on [[openclaw|O
 - **Key design rule:** [[llm-judgment-vs-scripts]] — LLMs handle synthesis/prioritization/drafting, Python scripts handle deterministic work (file I/O, API calls, timestamps)
 - Runs [[kaizen-loop]]: weekly research scan + Sunday review → continuous system improvement
 - **Scale:** manages fundraise pipeline of 100+ LPs, relationship context on every person/company/project
+- **Stella as the canonical "Operations Agent"** — [[eng-khairallah|Khairallah]]'s 2026-05-05 [[3-agent-starter-team|3-agent starter team]] proposes Research / Content / Operations as the three roles every solo founder should build. Stella *is* the Operations Agent, built deeply: email triage, meeting prep, weekly reporting are exactly the three workflows Khairallah specifies. Sarver is the worked production example for what Khairallah generalizes as a starter template.
 
 ## Connections
-- Related: [[openclaw]], [[zero-friction-capture]], [[kaizen-loop]], [[llm-judgment-vs-scripts]], [[compiler-analogy]]
+- Related: [[openclaw]], [[zero-friction-capture]], [[kaizen-loop]], [[llm-judgment-vs-scripts]], [[compiler-analogy]], [[3-agent-starter-team]], [[eng-khairallah]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-07 | raw/2026-04-07-rsarver-ai-chief-of-staff-openclaw.md | Initial creation |
+| 2026-05-09 | raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md | Cross-linked Stella as the canonical Operations Agent in Khairallah's 3-agent starter team |

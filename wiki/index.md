@@ -24,6 +24,7 @@
 - [[garry-tan]] — YC President & CEO; OpenClaw practitioner; author of "Thin Harness, Fat Skills" (2026-04-11) and "Resolvers: Routing Table for Intelligence" (2026-04-15); creator of GBrain + GStack
 - [[gbrain]] — Garry Tan's open-source knowledge-base scaffold; ships RESOLVER.md + filing rules + check-resolvable out of the box
 - [[gstack]] — Garry Tan's open-source skills library for Claude Code; 72K+ GitHub stars; fat-skills pattern
+- [[eng-khairallah]] — Solo-founder author of viral 3-agent starter team playbook (2.4M views); mainstream temperature read on agent adoption
 
 ## Concepts
 
@@ -74,6 +75,9 @@
 - [[check-resolvable]] — Meta-skill that walks AGENTS.md → skill → code and finds dead links; Garry's first run: 6/40 = 15% dark capability
 - [[context-rot]] — 90-day decay curve for resolvers: Day 1 perfect → Day 90 historical document; defended by trigger-evals + check-resolvable + self-healing RLM
 - [[agent-skills-standard]] — Open standard (agentskills.io) for portable SKILL.md files; YAML frontmatter reference; 1,536-char description cap; progressive disclosure; two dialects (Anthropic description-matching vs GBrain triggers: array)
+- [[3-agent-starter-team]] — Khairallah's solo-founder template: Research + Content + Operations agents replace the first 3 hires; coordinated through shared knowledge base; 70-80% coverage claim
+- [[prompt-architecture-three-layer]] — Khairallah's System / Workflow / Output prompt split — separate concerns by lifetime and authority; sibling to thin-harness-fat-skills
+- [[quality-gate-loop]] — Score → rewrite-if-below-threshold → loop → human pass for "soul"; sister pattern to verification-loops; the 80/20 production split
 - [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
 
 ## Synthesis
@@ -131,3 +135,4 @@
 - [[source-garry-tan-resolvers]] — Garry Tan's follow-up: resolvers as governance layer; check-resolvable; trigger evals; context rot; GBrain + GStack open-source drop (2026-04-15)
 - [[source-anthropic-agent-skills-docs]] — Anthropic official Claude Code Skills docs: Agent Skills open standard, YAML frontmatter reference, 1,536-char cap, progressive disclosure lifecycle (2026-04-21 fetch)
 - [[source-gbrain-gstack-deep-scan]] — GitHub Deep Scan of Garry Tan's production stack: 9.7K⭐ + 78.7K⭐; concrete RESOLVER.md; check-resolvable as real TS code; 10-host template system (2026-04-21)
+- [[source-eng-khairallah-3-ai-hires]] — Khairallah's 2.4M-view solo-founder playbook: 3-agent starter team, three-layer prompt architecture, quality-gate loop, shared knowledge base coordination (2026-05-05)
