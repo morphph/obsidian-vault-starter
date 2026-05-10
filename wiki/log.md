@@ -212,3 +212,9 @@ source: raw/2026-05-08-thariq-unreasonable-effectiveness-of-html.md
 fetch-method: Playwright MCP (x.com long-form article)
 pages-created: html-as-output-format.md, throwaway-editors.md, thariq.md (entity, promoted from prior source-only mention), source-thariq-html-effectiveness.md
 pages-updated: claude-code.md (HTML-output-format insight + throwaway editors), claude-opus-4-7.md (1M-context second-order effect on output formats), diarization.md (HTML as natural form factor for one-page profiles), index.md
+
+## [2026-05-10] ingest | Thariq — Lessons from Building Claude Code: Prompt Caching is Everything
+source: raw/2026-04-30-thariq-prompt-caching-is-everything.md
+fetch-method: WebFetch (claude.com static blog, no fallback needed)
+pages-created: plan-mode-as-tools.md (state-as-tool-call design pattern), source-thariq-prompt-caching-is-everything.md
+pages-updated: prompt-cache-optimization.md (major expansion — 4-layer ordering, `<system-reminder>`, `defer_loading`, cache-safe compaction forking, SEV-level alerting, model-swap caveat, production cache-break bug catalog), thariq.md (third article + full name + MTS title), claude-code.md (Plan Mode as tools, defer_loading, compaction buffer), index.md
