@@ -218,3 +218,9 @@ source: raw/2026-04-30-thariq-prompt-caching-is-everything.md
 fetch-method: WebFetch (claude.com static blog, no fallback needed)
 pages-created: plan-mode-as-tools.md (state-as-tool-call design pattern), source-thariq-prompt-caching-is-everything.md
 pages-updated: prompt-cache-optimization.md (major expansion — 4-layer ordering, `<system-reminder>`, `defer_loading`, cache-safe compaction forking, SEV-level alerting, model-swap caveat, production cache-break bug catalog), thariq.md (third article + full name + MTS title), claude-code.md (Plan Mode as tools, defer_loading, compaction buffer), index.md
+
+## [2026-05-11] ingest | Garry Tan — Meta-Meta-Prompting: The Secret to Making AI Agents Work
+source: raw/2026-05-09-garry-tan-meta-meta-prompting.md
+fetch-method: Playwright MCP (x.com long-form article)
+pages-created: skillify-meta-skill.md, book-mirror.md, filing-cabinet-vs-nervous-system.md, source-garry-tan-meta-meta-prompting.md
+pages-updated: garry-tan.md (6th article + production milestone 100K pages/100+ skills/100+ crons), gbrain.md (100K production scale, 39 installable skills, 97.6% LongMemEval recall, Karpathy attribution, filing-cabinet-vs-nervous-system framing, named production skills), gstack.md (87K stars), resolvers.md (skillify as production primitive), index.md

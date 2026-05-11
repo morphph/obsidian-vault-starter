@@ -11,7 +11,7 @@ tags: [wiki, product, open-source, knowledge-base, agentic]
 # GBrain
 
 ## Summary
-[[garry-tan|Garry Tan]]'s open-source **knowledge-base scaffold** for a personal agent (github.com/garrytan/gbrain, **9,718 stars** as of 2026-04-21, TypeScript, PGLite/Postgres+pgvector hybrid RAG). Ships with the [[resolvers|resolver]] pattern built in: `gbrain init` creates `RESOLVER.md`, a filing decision tree, and disambiguation rules so the agent starts filing correctly from day one. Includes [[check-resolvable]] as **real TypeScript code** (`src/core/check-resolvable.ts`). Paired with [[gstack]] (the coding/skills layer) and runs inside [[openclaw|OpenClaw]] or Hermes Agent (the thin harness). Production scale: **17,888 pages, 4,383 people, 723 companies, 21 crons, built in 12 days.**
+[[garry-tan|Garry Tan]]'s open-source **knowledge-base scaffold** for a personal agent (github.com/garrytan/gbrain, **9,718 stars** as of 2026-04-21, TypeScript, PGLite/Postgres+pgvector hybrid RAG). Inspired by Karpathy's LLM Wiki gist, implemented in OpenClaw, extended into GBrain. Ships with the [[resolvers|resolver]] pattern built in: `gbrain init` creates `RESOLVER.md`, a filing decision tree, and disambiguation rules so the agent starts filing correctly from day one. Includes [[check-resolvable]] as **real TypeScript code** (`src/core/check-resolvable.ts`). Paired with [[gstack]] (the coding/skills layer) and runs inside [[openclaw|OpenClaw]] or Hermes Agent (the thin harness). **Production scale as of 2026-05-09: 100,000 pages, 100+ skills, 100+ daily crons, 97.6% recall on LongMemEval (beats MemPalace with NO LLM in the retrieval loop), 39 installable skills ship out of the box.**
 
 ## Details
 
@@ -124,11 +124,36 @@ The Anthropic standard is minimal; GBrain is opinionated. Both are valid.
 ### Use case: shared knowledge base for an agent team
 The same GBrain primitive maps directly to [[eng-khairallah|Khairallah]]'s [[3-agent-starter-team|3-agent starter team]] coordination layer. Khairallah's "build a shared knowledge base that all three agents can read and write to" *is* GBrain at the personal-founder scale. Research agent writes competitor signals → Content agent reads them when generating responses → Operations agent reads them when drafting customer outreach. **Three agents, one brain, one team.** This is the use case mainstream founders care about, packaged for them rather than for builders.
 
+### Production update — 2026-05-09 (Meta-Meta-Prompting article)
+Garry's personal GBrain instance now shows:
+- **100,000 pages** (up from 25K in mid-April → 100K in early May, 4× growth in ~3 weeks)
+- **100+ skills** (up from 40+)
+- **100+ daily crons**
+- **39 installable skills ship in the open-source release** (up from 26 on Apr 21)
+- **97.6% recall on LongMemEval** — claims best benchmarked retrieval system, beating MemPalace with **NO LLM in the retrieval loop** (graph + hybrid search, fully deterministic)
+- Origin attribution: **Karpathy's LLM Wiki gist** was the inspiration
+
+Notable new skills referenced in production:
+- `book-mirror` — see [[book-mirror]]
+- `meeting-ingestion` (with entity propagation)
+- `enrich` (pulls from 5 sources)
+- `media-ingest` (video / audio / PDF / screenshots / GitHub repos)
+- `perplexity-research` (brain-augmented web research — checks brain BEFORE web)
+- `cross-modal-eval` — quality-gate via multiple models (Opus 4.7 1M for precision, GPT-5.5 for recall, DeepSeek V4-Pro for generic detection)
+- `/skillify` — see [[skillify-meta-skill]]; the meta-skill that creates new skills
+
+### Filing cabinet vs nervous system
+GBrain's design embodies the [[filing-cabinet-vs-nervous-system|"nervous system" framing]]: storage alone is filing cabinet; **automatic entity propagation + recency awareness + context loading** is what makes it a nervous system. Concrete distinction:
+- Filing cabinet: a meeting transcript lives in `meetings/`
+- Nervous system: after the meeting, the system walks through every person + company mentioned and **updates each of their pages** — the meeting page is the *trigger*, not the *product*
+
+GBrain achieves this with **zero LLM calls** for the propagation layer (pattern matching + heuristic edge typing). This is why 100+ crons/day is economically sustainable.
+
 ### Relationship to this wiki
 This vault is philosophically the same thing at a smaller scale: immutable `raw/`, LLM-compiled `wiki/`, flat structure with [[index-over-rag]]. GBrain is a more opinionated scaffold — it enforces the resolver pattern and ships [[check-resolvable]]. Potential inspiration for hardening this vault's ingest skills ([[resolvers]], [[context-rot]]).
 
 ## Connections
-- Related: [[garry-tan]], [[gstack]], [[openclaw]], [[resolvers]], [[check-resolvable]], [[trigger-evals]], [[context-rot]], [[agent-skills-standard]], [[thin-harness-fat-skills]], [[latent-vs-deterministic]], [[index-over-rag]], [[two-pipeline-architecture]], [[3-agent-starter-team]], [[eng-khairallah]]
+- Related: [[garry-tan]], [[gstack]], [[openclaw]], [[resolvers]], [[check-resolvable]], [[trigger-evals]], [[context-rot]], [[agent-skills-standard]], [[thin-harness-fat-skills]], [[latent-vs-deterministic]], [[index-over-rag]], [[two-pipeline-architecture]], [[3-agent-starter-team]], [[eng-khairallah]], [[skillify-meta-skill]], [[book-mirror]], [[filing-cabinet-vs-nervous-system]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -136,3 +161,4 @@ This vault is philosophically the same thing at a smaller scale: immutable `raw/
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Initial creation |
 | 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Major expansion from GitHub Deep Scan: 9,718 stars; 17,888 pages/4,383 people/723 companies production scale; 26 skills; real TS code for check-resolvable & dry-fix; Minions job queue; BrainBench numbers; stricter SKILL.md contract; pluggable PGLite/Postgres engine |
 | 2026-05-09 | raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md | Added "shared knowledge base for an agent team" use case — same GBrain primitive packaged for Khairallah's 3-agent starter team |
+| 2026-05-11 | raw/2026-05-09-garry-tan-meta-meta-prompting.md | Production update: 100K pages, 100+ skills, 100+ daily crons, 39 installable skills, 97.6% LongMemEval recall; Karpathy attribution; filing-cabinet-vs-nervous-system framing; named production skills (book-mirror, cross-modal-eval, perplexity-research) |

@@ -11,7 +11,7 @@ tags: [wiki, product, open-source, skills, agentic]
 # GStack
 
 ## Summary
-[[garry-tan|Garry Tan]]'s open-source **coding/skills layer** for Claude Code — the "fat skills in markdown" layer from [[thin-harness-fat-skills]]. **78,692 stars on GitHub** (2026-04-21, up from 72K in the April 15 article). 23 specialist skills that turn Claude Code into a virtual engineering team: CEO, Eng Manager, Senior Designer, Staff Engineer, QA Lead, CSO, Release Engineer, SRE, Debugger. **Template-based generation compiles to 10 agent runtimes** (Claude Code, Codex, Cursor, Factory, OpenCode, Slate, Kiro, Hermes, GBrain, OpenClaw) — the first cross-vendor proof of the [[agent-skills-standard|Agent Skills standard]].
+[[garry-tan|Garry Tan]]'s open-source **coding/skills layer** for Claude Code — the "fat skills in markdown" layer from [[thin-harness-fat-skills]]. **87,000+ stars on GitHub** (2026-05-09, up from 78,692 on Apr 21 and 72K on Apr 15 — accelerating trajectory). 23 specialist skills that turn Claude Code into a virtual engineering team: CEO, Eng Manager, Senior Designer, Staff Engineer, QA Lead, CSO, Release Engineer, SRE, Debugger. **Template-based generation compiles to 10 agent runtimes** (Claude Code, Codex, Cursor, Factory, OpenCode, Slate, Kiro, Hermes, GBrain, OpenClaw) — the first cross-vendor proof of the [[agent-skills-standard|Agent Skills standard]].
 
 ## Details
 
@@ -127,3 +127,4 @@ The `.claude/commands/` slash commands in this repo are already fat-ish skills. 
 |------|--------|-------------|
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Initial creation |
 | 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Major expansion from GitHub Deep Scan: 78,692 stars; 23-skill specialist roster; 10-host template system (first cross-vendor Agent Skills proof); team mode auto-update; Karpathy quote + 810× productivity claim; gate-vs-periodic test tiers |
+| 2026-05-11 | raw/2026-05-09-garry-tan-meta-meta-prompting.md | Star count update: 87K (up from 78.7K, ~10% growth in 3 weeks); confirmed as the skill GBrain agents use when they need to write code |

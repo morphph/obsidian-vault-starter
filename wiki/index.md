@@ -82,6 +82,9 @@
 - [[html-as-output-format]] — Thariq's case for HTML > Markdown for agent outputs; 100-line markdown threshold; output format as agent governance; 1M context makes 2-4× token cost negligible
 - [[throwaway-editors]] — Single-purpose HTML files purpose-built for one piece of data; always end with a copy-as-prompt export; anti-product ergonomics
 - [[plan-mode-as-tools]] — Cache-preserving design pattern: model state transitions belong in tool calls (EnterPlanMode/ExitPlanMode), not prompt rewrites; capabilities ≠ behaviors
+- [[skillify-meta-skill]] — Garry Tan's meta-skill that creates new skills; operationalizes "if I ask twice, you failed"; the "meta-meta" of meta-meta-prompting
+- [[book-mirror]] — Two-column chapter-by-chapter book→life mapping pattern; per-section retrieval against personal context graph; 20+ books done, each gets richer because the brain gets richer
+- [[filing-cabinet-vs-nervous-system]] — Storage ≠ knowledge base; nervous-system = automatic entity propagation + recency awareness + context loading; the simple test: "does it do anything while you sleep?"
 - [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
 
 ## Synthesis
@@ -142,3 +145,4 @@
 - [[source-eng-khairallah-3-ai-hires]] — Khairallah's 2.4M-view solo-founder playbook: 3-agent starter team, three-layer prompt architecture, quality-gate loop, shared knowledge base coordination (2026-05-05)
 - [[source-thariq-html-effectiveness]] — Thariq (Claude Code team) on HTML > Markdown as agent output format: 100-line threshold, 1M context economics, throwaway editors, "stay in the loop" reframe (2026-05-08, 3.5M views)
 - [[source-thariq-prompt-caching-is-everything]] — Thariq (Anthropic engineering blog): cache hit rate as SLO, 4-layer prompt ordering, `<system-reminder>` channel, Plan Mode as tools, `defer_loading`, cache-safe compaction forking (2026-04-30)
+- [[source-garry-tan-meta-meta-prompting]] — Garry Tan part 6: skillify as production meta-skill, book-mirror pattern, filing-cabinet-vs-nervous-system framing, Karpathy LLM Wiki attribution, 100K-page production scale (2026-05-09, 1.1M views)
