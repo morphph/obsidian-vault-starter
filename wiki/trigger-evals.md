@@ -6,6 +6,7 @@ sources:
   - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
   - raw/2026-04-21-gbrain-gstack-github-deep-scan.md
   - raw/2026-04-21-anthropic-agent-skills-docs.md
+  - raw/2026-04-21-garry-tan-skillify-manifesto.md
 tags: [wiki, principle, agentic, eval, governance]
 ---
 
@@ -90,8 +91,31 @@ From the [[agent-skills-standard|Claude Code Skills docs]]:
 
 This is the manual version; trigger-evals automate it.
 
+### 50+ test-case examples from the Skillify Manifesto
+Real eval cases from Garry's [[source-garry-tan-skillify-manifesto|2026-04-21 piece]]:
+
+```js
+{ intent: 'check my signatures',      expectedSkill: 'executive-assistant' },
+{ intent: 'who is Pedro Franceschi',   expectedSkill: 'brain-ops' },
+{ intent: 'save this article',         expectedSkill: 'idea-ingest' },
+{ intent: 'what time is my meeting',   expectedSkill: 'context-now' },
+{ intent: 'find my 2016 trip',         expectedSkill: 'calendar-recall' },
+```
+
+**Run as both** structural tests (does `AGENTS.md` table contain the right mapping?) **and** LLM-routing tests (given this intent, does the model actually pick the right skill?). Both layers matter — the table can be correct and the model can still route wrong because the trigger description is vague.
+
+### Most honest test-case discovery heuristic
+> "**Search your conversation history for when you said 'fucking shit' or 'wtf.' Those are the test cases you're missing.**"
+
+This is Garry's actual recommended primary source for new eval cases — the moments of frustration are the empirical proof of routing or output failures that escaped tests.
+
+### Test the process, not just the output
+A particularly sharp eval pattern: feed the agent a question that requires deterministic work, then check **whether it ran the script or tried to do the math in its head.** For `context-now`, one eval feeds: *"hey, my flight leaves in about 45 minutes, will I make it to SFO?"* — if the agent takes the bait and computes the time itself instead of calling `context-now.mjs`, **the eval fails even if the math happens to be right** (because next time it won't be).
+
+This is the [[latent-vs-deterministic|latent-vs-deterministic]] line enforced at eval time.
+
 ## Connections
-- Related: [[resolvers]], [[check-resolvable]], [[context-rot]], [[agent-skills-standard]], [[gbrain]], [[garry-tan]], [[thin-harness-fat-skills]], [[verification-loops]], [[llm-judgment-vs-scripts]], [[openclaw]], [[claude-code]]
+- Related: [[resolvers]], [[check-resolvable]], [[context-rot]], [[agent-skills-standard]], [[gbrain]], [[garry-tan]], [[thin-harness-fat-skills]], [[verification-loops]], [[llm-judgment-vs-scripts]], [[openclaw]], [[claude-code]], [[skillify-meta-skill]], [[latent-vs-deterministic]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -99,3 +123,4 @@ This is the manual version; trigger-evals automate it.
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Initial creation |
 | 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Reframed as "three-layer integrity check" based on GBrain's `skills/testing/SKILL.md`; added MECE check |
 | 2026-04-21 | raw/2026-04-21-anthropic-agent-skills-docs.md | Added Anthropic's user-facing false-positive / false-negative debugging playbook |
+| 2026-05-12 | raw/2026-04-21-garry-tan-skillify-manifesto.md | Added 50+ test-case examples (production format); "fucking shit / wtf" eval-discovery heuristic; "test the process not just the output" pattern |

@@ -5,6 +5,7 @@ last-updated: 2026-04-19
 sources:
   - raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
   - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
+  - raw/2026-04-19-garry-tan-naked-models-are-stupider.md
 tags: [wiki, architecture, agentic, principle]
 ---
 
@@ -54,6 +55,27 @@ Steve Yegge: AI-agent coders are 10x-100x more productive than Cursor/chat users
 ### Why this validates [[harness-design]] convergent evolution
 Anthropic's formal frame: "LLM as reasoning center; harness provides perception, action, memory, constraints." Garry's pop frame: "thin harness, fat skills." Same architecture from different starting points. Also validates [[llm-judgment-vs-scripts]] (Sarver's independently-derived rule) — Garry's "latent vs deterministic" is the same line.
 
+### The "engine vs car" reframe (Naked Models Are Stupider, 2026-04-19)
+In response to Kyle Kingsbury's *"The Future of Everything is Lies"* critique of LLMs, Garry tightened the framing into a one-line metaphor:
+
+> "**The model is the engine. The harness is the car. Build the car.**"
+
+The argument: critics testing LLMs in isolation (chat them with raw natural language and watch them hallucinate) are "testing the engine on a bench and concluding cars are unsafe." Model unreliability is real — but it's an **engineering problem, not a philosophical one**. The 512K-line Claude Code source leak is the evidence: even Anthropic doesn't ship the engine naked.
+
+**Concrete remedy table from Garry's rebuttal:**
+
+| Kingsbury failure case | Where the engineering fix goes |
+|------------------------|---------------------------------|
+| LLM "fetches" stock data → hallucinates numbers | Deterministic tool (real API call) |
+| Gemini changes bathroom shape during material apply | Pipeline: vision (latent) + image processing (deterministic) + geometry check (deterministic) |
+| Jagged frontier (good at calc, bad at counting letters) | Resolver routes by capability — letter-count → 3-line Python |
+| Chaos / prompt injection sensitivity | Skill file as structured input — 200 lines of constraints, not freeform natural language |
+| CoT trace is "fanfic about itself" | Evaluate the output, not the scratchpad |
+
+**Aspirin / general anesthesia / bicycle stability analogy:** practical utility doesn't require theoretical completeness. We didn't wait for 1971's aspirin mechanism paper to keep prescribing it. **Engineering proceeds while research continues — which is how it always has.**
+
+**Open harnesses are the only solution to the trust problem:** the verification layer must be user-controllable. Closed-source agents structurally can't let you write the skill that verifies their output. Cites Pete Koomen's *AI Horseless Carriages*: the user must write their prompt, otherwise we'll be slaves to a system prompt we can't see.
+
 ### Connection to existing wiki concepts
 - [[harness-design]] → Garry's article is the most accessible field guide; provides the slogan.
 - [[llm-judgment-vs-scripts]] → "latent vs deterministic" is a synonymous reformulation, with one new contribution: the explicit name for *why* the line matters (latent space = where intelligence lives; deterministic = where trust lives).
@@ -70,3 +92,4 @@ Anthropic's formal frame: "LLM as reasoning center; harness provides perception,
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Noted follow-up article; added governance-layer concepts (trigger evals, check-resolvable, context rot) to Connections |
 | 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Added GStack's 10-host template system as first cross-vendor proof of the architecture (same skill source → Claude Code / Codex / Cursor / Factory / Hermes / OpenClaw / etc.) |
 | 2026-04-21 | raw/2026-04-21-anthropic-agent-skills-docs.md | Reinforced "thin harness" claim — Claude Code's full skill invocation is a single-message injection with 25K-token post-compaction budget, not a per-turn reload |
+| 2026-05-12 | raw/2026-04-19-garry-tan-naked-models-are-stupider.md | Added "engine vs car" metaphor section; Kingsbury failure-case remedy table; aspirin/anesthesia analogy; open-harness ethos |

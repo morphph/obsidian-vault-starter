@@ -224,3 +224,21 @@ source: raw/2026-05-09-garry-tan-meta-meta-prompting.md
 fetch-method: Playwright MCP (x.com long-form article)
 pages-created: skillify-meta-skill.md, book-mirror.md, filing-cabinet-vs-nervous-system.md, source-garry-tan-meta-meta-prompting.md
 pages-updated: garry-tan.md (6th article + production milestone 100K pages/100+ skills/100+ crons), gbrain.md (100K production scale, 39 installable skills, 97.6% LongMemEval recall, Karpathy attribution, filing-cabinet-vs-nervous-system framing, named production skills), gstack.md (87K stars), resolvers.md (skillify as production primitive), index.md
+
+## [2026-05-12] ingest | Garry Tan — On the LOC Controversy (part 3 backfill)
+source: raw/2026-04-18-garry-tan-loc-controversy.md
+fetch-method: Playwright MCP
+pages-created: source-garry-tan-loc-controversy.md
+pages-updated: garry-tan.md (3rd article in series + complete series timeline), gstack.md (Apr 18 production snapshot — 75K stars, 14,965 installs, 305K invocations)
+
+## [2026-05-12] ingest | Garry Tan — Naked Models Are Stupider (part 4 backfill)
+source: raw/2026-04-19-garry-tan-naked-models-are-stupider.md
+fetch-method: Playwright MCP
+pages-created: source-garry-tan-naked-models-stupider.md
+pages-updated: garry-tan.md (4th article), thin-harness-fat-skills.md (engine-vs-car metaphor; Kingsbury failure-case remedy table; aspirin/anesthesia analogy)
+
+## [2026-05-12] ingest | Garry Tan — The Skillify Manifesto (part 5 backfill)
+source: raw/2026-04-21-garry-tan-skillify-manifesto.md
+fetch-method: Playwright MCP
+pages-created: source-garry-tan-skillify-manifesto.md
+pages-updated: skillify-meta-skill.md (MAJOR — full 10-step checklist, calendar-recall + context-now case studies, skillify-as-verb workflow, Hermes Agent comparison, recursive insight), trigger-evals.md (50+ test-case examples, "fucking shit" heuristic, test-process-not-output pattern), check-resolvable.md (3 specific gbrain doctor checks, DRY audit lane-matrix), latent-vs-deterministic.md (concrete case studies, recursive loop), garry-tan.md (5th article), index.md

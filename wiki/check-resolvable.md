@@ -6,6 +6,7 @@ sources:
   - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
   - raw/2026-04-21-gbrain-gstack-github-deep-scan.md
   - raw/2026-04-21-anthropic-agent-skills-docs.md
+  - raw/2026-04-21-garry-tan-skillify-manifesto.md
 tags: [wiki, principle, agentic, governance, eval]
 ---
 
@@ -69,6 +70,20 @@ The [[agent-skills-standard|Claude Code Skills docs]] documents the user-facing 
 
 This is the manual version of check-resolvable — walk the chain by hand. check-resolvable is what you build when step 1 isn't enough.
 
+### Production check-resolvable contract (Skillify Manifesto, 2026-04-21)
+The three specific things `gbrain doctor` runs weekly:
+
+1. **Manifest ↔ Resolver coverage** — Every skill directory with a `SKILL.md` has a corresponding entry in the resolver
+2. **Script callability** — Every script referenced by a skill is actually callable (file exists, exports the right functions)
+3. **MECE check** — No two skills have overlapping trigger descriptions that would cause ambiguous routing
+
+### The DRY audit (sibling to check-resolvable)
+Runs alongside check-resolvable. Solves the "fifteen skills that sort of do the same thing if you're not careful" problem.
+
+**Example from Garry's calendar domain:** 4 skills (`calendar-recall`, `calendar-check`, `google-calendar`, …) — zero overlap, each has its lane. The lane matrix lives **inside the SKILL.md**, and the audit script parses it. **Build a sixth calendar skill that steps on another's lane and the audit fails before the skill can ship.**
+
+This is "no two skills can answer the same intent" turned into a compile-time check.
+
 ### Weekly cadence = linter for agent governance
 - Runs on a schedule (like a test suite in CI)
 - Catches drift between what was built and what's reachable
@@ -87,3 +102,4 @@ Any system with a plugin registry + auto-discovered plugins drifts over time. Th
 | 2026-04-19 | raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md | Initial creation |
 | 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Confirmed as real TS code (`src/core/check-resolvable.ts`); three checks (reachability + MECE + DRY); DRY_PROXIMITY_LINES=40; `gbrain doctor --fix` auto-remediation with five guards |
 | 2026-04-21 | raw/2026-04-21-anthropic-agent-skills-docs.md | Added Anthropic's manual debugging playbook (the user-facing equivalent) |
+| 2026-05-12 | raw/2026-04-21-garry-tan-skillify-manifesto.md | Added production check-resolvable contract (3 specific checks `gbrain doctor` runs); DRY audit sibling with the 4-skill calendar lane-matrix example |
