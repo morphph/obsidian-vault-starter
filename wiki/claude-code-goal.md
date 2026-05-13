@@ -3,7 +3,7 @@ type: concept
 created: 2026-05-13
 last-updated: 2026-05-13
 sources:
-  - raw/2026-05-13-claude-code-goal-and-code-review.md
+  - raw/2026-05-13-claude-code-goal-and-agent-view.md
 tags: [claude-code, autonomy, hooks, evaluator, session-control]
 ---
 
@@ -70,8 +70,9 @@ The condition must be **checkable from the transcript** since the evaluator has 
 - Sibling to [[task-budgets]] (Opus 4.7 model-side context-anxiety remedy): `/goal` is the *harness*-side answer; `task-budgets` is the *model*-side answer.
 - Complements [[plan-mode-as-tools]] philosophy: state transitions and completion checks belong in tool calls / hooks, not in prompt rewrites.
 - Pairs with auto-mode for fully unattended runs — [[ralph-wiggum]] for the heavyweight long-running version.
+- Pairs with [[claude-code-agent-view]] for parallel unattended runs — agent view = orchestration screen, `/goal` = per-session loop driver.
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
-| 2026-05-13 | raw/2026-05-13-claude-code-goal-and-code-review.md | Initial creation from official `/goal` docs at code.claude.com/docs/en/goal |
+| 2026-05-13 | raw/2026-05-13-claude-code-goal-and-agent-view.md | Initial creation from official `/goal` docs at code.claude.com/docs/en/goal |

@@ -248,3 +248,10 @@ source: raw/2026-05-13-claude-code-goal-and-code-review.md
 fetch-method: WebFetch (code.claude.com/docs/en/goal + /code-review) + WebSearch cross-ref to claude.com/blog + InfoQ
 pages-created: claude-code-goal.md (concept — session-scoped autonomous turn-loop with Haiku evaluator), claude-code-review.md (concept — managed multi-agent PR review, $15–25/PR, REVIEW.md customization), source-claude-code-goal-and-review-docs.md (source summary)
 pages-updated: index.md (registered three new entries under Concepts + Sources)
+
+## [2026-05-13] correction | Replaced Code Review with Agent View (initial ingest misidentified the feature)
+note: prior entry "ingest | Claude Code — `/goal` + Code Review" was based on a wrong identification of the second feature. Correct feature is **Agent View** (https://claude.com/blog/agent-view-in-claude-code, official docs https://code.claude.com/docs/en/agent-view). Code Review docs are a separate managed GitHub service and not the announced "agent view" feature.
+pages-deleted: claude-code-review.md, source-claude-code-goal-and-review-docs.md
+raw-renamed: raw/2026-05-13-claude-code-goal-and-code-review.md → raw/2026-05-13-claude-code-goal-and-agent-view.md (content rewritten for agent view)
+pages-created: claude-code-agent-view.md (research-preview TUI, supervisor process, peek/attach/dispatch, worktree isolation, shell commands), source-claude-code-goal-and-agent-view-docs.md (updated source summary)
+pages-updated: claude-code-goal.md (source reference + connection to agent view), index.md (swapped code-review entry for agent-view; swapped source-summary entry)
