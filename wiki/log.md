@@ -242,3 +242,9 @@ source: raw/2026-04-21-garry-tan-skillify-manifesto.md
 fetch-method: Playwright MCP
 pages-created: source-garry-tan-skillify-manifesto.md
 pages-updated: skillify-meta-skill.md (MAJOR — full 10-step checklist, calendar-recall + context-now case studies, skillify-as-verb workflow, Hermes Agent comparison, recursive insight), trigger-evals.md (50+ test-case examples, "fucking shit" heuristic, test-process-not-output pattern), check-resolvable.md (3 specific gbrain doctor checks, DRY audit lane-matrix), latent-vs-deterministic.md (concrete case studies, recursive loop), garry-tan.md (5th article), index.md
+
+## [2026-05-13] ingest | Claude Code — `/goal` + Code Review (official docs)
+source: raw/2026-05-13-claude-code-goal-and-code-review.md
+fetch-method: WebFetch (code.claude.com/docs/en/goal + /code-review) + WebSearch cross-ref to claude.com/blog + InfoQ
+pages-created: claude-code-goal.md (concept — session-scoped autonomous turn-loop with Haiku evaluator), claude-code-review.md (concept — managed multi-agent PR review, $15–25/PR, REVIEW.md customization), source-claude-code-goal-and-review-docs.md (source summary)
+pages-updated: index.md (registered three new entries under Concepts + Sources)

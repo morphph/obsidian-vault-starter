@@ -86,6 +86,8 @@
 - [[book-mirror]] — Two-column chapter-by-chapter book→life mapping pattern; per-section retrieval against personal context graph; 20+ books done, each gets richer because the brain gets richer
 - [[filing-cabinet-vs-nervous-system]] — Storage ≠ knowledge base; nervous-system = automatic entity propagation + recency awareness + context loading; the simple test: "does it do anything while you sleep?"
 - [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
+- [[claude-code-goal]] — `/goal` command: session-scoped autonomous turn-loop with a small-fast-model evaluator (Haiku) checking a completion condition after every turn
+- [[claude-code-review]] — Anthropic managed GitHub PR review service: agent fleet + verifier, $15–25/PR, Team/Enterprise only; tuned via `REVIEW.md`
 
 ## Synthesis
 
@@ -149,3 +151,4 @@
 - [[source-garry-tan-loc-controversy]] — Garry Tan part 3: LOC deflation math (still 408× after 2× AI haircut); "engineers can fly"; quality data (2% revert, 2K tests); GStack at 75K stars + 305K skill invocations (2026-04-18, 134K views)
 - [[source-garry-tan-naked-models-stupider]] — Garry Tan part 4: rebuts Kyle Kingsbury's "bullshit machines" essay; "engine vs car" metaphor; failure cases mapped to architecture fixes; open-harness ethos (2026-04-19, 152K views)
 - [[source-garry-tan-skillify-manifesto]] — Garry Tan part 5: the operational manifesto; 10-step Skillify Checklist; LangChain critique; calendar-recall + context-now case studies; "fucking shit / wtf" eval heuristic (2026-04-21, 916K views)
+- [[source-claude-code-goal-and-review-docs]] — Official Anthropic docs for `/goal` (session autonomous loop) + Code Review (managed multi-agent PR review); two complementary agent+verifier primitives (2026-05-13 fetch)
