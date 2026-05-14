@@ -271,3 +271,8 @@ pages-updated: 18 (case fixes + frontmatter + index + dangling cleanups)
 ## [2026-05-14] query | Agent view原理是什么，就是在每个任务都作为一个background跑吗
 pages-consulted: claude-code-agent-view.md
 answer-filed: chat only
+
+## [2026-05-14] query | how many claude code related docs we have ingest
+pages-consulted: index.md (Sources section), raw/ directory listing
+answer-filed: chat only
+notes: 45 curated externals total; 16 direct CC, 14 ecosystem (Ralph/Skills/GBrain), 15 adjacent. Plus 468 Pipeline B session captures.
