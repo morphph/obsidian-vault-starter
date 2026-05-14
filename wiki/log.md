@@ -267,3 +267,7 @@ auto-fixed:
   - E: fixed `[[1️⃣]]`/`[[3️⃣]]` accidental wikilinks → plain emoji in skillify-meta-skill; `[[index.md]]` → `index.md` (code) in source-claude-code-goal-and-agent-view-docs
 pages-created: cross-modal-review.md, sprint-contracts.md
 pages-updated: 18 (case fixes + frontmatter + index + dangling cleanups)
+
+## [2026-05-14] query | Agent view原理是什么，就是在每个任务都作为一个background跑吗
+pages-consulted: claude-code-agent-view.md
+answer-filed: chat only
