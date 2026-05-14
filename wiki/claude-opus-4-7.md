@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-04-17
-last-updated: 2026-04-17
+last-updated: 2026-05-09
 sources:
   - raw/2026-04-16-anthropic-opus-4-7-announcement.md
   - raw/2026-04-16-claude-docs-opus-4-7-whats-new.md
@@ -11,7 +11,7 @@ tags: [wiki, product, llm, model]
 # Claude Opus 4.7
 
 ## Summary
-[[Anthropic]]'s flagship model released 2026-04-16. Positioned as "the Opus 4.6 you can delegate to without watching" — substantial gains in agentic coding reliability, literal instruction following, self-verification, and high-resolution vision. First Claude model with high-res image support (3.75MP). Pricing unchanged from 4.6.
+[[anthropic|Anthropic]]'s flagship model released 2026-04-16. Positioned as "the Opus 4.6 you can delegate to without watching" — substantial gains in agentic coding reliability, literal instruction following, self-verification, and high-resolution vision. First Claude model with high-res image support (3.75MP). Pricing unchanged from 4.6.
 
 ## Details
 - **Model ID:** `claude-opus-4-7`
@@ -53,7 +53,7 @@ tags: [wiki, product, llm, model]
   - Extended auto mode for Max subscribers
 
 ## Connections
-- Related: [[Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[adaptive-thinking]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]], [[html-as-output-format]], [[thariq]]
+- Related: [[anthropic|Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[adaptive-thinking]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]], [[html-as-output-format]], [[thariq]]
 
 ## Source Log
 | Date | Source | What changed |

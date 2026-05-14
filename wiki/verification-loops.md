@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-04-07
-last-updated: 2026-04-15
+last-updated: 2026-05-09
 sources:
   - raw/2026-04-07-anatomy-of-agent-harness.md
   - raw/2026-04-15-tips-ai-coding-ralph-wiggum.md

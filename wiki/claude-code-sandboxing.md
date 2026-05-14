@@ -10,7 +10,7 @@ tags: [wiki, security, agentic, tool]
 # Claude Code Sandboxing
 
 ## Summary
-[[Anthropic]]'s native sandboxing for [[claude-code|Claude Code]] — OS-level filesystem and network isolation using Seatbelt (macOS) and bubblewrap (Linux). Reduces permission prompts by 84% while maintaining security. The critical safety foundation for running autonomous [[ralph-wiggum|Ralph]] loops AFK. Open-sourced as `@anthropic-ai/sandbox-runtime`.
+[[anthropic|Anthropic]]'s native sandboxing for [[claude-code|Claude Code]] — OS-level filesystem and network isolation using Seatbelt (macOS) and bubblewrap (Linux). Reduces permission prompts by 84% while maintaining security. The critical safety foundation for running autonomous [[ralph-wiggum|Ralph]] loops AFK. Open-sourced as `@anthropic-ai/sandbox-runtime`.
 
 ## Details
 - **Core principle**: Effective sandboxing requires **both** filesystem and network isolation. Either alone is insufficient.

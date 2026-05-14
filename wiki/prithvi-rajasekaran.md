@@ -10,7 +10,7 @@ tags: [wiki, person, researcher]
 # Prithvi Rajasekaran
 
 ## Summary
-Researcher at [[Anthropic]] Labs. Author of the harness design engineering blog post exploring GAN-inspired multi-agent architectures for long-running coding tasks.
+Researcher at [[anthropic|Anthropic]] Labs. Author of the harness design engineering blog post exploring GAN-inspired multi-agent architectures for long-running coding tasks.
 
 ## Details
 - Published "Harness Design for Long-Running Application Development" (March 24, 2026)
@@ -19,7 +19,7 @@ Researcher at [[Anthropic]] Labs. Author of the harness design engineering blog 
 - Explored the evolution of [[harness-design]] as model capabilities improve
 
 ## Connections
-- Related: [[Anthropic]], [[harness-design]], [[multi-agent-architecture]]
+- Related: [[anthropic|Anthropic]], [[harness-design]], [[multi-agent-architecture]]
 
 ## Source Log
 | Date | Source | What changed |

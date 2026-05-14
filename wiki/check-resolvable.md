@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-04-19
-last-updated: 2026-04-21
+last-updated: 2026-05-12
 sources:
   - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
   - raw/2026-04-21-gbrain-gstack-github-deep-scan.md

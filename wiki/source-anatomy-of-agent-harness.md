@@ -10,12 +10,12 @@ tags: [wiki, source, architecture, agentic]
 # Source: The Anatomy of an Agent Harness
 
 ## Summary
-Comprehensive breakdown of agent harness architecture by Akshay Pachaar / Avi Chawla (Daily Dose of DS). Defines 11 production components, 7 architectural decisions, and compares implementations across [[Anthropic]], OpenAI, LangGraph, and CrewAI. Key finding: LangChain jumped from outside top-30 to #5 on TerminalBench 2.0 by modifying only the harness, same model.
+Comprehensive breakdown of agent harness architecture by Akshay Pachaar / Avi Chawla (Daily Dose of DS). Defines 11 production components, 7 architectural decisions, and compares implementations across [[anthropic|Anthropic]], OpenAI, LangGraph, and CrewAI. Key finding: LangChain jumped from outside top-30 to #5 on TerminalBench 2.0 by modifying only the harness, same model.
 
 ## Details
 - Published as X thread (Apr 6, 2026) and blog post on Daily Dose of DS
 - Defines the harness as "the complete software infrastructure wrapping an LLM" — an OS where the model is just the CPU
-- 11 components: orchestration loop (TAO cycle), tools, memory, [[context-management]], prompt construction, output parsing, [[state-management]], error handling, guardrails, [[verification-loops]], [[subagent-orchestration]]
+- 11 components: orchestration loop (TAO cycle), tools, memory, [[context-management]], prompt construction, output parsing, state management (see [[forked-agent-pattern]], [[session-memory]]), error handling, guardrails, [[verification-loops]], subagent orchestration (see [[multi-agent-architecture]])
 - 7 architectural decisions: single vs multi-agent, ReAct vs plan-and-execute, context strategy, verification approach, permission architecture, tool scoping, harness thickness
 - "Scaffolding principle" aligns with [[assumptions-expire]] — strip harness as models improve
 - Introduces "Ralph Loop" pattern for long-running tasks: Initializer Agent + iterative Coding Agents across context windows

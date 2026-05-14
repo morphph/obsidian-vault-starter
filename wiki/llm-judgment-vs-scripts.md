@@ -14,7 +14,7 @@ tags: [wiki, principle, system-design, harness-engineering]
 Design principle: LLMs handle judgment (synthesis, prioritization, drafting, reasoning), and deterministic scripts handle everything else (reading files, calling APIs, sending messages, comparing timestamps). When you push deterministic work through an LLM, things break unpredictably and you stop trusting the system.
 
 ## Details
-- **Formulated by [[ryan-sarver]]** from building Stella on [[OpenClaw]]
+- **Formulated by [[ryan-sarver]]** from building Stella on [[openclaw|OpenClaw]]
 - **The failure mode:** Routing deterministic operations through LLMs introduces stochastic errors in places that should be reliable. Users lose trust in the system.
 - **The rule:** Anything with a known-correct answer (file I/O, API calls, timestamp comparison, sending messages) goes in Python. LLM only handles tasks requiring judgment: synthesis, prioritization, drafting, reasoning about ambiguous situations.
 - **Examples in Sarver's system:**

@@ -13,7 +13,7 @@ tags: [wiki, pattern, self-improvement, system-design]
 Pattern where an AI system continuously improves itself through two mechanisms: scheduled environmental scanning (what others are building) and learning from daily interaction friction. The system gets better every week without the user redesigning it. Named after the Japanese continuous improvement philosophy.
 
 ## Details
-- **Implemented by [[ryan-sarver]]'s Stella on [[OpenClaw]]:**
+- **Implemented by [[ryan-sarver]]'s Stella on [[openclaw|OpenClaw]]:**
   - **Friday cron job**: Stella scans OpenClaw community, checks new patterns, researches what other builders are doing → saves to `memory/kaizen-research-YYYY-MM-DD.md`
   - **Sunday review**: Human + AI review research together — summarize week's findings, surface top ideas, decide what to change
   - **Daily learning**: If user keeps correcting something, or a feature creates friction, that gets captured in memory and surfaces as a suggestion to fix

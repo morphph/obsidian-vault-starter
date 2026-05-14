@@ -11,7 +11,7 @@ tags: [wiki, product, llm]
 # Claude Model Family
 
 ## Summary
-[[Anthropic]]'s family of LLM models spanning different capability/cost tiers. Different models exhibit different behaviors under long-running agentic workloads, requiring different harness strategies.
+[[anthropic|Anthropic]]'s family of LLM models spanning different capability/cost tiers. Different models exhibit different behaviors under long-running agentic workloads, requiring different harness strategies.
 
 ## Details
 - **Claude Sonnet 4.5**: Exhibits [[context-anxiety]] — prematurely wraps up work as context fills. Context resets (clear + restart with structured handoffs) work better than compaction for this model.
@@ -26,7 +26,7 @@ tags: [wiki, product, llm]
 - Key insight: harness complexity should decrease as model capability increases — [[assumptions-expire]]. 4.7 is a concrete step: control primitives that used to live in the harness (budgets, effort) are now model-native.
 
 ## Connections
-- Related: [[Anthropic]], [[claude-opus-4-7]], [[harness-design]], [[context-anxiety]], [[xhigh-effort-level]], [[task-budgets]]
+- Related: [[anthropic|Anthropic]], [[claude-opus-4-7]], [[harness-design]], [[context-anxiety]], [[xhigh-effort-level]], [[task-budgets]]
 
 ## Source Log
 | Date | Source | What changed |

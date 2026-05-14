@@ -20,7 +20,7 @@ User's video production pipeline that transforms articles/tweets into narrated s
 ## Details
 - **Pipeline stages:** Source fetch → memo extraction → narration.md (human review checkpoint) → video_1_script.md (auto-generated, no review needed) → episode splitting → slide planning → slide HTML → render (TTS + screenshots → video)
 - **Review checkpoint:** `narration.md` is the human-editable source; `video_1_script.md` is a derived build artifact with `[SLIDE N]` markers and timecodes
-- **Source fetching:** Uses [[source-fetch-fallback-chain]] — Playwright MCP → WebFetch → Puppeteer → Vision transcription → Abort. Playwright MCP with `--browser chrome` can fetch X/Twitter content without login via accessibility tree.
+- **Source fetching:** Uses a fallback chain (Playwright MCP → WebFetch → Puppeteer → Vision transcription → Abort) — guarded against [[silent-fallback-antipattern]] with preflight gates so degradation isn't silent. Playwright MCP with `--browser chrome` can fetch X/Twitter content without login via accessibility tree.
 - **Diagram generation:** `scripts/lib/diagram-gen.ts` — D2 for architecture diagrams, Mermaid for process/flow. Prompt evaluates article type before choosing diagram type. Simple LR mermaid chains render as thin strips (~45px height) — avoid or use TD layout.
 - **Delivery metadata:** Auto-generates `delivery_meta.md` with 2-3 版本 for both [[content-distribution-china|小红书 and 微信视频号]], with platform-specific title/description styles
 - **Manifest naming:** Render script expects `manifest.json` (not `video_1_manifest.json`) — mismatch causes render failure

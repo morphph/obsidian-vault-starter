@@ -10,7 +10,7 @@ tags: [wiki, source, x-post, ai-assistant]
 # Source: Ryan Sarver — AI Chief of Staff on OpenClaw
 
 ## Summary
-Viral X post (217K views, 2.7K bookmarks) by VC [[ryan-sarver|Ryan Sarver]] detailing how he built "Stella," an AI chief of staff on [[OpenClaw]] that manages his fundraise pipeline, meeting prep, task management, relationship tracking, and information filtering. Demonstrates production-grade AI assistant architecture with two-layer memory, kaizen self-improvement, and strict LLM/script separation.
+Viral X post (217K views, 2.7K bookmarks) by VC [[ryan-sarver|Ryan Sarver]] detailing how he built "Stella," an AI chief of staff on [[openclaw|OpenClaw]] that manages his fundraise pipeline, meeting prep, task management, relationship tracking, and information filtering. Demonstrates production-grade AI assistant architecture with two-layer memory, kaizen self-improvement, and strict LLM/script separation.
 
 ## Key Takeaways
 - **Two-layer memory:** Daily markdown logs (auto-generated) + curated MEMORY.md (self-synthesized by the AI). Flat markdown, git-backed, no database — validates [[index-over-rag]] and [[compiler-analogy]] patterns

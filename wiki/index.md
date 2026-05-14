@@ -21,9 +21,9 @@
 - [[claude-code-monitor-tool]] — Event-driven background monitoring tool in Claude Code (v2.1.98): stdout lines wake the session
 - [[ralph-orchestrator]] — Production Rust implementation of Ralph Wiggum (2,702 stars): hats, waves, Telegram HITL, multi-backend
 - [[claude-opus-4-7]] — Anthropic's flagship model (2026-04-16): high-res vision, literal instruction following, self-verification, new agentic control primitives
-- [[garry-tan]] — YC President & CEO; OpenClaw practitioner; author of "Thin Harness, Fat Skills" (2026-04-11) and "Resolvers: Routing Table for Intelligence" (2026-04-15); creator of GBrain + GStack
-- [[gbrain]] — Garry Tan's open-source knowledge-base scaffold; ships RESOLVER.md + filing rules + check-resolvable out of the box
-- [[gstack]] — Garry Tan's open-source skills library for Claude Code; 72K+ GitHub stars; fat-skills pattern
+- [[garry-tan]] — YC President & CEO; OpenClaw practitioner; 6-part agent-building series (Apr-May 2026): Thin Harness → Resolvers → LOC Controversy → Naked Models → Skillify Manifesto → Meta-Meta-Prompting; creator of GBrain + GStack
+- [[gbrain]] — Garry Tan's open-source knowledge-base scaffold; ships RESOLVER.md + filing rules + check-resolvable out of the box; 100K-page production scale; 97.6% LongMemEval recall
+- [[gstack]] — Garry Tan's open-source skills library for Claude Code; 87K+ GitHub stars; 10-host template system (first cross-vendor Agent Skills proof)
 - [[eng-khairallah]] — Solo-founder author of viral 3-agent starter team playbook (2.4M views); mainstream temperature read on agent adoption
 - [[thariq]] — Claude Code team @ Anthropic; insider voice on session management (1M context) and HTML-as-output-format
 
@@ -88,6 +88,8 @@
 - [[latent-vs-deterministic]] — Garry Tan's reformulation of the LLM-judgment-vs-scripts line; capability vs trust failure modes
 - [[claude-code-goal]] — `/goal` command: session-scoped autonomous turn-loop with a small-fast-model evaluator (Haiku) checking a completion condition after every turn
 - [[claude-code-agent-view]] — Research-preview TUI (v2.1.139+, 2026-05-11) for managing many parallel background sessions hosted by a per-user supervisor process; replaces tmux-grid pattern
+- [[cross-modal-review]] — Multi-model quality review: Opus (precision) + GPT-5.5 (recall) + DeepSeek (genericness) score the same output on three axes; the production defense against self-evaluation bias
+- [[sprint-contracts]] — Evaluator/generator agree on success criteria before implementation begins; closes the "what good looks like" gap that turns 5-15 iteration cycles into 50
 
 ## Synthesis
 

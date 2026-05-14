@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-04-06
-last-updated: 2026-04-15
+last-updated: 2026-04-19
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
@@ -45,7 +45,7 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 - **Managed Agents — Anthropic productizes the harness**: [[claude-managed-agents]] (2026-04-09) is Anthropic's first-party managed harness service. Architecture decouples brain (Claude + stateless loop), hands (containers + tools), and session (append-only event log as source of truth). See [[managed-agents-architecture]]. Validates the harness-as-product thesis — developers get the [[infrastructure-layer]] for free. Research previews include [[managed-agents-outcomes]] (rubric-driven grading, separate grader context — the GAN-inspired evaluator role built into the platform) and [[managed-agents-multiagent]] (coordinator + thread delegation).
 
 ## Connections
-- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[Anthropic]], [[Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]], [[ralph-wiggum]], [[matt-pocock]], [[software-entropy]], [[garry-tan]], [[thin-harness-fat-skills]], [[skill-as-method-call]], [[resolvers]], [[diarization]], [[latent-vs-deterministic]]
+- Related: [[multi-agent-architecture]], [[context-anxiety]], [[self-evaluation-bias]], [[anthropic|Anthropic]], [[prithvi-rajasekaran|Prithvi Rajasekaran]], [[claude-code]], [[claude-managed-agents]], [[managed-agents-architecture]], [[managed-agents-outcomes]], [[managed-agents-multiagent]], [[query-loop]], [[context-management]], [[claude-memory-compiler]], [[zero-friction-capture]], [[compiler-analogy]], [[orchestration-loop]], [[verification-loops]], [[assumptions-expire]], [[akshay-pachaar]], [[infrastructure-layer]], [[boris-cherny]], [[ralph-wiggum]], [[matt-pocock]], [[software-entropy]], [[garry-tan]], [[thin-harness-fat-skills]], [[skill-as-method-call]], [[resolvers]], [[diarization]], [[latent-vs-deterministic]]
 
 ## Source Log
 | Date | Source | What changed |

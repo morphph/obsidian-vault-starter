@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-04-06
-last-updated: 2026-04-07
+last-updated: 2026-05-09
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
@@ -30,7 +30,7 @@ Architectural pattern where multiple specialized LLM agents collaborate on a tas
 - **[[3-agent-starter-team|3-agent starter team]] (Khairallah, 2026-05)** — business-team templating of multi-agent architecture: **Research / Content / Operations** as the three roles every solo founder should build. Coordinated through a shared knowledge base ("not three separate tools, that is a team"). Each agent follows a four-component contract: role + tools + knowledge base + workflow. Less novel than Planner/Generator/Evaluator architecturally, but the role specialization to *business functions* (vs *engineering primitives*) is what made it 2.4M-view viral.
 
 ## Connections
-- Related: [[harness-design]], [[self-evaluation-bias]], [[Anthropic]], [[claude-code]], [[orchestration-loop]], [[verification-loops]], [[3-agent-starter-team]], [[eng-khairallah]]
+- Related: [[harness-design]], [[self-evaluation-bias]], [[anthropic|Anthropic]], [[claude-code]], [[orchestration-loop]], [[verification-loops]], [[3-agent-starter-team]], [[eng-khairallah]]
 
 ## Source Log
 | Date | Source | What changed |

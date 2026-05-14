@@ -255,3 +255,15 @@ pages-deleted: claude-code-review.md, source-claude-code-goal-and-review-docs.md
 raw-renamed: raw/2026-05-13-claude-code-goal-and-code-review.md → raw/2026-05-13-claude-code-goal-and-agent-view.md (content rewritten for agent view)
 pages-created: claude-code-agent-view.md (research-preview TUI, supervisor process, peek/attach/dispatch, worktree isolation, shell commands), source-claude-code-goal-and-agent-view-docs.md (updated source summary)
 pages-updated: claude-code-goal.md (source reference + connection to agent view), index.md (swapped code-review entry for agent-view; swapped source-summary entry)
+
+## [2026-05-14] lint
+pages-scanned: 132
+issues: orphans(0), stale(37, mostly stable foundational pages, no action), contradictions(0), index-drift(0), unresolved-links(6 real + ~11 false-positives), thin(43, mostly OK)
+auto-fixed:
+  - A: case-mismatch wikilinks ([[Anthropic]]→[[anthropic|Anthropic]], [[Claude Code]]→[[claude-code|Claude Code]], [[OpenClaw]]→[[openclaw|OpenClaw]], [[Prithvi Rajasekaran]]→[[prithvi-rajasekaran|Prithvi Rajasekaran]]) across 14 wiki pages (skipped log.md as append-only)
+  - B: frontmatter `last-updated:` drift on 15 pages (check-resolvable, claude-code, claude-opus-4-7, context-anxiety, diarization, gbrain, gstack, harness-design, latent-vs-deterministic, multi-agent-architecture, resolvers, ryan-sarver, thin-harness-fat-skills, trigger-evals, verification-loops)
+  - C: index summary refresh — gstack 72K→87K stars, garry-tan 2-piece→6-piece series, gbrain production-scale update
+  - D: created 2 new concept pages from dangling wikilinks (cross-modal-review, sprint-contracts); cleaned 3 old danglings to redirect/plain-text (state-management → forked-agent-pattern+session-memory; subagent-orchestration → multi-agent-architecture; source-fetch-fallback-chain → silent-fallback-antipattern reference)
+  - E: fixed `[[1️⃣]]`/`[[3️⃣]]` accidental wikilinks → plain emoji in skillify-meta-skill; `[[index.md]]` → `index.md` (code) in source-claude-code-goal-and-agent-view-docs
+pages-created: cross-modal-review.md, sprint-contracts.md
+pages-updated: 18 (case fixes + frontmatter + index + dangling cleanups)

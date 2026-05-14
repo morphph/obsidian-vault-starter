@@ -21,7 +21,7 @@ Comprehensive Chinese-language architectural analysis of [[claude-code|Claude Co
 - Context window = "scarcest resource" — all architecture decisions optimize for this
 
 ## Entities Extracted
-- [[claude-code]] (new), [[Anthropic]] (updated)
+- [[claude-code]] (new), [[anthropic|Anthropic]] (updated)
 
 ## Concepts Extracted
 - [[query-loop]] (new), [[context-management]] (new), [[permission-system]] (new)

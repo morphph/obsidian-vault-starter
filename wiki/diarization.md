@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-04-19
-last-updated: 2026-04-19
+last-updated: 2026-05-09
 sources:
   - raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
 tags: [wiki, principle, agentic, knowledge-work]

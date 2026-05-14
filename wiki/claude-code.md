@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-04-06
-last-updated: 2026-04-15
+last-updated: 2026-05-10
 sources:
   - raw/2026-04-06-claude-reviews-claude-overview.md
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
@@ -21,7 +21,7 @@ tags: [wiki, product, tool, agentic]
 # Claude Code
 
 ## Summary
-[[Anthropic]]'s official CLI tool for agentic coding, created by [[boris-cherny|Boris Cherny]]. 55 directories, 331 modules. Internally structured around six foundational pillars: System Prompt, Tool System, Query Loop, Context Management, Multi-Agent Coordination, and Security & Permissions. Embodies the [[harness-design]] principle: "LLM as reasoning center; Harness provides perception, action, memory, and constraints."
+[[anthropic|Anthropic]]'s official CLI tool for agentic coding, created by [[boris-cherny|Boris Cherny]]. 55 directories, 331 modules. Internally structured around six foundational pillars: System Prompt, Tool System, Query Loop, Context Management, Multi-Agent Coordination, and Security & Permissions. Embodies the [[harness-design]] principle: "LLM as reasoning center; Harness provides perception, action, memory, and constraints."
 
 ## Details
 - **Six Pillars of Architecture:**
@@ -76,7 +76,7 @@ tags: [wiki, product, tool, agentic]
 - **Compaction is cache-safe forking**: when context fills, Claude Code uses the *exact same* system prompt, user context, and tool definitions as the parent — appends only the compaction prompt as a new user message. The parent's prefix is reused. Requires reserving a **compaction buffer** (room for compact message + summary output) before triggering. Now exposed as a primitive in Anthropic's API.
 
 ## Connections
-- Related: [[Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]], [[ralph-wiggum]], [[claude-code-sandboxing]], [[geoffrey-huntley]], [[garry-tan]], [[thin-harness-fat-skills]], [[resolvers]]
+- Related: [[anthropic|Anthropic]], [[boris-cherny]], [[harness-design]], [[query-loop]], [[context-management]], [[permission-system]], [[multi-agent-architecture]], [[claude-memory-compiler]], [[zero-friction-capture]], [[session-memory]], [[dreaming]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[infrastructure-layer]], [[troy-hua]], [[claude-code-monitor-tool]], [[ralph-wiggum]], [[claude-code-sandboxing]], [[geoffrey-huntley]], [[garry-tan]], [[thin-harness-fat-skills]], [[resolvers]]
 
 ## Source Log
 | Date | Source | What changed |

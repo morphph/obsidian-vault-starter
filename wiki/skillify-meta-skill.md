@@ -164,7 +164,7 @@ A skillify-like primitive for this vault would:
 - Generate a new `.claude/commands/{name}.md` with appropriate triggers
 - Add to CLAUDE.md Commands table (or RESOLVER.md if we build one)
 
-**This is candidate 9 for the implementation queue** — but it's a downstream optimization; we should build the filing rules ([[1️⃣]]) and a check-resolvable equivalent ([[3️⃣]]) first so the skillify output has something correct to register into.
+**This is candidate 9 for the implementation queue** — but it's a downstream optimization; we should build the filing rules (candidate 1️⃣) and a check-resolvable equivalent (candidate 3️⃣) first so the skillify output has something correct to register into.
 
 ## Connections
 - Related: [[garry-tan]], [[gbrain]], [[gstack]], [[openclaw]], [[resolvers]], [[check-resolvable]], [[agent-skills-standard]], [[skill-as-method-call]], [[thin-harness-fat-skills]], [[plan-mode-as-tools]]

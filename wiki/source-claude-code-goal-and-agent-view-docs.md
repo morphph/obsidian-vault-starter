@@ -28,7 +28,7 @@ Two new Claude Code features captured from official Anthropic documentation: **`
 - This page — source summary
 
 ## Wiki pages updated
-- [[index.md]] — registered new pages
+- `index.md` — registered new pages
 
 ## Key non-obvious facts
 1. `/goal`'s evaluator is **transcript-only** — no tool access. Conditions must be checkable from what Claude has surfaced. Single biggest gotcha.
