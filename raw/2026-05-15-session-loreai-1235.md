@@ -7,28 +7,20 @@
 
 ---
 
-**Context:** Content signal triage session — evaluating ~20 Claude Code ecosystem signals (indices 21–40) for content actions (refresh, create, ignore).
+**Context:** User tested a "Flagship Freshness — Event-to-Subtopic Routing" prompt template against the OpenAI Codex topic with one incoming signal.
 
 **Key Exchanges:**
-- Triaged signals from GitHub trending, Twitter search, and industry news into actionable content updates
-- Classified each signal as `refresh`, `refresh_and_create`, or `ignore` with rationale
+- User provided a complete, production-ready prompt for classifying fresh news signals against an approved subtopic pack and existing content inventory. The prompt enforces strict routing (no new subtopics allowed), supports fan-out (one event → many subtopics), and outputs structured JSON for downstream automation.
+- The single signal tested (Codex community meetup in Milan) was correctly routed as `ignore` — no technical content, no SEO value until post-event recaps surface.
 
 **Decisions Made:**
-- **Create new content for:** Microsoft Claude Code enterprise license cancellation (blog), heartbeat hook autonomous sessions (tutorial), SkillDock GUI skill/MCP manager (blog), visual SKILL.md builder skillsmith (blog), /goal command autonomous workflows (tutorial)
-- **Refresh existing pages for:** Agent Registry dynamic MCP/Skill discovery → MCP setup + skills FAQ; ADHD output skill → skills FAQ + output styles FAQ; multi-agent harness (CoralOS Hermes) → subagents blog; CLAUDE.md HTML comment token trick → memory blog; one-prompt MCP install pattern → MCP setup blog; freebuff free alternative → free alternatives blog + pricing FAQ; Anthropic rate limit sharing + $200 Max 200 credit → pricing FAQ
-- **Ignored (correctly):** Higgsfield MCP (marketing), semble_rs (minor ecosystem), agent-study repo (one chapter), ALgoat (incidental mention), Thai beginner course, claude-pee wrapper, one-line reaction tweets, DeFi MCP server, Callous agent-study Chinese course
+- The routing prompt uses a conservative-create / aggressive-refresh philosophy: flag existing pages for review liberally, but only create new pages when a genuine content gap exists.
+- Content types for `create` are constrained to: `faq`, `blog`, `compare`, `glossary`, `topic-hub`, `tutorial`.
 
 **Lessons Learned:**
-- CLAUDE.md HTML comments are invisible to Claude and save tokens — non-obvious optimization worth documenting
-- Anthropic confirmed API subscription rate limits are **shared** with Claude Code and Chat — common confusion point
-- `/goal` command enables hours-long autonomous background execution — distinct usage pattern from standard skills
-- Heartbeat hook + inbox/outbox is an emerging pattern for keeping Claude Code alive without `-p` flag
-- Visual GUI builders for SKILL.md (skillsmith) and MCP/skill management (SkillDock) signal the ecosystem is maturing toward lower-barrier tooling
+- The OpenAI Codex subtopic pack now has **27 approved subtopics** with freshness ratings — high-freshness subtopics include: `codex-models`, `codex-plugins`, `codex-mcp-servers`, `codex-pricing-and-plans`, `codex-changelog`, `codex-vs-competitors`.
+- Community event announcements (meetups, conferences) are noise for content freshness purposes unless they contain actual product announcements or technical reveals.
 
 **Action Items:**
-- Refresh pricing FAQ with: rate limit pooling clarification, $200 Max 200 credit offer, Microsoft enterprise rollback context, freebuff as free alternative
-- Refresh memory blog with HTML comment token-saving trick
-- Refresh MCP setup blog with one-prompt install pattern + Agent Registry dynamic discovery
-- Refresh skills FAQ with SkillDock, skillsmith, ADHD skill, /goal command
-- Refresh subagents blog with CoralOS Hermes multi-agent harness pattern
-- Create 5 new content pieces: Microsoft enterprise signal (blog), heartbeat autonomous sessions (tutorial), SkillDock GUI manager (blog), visual SKILL.md authoring (blog), /goal autonomous workflows (tutorial)
+- This routing prompt is a reusable pipeline component — should be stored/versioned if not already (likely part of LoreAI's freshness pipeline).
+- The Codex subtopic pack and content inventory represent a snapshot as of 2026-05-15; future signals should be routed against the latest version.
