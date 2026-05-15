@@ -1,9 +1,10 @@
 ---
 type: concept
 created: 2026-05-13
-last-updated: 2026-05-13
+last-updated: 2026-05-15
 sources:
   - raw/2026-05-13-claude-code-goal-and-agent-view.md
+  - raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md
 tags: [claude-code, autonomy, hooks, evaluator, session-control]
 ---
 
@@ -64,15 +65,27 @@ The condition must be **checkable from the transcript** since the evaluator has 
 - **No turn/time bound on long tasks** — runaway loops; add `or stop after 20 turns` for safety.
 - **Single short edit** — overhead of evaluator > benefit. Use for substantive work only.
 
+## Cross-vendor convergence: Codex has the same primitive
+
+OpenAI's Codex now ships a `/goal` command with **near-identical semantics** to Claude Code's `/goal`. [[chris-hayduk|Chris Hayduk]] (FDE Life Sciences @ OpenAI) published a 188K-view playbook on 2026-05-11 ([[source-chrishayduk-codex-goals-effectively]]) whose three tips apply equally to both vendors:
+
+1. **Specify a clear, quantitative goal.** Same two failure modes Chris reports on Codex (model gives up early / model flails forever) match this page's "vague conditions" anti-pattern. The 200-item checklist trick — extracting qualitative rules into a markdown checkbox file the model marks off as it goes — is a canonical "qualitative → quantitative" conversion useful in either vendor. See [[sprint-contracts]] for the underlying pattern.
+2. **Make the feedback loop tight.** Chris's protein-structure example reduced scoring from days to minutes by using a smaller model + subsampled dataset. The cost of slow scoring is amplified by the loop — same eval that costs N seconds in a single chat call costs N × (turns) seconds across the loop. See [[verification-loops]].
+3. **Give the agent markdown files for tracking.** Three files: **PLAN.md** (direction), **EXPERIMENTS.md** (curated attempt log — "the most important of the three"), **SCRATCHPAD.md** (chronological real-time thoughts). Pre-create them, mention them in the goal condition, let the agent read/write across compactions. See [[agentic-loop-tracking-files]] — this is the **anti-anti-pattern** for runaway loops + lost state.
+
+**Takeaway:** the `/goal` design has converged across Claude Code and Codex; the playbook for using it well is vendor-agnostic.
+
 ## Connections
-- Related: [[claude-code]], [[orchestration-loop]], [[verification-loops]], [[adaptive-thinking]], [[task-budgets]], [[quality-gate-loop]]
+- Related: [[claude-code]], [[orchestration-loop]], [[verification-loops]], [[adaptive-thinking]], [[task-budgets]], [[quality-gate-loop]], [[chris-hayduk]], [[agentic-loop-tracking-files]], [[sprint-contracts]]
 - Extends [[verification-loops]] — same agent + verifier pattern at the turn granularity instead of within a task.
 - Sibling to [[task-budgets]] (Opus 4.7 model-side context-anxiety remedy): `/goal` is the *harness*-side answer; `task-budgets` is the *model*-side answer.
 - Complements [[plan-mode-as-tools]] philosophy: state transitions and completion checks belong in tool calls / hooks, not in prompt rewrites.
 - Pairs with auto-mode for fully unattended runs — [[ralph-wiggum]] for the heavyweight long-running version.
 - Pairs with [[claude-code-agent-view]] for parallel unattended runs — agent view = orchestration screen, `/goal` = per-session loop driver.
+- Cross-vendor sibling: Codex `/goal` — see [[chris-hayduk]]'s playbook ([[source-chrishayduk-codex-goals-effectively]]).
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-05-13 | raw/2026-05-13-claude-code-goal-and-agent-view.md | Initial creation from official `/goal` docs at code.claude.com/docs/en/goal |
+| 2026-05-15 | raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md | Cross-vendor convergence section: Codex `/goal` is nearly identical; Chris Hayduk's 3-tip playbook applies to both vendors (quantitative goal, tight feedback loop, three-file tracking pattern) |

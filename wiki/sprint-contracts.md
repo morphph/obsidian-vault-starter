@@ -4,6 +4,7 @@ created: 2026-05-14
 last-updated: 2026-05-14
 sources:
   - raw/2026-04-07-anatomy-of-agent-harness.md
+  - raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md
 tags: [wiki, principle, agentic, multi-agent, contracts]
 ---
 
@@ -47,15 +48,33 @@ Trigger evals are a kind of micro-contract for skill routing — *"this intent s
 - Pure exploration phases where the *goal* is to discover what good looks like
 - Single-agent runs (no second party to contract with)
 
+### The 200-checklist trick (canonical qualitative → quantitative conversion)
+[[chris-hayduk|Chris Hayduk]] (OpenAI, [[source-chrishayduk-codex-goals-effectively]]) gave a tight example: converting a NeurIPS paper preprint to ICML workshop format. ICML's formatting rules live in a hard-to-grade LaTeX file. He had Codex **extract the rules into a markdown file with 200+ checkbox items**, then set the goal as:
+
+> "Change the NeurIPS paper to ICML format based on the provided checklist.md without changing any of the technical content."
+
+The trick:
+- **Each individual rule might still be vague** ("figures should have proper captions")
+- **But the agent can reason about per-rule completion better than overall vagueness**
+- Add: *"Check off items as you complete them"* → state persists to disk → you can audit visually
+
+This generalizes beyond paper formatting:
+- **Code-review fitness:** extract review checklist (security, naming, tests, docs) — agent checks each box
+- **Spec compliance:** extract acceptance criteria as checkboxes — single goal becomes 30 sub-goals
+- **Migration completion:** every file/module to update is a checkbox — done = all checked
+
+**This is sprint-contracts in its leanest form.** A 200-item markdown checklist *is* a contract. No more sophistication needed.
+
 ### Failure modes
 - Contracts that are too vague to test ("be good") — defeats the purpose
 - Contracts that lock in the wrong thing too early — better to ship a thin spike first
 - Contract-as-bureaucracy — if it adds more time than it saves, the team is doing it wrong
 
 ## Connections
-- Related: [[multi-agent-architecture]], [[harness-design]], [[verification-loops]], [[trigger-evals]], [[gstack]], [[skillify-meta-skill]], [[self-evaluation-bias]]
+- Related: [[multi-agent-architecture]], [[harness-design]], [[verification-loops]], [[trigger-evals]], [[gstack]], [[skillify-meta-skill]], [[self-evaluation-bias]], [[chris-hayduk]], [[claude-code-goal]], [[agentic-loop-tracking-files]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-05-14 | raw/2026-04-07-anatomy-of-agent-harness.md | Initial creation — extracted from harness-design and multi-agent-architecture cross-references |
+| 2026-05-15 | raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md | Added 200-checklist trick as canonical qualitative→quantitative conversion example |

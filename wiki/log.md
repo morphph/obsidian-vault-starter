@@ -276,3 +276,9 @@ answer-filed: chat only
 pages-consulted: index.md (Sources section), raw/ directory listing
 answer-filed: chat only
 notes: 45 curated externals total; 16 direct CC, 14 ecosystem (Ralph/Skills/GBrain), 15 adjacent. Plus 468 Pipeline B session captures.
+
+## [2026-05-15] ingest | Chris Hayduk — Using Codex Goals Effectively
+source: raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md
+fetch-method: Playwright MCP (x.com long-form article)
+pages-created: chris-hayduk.md (first OpenAI-insider entity in wiki), agentic-loop-tracking-files.md (PLAN.md + EXPERIMENTS.md + SCRATCHPAD.md pattern for long-running /goal loops), source-chrishayduk-codex-goals-effectively.md
+pages-updated: claude-code-goal.md (cross-vendor convergence with Codex /goal + Chris's 3 tips), sprint-contracts.md (200-checklist trick as canonical qualitative→quantitative example), verification-loops.md (feedback-loop-tightness-as-leverage; days→minutes scoring reduction), index.md

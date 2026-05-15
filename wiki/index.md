@@ -26,6 +26,7 @@
 - [[gstack]] — Garry Tan's open-source skills library for Claude Code; 87K+ GitHub stars; 10-host template system (first cross-vendor Agent Skills proof)
 - [[eng-khairallah]] — Solo-founder author of viral 3-agent starter team playbook (2.4M views); mainstream temperature read on agent adoption
 - [[thariq]] — Claude Code team @ Anthropic; insider voice on session management (1M context) and HTML-as-output-format
+- [[chris-hayduk]] — FDE Life Sciences @ OpenAI; first OpenAI-insider source; published 188K-view playbook for using Codex `/goal` effectively
 
 ## Concepts
 
@@ -90,6 +91,7 @@
 - [[claude-code-agent-view]] — Research-preview TUI (v2.1.139+, 2026-05-11) for managing many parallel background sessions hosted by a per-user supervisor process; replaces tmux-grid pattern
 - [[cross-modal-review]] — Multi-model quality review: Opus (precision) + GPT-5.5 (recall) + DeepSeek (genericness) score the same output on three axes; the production defense against self-evaluation bias
 - [[sprint-contracts]] — Evaluator/generator agree on success criteria before implementation begins; closes the "what good looks like" gap that turns 5-15 iteration cycles into 50
+- [[agentic-loop-tracking-files]] — PLAN.md + EXPERIMENTS.md + SCRATCHPAD.md pattern for long-running `/goal` loops; working memory belongs on disk not in context; EXPERIMENTS.md is the load-bearing one
 
 ## Synthesis
 
@@ -153,4 +155,5 @@
 - [[source-garry-tan-loc-controversy]] — Garry Tan part 3: LOC deflation math (still 408× after 2× AI haircut); "engineers can fly"; quality data (2% revert, 2K tests); GStack at 75K stars + 305K skill invocations (2026-04-18, 134K views)
 - [[source-garry-tan-naked-models-stupider]] — Garry Tan part 4: rebuts Kyle Kingsbury's "bullshit machines" essay; "engine vs car" metaphor; failure cases mapped to architecture fixes; open-harness ethos (2026-04-19, 152K views)
 - [[source-garry-tan-skillify-manifesto]] — Garry Tan part 5: the operational manifesto; 10-step Skillify Checklist; LangChain critique; calendar-recall + context-now case studies; "fucking shit / wtf" eval heuristic (2026-04-21, 916K views)
+- [[source-chrishayduk-codex-goals-effectively]] — Chris Hayduk (FDE Life Sciences @ OpenAI) on using Codex `/goal` — vendor-agnostic 3-tip playbook (quantitative goal + tight feedback loop + three tracking files); 200-item checklist trick; cross-vendor parallel to Claude Code's `/goal` (2026-05-11, 188K views)
 - [[source-claude-code-goal-and-agent-view-docs]] — Official Anthropic docs for `/goal` (session autonomous loop) + Agent View (parallel-session TUI launched 2026-05-11); orchestration + loop-driver pair (2026-05-13 fetch)
