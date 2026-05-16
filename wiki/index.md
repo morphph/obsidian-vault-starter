@@ -100,6 +100,7 @@
 - [[agent-evaluation-traps]] — Pass@k (capability) vs Pass^k (regression) — don't mix; eval-system bugs masquerade as model regression; transcript vs outcome distinction; Anthropic airline-booking case
 - [[system-of-intelligence]] — a16z's enterprise thesis: SoR (CRM) → SoI (orchestration layer above); same friend-graph→newsfeed transition; "first prize is a Cadillac, second is steak knives"
 - [[five-levels-of-thinking]] — Dan Koe's repackaging of Ken Wilber's Integral Theory: Lines (width) × Levels (depth, 5 stages) × Altitudes (height); first-tier (dogmatic) vs second-tier (perspectival); "stupid thinking = stop thinking too early"
+- [[four-files-context-architecture]] — Khairallah's minimalist Layer-3 context system: Identity / Audience / Standards / Project files; the weekend-implementable version of GBrain / nervous-system patterns
 
 ## Synthesis
 
@@ -169,6 +170,7 @@
 - [[source-stephzhang-system-of-intelligence]] — a16z's Steph Zhang on the SoR→SoI thesis: enterprise version of filing-cabinet-vs-nervous-system; "Foundation Model is not a GTM app"; orchestration as new gravity well (2026-05-14, 458K views)
 - [[source-dankoe-strategic-genius-thinking]] — Dan Koe (creator economy) on 5D thinking: Ken Wilber's Integral Theory packaged for builders/writers; 5 levels (Instinctual→Conformist→Individualist→Synthesist→Holist); identity as the meta-block (2026-01-27, 2.17M views, 22K bookmarks)
 - [[source-khairallah-claude-skills-automate-workflow]] — Khairallah's mass-audience 4-phase Claude Skills playbook: install → build → test → library; "One Skill is a Tool, Ten Skills is a Workforce"; industry-specific templates (2026-05-11, 1.31M views, 2,588 bookmarks)
+- [[source-khairallah-context-engineering]] — Khairallah on context engineering: "infrastructure beats syntax"; Four-Files Architecture; three context layers; three memory approaches; $5K-$25K market for context engineers (2026-05-10, 741K views, 2,189 bookmarks)
 - [[source-claude-code-goal-and-agent-view-docs]] — Official Anthropic docs for `/goal` (session autonomous loop) + Agent View (parallel-session TUI launched 2026-05-11); orchestration + loop-driver pair (2026-05-13 fetch)
 - [[source-claude-code-agents-overview]] — Official Anthropic overview: subagents vs agent view vs agent teams vs worktrees comparison (2026-05-14 fetch)
 - [[source-claude-code-subagents-docs]] — Official Anthropic subagents spec: 17 frontmatter fields, 5 built-in agents, scopes, hooks, memory, forked subagents (2026-05-14 fetch)

@@ -352,3 +352,9 @@ source: raw/2026-05-11-khairallah-how-to-use-claude-skills.md
 fetch-method: Playwright MCP
 pages-created: source-khairallah-claude-skills-automate-workflow.md
 pages-updated: eng-khairallah.md (2nd article), agent-skills-standard.md (4-phase build playbook), skillify-meta-skill.md (10-skills-is-a-workforce + 6.5-week math), index.md
+
+## [2026-05-16] ingest | Khairallah — How to Master Context Engineering
+source: raw/2026-05-10-khairallah-how-to-master-context-engineering.md
+fetch-method: Playwright MCP
+pages-created: four-files-context-architecture.md (Identity / Audience / Standards / Project), source-khairallah-context-engineering.md
+pages-updated: eng-khairallah.md (3rd article), context-management.md (Khairallah's three-layer model + Four-Files), index.md

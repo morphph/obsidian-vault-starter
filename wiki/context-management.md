@@ -114,3 +114,4 @@ See [[dreaming]] — cross-session memory consolidation running in background. 4
 | 2026-04-07 | raw/2026-04-07-anatomy-of-agent-harness.md | Added 30% degradation stat, 4 strategies, prompt construction hierarchy |
 | 2026-04-08 | raw/2026-04-08-troyhua-claude-code-7-layers-memory.md | Major upgrade: 4 layers → 7 layers with full technical breakdown |
 | 2026-04-16 | raw/2026-04-16-thariq-claude-code-session-management-1m.md | Added session management strategies: 5 branching options, rewind, compact vs clear, bad compact analysis |
+| 2026-05-16 | raw/2026-05-10-khairallah-how-to-master-context-engineering.md | Added Khairallah's mass-audience three-layer model (Immediate/Session/Persistent) and the [[four-files-context-architecture|Four-Files Architecture]] as the smallest possible Layer-3 implementation; "Prompt engineering is syntax; context engineering is infrastructure" framing |
