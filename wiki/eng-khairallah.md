@@ -47,3 +47,4 @@ Self-described "angel investor | founder @Web3Arabs | vibe coding | ai & onchain
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-05-09 | raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md | Initial creation |
+| 2026-05-16 | raw/2026-05-11-khairallah-how-to-use-claude-skills.md | Added 2nd article: Claude Skills 4-phase build playbook for non-engineers. 1.31M views, 2,588 bookmarks (BM/L ratio 3.4×). Headline tagline: "One Skill is a Tool. Ten Skills is a Workforce." Industry-specific Skill templates (real estate, marketing, finance, consulting, e-commerce). |

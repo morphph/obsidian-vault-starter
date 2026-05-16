@@ -346,3 +346,9 @@ source: raw/2026-01-27-dankoe-how-to-think-like-strategic-genius.md
 fetch-method: Playwright MCP
 pages-created: five-levels-of-thinking.md (Ken Wilber's Integral framework + Dan Koe packaging), dan-koe.md (first content-creator entity), source-dankoe-strategic-genius-thinking.md
 pages-updated: index.md
+
+## [2026-05-16] ingest | Khairallah — How to Use Claude Skills to Automate Any Workflow
+source: raw/2026-05-11-khairallah-how-to-use-claude-skills.md
+fetch-method: Playwright MCP
+pages-created: source-khairallah-claude-skills-automate-workflow.md
+pages-updated: eng-khairallah.md (2nd article), agent-skills-standard.md (4-phase build playbook), skillify-meta-skill.md (10-skills-is-a-workforce + 6.5-week math), index.md

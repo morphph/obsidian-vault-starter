@@ -174,3 +174,4 @@ A skillify-like primitive for this vault would:
 |------|--------|-------------|
 | 2026-05-11 | raw/2026-05-09-garry-tan-meta-meta-prompting.md | Initial creation |
 | 2026-05-12 | raw/2026-04-21-garry-tan-skillify-manifesto.md | Major expansion — added full 10-step Skillify Checklist (the operational deliverable); calendar-recall + context-now case studies; "latent builds deterministic that constrains latent" recursive insight; skillify-as-verb daily workflow examples; Hermes Agent comparison (creation vs verification) |
+| 2026-05-16 | raw/2026-05-11-khairallah-how-to-use-claude-skills.md | Added Khairallah's mass-market framing: **"One Skill is a Tool. Ten Skills is a Workforce."** + the compounding math (10 skills × 30 min/week saved = 260 hours/year = 6.5 full work weeks returned). Useful tagline for explaining skillify to non-engineers |
