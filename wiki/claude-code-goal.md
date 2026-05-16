@@ -89,3 +89,4 @@ OpenAI's Codex now ships a `/goal` command with **near-identical semantics** to 
 |------|--------|-------------|
 | 2026-05-13 | raw/2026-05-13-claude-code-goal-and-agent-view.md | Initial creation from official `/goal` docs at code.claude.com/docs/en/goal |
 | 2026-05-15 | raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md | Cross-vendor convergence section: Codex `/goal` is nearly identical; Chris Hayduk's 3-tip playbook applies to both vendors (quantitative goal, tight feedback loop, three-file tracking pattern) |
+| 2026-05-16 | raw/2026-05-09-openai-cookbook-using-goals-in-codex.md | Added OpenAI's official 6-element strong-Goal formalism (Outcome / Verification surface / Constraints / Boundaries / Iteration policy / Blocked stop condition). Plus Codex `/goal` lifecycle commands (`/goal`, `/goal pause`, `/goal resume`, `/goal clear`) and thread-scoped-state architecture detail. See [[source-openai-codex-cookbook-trilogy]] |

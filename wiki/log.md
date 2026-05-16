@@ -358,3 +358,12 @@ source: raw/2026-05-10-khairallah-how-to-master-context-engineering.md
 fetch-method: Playwright MCP
 pages-created: four-files-context-architecture.md (Identity / Audience / Standards / Project), source-khairallah-context-engineering.md
 pages-updated: eng-khairallah.md (3rd article), context-management.md (Khairallah's three-layer model + Four-Files), index.md
+
+## [2026-05-16] ingest | OpenAI Codex Cookbook Trilogy (3 articles, batch)
+sources:
+  - raw/2026-05-09-openai-cookbook-using-goals-in-codex.md (Raj Pathak + Stefano Fabbri)
+  - raw/2026-05-11-openai-cookbook-build-iterative-repair-loops.md (Shreekant Agrawal)
+  - raw/2026-05-12-openai-cookbook-agent-improvement-loop.md (Wesley Pasfield)
+fetch-method: WebFetch (all three are static cookbook pages)
+pages-created: iterative-repair-loop.md (Review→Repair→Validate three-phase pattern), agent-improvement-flywheel.md (6-step trace-to-harness-change loop), source-openai-codex-cookbook-trilogy.md (combined source summary for all three)
+pages-updated: chris-hayduk.md (cross-referenced as the practitioner-heuristics version of these official-formalism docs), claude-code-goal.md (6-element strong-Goal formalism), verification-loops.md (iterative-repair + improvement-flywheel as siblings), index.md

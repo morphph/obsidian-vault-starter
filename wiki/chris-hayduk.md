@@ -45,3 +45,4 @@ X long-form articles on his own account. Blog at chrishayduk.com (cross-discipli
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-05-15 | raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md | Initial creation — first OpenAI-insider source in wiki |
+| 2026-05-16 | raw/2026-05-09-openai-cookbook-using-goals-in-codex.md (and the 5-11 + 5-12 sibling cookbook docs) | Cross-referenced the official OpenAI Codex Cookbook trilogy — Chris's X-thread playbook is the *practitioner heuristic* version; the cookbook is the *complete formalism* (6-element strong-Goal definition, three-phase iterative repair, 6-step improvement flywheel). See [[source-openai-codex-cookbook-trilogy]] |
