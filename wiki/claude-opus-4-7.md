@@ -53,7 +53,7 @@ tags: [wiki, product, llm, model]
   - Extended auto mode for Max subscribers
 
 ## Connections
-- Related: [[anthropic|Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[adaptive-thinking]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]], [[html-as-output-format]], [[thariq]]
+- Related: [[anthropic|Anthropic]], [[claude-model-family]], [[claude-code]], [[xhigh-effort-level]], [[task-budgets]], [[adaptive-thinking]], [[verification-loops]], [[context-anxiety]], [[assumptions-expire]], [[html-as-output-format]], [[thariq]], [[computer-and-browser-use]], [[demonstration-based-teaching]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -61,3 +61,4 @@ tags: [wiki, product, llm, model]
 | 2026-04-17 | raw/2026-04-16-anthropic-opus-4-7-announcement.md | Initial creation from official announcement |
 | 2026-04-17 | raw/2026-04-16-claude-docs-opus-4-7-whats-new.md | Added breaking API changes, behavior changes, adaptive thinking |
 | 2026-05-09 | raw/2026-05-08-thariq-unreasonable-effectiveness-of-html.md | Added second-order effect: 1M context unlocks HTML-over-Markdown as default output format |
+| 2026-05-16 | raw/2026-05-13-anthropic-computer-and-browser-use-best-practices.md | High-res vision (3.75 MP) is the concrete enabler of computer-use accuracy; Opus 4.7 click precision *matches* Sonnet 4.6 — the win is reasoning + larger pixel budget (less downscaling needed). Default thinking effort: `high` for computer-use. See [[computer-and-browser-use]] |

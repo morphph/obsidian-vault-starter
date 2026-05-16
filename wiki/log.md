@@ -322,3 +322,9 @@ source: raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md
 fetch-method: Playwright MCP (x.com long-form article)
 pages-created: chris-hayduk.md (first OpenAI-insider entity in wiki), agentic-loop-tracking-files.md (PLAN.md + EXPERIMENTS.md + SCRATCHPAD.md pattern for long-running /goal loops), source-chrishayduk-codex-goals-effectively.md
 pages-updated: claude-code-goal.md (cross-vendor convergence with Codex /goal + Chris's 3 tips), sprint-contracts.md (200-checklist trick as canonical qualitative→quantitative example), verification-loops.md (feedback-loop-tightness-as-leverage; days→minutes scoring reduction), index.md
+
+## [2026-05-16] ingest | Anthropic — Best Practices for Computer and Browser Use with Claude
+source: raw/2026-05-13-anthropic-computer-and-browser-use-best-practices.md
+fetch-method: WebFetch (claude.com static blog)
+pages-created: computer-and-browser-use.md (the production playbook), demonstration-based-teaching.md (record-once-adapt-forever pattern), source-anthropic-computer-browser-use-best-practices.md
+pages-updated: claude-opus-4-7.md (high-res vision as computer-use enabler; click precision = Sonnet 4.6), anthropic.md (computer-use as product surface), prompt-cache-optimization.md (batch-prune screenshots pattern), index.md

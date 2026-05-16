@@ -92,6 +92,8 @@
 - [[cross-modal-review]] — Multi-model quality review: Opus (precision) + GPT-5.5 (recall) + DeepSeek (genericness) score the same output on three axes; the production defense against self-evaluation bias
 - [[sprint-contracts]] — Evaluator/generator agree on success criteria before implementation begins; closes the "what good looks like" gap that turns 5-15 iteration cycles into 50
 - [[agentic-loop-tracking-files]] — PLAN.md + EXPERIMENTS.md + SCRATCHPAD.md pattern for long-running `/goal` loops; working memory belongs on disk not in context; EXPERIMENTS.md is the load-bearing one
+- [[computer-and-browser-use]] — Anthropic's `computer_20251124` API; pre-downscale screenshots, text-before-image ordering, three-layer context management; built-in prompt-injection classifier free with official tool type
+- [[demonstration-based-teaching]] — Record-once-adapt-forever pattern (vs blind record-and-replay RPA); coordinates are hints not commands; visual sibling to fat skills
 
 ## Synthesis
 
@@ -156,6 +158,7 @@
 - [[source-garry-tan-naked-models-stupider]] — Garry Tan part 4: rebuts Kyle Kingsbury's "bullshit machines" essay; "engine vs car" metaphor; failure cases mapped to architecture fixes; open-harness ethos (2026-04-19, 152K views)
 - [[source-garry-tan-skillify-manifesto]] — Garry Tan part 5: the operational manifesto; 10-step Skillify Checklist; LangChain critique; calendar-recall + context-now case studies; "fucking shit / wtf" eval heuristic (2026-04-21, 916K views)
 - [[source-chrishayduk-codex-goals-effectively]] — Chris Hayduk (FDE Life Sciences @ OpenAI) on using Codex `/goal` — vendor-agnostic 3-tip playbook (quantitative goal + tight feedback loop + three tracking files); 200-item checklist trick; cross-vendor parallel to Claude Code's `/goal` (2026-05-11, 188K views)
+- [[source-anthropic-computer-browser-use-best-practices]] — Anthropic engineering (Lucas Gonzalez + Luca Weihs): the production playbook for `computer_20251124` — screenshot downscaling, model selection, context layers, free prompt-injection classifier, demonstration-based teaching (2026-05-13)
 - [[source-claude-code-goal-and-agent-view-docs]] — Official Anthropic docs for `/goal` (session autonomous loop) + Agent View (parallel-session TUI launched 2026-05-11); orchestration + loop-driver pair (2026-05-13 fetch)
 - [[source-claude-code-agents-overview]] — Official Anthropic overview: subagents vs agent view vs agent teams vs worktrees comparison (2026-05-14 fetch)
 - [[source-claude-code-subagents-docs]] — Official Anthropic subagents spec: 17 frontmatter fields, 5 built-in agents, scopes, hooks, memory, forked subagents (2026-05-14 fetch)

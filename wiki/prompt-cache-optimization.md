@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-04-08
-last-updated: 2026-05-10
+last-updated: 2026-05-16
 sources:
   - raw/2026-04-08-troyhua-claude-code-7-layers-memory.md
   - raw/2026-04-09-rohit-harness-from-claude-code-leaks.md
   - raw/2026-04-30-thariq-prompt-caching-is-everything.md
+  - raw/2026-05-13-anthropic-computer-and-browser-use-best-practices.md
 tags: [wiki, architecture, performance, agentic]
 ---
 
@@ -112,3 +113,4 @@ When you genuinely need a different model, hand off via subagent: Opus prepares 
 | 2026-04-08 | raw/2026-04-08-troyhua-claude-code-7-layers-memory.md | Initial creation |
 | 2026-04-09 | raw/2026-04-09-rohit-harness-from-claude-code-leaks.md | Added system prompt boundary design, user context injection placement |
 | 2026-05-10 | raw/2026-04-30-thariq-prompt-caching-is-everything.md | Major addition — official Anthropic engineering blog: 4-layer ordering rule, production cache-break bugs catalog, `<system-reminder>` channel, `defer_loading`, Plan Mode as tools, cache-safe compaction forking, compaction buffer, model-swap caveat, SEV-level cache hit rate alerting |
+| 2026-05-16 | raw/2026-05-13-anthropic-computer-and-browser-use-best-practices.md | Added batch-prune pattern from computer-use guidance: when rolling-buffering screenshots, prune **in batches** rather than one-at-a-time. N individual prunes = N cache invalidations; one batch prune = one invalidation. Concrete production rule for any append-then-prune workflow (logs, transcripts, tool results) |
