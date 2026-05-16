@@ -78,8 +78,18 @@ This vault sits **closer to filing cabinet than nervous system** today:
 
 These are downstream of the existing filing-rules candidate (1️⃣) — they require structured filing first.
 
+### The enterprise version: System of Record → System of Intelligence
+
+[[steph-zhang|Steph Zhang]]'s a16z piece (2026-05-14) makes the same argument at enterprise scale. The "filing cabinet" is the CRM (Salesforce, HubSpot, ServiceNow); the "nervous system" is the AI orchestration layer that reads/writes across CRM + calendar + Slack + email + product telemetry simultaneously. See [[system-of-intelligence]].
+
+Same primitive, different scale:
+- **Personal**: [[filing-cabinet-vs-nervous-system|filing cabinet vs nervous system]] ([[garry-tan|Garry Tan]])
+- **Enterprise**: [[system-of-intelligence|system of record vs system of intelligence]] ([[steph-zhang|Steph Zhang]])
+
+Both rest on the same mechanical claim: **once the cost of pulling from multiple sources approaches zero (because an agent does it), colocation stops being a moat. Synthesis becomes the moat.**
+
 ## Connections
-- Related: [[garry-tan]], [[gbrain]], [[skillify-meta-skill]], [[book-mirror]], [[index-over-rag]], [[diarization]], [[context-rot]], [[two-pipeline-architecture]], [[zero-friction-capture]]
+- Related: [[garry-tan]], [[gbrain]], [[skillify-meta-skill]], [[book-mirror]], [[index-over-rag]], [[diarization]], [[context-rot]], [[two-pipeline-architecture]], [[zero-friction-capture]], [[steph-zhang]], [[system-of-intelligence]]
 
 ## Source Log
 | Date | Source | What changed |

@@ -27,6 +27,7 @@
 - [[eng-khairallah]] — Solo-founder author of viral 3-agent starter team playbook (2.4M views); mainstream temperature read on agent adoption
 - [[thariq]] — Claude Code team @ Anthropic; insider voice on session management (1M context) and HTML-as-output-format
 - [[chris-hayduk]] — FDE Life Sciences @ OpenAI; first OpenAI-insider source; published 188K-view playbook for using Codex `/goal` effectively
+- [[steph-zhang]] — a16z investor; first a16z voice in wiki; "System of Record → System of Intelligence" thesis (the enterprise version of filing-cabinet-vs-nervous-system)
 
 ## Concepts
 
@@ -96,6 +97,7 @@
 - [[demonstration-based-teaching]] — Record-once-adapt-forever pattern (vs blind record-and-replay RPA); coordinates are hints not commands; visual sibling to fat skills
 - [[agent-vs-workflow]] — Anthropic's split (code-defined path vs LLM-defined path) + five canonical patterns (Prompt Chaining / Routing / Parallelization / Orchestrator-Workers / Evaluator-Optimizer); most "Agent" products are actually Workflows, and that's often correct
 - [[agent-evaluation-traps]] — Pass@k (capability) vs Pass^k (regression) — don't mix; eval-system bugs masquerade as model regression; transcript vs outcome distinction; Anthropic airline-booking case
+- [[system-of-intelligence]] — a16z's enterprise thesis: SoR (CRM) → SoI (orchestration layer above); same friend-graph→newsfeed transition; "first prize is a Cadillac, second is steak knives"
 
 ## Synthesis
 
@@ -162,6 +164,7 @@
 - [[source-chrishayduk-codex-goals-effectively]] — Chris Hayduk (FDE Life Sciences @ OpenAI) on using Codex `/goal` — vendor-agnostic 3-tip playbook (quantitative goal + tight feedback loop + three tracking files); 200-item checklist trick; cross-vendor parallel to Claude Code's `/goal` (2026-05-11, 188K views)
 - [[source-anthropic-computer-browser-use-best-practices]] — Anthropic engineering (Lucas Gonzalez + Luca Weihs): the production playbook for `computer_20251124` — screenshot downscaling, model selection, context layers, free prompt-injection classifier, demonstration-based teaching (2026-05-13)
 - [[source-tw93-agent-architecture-engineering]] — Tw93's sequel to his Claude Code piece: comprehensive Agent architecture deep-dive — control flow, context engineering, tool design, multi-agent, evaluation, observability, security, with OpenClaw 5-layer architecture as worked example (2026-03-19, 1.69M views, 10.6K bookmarks)
+- [[source-stephzhang-system-of-intelligence]] — a16z's Steph Zhang on the SoR→SoI thesis: enterprise version of filing-cabinet-vs-nervous-system; "Foundation Model is not a GTM app"; orchestration as new gravity well (2026-05-14, 458K views)
 - [[source-claude-code-goal-and-agent-view-docs]] — Official Anthropic docs for `/goal` (session autonomous loop) + Agent View (parallel-session TUI launched 2026-05-11); orchestration + loop-driver pair (2026-05-13 fetch)
 - [[source-claude-code-agents-overview]] — Official Anthropic overview: subagents vs agent view vs agent teams vs worktrees comparison (2026-05-14 fetch)
 - [[source-claude-code-subagents-docs]] — Official Anthropic subagents spec: 17 frontmatter fields, 5 built-in agents, scopes, hooks, memory, forked subagents (2026-05-14 fetch)

@@ -334,3 +334,9 @@ source: raw/2026-03-19-tw93-agent-architecture-and-engineering.md
 fetch-method: Playwright MCP (x.com long-form article)
 pages-created: agent-vs-workflow.md (Anthropic taxonomy + 5 canonical patterns), agent-evaluation-traps.md (Pass@k vs Pass^k; eval-system-as-bug), source-tw93-agent-architecture-engineering.md
 pages-updated: tw93.md (added 2nd major article), openclaw.md (5-layer architecture deep-dive, MessageBus, three trigger modes, source-sink prompt injection), harness-design.md (Harness > Model framing + OpenAI Agent-First case), prompt-cache-optimization.md (stable-large > dynamic-small system prompt counter-intuition), agent-skills-standard.md (Use-when/Don't-use-when + anti-examples 73→53→85% data), multi-agent-architecture.md (protocol-before-collaboration, JSONL inbox + worktree + task graph, error amplification), verification-loops.md (eval system itself as bug, transcript vs outcome), ralph-wiggum.md (Initializer + Coding Agent structured variant), index.md
+
+## [2026-05-16] ingest | Steph Zhang (a16z) — From System of Record to System of Intelligence
+source: raw/2026-05-14-stephzhang-system-of-record-to-system-of-intelligence.md
+fetch-method: Playwright MCP
+pages-created: system-of-intelligence.md (the thesis), steph-zhang.md (first a16z entity), source-stephzhang-system-of-intelligence.md
+pages-updated: filing-cabinet-vs-nervous-system.md (cross-linked enterprise version), index.md
