@@ -2,6 +2,46 @@
 
 <!-- Append-only. Format: ## [YYYY-MM-DD] operation | Title -->
 
+## [2026-05-14] ingest-batch | Build with Claude Code — official docs gap fill (11 sources, 13 URLs)
+sources:
+- raw/2026-05-14-anthropic-claude-code-agents-overview.md (https://code.claude.com/docs/en/agents.md)
+- raw/2026-05-14-anthropic-claude-code-subagents.md (https://code.claude.com/docs/en/sub-agents.md)
+- raw/2026-05-14-anthropic-claude-code-agent-teams.md (https://code.claude.com/docs/en/agent-teams.md)
+- raw/2026-05-14-anthropic-claude-code-worktrees.md (https://code.claude.com/docs/en/worktrees.md)
+- raw/2026-05-14-anthropic-claude-code-mcp.md (https://code.claude.com/docs/en/mcp.md)
+- raw/2026-05-14-anthropic-claude-code-plugins.md + plugins-reference.md (https://code.claude.com/docs/en/plugins.md + discover-plugins.md + plugins-reference.md)
+- raw/2026-05-14-anthropic-claude-code-hooks-guide.md + hooks-reference.md (https://code.claude.com/docs/en/hooks-guide.md + hooks.md)
+- raw/2026-05-14-anthropic-claude-code-channels.md (https://code.claude.com/docs/en/channels.md)
+- raw/2026-05-14-anthropic-claude-code-channels-reference.md (https://code.claude.com/docs/en/channels-reference.md)
+- raw/2026-05-14-anthropic-claude-code-scheduled-tasks.md (https://code.claude.com/docs/en/scheduled-tasks.md)
+- raw/2026-05-14-anthropic-claude-code-routines.md (https://code.claude.com/docs/en/routines.md)
+- raw/2026-05-14-anthropic-claude-code-programmatic-usage.md (https://code.claude.com/docs/en/headless.md)
+- raw/2026-05-14-anthropic-claude-code-deep-links.md (https://code.claude.com/docs/en/deep-links.md)
+- raw/2026-05-14-anthropic-claude-code-skills-refresh.md (https://code.claude.com/docs/en/skills.md — refresh of 2026-04-21)
+pages-created:
+- source-claude-code-agents-overview.md
+- source-claude-code-subagents-docs.md
+- source-claude-code-agent-teams-docs.md
+- source-claude-code-worktrees-docs.md
+- source-claude-code-mcp-docs.md
+- source-claude-code-plugins-docs.md
+- source-claude-code-hooks-docs.md
+- source-claude-code-channels-docs.md
+- source-claude-code-channels-reference-docs.md
+- source-claude-code-scheduled-tasks-docs.md
+- source-claude-code-routines-docs.md
+- source-claude-code-programmatic-usage-docs.md
+- source-claude-code-deep-links-docs.md
+- source-claude-code-skills-docs-2026-05.md
+pages-updated:
+- claude-code-monitor-tool.md (added Channels as 5th category in comparison table; cross-referenced sibling primitive)
+- agent-skills-standard.md (added 6 new frontmatter fields, substitution variables, skillOverrides setting, bundled skills list)
+- index.md (added 14 new source-* entries under Sources)
+conflicts-resolved:
+- Monitor vs Channels: NOT a conflict — different transport layers. Cross-referenced in both directions.
+- Skills 2026-04-21 vs 2026-05-14: PURE ADDITIONS — no claims contradicted. Old source kept; agent-skills-standard.md updated additively.
+context: User requested gap-fill of all 15 "Build with Claude Code" official nav items (3 already had: Agent View, Skills, Goals; 12 added in this batch + Skills refresh = 13 ingest tasks → 14 new wiki source pages because plugins bundle covered 3 URLs in 1 page, hooks 2 in 1, channels 2 in 2 separate, scheduled-tasks/routines 2 in 2 separate).
+
 ## [2026-04-06] ingest | Harness Design for Long-Running Application Development
 source: raw/2026-04-06-anthropic-harness-design-long-running-apps.md
 pages-created: anthropic.md, claude-model-family.md, prithvi-rajasekaran.md, harness-design.md, context-anxiety.md, self-evaluation-bias.md, multi-agent-architecture.md, assumptions-expire.md, source-anthropic-harness-design.md

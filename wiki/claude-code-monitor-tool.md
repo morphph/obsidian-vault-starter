@@ -49,15 +49,21 @@ Built-in [[claude-code]] tool (v2.1.98, April 9 2026) that transforms the agent 
 |-----------|---------|----------|
 | **Hooks** | Claude's own actions (pre/post edit, commit) | Internal event reactions |
 | **CronCreate** (Scheduled Tasks) | Fixed time intervals | Periodic checks |
-| **Monitor** | External events (stdout lines) | Real-time output reaction |
+| **Monitor** | External events from local stdout | Real-time output reaction on this machine |
+| **[[source-claude-code-channels-docs\|Channels]]** (v2.1.80+) | External pushes via MCP from Telegram/Discord/iMessage/webhooks | React to events from off-machine sources |
 | **Bash run_in_background** | Completion only (fire-and-forget) | One-shot background tasks |
 
+> [!note] Monitor vs Channels
+> Both invert polling, but **Monitor watches local stdout** from a shell command running on your machine, while **[[source-claude-code-channels-docs|Channels]] receive external pushes** via MCP servers (chat platforms, webhooks). Use Monitor for local log/file/process watching; use Channels for off-machine event sources.
+
 ## Connections
-- Related: [[claude-code]], [[orchestration-loop]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[query-loop]]
+- Related: [[claude-code]], [[orchestration-loop]], [[forked-agent-pattern]], [[prompt-cache-optimization]], [[query-loop]], [[source-claude-code-channels-docs]]
 - Monitor extends the [[forked-agent-pattern]] — background process with event-driven wakeup
 - Token savings align with [[prompt-cache-optimization]] philosophy — minimize unnecessary API calls
+- Sibling primitive to [[source-claude-code-channels-docs|channels]]: both push events into the session, different transport layers
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-04-11 | raw/claude-code-monitor-tool-docs-2026-04.md | Initial creation from official docs + community analysis |
+| 2026-05-14 | raw/2026-05-14-anthropic-claude-code-channels.md | Added Channels as 5th category — cross-referenced sibling primitive |
