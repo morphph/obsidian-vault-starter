@@ -340,3 +340,9 @@ source: raw/2026-05-14-stephzhang-system-of-record-to-system-of-intelligence.md
 fetch-method: Playwright MCP
 pages-created: system-of-intelligence.md (the thesis), steph-zhang.md (first a16z entity), source-stephzhang-system-of-intelligence.md
 pages-updated: filing-cabinet-vs-nervous-system.md (cross-linked enterprise version), index.md
+
+## [2026-05-16] ingest | Dan Koe — How to think like a strategic genius (5D thinking)
+source: raw/2026-01-27-dankoe-how-to-think-like-strategic-genius.md
+fetch-method: Playwright MCP
+pages-created: five-levels-of-thinking.md (Ken Wilber's Integral framework + Dan Koe packaging), dan-koe.md (first content-creator entity), source-dankoe-strategic-genius-thinking.md
+pages-updated: index.md
