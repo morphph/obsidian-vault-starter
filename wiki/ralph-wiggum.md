@@ -183,3 +183,4 @@ ONLY DO ONE TASK AT A TIME."
 | 2026-04-15 | raw/2026-04-15-aihero-getting-started-with-ralph.md | Added quickstart steps, Docker 4.50+, script templates |
 | 2026-04-15 | raw/2026-04-15-mattpocockuk-ralph-wiggum-xthread.md | Added viral X thread content (204K views) |
 | 2026-04-15 | raw/2026-04-15-repo-ralph-orchestrator.md | Added Ralph Orchestrator: production Rust framework, hat system, waves, Telegram HITL |
+| 2026-05-16 | raw/2026-03-19-tw93-agent-architecture-and-engineering.md | Added Tw93's **Initializer + Coding Agent** structured Ralph variant: Initializer runs once (creates `feature-list.json` + `claude-progress.txt` + initial commit); Coding Agent loops recovering state from disk each turn. "Progress on disk not in context" — JSON not Markdown for stable model edits, one `in_progress` at a time |

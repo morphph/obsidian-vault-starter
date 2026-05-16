@@ -9,6 +9,19 @@ sources:
 tags: [wiki, standard, agentic, architecture, skills]
 ---
 
+> **Update 2026-05-16:** [[tw93|Tw93]]'s "你不知道的 Agent" piece (2026-03-19) added two production-grade design rules for the `description` field:
+>
+> 1. **Treat the description as a routing condition, not a feature ad.** "When should I be used?" matters more than "What can I do?". Best format: explicit **Use when / Don't use when** clauses + anti-examples.
+> 2. **Anti-examples are not optional.** Hard data from Tw93's measurements: baseline 73% routing accuracy → drops to **53%** without anti-examples → climbs to **85%** when added back (response time also dropped 18.1%). The "Don't use when" half of the description is doing more work than the "Use when" half.
+>
+> Three Skills anti-patterns Tw93 surfaces:
+> - Hundreds of lines of operating manual stuffed in SKILL.md body (should be supporting files)
+> - One Skill trying to cover review + deploy + debug + incident
+> - Side-effecting Skills without explicit "when not to call me" guards
+>
+> See [[source-tw93-agent-architecture-engineering]].
+
+
 # Agent Skills Standard
 
 ## Summary

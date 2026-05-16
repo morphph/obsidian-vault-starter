@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-04-06
-last-updated: 2026-04-19
+last-updated: 2026-05-16
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
@@ -11,6 +11,7 @@ sources:
   - raw/2026-04-09-anthropic-managed-agents-engineering-blog.md
   - raw/2026-04-15-tips-ai-coding-ralph-wiggum.md
   - raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
+  - raw/2026-03-19-tw93-agent-architecture-and-engineering.md
 tags: [wiki, architecture, agentic]
 ---
 
@@ -58,3 +59,4 @@ The practice of designing multi-agent architectures (harnesses) around LLMs to a
 | 2026-04-09 | raw/2026-04-09-anthropic-managed-agents-engineering-blog.md | Added Managed Agents as Anthropic's productized harness |
 | 2026-04-15 | raw/2026-04-15-tips-ai-coding-ralph-wiggum.md | Expanded Ralph Loop with 11 practical tips, HITL/AFK modes, software entropy |
 | 2026-04-19 | raw/2026-04-11-garry-tan-thin-harness-fat-skills.md | Added Garry Tan's "Thin Harness, Fat Skills" three-layer formulation and five primitives |
+| 2026-05-16 | raw/2026-03-19-tw93-agent-architecture-and-engineering.md | Added Tw93's "Harness > Model" framing; OpenAI Agent-First case study (3 engineers / 5 months / 1M+ LOC / 1500 PRs = 10× traditional speed); explicit Harness composition = verification baseline + execution boundaries + feedback signals + fallback mechanisms |

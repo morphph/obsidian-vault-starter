@@ -39,3 +39,4 @@ Architectural pattern where multiple specialized LLM agents collaborate on a tas
 | 2026-04-06 | raw/2026-04-06-claude-reviews-claude-overview.md | Added Claude Code multi-agent coordination pillar |
 | 2026-04-07 | raw/2026-04-07-anatomy-of-agent-harness.md | Added when-to-split heuristic, subagent models, OpenAI/CrewAI patterns |
 | 2026-05-09 | raw/2026-05-05-khairallah-3-ai-agents-replace-first-hires.md | Added 3-agent starter team as the business-team templating of multi-agent architecture |
+| 2026-05-16 | raw/2026-03-19-tw93-agent-architecture-and-engineering.md | Added Tw93's "protocol before collaboration" rule: three things must exist before parallelism — JSONL inbox protocol + `.tasks/` task graph + `.worktrees/` filesystem isolation. Sub-agent two safety limits: depth cap + minimum system prompt (no Skills/Memory). Multi-agent error amplification ("A drifts → B reinforces → C compounds → confident wrong answer") — defense is cross-validation |
