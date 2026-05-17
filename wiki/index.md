@@ -109,8 +109,6 @@
 - [[context-md-pattern]] — Per-bounded-context glossary file; strict "glossary only, no implementation"; on-disk implementation of DDD ubiquitous language; consumed by all 5 skills in mattpocock-skills-library
 - [[hitl-vs-afk-classification]] — Per-issue labeling (Human-in-the-loop vs Away-from-keyboard); the "machine-verifiable" decision rule; the dispatcher prerequisite that makes Ralph runnable in production
 - [[vertical-slicing]] — `/to-issues` unit-of-work pattern; slices cut through all layers (schema+API+UI+tests) not horizontal; enables parallel agents + independent shipping; generalizes beyond code
-- [[shared-contracts-pattern]] — Tessmann's coordination pattern; planner generates contracts (test IDs, type names) BEFORE work begins; downstream agents read-only; three enforcement rules
-- [[opportunity-finder-pattern]] — Amplitude's dispatcher pattern; "loop is engine, dispatcher is intelligence"; ranked queue from analytics+traces+feedback feeds Ralph loop; 102 features in 7 days
 
 ## Synthesis
 
@@ -202,9 +200,5 @@
 - [[source-mattpocock-grill-with-docs-skill]] — Full SKILL.md text + design analysis: one-question-at-a-time, explore-first, CONTEXT.md as glossary only, ADR 3-gate (2026-05-17)
 - [[source-aihero-grill-with-docs-changelog]] — Matt's writeup on deprecating /ubiquitous-language and merging into /grill-with-docs; DDD bounded-contexts rationale; CONTEXT-MAP.md pattern (2026-05-17)
 - [[source-mattpocock-sandcastle-repo]] — GitHub Deep Scan of mattpocock/sandcastle (4.5K⭐): sandcastle.run() API, provider abstraction, createWorktree() bridge, .factory/ software-factory pattern (2026-05-17)
-- [[source-amplitude-ralph-loop]] — Amplitude AI Week experiment: 102 features in 7 days with Claude Code + browser use + Opportunity Finder dispatcher; "loop is secondary, dispatcher is everything" (2026-05-17)
-- [[source-tessmann-agent-teams-ralph]] — Meag Tessmann's hybrid: Agent Teams (creative) + Ralph (mechanical); Shared Contracts pattern; $15-25 per 10-task feature; explicit-negation prompts (2026-05-17)
-- [[source-alexandergekov-year-of-ralph]] — DEV synthesis of Ralph's 2026 maturation: 3-tier token tracking, gutter detection, `.ralph/guardrails.md` persistent learning, Cursor plugin mainstreaming (2026-05-17)
-- [[source-adityapuri-matt-skills]] — Third-party walkthrough of Matt's 5 skills; surfaces HITL/AFK labeling + vertical slicing + deletion test (2026-05-17)
 - [[source-aihero-5-agent-skills]] — Matt's marketing-tier writeup of 5-skill workflow; "Skills are institutional memory for agents that lack memory"; /tdd as "most consistent way to improve agent outputs" (2026-05-17)
 - [[source-mattpocock-chapter-creator-thread]] — Matt's 6-step X tweet (screenshot, ~2026-05-15): the seed text for idea-to-afk-agent-flow runbook (2026-05-17)

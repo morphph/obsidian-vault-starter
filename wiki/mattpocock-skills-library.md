@@ -5,7 +5,6 @@ last-updated: 2026-05-17
 sources:
   - raw/2026-05-17-repo-mattpocock-skills.md
   - raw/2026-05-17-aihero-5-agent-skills.md
-  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md
 tags: [wiki, skills, claude-code, library]
 ---
 
@@ -104,4 +103,4 @@ Critical for autonomous workflows: each issue gets labeled HITL (needs human dec
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
-| 2026-05-17 | Skills repo + AI Hero article + Aditya walkthrough | Initial creation |
+| 2026-05-17 | Skills repo README + AI Hero 5 skills writeup (both Matt official) | Initial creation |

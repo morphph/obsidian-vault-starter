@@ -38,6 +38,36 @@ pages-updated:
   - index.md (added 2 entities, 6 concepts, 1 synthesis, 10 sources)
 note: skipped 3 X threads (URLs not preserved by user; X content not WebFetchable). Tier 1 + Tier 2 ingest completed minus X threads. Goal: personal runbook for practicing Matt Pocock's idea→AFK-agent methodology.
 
+## [2026-05-17] cleanup | Remove third-party sources, keep Matt-official only
+trigger: user feedback — practice guide should prioritize official sources (Matt's repos + AI Hero) over unverified third-party walkthroughs/case studies
+files-deleted:
+  - raw/2026-05-17-amplitude-ralph-loop-102-features.md (Amplitude marketing blog)
+  - raw/2026-05-17-tessmann-agent-teams-ralph-hybrid.md (Meag Tessmann Medium)
+  - raw/2026-05-17-alexandergekov-year-of-ralph-loop.md (Alexander Gekov DEV.to)
+  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md (Aditya Puri Medium walkthrough)
+  - wiki/source-amplitude-ralph-loop.md
+  - wiki/source-tessmann-agent-teams-ralph.md
+  - wiki/source-alexandergekov-year-of-ralph.md
+  - wiki/source-adityapuri-matt-skills.md
+  - wiki/opportunity-finder-pattern.md (Amplitude-only sourced)
+  - wiki/shared-contracts-pattern.md (Tessmann-only sourced)
+pages-updated:
+  - wiki/idea-to-afk-agent-flow.md (removed Pattern B/C, Phase 5 option C; explicit source-purity policy added)
+  - wiki/ralph-wiggum.md (replaced "2026 Evolution" section with Matt-only "2026 Productization")
+  - wiki/matt-pocock.md (cleaned source list)
+  - wiki/grill-with-docs.md (cleaned source list)
+  - wiki/mattpocock-skills-library.md (cleaned source list)
+  - wiki/hitl-vs-afk-classification.md (rewritten to cite only Matt's /to-issues skill)
+  - wiki/vertical-slicing.md (rewritten to cite only Matt's official material)
+  - wiki/index.md (removed 2 deleted concept entries + 4 deleted source entries)
+retained sources (Matt-official only):
+  - raw/2026-05-17-repo-mattpocock-skills.md
+  - raw/2026-05-17-mattpocock-grill-with-docs-skill.md
+  - raw/2026-05-17-aihero-grill-with-docs-changelog.md (AI Hero = Matt's site)
+  - raw/2026-05-17-repo-mattpocock-sandcastle.md
+  - raw/2026-05-17-mattpocock-chapter-creator-thread.md (Matt's tweet)
+  - raw/2026-05-17-aihero-5-agent-skills.md (AI Hero = Matt's site)
+
 
 <!-- Append-only. Format: ## [YYYY-MM-DD] operation | Title -->
 

@@ -3,7 +3,7 @@ type: concept
 created: 2026-05-17
 last-updated: 2026-05-17
 sources:
-  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md
+  - raw/2026-05-17-repo-mattpocock-skills.md
   - raw/2026-05-17-aihero-5-agent-skills.md
 tags: [wiki, workflow, decomposition]
 ---
@@ -14,6 +14,13 @@ tags: [wiki, workflow, decomposition]
 Unit-of-work pattern from Matt Pocock's `/to-issues` skill: break features into thin "vertical slices" that cut through all integration layers (schema + API + UI + tests), NOT into horizontal layers (all schemas first, then all APIs, then all UIs). Each slice is independently shippable, surfaces unknowns end-to-end, and enables parallel agents.
 
 ## Details
+
+### Source
+From Matt's [mattpocock/skills](https://github.com/mattpocock/skills) `/to-issues` description:
+> "Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices."
+
+From Matt's [AI Hero 5 Agent Skills](https://www.aihero.dev/5-agent-skills-i-use-every-day):
+> "Rather than dividing work horizontally by layer, this skill creates 'vertical slices' — thin features that cut through all integration layers. This approach quickly surfaces unknowns and enables parallel work across multiple agents."
 
 ### Why vertical, not horizontal
 **Horizontal** (`all schemas → all APIs → all UIs`):
@@ -38,9 +45,9 @@ Vertical slices are scope-bounded enough to label [[hitl-vs-afk-classification|A
 
 ### Beyond code
 The pattern generalizes to non-code work:
-- **Articles:** complete chapter (hook + argument + conclusion) per slice, not "all hooks then all arguments"
-- **Videos:** complete short scene, not "all script then all editing"
-- **Research:** complete answer to one sub-question, not "all data then all analysis"
+- **Articles:** complete chapter (hook + argument + conclusion) per slice
+- **Videos:** complete short scene
+- **Research:** complete answer to one sub-question
 
 Each "slice" is something an autonomous agent could finish and verify.
 
@@ -53,4 +60,4 @@ Each "slice" is something an autonomous agent could finish and verify.
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
-| 2026-05-17 | Aditya walkthrough + Matt's AI Hero article | Initial creation |
+| 2026-05-17 | Matt's skills repo README + AI Hero 5 skills writeup | Initial creation |

@@ -12,7 +12,6 @@ sources:
   - raw/2026-05-17-repo-mattpocock-sandcastle.md
   - raw/2026-05-17-mattpocock-chapter-creator-thread.md
   - raw/2026-05-17-aihero-5-agent-skills.md
-  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md
 tags: [wiki, person, builder]
 ---
 
@@ -84,5 +83,5 @@ Developer and content creator behind AI Hero (aihero.dev). One of the most influ
 | 2026-05-17 | raw/2026-05-17-repo-mattpocock-skills.md | MAJOR refresh — added mattpocock/skills library (87K stars), 5-skill workflow, 4-failure-modes framework |
 | 2026-05-17 | raw/2026-05-17-repo-mattpocock-sandcastle.md | Added Sandcastle AFK orchestration framework (4.5K stars) |
 | 2026-05-17 | raw/2026-05-17-mattpocock-chapter-creator-thread.md | Added chapter-creator tweet as seed for idea-to-afk-agent-flow methodology |
-| 2026-05-17 | raw/2026-05-17-aihero-5-agent-skills.md + raw/2026-05-17-adityapuri-matt-pocock-5-skills.md | Added 5-skill workflow details + third-party validation |
+| 2026-05-17 | raw/2026-05-17-aihero-5-agent-skills.md | Added 5-skill workflow details from Matt's AI Hero writeup |
 | 2026-05-17 | raw/2026-05-17-mattpocock-grill-with-docs-skill.md + raw/2026-05-17-aihero-grill-with-docs-changelog.md | Added grill-with-docs as keystone skill + DDD lineage |

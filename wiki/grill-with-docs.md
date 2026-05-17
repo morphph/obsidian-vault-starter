@@ -6,7 +6,7 @@ sources:
   - raw/2026-05-17-mattpocock-grill-with-docs-skill.md
   - raw/2026-05-17-aihero-grill-with-docs-changelog.md
   - raw/2026-05-17-repo-mattpocock-skills.md
-  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md
+  - raw/2026-05-17-aihero-5-agent-skills.md
 tags: [wiki, skill, ddd, discovery, prompt-engineering]
 ---
 
@@ -81,4 +81,4 @@ Also added multi-bounded-context support (CONTEXT-MAP.md) to match real-system r
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
-| 2026-05-17 | SKILL.md + AI Hero changelog + Aditya walkthrough + skills README | Initial creation |
+| 2026-05-17 | SKILL.md + AI Hero changelog + AI Hero 5 skills + skills README (all Matt official) | Initial creation |

@@ -3,33 +3,36 @@ type: concept
 created: 2026-05-17
 last-updated: 2026-05-17
 sources:
-  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md
-  - raw/2026-05-17-tessmann-agent-teams-ralph-hybrid.md
+  - raw/2026-05-17-repo-mattpocock-skills.md
+  - raw/2026-05-17-aihero-5-agent-skills.md
 tags: [wiki, classification, workflow, afk]
 ---
 
 # HITL vs AFK Classification
 
 ## Summary
-Per-issue labeling pattern from Matt Pocock's `/to-issues` skill and the Tessmann hybrid: every backlog item is tagged either **HITL** (human-in-the-loop, needs judgment) or **AFK** (away-from-keyboard, agent-executable). The AFK queue is what feeds autonomous loops; HITL items stay manual. The "missing piece" that makes Ralph runnable in production.
+Per-issue labeling pattern from Matt Pocock's `/to-issues` skill: every backlog item is tagged either **HITL** (human-in-the-loop, needs judgment) or **AFK** (away-from-keyboard, agent-executable). The AFK queue is what feeds autonomous loops; HITL items stay manual. The "missing piece" that makes Ralph runnable in production.
 
 ## Details
 
-### Decision rule
-Ask: **Can a script return pass/fail on this work's output?**
-- Yes → AFK
-- No → HITL
+### Source
+Matt Pocock's [[mattpocock/skills repo|mattpocock-skills-library]] `/to-issues` skill description (from the repo's README):
+> "Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices."
 
-(Tessmann's formalization: "machine-verifiable → loop, not verifiable → human.")
+Each issue produced gets classified for autonomy boundary.
+
+### Decision rule
+The pragmatic question per issue: **does the agent need human judgment to call this done?**
+- No → AFK (agent self-executes)
+- Yes → HITL (human reviews)
 
 ### AFK-suitable
 - Well-scoped implementations with passing tests as success
 - Refactors with type/test gates
 - Test backfill (uncovered lines → cover)
 - Migration passes
-- Doc generation with format/structure checks
-- Lint cleanup
 - Mechanical data transforms
+- Lint cleanup
 
 ### HITL-required
 - Architecture decisions
@@ -47,11 +50,9 @@ Without classification, two failure modes:
 ### Where the label lives
 - GitHub: as labels on issues (`afk`, `hitl`)
 - Local backlog: column header in TODO file
-- Tessmann's hybrid: lives in the team brief; planner agent assigns
 
 ## Connections
 - Source skill: [[mattpocock-skills-library]] (`/to-issues`)
-- Hybrid pattern: [[shared-contracts-pattern]] (Tessmann)
 - Execution layer: [[ralph-wiggum]], [[sandcastle]]
 - Phase context: [[idea-to-afk-agent-flow]] (Phase 5 dispatcher input)
 - Related: [[llm-judgment-vs-scripts]]
@@ -59,4 +60,4 @@ Without classification, two failure modes:
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
-| 2026-05-17 | Aditya walkthrough + Tessmann hybrid | Initial creation |
+| 2026-05-17 | Matt's skills repo README + AI Hero 5 skills writeup | Initial creation |

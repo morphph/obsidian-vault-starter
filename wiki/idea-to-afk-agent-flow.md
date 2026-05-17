@@ -8,10 +8,6 @@ sources:
   - raw/2026-05-17-mattpocock-grill-with-docs-skill.md
   - raw/2026-05-17-aihero-grill-with-docs-changelog.md
   - raw/2026-05-17-repo-mattpocock-sandcastle.md
-  - raw/2026-05-17-amplitude-ralph-loop-102-features.md
-  - raw/2026-05-17-tessmann-agent-teams-ralph-hybrid.md
-  - raw/2026-05-17-alexandergekov-year-of-ralph-loop.md
-  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md
   - raw/2026-05-17-aihero-5-agent-skills.md
 tags: [wiki, synthesis, workflow, afk, ralph, runbook]
 ---
@@ -19,7 +15,9 @@ tags: [wiki, synthesis, workflow, afk, ralph, runbook]
 # Idea → AFK Agent Flow
 
 ## Summary
-End-to-end methodology for turning a fuzzy idea into an autonomous agent that ships work while you're away — built from Matt Pocock's 6-step chapter-creator tweet, his skills library, Sandcastle framework, and 2026 Ralph evolution. Core insight: **you do not write the AFK agent first.** You crystallize requirements → prototype the prompt interactively → build a live-data feedback surface → iterate to convergence → only then promote to AFK.
+End-to-end methodology for turning a fuzzy idea into an autonomous agent — synthesized strictly from Matt Pocock's own published material: his 6-step chapter-creator tweet, his skills library (`mattpocock/skills`), his Sandcastle framework (`@ai-hero/sandcastle`), and his AI Hero blog. Core insight: **you do not write the AFK agent first.** You crystallize requirements → prototype the prompt interactively → build a live-data feedback surface → iterate to convergence → only then promote to AFK.
+
+> **Source policy:** This page cites only Matt Pocock's official material (his GitHub repos, his AI Hero blog, his own X posts). Third-party walkthroughs and adjacent community patterns are intentionally excluded — see [[ralph-wiggum]] for unfiltered community evolution.
 
 ## The 5 Phases
 
@@ -35,15 +33,15 @@ Before starting, three things must exist:
 **Input:** fuzzy wish
 **Output:** clarified plan + updated CONTEXT.md + maybe new ADR
 
-**Mechanic:**
+**Mechanic** (from Matt's SKILL.md):
 - Run `/grill-with-docs` (or `/grill-me` for non-code)
 - Agent asks one question at a time, with its recommended answer
 - Agent explores codebase first; only asks user when truly necessary
 - CONTEXT.md updated inline as terms resolve
 - ADR offered only when (hard-to-reverse + surprising + real trade-off) all true
-- Expect 16–50 questions; ~30–90 minutes
+- Expect 16–50 questions per Matt's AI Hero article; ~30–90 minutes
 
-**Failure mode:** treating CONTEXT.md as spec. Keep it as glossary only.
+**Failure mode:** treating CONTEXT.md as spec. Matt's rule: keep it as glossary only.
 
 ### Phase 2 — Prompt Prototyping
 **Goal:** First-draft the prompt that will eventually drive the AFK agent.
@@ -51,28 +49,27 @@ Before starting, three things must exist:
 **Input:** clarified plan from Phase 1
 **Output:** v0 system/user prompt + a stated end-condition
 
-**Mechanic:**
+**Mechanic** (from Matt's chapter-creator tweet, step 3):
 - Tell the agent literally: *"let's prototype the prompt I'll eventually pass to the AFK agent"*
 - This phrasing matters — it signals you want the *prompt as artifact*, not the implementation
 - The agent will typically counter-suggest scaffolding to test the prompt (this is the bridge to Phase 3)
-- Define explicit completion signal (e.g., `<promise>COMPLETE</promise>`)
+- Define explicit completion signal (Sandcastle default: `<promise>COMPLETE</promise>`)
 - Define explicit verification (what does "done" look like?)
 
 ### Phase 3 — Live-Data Interactive Surface
 **Goal:** Watch your prompt run on real data with tight feedback.
 
 **Input:** v0 prompt + your real production data
-**Output:** debugging UI (TUI or HTML) you can iterate against
+**Output:** debugging UI you can iterate against
 
-**Mechanic:**
-- Agent builds a throwaway debugging surface:
-  - **TUI** for state/business-logic prompts (Matt used EffectTS)
-  - **HTML page** for output-format prompts ([[throwaway-editors]] pattern)
+**Mechanic** (from Matt's chapter-creator tweet steps 4-5, and his `/prototype` skill):
+- Matt's `/prototype` skill description: "Build a throwaway prototype to flesh out a design — either a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route."
+- Matt's chapter-creator tweet (step 4): agent built a TUI in EffectTS pointing at his live data
 - Surface points at your *real* data, not synthetic
 - You see prompt input + prompt output for each real record
 - Surface is disposable — built to be thrown away when prompt converges
 
-**Why this matters:** seeing live output beats reading specs by 10×. You can't predict what the prompt does without watching it.
+**Why this matters:** Matt's own observation — seeing live output beats reading specs. You can't predict what the prompt does without watching it.
 
 ### Phase 4 — System Prompt Iteration
 **Goal:** Get prompt output reliable enough for unattended execution.
@@ -80,27 +77,26 @@ Before starting, three things must exist:
 **Input:** v0 prompt + live-data surface
 **Output:** v∞ prompt that converges on quality
 
-**Mechanic:**
+**Mechanic** (from Matt's chapter-creator tweet step 5: "I iterated on the system prompt until it was awesome"):
 - Edit prompt → observe output on live data → adjust
-- Three iteration patterns:
+- Three iteration patterns (synthesized from Matt's TDD philosophy):
   - **Failure-driven:** find an input where output is bad, add rule to prompt
   - **Edge-case driven:** brainstorm hard cases, test, fix
   - **Voice-driven:** tone/style refinement (most subjective)
-- For machine-verifiable work, can add formal eval (LLM-as-judge, score threshold)
-- For subjective work, "until it's awesome" by your taste is fine
-- Capture lessons as guardrails (`.ralph/guardrails.md` per [[ralph-wiggum]]) so future contexts inherit them
+- For machine-verifiable work, Matt's `/tdd` skill applies — write the success test first
+- For subjective work, "until it's awesome" by your taste is fine (Matt's phrasing)
 
 **Stop condition:** you'd be comfortable letting this prompt run unattended overnight.
 
 ### Phase 5 — AFK Handoff
 **Goal:** Promote converged prompt to autonomous execution.
 
-**Input:** v∞ prompt + verification gates + dispatcher
+**Input:** v∞ prompt + verification gates
 **Output:** completed work + audit trail
 
-**Mechanic options (pick by scale):**
+**Mechanic options (from Sandcastle docs):**
 
-**Single one-shot** (Matt's chapter creator):
+**Single one-shot** (Matt's chapter-creator pattern):
 ```typescript
 import { run, claudeCode } from "@ai-hero/sandcastle";
 import { docker } from "@ai-hero/sandcastle/sandboxes/docker";
@@ -109,41 +105,30 @@ await run({
   agent: claudeCode("claude-opus-4-7"),
   sandbox: docker(),
   promptFile: ".sandcastle/prompt.md",
-  promptArgs: { ... },
   completionSignal: "<promise>COMPLETE</promise>",
   idleTimeoutSeconds: 600,
 });
 ```
 
-**Continuous loop** (Ralph-style):
-- Use `maxIterations: N` with Sandcastle, or a bash `while` loop
+**Continuous loop** (Sandcastle's `maxIterations`):
+- Use `maxIterations: N`
 - Each iteration: fresh context, reads PRD + progress file
 - Stop on completion signal or N iterations
 
-**Production scale** (Amplitude case):
-- Add a **dispatcher** that ranks "what to do next" (Opportunity Finder pattern)
-- Add **self-instrumentation** so each output reports its own performance
-- Add **browser verification** (Playwright/Chrome MCP) recording GIF per ship
-- Auto-merge narrow low-risk categories; gate the rest
+## The Key Pattern: Interactive → AFK Escalation
 
-## The Three Critical Patterns
+Sandcastle's `createWorktree()` materializes this directly:
+```typescript
+await using wt = await createWorktree({ branchStrategy: { type: "branch", branch: "agent/feature-x" } });
 
-### Pattern A — Interactive→AFK escalation
-Sandcastle's `createWorktree()` materializes this:
-1. `wt.interactive()` — run interactive session in worktree (no sandbox)
-2. `wt.run({ sandbox: docker() })` — hand same worktree to AFK agent
+// Phase 1-4: human-driven interactive session (no sandbox)
+await wt.interactive({ agent: claudeCode("claude-opus-4-7"), prompt: "Let's design this." });
+
+// Phase 5: same worktree handed to AFK agent
+await wt.run({ agent: claudeCode("claude-opus-4-7"), sandbox: docker(), prompt: "Implement.", maxIterations: 3 });
+```
 
 Don't skip the interactive stage. It's where the prompt converges.
-
-### Pattern B — Machine-verifiable cut
-For every task ask: **can a script return pass/fail?**
-- Yes → AFK loop
-- No → HITL with human review
-
-Tessmann's hybrid (Agent Teams + Ralph) generalizes this: docs/design track stays HITL, code/tests track goes AFK in parallel worktrees.
-
-### Pattern C — Dispatcher beats loop
-The bare `while true; do agent; done` is the engine. The dispatcher (Opportunity Finder, ranked backlog, `/to-issues` AFK-labeled queue) is the intelligence. **Build the dispatcher first, the loop second.**
 
 ## How To Practice On Your Own Projects
 
@@ -153,7 +138,7 @@ Pick a problem where:
 - You have real data to test against
 - Cost of bad output is recoverable (not destructive)
 
-Good first AFK projects: content generation (you can read it), refactor passes, test backfill, data labeling, doc generation.
+Good first AFK projects: content generation (you can read it), refactor passes, test backfill, doc generation.
 
 ### Setup checklist
 - [ ] `npx skills@latest add mattpocock/skills` in target repo
@@ -162,7 +147,7 @@ Good first AFK projects: content generation (you can read it), refactor passes, 
 - [ ] Configure Docker Desktop (or Podman)
 - [ ] Set `.sandcastle/.env` with `ANTHROPIC_API_KEY`
 
-### First-flow checklist (the actual practice)
+### First-flow checklist
 - [ ] Phase 1: Run `/grill-with-docs` on the idea — write down the resulting plan
 - [ ] Phase 2: Ask agent to "prototype the prompt I'll pass to the AFK agent"
 - [ ] Phase 3: Let agent build a TUI/HTML debugger pointing at real data
@@ -175,18 +160,19 @@ Good first AFK projects: content generation (you can read it), refactor passes, 
 2. **Skipping Phase 3** — building AFK loop directly against unseen data. Output silently degrades.
 3. **No completion signal** — agent runs until timeout instead of finishing.
 4. **No verification gate** — agent marks "done" without actually verifying.
-5. **Treating CONTEXT.md as a spec** — bloats fast; keep it as glossary only.
+5. **Treating CONTEXT.md as a spec** — bloats fast; keep it as glossary only (Matt's strict rule).
 6. **HITL/AFK undivided** — don't try to put creative-judgment work in a loop. It will produce confident garbage.
 
 ## Connections
-- Phase 1: [[grill-with-docs]], [[context-md-pattern]], [[sprint-contracts]], [[four-files-context-architecture]]
-- Phase 2: [[prompt-architecture-three-layer]], [[skill-as-method-call]]
-- Phase 3: [[throwaway-editors]], [[html-as-output-format]]
-- Phase 4: [[verification-loops]], [[quality-gate-loop]], [[iterative-repair-loop]], [[agent-improvement-flywheel]], [[cross-modal-review]]
-- Phase 5: [[sandcastle]], [[ralph-wiggum]], [[opportunity-finder-pattern]], [[claude-code-sandboxing]], [[shared-contracts-pattern]]
-- Cross-cutting: [[mattpocock-skills-library]], [[hitl-vs-afk-classification]], [[vertical-slicing]], [[matt-pocock]]
+- Phase 1: [[grill-with-docs]], [[context-md-pattern]]
+- Phase 2-3: [[mattpocock-skills-library]] (`/prototype` skill)
+- Phase 4: Matt's `/tdd` skill within [[mattpocock-skills-library]]
+- Phase 5: [[sandcastle]], [[claude-code-sandboxing]]
+- Cross-cutting: [[matt-pocock]], [[hitl-vs-afk-classification]], [[vertical-slicing]]
+- Adjacent (different methodology): [[ralph-wiggum]] — community pattern Matt's stack builds on
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
-| 2026-05-17 | 10 sources (see frontmatter) | Initial synthesis from Matt's tweet + skills repo + Sandcastle + Ralph 2026 evolution |
+| 2026-05-17 | 6 Matt-official sources (see frontmatter) | Initial synthesis from Matt's tweet + skills library + Sandcastle + AI Hero blog |
+| 2026-05-17 | (cleanup) | Removed Amplitude/Tessmann/Gekov/Aditya-derived patterns per source-purity policy |
