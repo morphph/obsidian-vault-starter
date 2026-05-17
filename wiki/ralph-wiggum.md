@@ -155,6 +155,37 @@ ONLY DO ONE TASK AT A TIME."
 - **MCP Server**: `ralph mcp serve` for integration with MCP-compatible clients
 - **Six Ralph Tenets**: Fresh Context Is Reliability / Backpressure Over Prescription / The Plan Is Disposable / Disk Is State, Git Is Memory / Steer With Signals / Let Ralph Ralph
 
+### 2026 Evolution (May 2026 update)
+
+**Token tracking** (per [[source-alexandergekov-year-of-ralph]]):
+- Three-tier system: healthy <60% / warning 60-80% / critical >80%
+- Automatic context rotation at threshold
+
+**Persistent learning via `.ralph/guardrails.md`**:
+- Agent writes failure → trigger + instruction pairs after each iteration
+- Survives context resets — institutional memory across runs
+- Engineered version of "fresh-context-with-learning"
+
+**Dispatcher pattern** ([[opportunity-finder-pattern]], from Amplitude case study):
+- The loop is the engine; the dispatcher is the intelligence
+- Replace "agent picks next task from PRD" with a ranked queue from analytics + traces + feedback
+- 102 features shipped in 7 days demonstrates the upper bound
+
+**Hybrid with Agent Teams** ([[shared-contracts-pattern]], from Tessmann):
+- Machine-verifiable tasks → Ralph loop in parallel git worktrees
+- Creative/judgment tasks → Agent Teams single-shot with human review
+- Shared Contracts table prevents naming drift between parallel agents
+- Real cost: $15-25 for 10-task feature, <1 hour wall clock
+
+**Productization**:
+- Official Cursor plugin → mainstream legitimacy
+- [[sandcastle]] (Matt Pocock, 4.5K stars) → TypeScript SDK with `sandcastle.run()` primitive
+- The `.ralph/` directory convention emerging as filesystem standard
+
+**HITL/AFK labeling** ([[hitl-vs-afk-classification]]):
+- The missing dispatcher prerequisite — only AFK-labeled work enters the loop
+- Without it, Ralph receives judgment tasks and ships confident garbage
+
 ### Future Directions
 - **Gas Town** (Steve Yegge concept): "Kubernetes for agents" — distributed orchestration of multiple Ralph loops
 - **MEOW** (Molecular Expression of Work): Granular task definitions enabling parallel agent coordination at scale
@@ -169,6 +200,7 @@ ONLY DO ONE TASK AT A TIME."
 
 ## Connections
 - Related: [[harness-design]], [[orchestration-loop]], [[verification-loops]], [[context-anxiety]], [[software-entropy]], [[claude-code]], [[claude-code-sandboxing]], [[anthropic]], [[geoffrey-huntley]], [[matt-pocock]], [[boris-cherny]], [[ralph-orchestrator]]
+- 2026 ecosystem: [[sandcastle]], [[opportunity-finder-pattern]], [[shared-contracts-pattern]], [[hitl-vs-afk-classification]], [[idea-to-afk-agent-flow]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -184,3 +216,8 @@ ONLY DO ONE TASK AT A TIME."
 | 2026-04-15 | raw/2026-04-15-mattpocockuk-ralph-wiggum-xthread.md | Added viral X thread content (204K views) |
 | 2026-04-15 | raw/2026-04-15-repo-ralph-orchestrator.md | Added Ralph Orchestrator: production Rust framework, hat system, waves, Telegram HITL |
 | 2026-05-16 | raw/2026-03-19-tw93-agent-architecture-and-engineering.md | Added Tw93's **Initializer + Coding Agent** structured Ralph variant: Initializer runs once (creates `feature-list.json` + `claude-progress.txt` + initial commit); Coding Agent loops recovering state from disk each turn. "Progress on disk not in context" — JSON not Markdown for stable model edits, one `in_progress` at a time |
+| 2026-05-17 | raw/2026-05-17-amplitude-ralph-loop-102-features.md | Added Amplitude 102-features case study + opportunity-finder dispatcher pattern |
+| 2026-05-17 | raw/2026-05-17-tessmann-agent-teams-ralph-hybrid.md | Added Agent Teams + Ralph hybrid pattern; shared-contracts; $15-25 unit economics |
+| 2026-05-17 | raw/2026-05-17-alexandergekov-year-of-ralph-loop.md | Added 2026 evolution: token tracking tiers, .ralph/guardrails.md persistent learning, official Cursor plugin |
+| 2026-05-17 | raw/2026-05-17-repo-mattpocock-sandcastle.md | Added Sandcastle as TS productization of Ralph pattern |
+| 2026-05-17 | raw/2026-05-17-adityapuri-matt-pocock-5-skills.md | Added HITL/AFK labeling as dispatcher prerequisite |

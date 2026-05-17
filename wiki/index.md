@@ -29,6 +29,8 @@
 - [[chris-hayduk]] — FDE Life Sciences @ OpenAI; first OpenAI-insider source; published 188K-view playbook for using Codex `/goal` effectively
 - [[steph-zhang]] — a16z investor; first a16z voice in wiki; "System of Record → System of Intelligence" thesis (the enterprise version of filing-cabinet-vs-nervous-system)
 - [[dan-koe]] — Content creator focused on personal brand, writing, online business; first content-creator/self-development voice in wiki; 2.17M-view 5D thinking framework
+- [[mattpocock-skills-library]] — Matt Pocock's open-sourced `.claude/` skills directory (87K⭐); 5-skill production loop; encodes engineering fundamentals (DDD/XP/TDD) as composable prompts
+- [[sandcastle]] — Matt's TypeScript framework for AFK coding agent orchestration (4.5K⭐); `sandcastle.run()` primitive; Docker/Podman/Vercel provider-agnostic; materializes interactive→AFK escalation as `createWorktree()` API
 
 ## Concepts
 
@@ -103,6 +105,12 @@
 - [[four-files-context-architecture]] — Khairallah's minimalist Layer-3 context system: Identity / Audience / Standards / Project files; the weekend-implementable version of GBrain / nervous-system patterns
 - [[iterative-repair-loop]] — OpenAI Cookbook's three-phase closed-loop pattern: Review (no edits) → Repair (on copies) → Validate (end-to-end execution); "separating judgment from proof through structured handoffs"
 - [[agent-improvement-flywheel]] — OpenAI Cookbook's 6-step trace→feedback→eval→optimize→harness-change loop; per-system-version improvement; 6 required artifacts per run; HALO ranks improvements by impact
+- [[grill-with-docs]] — Matt Pocock's keystone skill; one-question-at-a-time grilling + CONTEXT.md ubiquitous-language glossary + ADRs with 3-gate (hard-to-reverse + surprising + real-trade-off); Phase 1 of idea-to-afk-agent-flow
+- [[context-md-pattern]] — Per-bounded-context glossary file; strict "glossary only, no implementation"; on-disk implementation of DDD ubiquitous language; consumed by all 5 skills in mattpocock-skills-library
+- [[hitl-vs-afk-classification]] — Per-issue labeling (Human-in-the-loop vs Away-from-keyboard); the "machine-verifiable" decision rule; the dispatcher prerequisite that makes Ralph runnable in production
+- [[vertical-slicing]] — `/to-issues` unit-of-work pattern; slices cut through all layers (schema+API+UI+tests) not horizontal; enables parallel agents + independent shipping; generalizes beyond code
+- [[shared-contracts-pattern]] — Tessmann's coordination pattern; planner generates contracts (test IDs, type names) BEFORE work begins; downstream agents read-only; three enforcement rules
+- [[opportunity-finder-pattern]] — Amplitude's dispatcher pattern; "loop is engine, dispatcher is intelligence"; ranked queue from analytics+traces+feedback feeds Ralph loop; 102 features in 7 days
 
 ## Synthesis
 
@@ -110,6 +118,7 @@
 - [[anthropic-daily-sources]] — Master 18-source list (websites + X handles) for daily ingestion across all Anthropic + Claude products
 - [[digest-anthropic-2026-01-01-to-2026-04-18]] — Backfill digest: ~71 deduped items across 5 categories (Models, Anthropic, Claude product, Claude API, Claude Code, Cowork)
 - [[digest-anthropic-2026-04-19]] — Daily digest 2026-04-19: 0 new items (quiet day after Apr 16-18 burst); flagged X-scraping-without-auth limitation
+- [[idea-to-afk-agent-flow]] — **The runbook.** 5-phase methodology from fuzzy idea to autonomous agent: Discovery (/grill-with-docs) → Prompt Prototyping → Live-Data Interactive Surface → System Prompt Iteration → AFK Handoff. Built from Matt Pocock's chapter-creator tweet + skills library + Sandcastle + 2026 Ralph evolution. Includes practice checklist and common pitfalls.
 
 ## Connections
 
@@ -189,3 +198,13 @@
 - [[source-claude-code-programmatic-usage-docs]] — Official Anthropic headless mode: `claude -p`, `--bare`, structured output, streaming events (Agent SDK CLI surface) (2026-05-14 fetch)
 - [[source-claude-code-deep-links-docs]] — Official Anthropic `claude-cli://` deep links: URL scheme to launch sessions with pre-filled prompts; runbook integration (2026-05-14 fetch)
 - [[source-claude-code-skills-docs-2026-05]] — Refresh of [[source-anthropic-agent-skills-docs]]: new fields (paths/hooks/shell/arguments), substitution variables, skillOverrides, bundled skills (2026-05-14 fetch)
+- [[source-mattpocock-skills-repo]] — GitHub Deep Scan of mattpocock/skills (87K⭐ / 7.6K forks): 4-failure-modes framework, 5-skill production loop, `.out-of-scope/` governance pattern, progressive-disclosure SKILL structure (2026-05-17)
+- [[source-mattpocock-grill-with-docs-skill]] — Full SKILL.md text + design analysis: one-question-at-a-time, explore-first, CONTEXT.md as glossary only, ADR 3-gate (2026-05-17)
+- [[source-aihero-grill-with-docs-changelog]] — Matt's writeup on deprecating /ubiquitous-language and merging into /grill-with-docs; DDD bounded-contexts rationale; CONTEXT-MAP.md pattern (2026-05-17)
+- [[source-mattpocock-sandcastle-repo]] — GitHub Deep Scan of mattpocock/sandcastle (4.5K⭐): sandcastle.run() API, provider abstraction, createWorktree() bridge, .factory/ software-factory pattern (2026-05-17)
+- [[source-amplitude-ralph-loop]] — Amplitude AI Week experiment: 102 features in 7 days with Claude Code + browser use + Opportunity Finder dispatcher; "loop is secondary, dispatcher is everything" (2026-05-17)
+- [[source-tessmann-agent-teams-ralph]] — Meag Tessmann's hybrid: Agent Teams (creative) + Ralph (mechanical); Shared Contracts pattern; $15-25 per 10-task feature; explicit-negation prompts (2026-05-17)
+- [[source-alexandergekov-year-of-ralph]] — DEV synthesis of Ralph's 2026 maturation: 3-tier token tracking, gutter detection, `.ralph/guardrails.md` persistent learning, Cursor plugin mainstreaming (2026-05-17)
+- [[source-adityapuri-matt-skills]] — Third-party walkthrough of Matt's 5 skills; surfaces HITL/AFK labeling + vertical slicing + deletion test (2026-05-17)
+- [[source-aihero-5-agent-skills]] — Matt's marketing-tier writeup of 5-skill workflow; "Skills are institutional memory for agents that lack memory"; /tdd as "most consistent way to improve agent outputs" (2026-05-17)
+- [[source-mattpocock-chapter-creator-thread]] — Matt's 6-step X tweet (screenshot, ~2026-05-15): the seed text for idea-to-afk-agent-flow runbook (2026-05-17)

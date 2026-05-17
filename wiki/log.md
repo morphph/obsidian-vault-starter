@@ -1,5 +1,44 @@
 # Log
 
+## [2026-05-17] ingest-batch | Matt Pocock idea-to-AFK-agent flow research
+sources:
+  - raw/2026-05-17-repo-mattpocock-skills.md
+  - raw/2026-05-17-mattpocock-grill-with-docs-skill.md
+  - raw/2026-05-17-aihero-grill-with-docs-changelog.md
+  - raw/2026-05-17-repo-mattpocock-sandcastle.md
+  - raw/2026-05-17-amplitude-ralph-loop-102-features.md
+  - raw/2026-05-17-tessmann-agent-teams-ralph-hybrid.md
+  - raw/2026-05-17-alexandergekov-year-of-ralph-loop.md
+  - raw/2026-05-17-adityapuri-matt-pocock-5-skills.md
+  - raw/2026-05-17-aihero-5-agent-skills.md
+  - raw/2026-05-17-mattpocock-chapter-creator-thread.md
+pages-created:
+  - source-mattpocock-skills-repo.md
+  - source-mattpocock-grill-with-docs-skill.md
+  - source-aihero-grill-with-docs-changelog.md
+  - source-mattpocock-sandcastle-repo.md
+  - source-amplitude-ralph-loop.md
+  - source-tessmann-agent-teams-ralph.md
+  - source-alexandergekov-year-of-ralph.md
+  - source-adityapuri-matt-skills.md
+  - source-aihero-5-agent-skills.md
+  - source-mattpocock-chapter-creator-thread.md
+  - mattpocock-skills-library.md (entity)
+  - sandcastle.md (entity)
+  - grill-with-docs.md (concept)
+  - context-md-pattern.md (concept)
+  - hitl-vs-afk-classification.md (concept)
+  - vertical-slicing.md (concept)
+  - shared-contracts-pattern.md (concept)
+  - opportunity-finder-pattern.md (concept)
+  - idea-to-afk-agent-flow.md (synthesis — the runbook)
+pages-updated:
+  - matt-pocock.md (major refresh — added skills library, sandcastle, methodology)
+  - ralph-wiggum.md (added 2026 evolution: token tracking, .ralph/guardrails, dispatcher pattern, hybrid)
+  - index.md (added 2 entities, 6 concepts, 1 synthesis, 10 sources)
+note: skipped 3 X threads (URLs not preserved by user; X content not WebFetchable). Tier 1 + Tier 2 ingest completed minus X threads. Goal: personal runbook for practicing Matt Pocock's idea→AFK-agent methodology.
+
+
 <!-- Append-only. Format: ## [YYYY-MM-DD] operation | Title -->
 
 ## [2026-05-14] ingest-batch | Build with Claude Code — official docs gap fill (11 sources, 13 URLs)
