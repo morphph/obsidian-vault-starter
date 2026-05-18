@@ -31,6 +31,8 @@
 - [[dan-koe]] — Content creator focused on personal brand, writing, online business; first content-creator/self-development voice in wiki; 2.17M-view 5D thinking framework
 - [[mattpocock-skills-library]] — Matt Pocock's open-sourced `.claude/` skills directory (87K⭐); 5-skill production loop; encodes engineering fundamentals (DDD/XP/TDD) as composable prompts
 - [[sandcastle]] — Matt's TypeScript framework for AFK coding agent orchestration (4.5K⭐); `sandcastle.run()` primitive; Docker/Podman/Vercel provider-agnostic; materializes interactive→AFK escalation as `createWorktree()` API
+- [[george-nurijanian]] — First PM-native voice in wiki; runs PM OS at prodmgmt.world; long-form X articles reframing engineer tools for PM craft; high bookmark-to-like ratio (2.84-4.5×)
+- [[pm-os]] — George's AI-PM operating system product (V2 imminent); productized version of agent-ready requirements + skill workflows; commercial sibling of mattpocock-skills-library/gbrain (open-source engineer versions)
 
 ## Concepts
 
@@ -109,6 +111,8 @@
 - [[context-md-pattern]] — Per-bounded-context glossary file; strict "glossary only, no implementation"; on-disk implementation of DDD ubiquitous language; consumed by all 5 skills in mattpocock-skills-library
 - [[hitl-vs-afk-classification]] — Per-issue labeling (Human-in-the-loop vs Away-from-keyboard); the "machine-verifiable" decision rule; the dispatcher prerequisite that makes Ralph runnable in production
 - [[vertical-slicing]] — `/to-issues` unit-of-work pattern; slices cut through all layers (schema+API+UI+tests) not horizontal; enables parallel agents + independent shipping; generalizes beyond code
+- [[agent-ready-requirements]] — George's 7-component PM spec standard for unattended agent loops (observable behavior + negative cases + scope boundaries + validation evidence + stop conditions + status-report expectations + customer-facing success criteria); "a prompt asks for effort, a contract defines where effort stops"
+- [[goal-template]] — George's 6-section practical template for `/goal` invocations (target / source of truth / acceptance criteria / validation / boundaries / loop behavior); 5 natural-fit scenarios (migration / backlog clearing / file splitting / brute-force testing / bounded exploration)
 
 ## Synthesis
 
@@ -202,3 +206,4 @@
 - [[source-mattpocock-sandcastle-repo]] — GitHub Deep Scan of mattpocock/sandcastle (4.5K⭐): sandcastle.run() API, provider abstraction, createWorktree() bridge, .factory/ software-factory pattern (2026-05-17)
 - [[source-aihero-5-agent-skills]] — Matt's marketing-tier writeup of 5-skill workflow; "Skills are institutional memory for agents that lack memory"; /tdd as "most consistent way to improve agent outputs" (2026-05-17)
 - [[source-mattpocock-chapter-creator-thread]] — Matt's 6-step X tweet (screenshot, ~2026-05-15): the seed text for idea-to-afk-agent-flow runbook (2026-05-17)
+- [[source-nurijanian-goal-for-pms]] — George (@nurijanian, PM OS): "/goal for Product Managers" — reframes Claude Code /goal as "Ralph Wiggum loop + product design layer"; weak vs strong goal; 6-section practical template; "agentic coding doesn't remove product thinking, just punishes vague thinking faster" (2026-05-17, 27.9K views, 591 bookmarks)

@@ -1,5 +1,18 @@
 # Log
 
+## [2026-05-18] ingest | George (@nurijanian) — /goal for Product Managers
+source: raw/2026-05-17-nurijanian-goal-for-product-managers.md
+pages-created:
+  - source-nurijanian-goal-for-pms.md (12-section comprehensive study guide)
+  - george-nurijanian.md (entity — first PM-native voice in wiki)
+  - pm-os.md (entity — his AI-PM product)
+  - agent-ready-requirements.md (concept — 7-component PM spec standard)
+  - goal-template.md (concept — 6-section practical /goal template + 5 natural-fit scenarios)
+pages-updated:
+  - index.md (added 2 entities, 2 concepts, 1 source)
+source-purity: ✅ official (作者本人 X 账号 + 他自己产品的内容); third-party check OK
+note: 第一个 PM-native 视角入 wiki — reframes Claude Code /goal as "Ralph + product design layer". 与 idea-to-afk-agent-flow + mattpocock-skills-library 形成完整互补（engineer 视角 + PM 视角）。
+
 ## [2026-05-18] refresh | OpenAI Codex Cookbook trilogy (5/9 + 5/11 + 5/12)
 pages-updated: source-openai-codex-cookbook-trilogy.md
 note: Full rewrite using new 12-section comprehensive Chinese study guide structure. Completes the 4-page refresh batch (Steph Zhang → Dan Koe → Chris Hayduk → OpenAI trilogy).
