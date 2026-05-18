@@ -1,5 +1,18 @@
 # Log
 
+## [2026-05-18] ingest | OpenAI official /goal corpus completion (2 sources)
+sources:
+  - raw/2026-05-05-openai-blog-long-horizon-tasks-codex.md
+  - raw/2026-05-09-openai-codex-use-case-follow-goals.md
+pages-created:
+  - source-openai-long-horizon-tasks-codex.md (12-section study guide — long-horizon thesis + Prompt/Plan/Implement triad)
+  - source-openai-codex-use-case-follow-goals.md (12-section study guide — 5-step setup process + 3 templates + "tighten the goal" pattern)
+pages-updated:
+  - index.md (added 2 source entries)
+  - claude-code-goal.md (source log + cross-vendor section)
+source-purity: ✅ official (both OpenAI Developers docs/blog)
+note: 完成 /goal 主题 cross-vendor 官方文档闭环 — Claude (1) + OpenAI (3: cookbook / blog / use-case) + Chris Hayduk insider (1) + George PM-craft (1) = 6 sources covering the full /goal landscape. Triggered by user's request to cross-compare George's PM-flavored take against the broader long-horizon-execution landscape (not just /goal command). Next step: draft Chinese PM-craft article on long-horizon autonomous execution combining Matt Pocock AFK + Claude/Codex /goal.
+
 ## [2026-05-18] ingest | George (@nurijanian) — /goal for Product Managers
 source: raw/2026-05-17-nurijanian-goal-for-product-managers.md
 pages-created:
