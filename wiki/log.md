@@ -1,5 +1,21 @@
 # Log
 
+## [2026-05-18] refresh | OpenAI Codex Cookbook trilogy (5/9 + 5/11 + 5/12)
+pages-updated: source-openai-codex-cookbook-trilogy.md
+note: Full rewrite using new 12-section comprehensive Chinese study guide structure. Completes the 4-page refresh batch (Steph Zhang → Dan Koe → Chris Hayduk → OpenAI trilogy).
+
+## [2026-05-18] refresh | Chris Hayduk — Using Codex Goals Effectively
+pages-updated: source-chrishayduk-codex-goals-effectively.md
+note: Full rewrite using new 12-section comprehensive Chinese study guide structure.
+
+## [2026-05-18] refresh | Dan Koe — Strategic Genius Thinking
+pages-updated: source-dankoe-strategic-genius-thinking.md
+note: Full rewrite using new 12-section comprehensive Chinese study guide structure (Ken Wilber Integral Theory + 5 developmental levels + Lines×Levels×Altitudes framework).
+
+## [2026-05-18] refresh | Steph Zhang — System of Intelligence
+pages-updated: source-stephzhang-system-of-intelligence.md
+note: Full rewrite using new 12-section comprehensive Chinese study guide structure (SoR → SoI thesis, colocation vs orchestration gravity, friend-graph→newsfeed analogy).
+
 ## [2026-05-17] ingest-batch | Matt Pocock idea-to-AFK-agent flow research
 sources:
   - raw/2026-05-17-repo-mattpocock-skills.md
