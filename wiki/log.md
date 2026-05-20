@@ -1,5 +1,25 @@
 # Log
 
+## [2026-05-20] ingest | Codex official corpus completion (6 sources)
+sources:
+  - raw/2025-10-07-openai-cookbook-plans-md-multi-hour.md
+  - raw/2026-05-14-openai-codex-hooks-docs.md
+  - raw/2026-05-14-openai-codex-automations-docs.md
+  - raw/2026-05-20-openai-codex-cloud-environments-docs.md
+  - raw/2026-05-20-openai-codex-subagents-docs.md
+  - raw/2026-05-20-openai-codex-skills-docs.md
+pages-created:
+  - source-openai-cookbook-plans-md.md (12-section study guide — PLANS.md / ExecPlan as 2nd independent reinvention of durable-files, 2025-10)
+  - source-openai-codex-hooks-docs.md (12-section study guide — Codex Hooks GA 2026-05-14, parity with Claude Code hooks)
+  - source-openai-codex-automations-docs.md (12-section study guide — 3-type automation family: thread / standalone / project-scoped + cron + `$skill`)
+  - source-openai-codex-cloud-environments-docs.md (12-section compressed — chatgpt.com/codex + 12h container caching + @codex GitHub trigger)
+  - source-openai-codex-subagents-docs.md (12-section compressed — max_threads=6, max_depth=1, spawn_agents_on_csv batch primitive)
+  - source-openai-codex-skills-docs.md (12-section compressed — agentskills.io shared standard with Anthropic Skills)
+pages-updated:
+  - index.md (added 6 Codex source entries under Sources section)
+source-purity: ✅ official (all OpenAI Developers docs / cookbook)
+note: Triggered by user request to fill Codex coverage gap before revising pm-long-horizon-methodology.md. Key finding — pre-5/14 claim that "Anthropic stack is thicker than OpenAI's" is now outdated. Codex achieved functional parity in hooks (5/14 GA) + automations + cloud + subagents. Codex Skills share standard (agentskills.io) with Anthropic Skills. PLANS.md predates Prompt+Plan+Implement triad by 7 months — durable-files pattern has 4 independent reinventions, not 3. Methodology article revisions to follow this ingest.
+
 ## [2026-05-18] ingest | OpenAI official /goal corpus completion (2 sources)
 sources:
   - raw/2026-05-05-openai-blog-long-horizon-tasks-codex.md
