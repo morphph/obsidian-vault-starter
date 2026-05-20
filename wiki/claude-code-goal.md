@@ -75,6 +75,18 @@ OpenAI's Codex now ships a `/goal` command with **near-identical semantics** to 
 
 **Takeaway:** the `/goal` design has converged across Claude Code and Codex; the playbook for using it well is vendor-agnostic.
 
+**2026-05 stack-level update**: convergence is no longer just at the `/goal` primitive. As of mid-to-late May 2026, the entire 5-layer long-horizon stack achieved parity:
+
+| Layer | Anthropic | Codex equivalent |
+|---|---|---|
+| Loop driver | `/goal` | Goal mode + ExecPlan ([[source-openai-cookbook-plans-md]]) |
+| Trigger / deployment | `/loop`, `claude --bg`, Cloud Routines | thread / project-scoped / standalone Automations ([[source-openai-codex-automations-docs]]) + Cloud ([[source-openai-codex-cloud-environments-docs]]) |
+| Communication | Channels (Telegram / Discord / iMessage push) | mobile remote-control (Mac connected via mobile app) |
+| Determinism | Hooks (`.claude/settings.json`) | **Hooks GA 2026-05-14** ([[source-openai-codex-hooks-docs]]) |
+| Orchestration | Agent view TUI + worktrees | Codex Subagents `max_threads=6` + `spawn_agents_on_csv` ([[source-openai-codex-subagents-docs]]) |
+
+The pre-May claim "Anthropic stack is thicker" is outdated. The decision shifts from feature gap to ecosystem fit — see [[pm-long-horizon-methodology]] for the vendor-selection matrix.
+
 ## Connections
 - Related: [[claude-code]], [[orchestration-loop]], [[verification-loops]], [[adaptive-thinking]], [[task-budgets]], [[quality-gate-loop]], [[chris-hayduk]], [[agentic-loop-tracking-files]], [[sprint-contracts]]
 - Extends [[verification-loops]] — same agent + verifier pattern at the turn granularity instead of within a task.
@@ -90,6 +102,7 @@ OpenAI's Codex now ships a `/goal` command with **near-identical semantics** to 
 | 2026-05-13 | raw/2026-05-13-claude-code-goal-and-agent-view.md | Initial creation from official `/goal` docs at code.claude.com/docs/en/goal |
 | 2026-05-15 | raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md | Cross-vendor convergence section: Codex `/goal` is nearly identical; Chris Hayduk's 3-tip playbook applies to both vendors (quantitative goal, tight feedback loop, three-file tracking pattern) |
 | 2026-05-16 | raw/2026-05-09-openai-cookbook-using-goals-in-codex.md | Added OpenAI's official 6-element strong-Goal formalism (Outcome / Verification surface / Constraints / Boundaries / Iteration policy / Blocked stop condition). Plus Codex `/goal` lifecycle commands (`/goal`, `/goal pause`, `/goal resume`, `/goal clear`) and thread-scoped-state architecture detail. See [[source-openai-codex-cookbook-trilogy]] |
+| 2026-05-20 | raw/2026-05-14-openai-codex-hooks-docs.md + raw/2026-05-14-openai-codex-automations-docs.md + ... | Added 2026-05 stack-level update table: all 5 layers (loop / deployment / communication / determinism / orchestration) reached cross-vendor parity. Pre-May "Anthropic thicker" claim is now outdated |
 | 2026-05-18 | raw/2026-05-05-openai-blog-long-horizon-tasks-codex.md | OpenAI's awareness-tier framing: long-horizon coherence as the true capability (not /goal command itself); Prompt.md / Plan.md / Implement.md triad for durable memory; "freeze the target" principle. See [[source-openai-long-horizon-tasks-codex]] |
 | 2026-05-18 | raw/2026-05-09-openai-codex-use-case-follow-goals.md | OpenAI's operational-tier: 5-step setup process for /goal + 3 ready-to-use templates (migration / prototype / prompt-optim) + "tighten the goal rather than adding ad hoc instructions mid-run" pattern. See [[source-openai-codex-use-case-follow-goals]] |
 | 2026-05-18 | raw/2026-05-17-nurijanian-goal-for-product-managers.md | First PM-craft framing: /goal = "Ralph Wiggum loop + product design layer"; 6-section practical template (different from OpenAI 6-element formalism); calibration loops ("watch the first iterations"); "delegating effort vs delegating outcome". See [[source-nurijanian-goal-for-pms]] |

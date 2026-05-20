@@ -120,13 +120,29 @@ Official docs validate this approach. **No conflicts** — Pipeline B uses the d
 
 Add `shell: powershell` to hook entry. Write hook scripts in PowerShell. Documented because cross-platform support matters for team distribution.
 
+## Cross-vendor parity update (2026-05-14)
+
+**OpenAI Codex Hooks reached General Availability on 2026-05-14** (see [[source-openai-codex-hooks-docs]]). Functional parity assessment:
+
+| Dimension | Anthropic | Codex |
+|---|---|---|
+| Lifecycle events | PreToolUse / PostToolUse / Stop / SessionEnd / PreCompact / UserPromptSubmit | SessionStart / PreToolUse / PermissionRequest / PostToolUse / UserPromptSubmit / Stop |
+| Block mechanism | exit 2 → stderr feedback | exit 2 → stderr feedback (identical) |
+| Config layers | user / project / plugin | user / project / plugin / **enterprise (managed via `requirements.toml`)** |
+| Tool-call deny via hook | JSON output | JSON `permissionDecision: deny/allow` + `updatedInput` |
+| Async / HTTP / MCP hooks | Multiple hook types | Only `type: "command"` GA (prompt / agent reserved) |
+
+**Differentiator**: Anthropic has more hook types (HTTP, MCP); Codex has `PermissionRequest` as separate event + enterprise-managed hook policy. **For PM long-horizon use cases the functional surface is equivalent** — see [[pm-long-horizon-methodology]] for vendor-selection matrix.
+
 ## Connections
-- Related: [[claude-code]], [[zero-friction-capture]], [[claude-memory-compiler]], [[source-claude-code-subagents-docs]], [[source-claude-code-agent-teams-docs]], [[source-claude-code-worktrees-docs]], [[source-claude-code-plugins-docs]], [[agent-skills-standard]], [[two-pipeline-architecture]]
+- Related: [[claude-code]], [[zero-friction-capture]], [[claude-memory-compiler]], [[source-claude-code-subagents-docs]], [[source-claude-code-agent-teams-docs]], [[source-claude-code-worktrees-docs]], [[source-claude-code-plugins-docs]], [[agent-skills-standard]], [[two-pipeline-architecture]], [[source-openai-codex-hooks-docs]]
 - Validates [[two-pipeline-architecture|Pipeline B]] approach — `SessionEnd`/`PreCompact` are documented hooks, not undocumented internals
 - Closes a long-standing gap: previous wiki content referenced hooks loosely ("26 hook event types, 4 handler types in [[claude-code]]") — this is now the canonical spec
+- Cross-vendor sibling: [[source-openai-codex-hooks-docs]] — Codex Hooks GA 2026-05-14, functional parity
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-05-14 | raw/2026-05-14-anthropic-claude-code-hooks-guide.md | Initial creation from official hooks guide |
 | 2026-05-14 | raw/2026-05-14-anthropic-claude-code-hooks-reference.md | Added complete event schemas + advanced features (async, HTTP, MCP tool hooks) |
+| 2026-05-20 | raw/2026-05-14-openai-codex-hooks-docs.md | Added cross-vendor parity table — Codex Hooks GA 2026-05-14 = functional parity for PM long-horizon use cases |

@@ -6,6 +6,8 @@ last-updated: 2026-05-20
 target-audience: vfan（个人 practice first；跑通后再回填 case study 到主文）
 companion-article: drafts/pm-long-horizon-methodology.md
 case-project: blog2video — chapter splitter (narration.md → video_1_script.md)
+vendor: Claude Code (Anthropic)
+codex-version-note: 本指南为 Claude Code 实操篇。Codex 5 层 stack 在 2026-05 已对等（Hooks GA 5/14 + Automations + Cloud + Subagents + Skills），但 Matt Pocock 的 grill-with-docs / Sandcastle / mattpocock/skills 当前是 Claude Code-flavored，要在 Codex 跑同样流程需要先把 skill 移植到 .agents/skills 格式（agentskills.io 共标准；典型 < 1 小时/skill）。Codex 实操篇属 future work，触发条件见 methodology 文末。
 source-policy: 与主文一致 —— 只引用 OpenAI / Anthropic 官方 docs + Ralph Wiggum 社区经典 + Matt Pocock 公开材料
 based-on:
   - wiki/claude-code-goal.md
@@ -24,11 +26,13 @@ based-on:
 tags: [drafts, practice-guide, blog2video, claude-code, automation, pm-workflow]
 ---
 
-# 实操指南：用 blog2video chapter splitter 跑通 PM 长跑工作流 + 真正 AFK 工具链
+# 实操指南（Claude Code 版）：用 blog2video chapter splitter 跑通 PM 长跑工作流 + 真正 AFK 工具链
 
 > 📌 **使用说明**：这不是发表文章，是给你（vfan）个人按步骤跑通主方法论 + 工具链的 practice guide。
 >
 > 跑完后填底部的"复盘记录"，那些数据就是 case study 素材，可以回填到主文。
+>
+> 📌 **为什么是 Claude Code 版**：Matt Pocock 的 `grill-with-docs` / Sandcastle / `mattpocock/skills`（87K stars）当前是 Claude Code-flavored。**Codex 5 层 stack 在 2026-05 已对等**（Hooks GA 5/14 + Automations + Cloud + Subagents + Skills），但跑 Matt 工具链需要先把 skill 移植到 `.agents/skills`（agentskills.io 共标准；典型 < 1 小时/skill）。Codex 版 practice guide 是 future work —— 见主文末"Codex 实操篇 future work" 块的三个触发条件。
 
 ---
 

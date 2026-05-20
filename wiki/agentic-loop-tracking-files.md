@@ -1,16 +1,29 @@
 ---
 type: concept
 created: 2026-05-15
-last-updated: 2026-05-15
+last-updated: 2026-05-20
 sources:
   - raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md
-tags: [wiki, principle, agentic, loop, state-management, context]
+  - raw/2025-10-07-openai-cookbook-plans-md-multi-hour.md
+tags: [wiki, principle, agentic, loop, state-management, context, durable-memory]
 ---
 
 # Agentic Loop Tracking Files
 
 ## Summary
 [[chris-hayduk|Chris Hayduk]]'s pattern for letting an agent run for **hours or days** without losing coherence: instead of forcing the model to hold all state in its (compaction-prone) context window, give it **three dedicated markdown files** as external memory — **PLAN.md** (high-level direction), **EXPERIMENTS.md** (curated attempt log), **SCRATCHPAD.md** (chronological real-time thoughts). The deeper principle: **for long-running loops, working memory should live on disk, not in context.** Hayduk: *"EXPERIMENTS.md is the most important of the three."*
+
+**Cross-source convergence — this is a 4-source independent reinvention, not 3**:
+
+| # | Source | Time | Files |
+|---|---|---|---|
+| 1 | [[ralph-wiggum\|Ralph Wiggum]] (Geoffrey Huntley) | 2025-07 | `PRD.md` + `progress.txt` + `AGENTS.md` |
+| 2 | **[[source-openai-cookbook-plans-md\|OpenAI Cookbook PLANS.md]]** | **2025-10** | `AGENTS.md` + single `PLANS.md` (ExecPlan) — *single-file variant; 7+ hours single prompt claim* |
+| 3 | Matt Pocock CONTEXT.md ([[grill-with-docs]]) | 2026-04 | `CONTEXT.md` + skill files |
+| 4 | Chris Hayduk PLAN/EXPERIMENTS/SCRATCHPAD ([[chris-hayduk]]) | 2026-05-11 | 3 files (this page) |
+| 5 | OpenAI Prompt+Plan+Implement triad ([[source-openai-long-horizon-tasks-codex]]) | 2026-05 | 3 files |
+
+**Implication for PMs**: the durable-files pattern is *industry-stable*. Two valid decompositions exist — **single-file ExecPlan** (PLANS.md style, fast setup, living document) vs **multi-file triad** (FROZEN spec + plan + runbook, stronger role separation). Choose by stake / team / FROZEN enforcement need.
 
 ## Details
 
@@ -80,9 +93,10 @@ Used together: compaction handles short-range coherence within a session, the th
 - [ ] Optionally: add a `gbrain doctor`-style check that fails the loop if EXPERIMENTS.md hasn't grown in N hours (probably stuck)
 
 ## Connections
-- Related: [[chris-hayduk]], [[claude-code-goal]], [[skillify-meta-skill]], [[session-memory]], [[dreaming]], [[filing-cabinet-vs-nervous-system]], [[sprint-contracts]], [[verification-loops]], [[context-management]]
+- Related: [[chris-hayduk]], [[claude-code-goal]], [[skillify-meta-skill]], [[session-memory]], [[dreaming]], [[filing-cabinet-vs-nervous-system]], [[sprint-contracts]], [[verification-loops]], [[context-management]], [[source-openai-cookbook-plans-md]], [[ralph-wiggum]], [[grill-with-docs]], [[source-openai-long-horizon-tasks-codex]]
 
 ## Source Log
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-05-15 | raw/2026-05-11-chrishayduk-using-codex-goals-effectively.md | Initial creation from "Using Codex Goals Effectively" |
+| 2026-05-20 | raw/2025-10-07-openai-cookbook-plans-md-multi-hour.md | Added cross-source convergence table — pattern has 5 independent reinventions (Ralph / PLANS.md / Matt CONTEXT.md / Hayduk 3-file / OpenAI triad). Single-file vs multi-file decomposition decision rule. |
