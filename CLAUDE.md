@@ -59,12 +59,8 @@ Five slash commands. Each has full instructions in `.claude/commands/`.
 | Skill | Purpose |
 |-------|---------|
 | excalidraw-diagram | Generate `.excalidraw` JSON diagrams that make visual arguments. Used by `/visualize`. |
-
-## Pipeline B: Internal Knowledge Capture
-
-SessionEnd/PreCompact hooks in LoreAI and blog2video capture session knowledge → `scripts/flush.py` → `raw/`.
-After 6 PM: `scripts/compile.py` auto-compiles new raw files into wiki pages.
-Safety: `CLAUDE_INVOKED_BY` env var prevents recursion. No hooks configured in THIS repo.
+| obsidian-markdown | Write valid Obsidian flavored markdown (wikilinks, callouts, embeds, properties). Auto-invoked when editing wiki/. From kepano/obsidian-skills. |
+| defuddle | Extract clean markdown from URLs (less noise than WebFetch). Prefer for `/ingest <url>`. Requires `npm install -g defuddle`. From kepano/obsidian-skills. |
 
 ## Documentation Layers
 
@@ -83,7 +79,7 @@ Principle: **CLAUDE.md declares WHAT exists. Skills and commands define HOW they
 ## Compact Instructions
 
 When compressing context, preserve in priority order:
-1. Architecture decisions and the three-layer model (raw → wiki → CLAUDE.md)
+1. Architecture decisions and the four-layer model (raw → wiki → drafts → CLAUDE.md)
 2. NEVER list — always re-check before acting
 3. Which files have been modified and key changes made
 4. Current task state and open TODOs

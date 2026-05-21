@@ -1,7 +1,7 @@
 [project]
 name = "llm-wiki"
 version = "0.1.0"
-description = "Personal LLM knowledge base - hooks, flush, compile pipeline"
+description = "Personal LLM knowledge base — wiki + drafts pipeline driven by slash commands"
 requires-python = ">=3.12"
 dependencies = [
     "claude-agent-sdk>=0.1.29",

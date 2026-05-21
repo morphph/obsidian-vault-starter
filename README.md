@@ -22,31 +22,28 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 # Health check
 /lint
 
-# Compile new sources (usually auto, but can run manually)
-uv run python scripts/compile.py
+# Draft an article
+/draft <wiki-page|raw-file|topic>
 ```
 
 ## Architecture
 
 ```
-Pipeline A (External)              Pipeline B (Internal)
-  /ingest <url|file>                 Claude Code Hooks
-  Telegram bot (Channels)            SessionEnd + PreCompact
-                ↘                          ↙
-                    raw/ (immutable sources)
-                          ↓
-                   LLM Compiler
-                   /ingest scan or compile.py
-                   ⏰ auto at 6 PM
-                          ↓
-                    wiki/ (knowledge pages)
-                          ↓
-              /query  /lint  /visualize
+  /ingest <url|file|scan>
+            ↓
+   raw/ (immutable sources)
+            ↓
+   wiki/ (knowledge pages, LLM-owned)
+            ↓
+   /query  /lint  /visualize  /draft
+            ↓
+   drafts/ (articles for publication)
 ```
 
-**Three layers:**
+**Four layers:**
 - `raw/` — Immutable source documents. You curate what goes in. LLM never modifies.
 - `wiki/` — LLM-maintained knowledge pages. Entities, concepts, connections, visuals.
+- `drafts/` — Articles for publication. LLM seeds via `/draft`, human polishes.
 - `CLAUDE.md` — Schema. Conventions, commands, workflows.
 
 ## Commands
@@ -57,37 +54,37 @@ Pipeline A (External)              Pipeline B (Internal)
 | `/query <question>`                 | Ask the wiki. Optionally file answer back as synthesis page.                                          |
 | `/lint`                             | Health check: orphans, contradictions, stale pages, missing links.                                    |
 | `/visualize <topic\|source\|blank>` | Generate Excalidraw diagram from wiki knowledge.                                                      |
-
-## Pipeline B (Auto-Capture)
-
-Your LoreAI and blog2video coding sessions are automatically captured.
-
-**How:** Hooks in each project → transcript extraction → Agent SDK knowledge extraction → `raw/` → 6 PM auto-compile + connection discovery.
-
-**No action needed.** Just code. Knowledge flows automatically.
-
-Manual compile: `uv run python scripts/compile.py`
+| `/draft <wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from wiki page, raw source, or topic.                           |
 
 ## Vault Structure
 
 ```
-raw/                    Sources (articles, repos, session captures)
+raw/                    Sources (articles, repos, manually curated)
 wiki/                   Knowledge pages (LLM-owned)
   index.md              Content catalog — THE retrieval mechanism
   log.md                Operation history
   *.md                  Entity, concept, synthesis, connection, source pages
   visual-*.excalidraw   Diagrams
-hooks/                  Claude Code hooks (session-start, session-end, pre-compact)
-scripts/                Pipeline scripts (flush.py, compile.py)
-.claude/commands/       Slash commands (ingest, query, lint, visualize)
-.claude/skills/         Skills (excalidraw-diagram)
+drafts/                 Articles for publication (human-owned, LLM-seeded)
+scripts/                Helper scripts (content_agent.py, claude-remote helpers)
+.claude/commands/       Slash commands (ingest, query, lint, visualize, draft)
+.claude/skills/         Skills (excalidraw-diagram + kepano/obsidian-skills)
 CLAUDE.md               Schema — the operating manual
+AGENTS.md               Mirror of CLAUDE.md for Codex CLI / agents.md tooling
 archive/                Everything from the pre-wiki vault
 ```
 
 ## Changelog
 
-### v0.2 — Pipeline B + Auto Connections (2026-04-07)
+### v0.3 — Pipeline B removed (2026-05-21)
+
+- Removed dormant auto-capture pipeline (last ran 2026-04-09)
+- Deleted `scripts/{flush,compile,config,utils}.py`, `hooks/`, related state files
+- Manual `/ingest` is now the only path into `raw/`
+- Registered `obsidian-markdown` + `defuddle` skills from kepano/obsidian-skills
+- Added `drafts/` as the fourth layer (was already present, now documented)
+
+### v0.2 — Pipeline B + Auto Connections (2026-04-07) [removed in v0.3]
 
 - **Internal knowledge capture**: hooks + flush.py + compile.py pipeline
 - Hooks configured in loreai-v2 and blog2video
