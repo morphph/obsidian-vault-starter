@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-04-19
-last-updated: 2026-05-12
+last-updated: 2026-05-22
 sources:
   - raw/2026-04-15-garry-tan-resolvers-routing-table-for-intelligence.md
   - raw/2026-04-21-gbrain-gstack-github-deep-scan.md
   - raw/2026-04-21-anthropic-agent-skills-docs.md
   - raw/2026-04-21-garry-tan-skillify-manifesto.md
+  - raw/2026-05-22-repo-anthropics-skills.md
 tags: [wiki, principle, agentic, eval, governance]
 ---
 
@@ -114,8 +115,52 @@ A particularly sharp eval pattern: feed the agent a question that requires deter
 
 This is the [[latent-vs-deterministic|latent-vs-deterministic]] line enforced at eval time.
 
+### ⭐ Anthropic's production-grade implementation (2026-05-22)
+
+[[anthropic-skill-creator]] ships an automated trigger-eval loop in the official Anthropic Skills repo. **Three additions over Garry's manual version:**
+
+**1. The query design specification (good vs bad)**
+
+The queries must be **realistic** — what a real user would actually type, with file paths, personal context, column names/values, company names, URLs, backstory. Casual speech, lowercase, abbreviations, typos all OK.
+
+> Bad: `"Format this data"`, `"Extract text from PDF"`, `"Create a chart"`
+>
+> Good: `"ok so my boss just sent me this xlsx file (its in my downloads, called something like 'Q4 sales final FINAL v2.xlsx') and she wants me to add a column that shows the profit margin as a percentage. The revenue is in column C and costs are in column D i think"`
+
+**2. The eval set composition**: 20 queries total = 8-10 should-trigger + 8-10 should-not-trigger. The **most valuable should-not-trigger queries are near-misses** — share keywords with the skill but actually need something different. Obviously-irrelevant negatives ("write a fibonacci function" as a negative test for a PDF skill) test nothing.
+
+**3. The optimization protocol**:
+- **60/40 train/test split**
+- Each query run **3 times** for reliable trigger rate (variance matters)
+- Claude proposes description improvements based on failures
+- Re-evaluates on both train and test
+- **Up to 5 iterations**
+- **Select best by test score** (not train) to avoid overfitting
+
+Tooling:
+```bash
+python -m scripts.run_loop \
+  --eval-set <trigger-eval.json> \
+  --skill-path <path-to-skill> \
+  --model <model-id-powering-session> \
+  --max-iterations 5 --verbose
+```
+
+**4. Critical nuance about triggering** (changes how you write queries):
+
+> "Claude only consults skills for tasks it can't easily handle on its own — simple, one-step queries like 'read this PDF' may not trigger a skill even if the description matches perfectly. **Complex, multi-step, or specialized queries reliably trigger skills when the description matches.**"
+
+Implication: simple queries are **poor test cases** regardless of description quality. Eval queries must be **substantive** to test description discrimination.
+
+**Three-tier rigor stack:**
+| Tier | Approach | Cost |
+|---|---|---|
+| **Minimum viable** | Three-way integrity check ([[gbrain]] pattern) — manifest ↔ resolver ↔ SKILL.md + MECE | Cheap, deterministic |
+| **Production** | Garry's 50-input manual eval suite | Medium, manual |
+| **High-stakes** | Anthropic's 20-query / 60-40 / 3× / 5-iter automated loop | Expensive (LLM calls), best for skills used >100×/month |
+
 ## Connections
-- Related: [[resolvers]], [[check-resolvable]], [[context-rot]], [[agent-skills-standard]], [[gbrain]], [[garry-tan]], [[thin-harness-fat-skills]], [[verification-loops]], [[llm-judgment-vs-scripts]], [[openclaw]], [[claude-code]], [[skillify-meta-skill]], [[latent-vs-deterministic]]
+- Related: [[resolvers]], [[check-resolvable]], [[context-rot]], [[agent-skills-standard]], [[gbrain]], [[garry-tan]], [[thin-harness-fat-skills]], [[verification-loops]], [[llm-judgment-vs-scripts]], [[openclaw]], [[claude-code]], [[skillify-meta-skill]], [[latent-vs-deterministic]], [[anthropic-skill-creator]], [[anthropics-skills-repo]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -124,3 +169,4 @@ This is the [[latent-vs-deterministic|latent-vs-deterministic]] line enforced at
 | 2026-04-21 | raw/2026-04-21-gbrain-gstack-github-deep-scan.md | Reframed as "three-layer integrity check" based on GBrain's `skills/testing/SKILL.md`; added MECE check |
 | 2026-04-21 | raw/2026-04-21-anthropic-agent-skills-docs.md | Added Anthropic's user-facing false-positive / false-negative debugging playbook |
 | 2026-05-12 | raw/2026-04-21-garry-tan-skillify-manifesto.md | Added 50+ test-case examples (production format); "fucking shit / wtf" eval-discovery heuristic; "test the process not just the output" pattern |
+| 2026-05-22 | raw/2026-05-22-repo-anthropics-skills.md | Added Anthropic's production-grade implementation: realistic query design spec (good vs bad examples), 8-10/8-10 should-trigger/should-not-trigger composition (near-misses most valuable), 60/40 train/test + 3× repeats + 5-iter automated loop selecting by test score, critical triggering nuance (simple queries don't trigger regardless of description quality), three-tier rigor stack (integrity check → Garry's manual → Anthropic's automated) |

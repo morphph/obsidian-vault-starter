@@ -1,10 +1,11 @@
 ---
 type: concept
 created: 2026-05-11
-last-updated: 2026-05-12
+last-updated: 2026-05-22
 sources:
   - raw/2026-04-21-garry-tan-skillify-manifesto.md
   - raw/2026-05-09-garry-tan-meta-meta-prompting.md
+  - raw/2026-05-22-repo-anthropics-skills.md
 tags: [wiki, principle, agentic, meta-skill, claude-code]
 ---
 
@@ -166,8 +167,26 @@ A skillify-like primitive for this vault would:
 
 **This is candidate 9 for the implementation queue** — but it's a downstream optimization; we should build the filing rules (candidate 1️⃣) and a check-resolvable equivalent (candidate 3️⃣) first so the skillify output has something correct to register into.
 
+### Anthropic's official counterpart: [[anthropic-skill-creator|skill-creator]] (2026-05-22)
+
+Anthropic shipped their own meta-skill at `github.com/anthropics/skills/skills/skill-creator/SKILL.md` — same idea, different implementation. **They are not competitors but complements:**
+
+| Dimension | /skillify (Garry Tan) | skill-creator (Anthropic) |
+|---|---|---|
+| Trigger | One word: "skillify this" | Manual ("I want to create a skill") |
+| Sequencing | **Post-execution** (do-then-extract) | **Pre-design** (4-question interview) |
+| Verification | 10-step checklist + check-resolvable + DRY audit | ML-style train/test eval |
+| Description tuning | Manual "if-I-ask-twice" rule | Automated optimization loop (60/40 split, 3× runs, 5 iter) |
+| Iteration | RESOLVER.md edits + re-test | iteration-N workspace dirs |
+| Strength | **Speed** — one-sentence creation | **Rigor** — quantitative metrics |
+| Failure mode | Untested skills accumulate (silent drift, orphans) | Heavy ceremony for simple skills |
+
+**The complete picture: use Garry's speed for capture; use Anthropic's rigor for high-stakes skills.** Most workflows want Garry's one-sentence skillify pattern; high-stakes skills (used >100×/month, public-facing, paid product) deserve Anthropic's full eval workflow.
+
+**The most actionable Anthropic addition over Garry's flow:** the **20-query trigger eval set** for description optimization — see [[trigger-evals]].
+
 ## Connections
-- Related: [[garry-tan]], [[gbrain]], [[gstack]], [[openclaw]], [[resolvers]], [[check-resolvable]], [[agent-skills-standard]], [[skill-as-method-call]], [[thin-harness-fat-skills]], [[plan-mode-as-tools]]
+- Related: [[garry-tan]], [[gbrain]], [[gstack]], [[openclaw]], [[resolvers]], [[check-resolvable]], [[agent-skills-standard]], [[skill-as-method-call]], [[thin-harness-fat-skills]], [[plan-mode-as-tools]], [[anthropic-skill-creator]], [[anthropics-skills-repo]]
 
 ## Source Log
 | Date | Source | What changed |
@@ -175,3 +194,4 @@ A skillify-like primitive for this vault would:
 | 2026-05-11 | raw/2026-05-09-garry-tan-meta-meta-prompting.md | Initial creation |
 | 2026-05-12 | raw/2026-04-21-garry-tan-skillify-manifesto.md | Major expansion — added full 10-step Skillify Checklist (the operational deliverable); calendar-recall + context-now case studies; "latent builds deterministic that constrains latent" recursive insight; skillify-as-verb daily workflow examples; Hermes Agent comparison (creation vs verification) |
 | 2026-05-16 | raw/2026-05-11-khairallah-how-to-use-claude-skills.md | Added Khairallah's mass-market framing: **"One Skill is a Tool. Ten Skills is a Workforce."** + the compounding math (10 skills × 30 min/week saved = 260 hours/year = 6.5 full work weeks returned). Useful tagline for explaining skillify to non-engineers |
+| 2026-05-22 | raw/2026-05-22-repo-anthropics-skills.md | Added side-by-side comparison with Anthropic's official [[anthropic-skill-creator|skill-creator]] meta-skill. Same idea, complementary implementations: Garry = speed/post-execution capture; Anthropic = rigor/pre-design ML-style eval. Recommend Garry for capture velocity, Anthropic for high-stakes skills |

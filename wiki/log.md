@@ -498,3 +498,9 @@ sources:
 fetch-method: WebFetch (all three are static cookbook pages)
 pages-created: iterative-repair-loop.md (Review→Repair→Validate three-phase pattern), agent-improvement-flywheel.md (6-step trace-to-harness-change loop), source-openai-codex-cookbook-trilogy.md (combined source summary for all three)
 pages-updated: chris-hayduk.md (cross-referenced as the practitioner-heuristics version of these official-formalism docs), claude-code-goal.md (6-element strong-Goal formalism), verification-loops.md (iterative-repair + improvement-flywheel as siblings), index.md
+
+## [2026-05-22] ingest | anthropics/skills (Official Anthropic Skills Repo)
+source: raw/2026-05-22-repo-anthropics-skills.md
+fetch-method: GitHub Deep Scan (gh CLI)
+pages-created: anthropics-skills-repo.md (entity), anthropic-skill-creator.md (entity for the official meta-skill), source-anthropics-skills-repo.md (12-section study guide)
+pages-updated: agent-skills-standard.md (added 3-tier word budgets, folder anatomy, "pushy descriptions" counter-intuitive rule), skillify-meta-skill.md (side-by-side comparison with Anthropic's skill-creator — speed vs rigor complement), trigger-evals.md (Anthropic's production-grade 20-query / 60-40 / 3× / 5-iter automated loop + realistic-query design spec + critical triggering nuance), anthropic.md (registered skills repo + skill-creator), index.md

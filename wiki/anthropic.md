@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-04-06
-last-updated: 2026-05-16
+last-updated: 2026-05-22
 sources:
   - raw/2026-04-06-anthropic-harness-design-long-running-apps.md
   - raw/2026-04-06-claude-reviews-claude-overview.md
@@ -10,6 +10,7 @@ sources:
   - raw/2026-04-09-anthropic-agent-capabilities-announcement.md
   - raw/2026-04-16-anthropic-opus-4-7-announcement.md
   - raw/2026-05-13-anthropic-computer-and-browser-use-best-practices.md
+  - raw/2026-05-22-repo-anthropics-skills.md
 tags: [wiki, company, ai-lab]
 ---
 
@@ -28,9 +29,10 @@ AI safety company and creator of the Claude model family. Publishes engineering 
 - Released [[claude-opus-4-7]] (2026-04-16) — current flagship, first Claude model with high-res vision (3.75MP) and model-native agentic controls ([[xhigh-effort-level]], [[task-budgets]]). Safety posture: deliberately reduced cyber capabilities relative to the unreleased Mythos Preview (Project Glasswing).
 - Research staff includes [[prithvi-rajasekaran|Prithvi Rajasekaran]] (harness design work)
 - **[[computer-and-browser-use|Computer & Browser Use]]** — API capability (`computer_20251124` tool type) letting Claude drive a real computer/browser via screenshots + click/keystroke output. Built-in prompt-injection classifier runs free with the official tool. 2026-05-13 best-practices post (Lucas Gonzalez + Luca Weihs) compresses a year of production lessons. See also [[demonstration-based-teaching]].
+- **[[anthropics-skills-repo|anthropics/skills]]** (138.9K⭐, last commit 2026-05-22) — official Skills repo, 17 example SKILL.md files + the canonical [[anthropic-skill-creator|skill-creator]] meta-skill. Distributed as Claude Code plugin marketplace. The canonical implementation of [[agent-skills-standard]].
 
 ## Connections
-- Related: [[claude-model-family]], [[claude-code]], [[claude-managed-agents]], [[harness-design]], [[multi-agent-architecture]], [[computer-and-browser-use]]
+- Related: [[claude-model-family]], [[claude-code]], [[claude-managed-agents]], [[harness-design]], [[multi-agent-architecture]], [[computer-and-browser-use]], [[anthropics-skills-repo]], [[anthropic-skill-creator]]
 
 ## Source Log
 | Date | Source | What changed |
