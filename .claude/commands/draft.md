@@ -1,6 +1,6 @@
 ---
 name: draft
-description: "Create a draft article from wiki page or raw sources. Usage: /draft <wiki-page|raw-file|topic>"
+description: "Use this skill whenever the user wants to graduate wiki/raw content into a publication-ready article. Triggers: 'draft an article about X', 'turn this wiki page into a post', 'write a draft from this raw source', 'I want to publish about Y', 'graduate this to drafts', '把这个写成一篇文章'. Use even if the user hasn't explicitly said 'draft' — when they ask for a 'post', 'article', 'blog', or want something 'publish-ready'. **Don't use when** the user wants to add a raw source to the wiki — use `/ingest`."
 ---
 
 # Draft — Create Article Draft

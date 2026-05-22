@@ -1,6 +1,6 @@
 ---
 name: visualize
-description: "Generate Excalidraw diagram from wiki knowledge. Usage: /visualize <topic|source-path|blank for full map>"
+description: "Use this skill whenever the user wants a visual diagram derived from wiki content. Triggers include: 'visualize X', 'diagram the architecture of Y', 'show me a map of Z', 'make a concept diagram', 'draw the connections between A and B', '给我画一个图', 'wiki map'. Defaults to Excalidraw output. **Don't use when** the user wants a freehand sketch unrelated to wiki knowledge — use the excalidraw-diagram skill directly."
 ---
 
 # Visualize — Generate Wiki Diagrams

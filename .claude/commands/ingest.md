@@ -1,6 +1,6 @@
 ---
 name: ingest
-description: "Ingest a source into the wiki. Usage: /ingest <file-path|URL|scan>"
+description: "Use this skill whenever the user wants to add a new source to the wiki. This includes pasting a URL, sharing a file path in raw/, asking to 'save this article', 'add this to wiki', 'ingest this', 'process this link', '把这个加入 wiki', or scanning raw/ for un-logged files. Also triggers when user shares a substantive article, tweet thread, or doc and context suggests they want it captured (not just discussed). **Don't use when** the user is asking what the wiki already contains — use `/query` instead."
 ---
 
 # Ingest — Add Source to Wiki

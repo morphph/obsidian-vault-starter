@@ -1,6 +1,6 @@
 ---
 name: lint
-description: "Health-check the wiki. Find orphans, stale pages, contradictions, missing links."
+description: "Use this skill whenever the user wants to audit wiki health or asks 'is anything broken in the wiki', 'find orphan pages', 'check for stale notes', 'lint the wiki', 'wiki health check', 'are there contradictions', 'what's missing'. Also triggers proactively if user mentions wiki feeling messy or after a large batch of ingests. **Don't use when** the user wants to add new content — that's `/ingest`."
 ---
 
 # Lint — Wiki Health Check

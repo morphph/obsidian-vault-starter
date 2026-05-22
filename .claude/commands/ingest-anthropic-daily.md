@@ -1,6 +1,7 @@
 ---
 name: ingest-anthropic-daily
-description: "Sweep all Anthropic + Claude sources, dedupe, summarize by category. Usage: /ingest-anthropic-daily [since:YYYY-MM-DD | YYYY-MM-DD..YYYY-MM-DD | (default: since last run)]"
+description: "Use this skill whenever the user wants the daily Anthropic + Claude news digest. Triggers: 'daily Anthropic sweep', 'what's new from Anthropic', 'run the daily', 'catch me up on Anthropic this week', 'check the daily sources'. Aggregates 18 Anthropic/Claude sources, dedupes, summarizes by category. **Don't use when** the user wants to ingest one specific URL — use `/ingest` instead."
+argument-hint: "[since:YYYY-MM-DD | YYYY-MM-DD..YYYY-MM-DD | (default: since last run)]"
 ---
 
 # Ingest Anthropic Daily — Sweep, Dedupe, Summarize

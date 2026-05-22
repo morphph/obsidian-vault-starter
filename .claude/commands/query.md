@@ -1,6 +1,6 @@
 ---
 name: query
-description: "Ask a question against the wiki. Usage: /query <question>"
+description: "Use this skill whenever the user asks a question whose answer should come from the wiki rather than general knowledge. Triggers include: 'what does the wiki say about X', 'do we have notes on Y', 'remind me what Z is', 'I think we ingested something about W', '我们 wiki 里有 X 吗', or any question where the user is testing recall of previously ingested material. **Don't use when** the user is asking a new question that requires ingesting fresh sources first — suggest `/ingest` instead."
 ---
 
 # Query — Ask the Wiki
