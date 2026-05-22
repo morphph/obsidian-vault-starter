@@ -504,3 +504,11 @@ source: raw/2026-05-22-repo-anthropics-skills.md
 fetch-method: GitHub Deep Scan (gh CLI)
 pages-created: anthropics-skills-repo.md (entity), anthropic-skill-creator.md (entity for the official meta-skill), source-anthropics-skills-repo.md (12-section study guide)
 pages-updated: agent-skills-standard.md (added 3-tier word budgets, folder anatomy, "pushy descriptions" counter-intuitive rule), skillify-meta-skill.md (side-by-side comparison with Anthropic's skill-creator — speed vs rigor complement), trigger-evals.md (Anthropic's production-grade 20-query / 60-40 / 3× / 5-iter automated loop + realistic-query design spec + critical triggering nuance), anthropic.md (registered skills repo + skill-creator), index.md
+
+## [2026-05-22] ingest | Anthropic — Equipping Agents for the Real World with Agent Skills
+source: raw/2026-05-22-anthropic-equipping-agents-skills-blog.md
+fetch-method: WebFetch (static engineering blog page)
+pages-created: source-anthropic-equipping-agents-skills-blog.md (12-section study guide)
+pages-updated: agent-skills-standard.md (added Origin section with onboarding-guide framing, effectively-unbounded context philosophy, PDF skill canonical example), skillify-meta-skill.md (added original 2025-10-16 Anthropic vision at top — agents create/edit/evaluate Skills on their own + iterate-with-Claude methodology — that /skillify and skill-creator both implement), anthropic-skill-creator.md (cross-referenced as operational implementation of "iterate with Claude"), latent-vs-deterministic.md (added Anthropic's official "sorting via token vs algorithm" backing), anthropic.md (registered foundational source), index.md
+
+note: This is Anthropic's foundational Skills announcement, dated 2025-10-16 — ~5-7 months earlier than all other Skills content in our wiki. Restores chronological source-of-truth: the docs/repo/Garry/Matt/Khairallah all stand on this piece.

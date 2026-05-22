@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-04-19
-last-updated: 2026-05-12
+last-updated: 2026-05-22
 sources:
   - raw/2026-04-11-garry-tan-thin-harness-fat-skills.md
   - raw/2026-04-07-rsarver-ai-chief-of-staff-openclaw.md
   - raw/2026-04-21-garry-tan-skillify-manifesto.md
+  - raw/2026-05-22-anthropic-equipping-agents-skills-blog.md
 tags: [wiki, principle, agentic, system-design]
 ---
 
@@ -24,6 +25,14 @@ tags: [wiki, principle, agentic, system-design]
 
 ### The canonical illustration
 > An LLM can seat 8 people at a dinner table, accounting for personalities and social dynamics. Ask it to seat 800 and it will hallucinate a seating chart that looks plausible but is completely wrong. That's a deterministic problem — combinatorial optimization — forced into latent space.
+
+### Anthropic's official version (2025-10-16, [[source-anthropic-equipping-agents-skills-blog]])
+
+Anthropic's own statement of the same principle, from the Skills announcement:
+
+> "Sorting a list via token generation is far more expensive than simply running a sorting algorithm... Skills can bundle pre-written code for Claude to execute as tools at its discretion... leveraging **the deterministic reliability that only code can provide** for consistency and repeatability."
+
+The bundled-script pattern in [[anthropics-skills-repo]] is the canonical implementation: every example skill that involves data manipulation, file I/O, or arithmetic uses a `scripts/` directory. Anthropic uses Garry's principle without naming it — but the architectural commitment is identical.
 
 ### The rule
 - **Worst systems**: put the wrong work on the wrong side of the line.

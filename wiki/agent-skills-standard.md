@@ -7,6 +7,7 @@ sources:
   - raw/2026-04-21-gbrain-gstack-github-deep-scan.md
   - raw/2026-05-14-anthropic-claude-code-skills-refresh.md
   - raw/2026-05-22-repo-anthropics-skills.md
+  - raw/2026-05-22-anthropic-equipping-agents-skills-blog.md
 tags: [wiki, standard, agentic, architecture, skills]
 ---
 
@@ -27,6 +28,30 @@ tags: [wiki, standard, agentic, architecture, skills]
 
 ## Summary
 Open standard at **agentskills.io** defining the file format for portable agent skills: a directory containing `SKILL.md` with YAML frontmatter (`name`, `description`, trigger metadata) + markdown body. Anthropic's Claude Code is the reference implementation; [[garry-tan|Garry Tan]]'s [[gbrain]] and [[gstack]] implement it with an extra explicit layer (`RESOLVER.md` + `manifest.json`). The standard **crystallizes the [[resolvers|resolver]] pattern** — `description` is the resolver entry; progressive disclosure keeps full bodies out of context until invoked.
+
+## Origin (2025-10-16)
+
+The foundational framing — and the term "Agent Skills" itself — comes from Anthropic's engineering blog post **"Equipping Agents for the Real World with Agent Skills"** (Barry Zhang + Keith Lazuka + Mahesh Murag, 2025-10-16). See [[source-anthropic-equipping-agents-skills-blog]].
+
+**The official analogy that drives the entire design:**
+
+> "[Skills are] like putting together an onboarding guide for a new hire... enabling organizations to capture and share their procedural knowledge through reusable skill bundles."
+
+Not a prompt (job description). Not tool docs (API reference). An **onboarding guide** — values + process + tools + culture.
+
+**The philosophical claim that justifies the architecture:**
+
+> "The amount of context that can be bundled into a skill is **effectively unbounded**."
+
+Because progressive disclosure means only the relevant parts load at runtime, you can keep growing a skill's bundled files without ever paying the context cost upfront.
+
+**The PDF skill as canonical example** (the only specific example in the announcement):
+- `pdf/SKILL.md` — core workflow
+- `pdf/reference.md` — referenced when needed
+- `pdf/forms.md` — referenced only for form-filling subtasks
+- Python script bundled — runs without loading the script or PDF into context
+
+This worked example shows progressive disclosure not as a doc-organization choice but as **architecture**.
 
 ## Details
 
@@ -194,3 +219,4 @@ What we don't yet have:
 | 2026-05-14 | raw/2026-05-14-anthropic-claude-code-skills-refresh.md | Added new fields (paths, hooks, shell, arguments, when_to_use), substitution variables ($ARGUMENTS[N], $N, $name, ${CLAUDE_SESSION_ID}, ${CLAUDE_EFFORT}, ${CLAUDE_SKILL_DIR}), `skillOverrides` setting, bundled skills (/simplify, /batch, /debug, /loop, /claude-api), monorepo nested discovery, live change detection |
 | 2026-05-16 | raw/2026-05-11-khairallah-how-to-use-claude-skills.md | Added Khairallah's mass-audience 4-phase Skill build playbook: (Phase 1) install from anthropic/skills GitHub; (Phase 2) Three-Question Test (what + when + perfect-output-example); (Phase 3) Three-Scenario Test (happy path / edge case / stress test) + weekly refinement; (Phase 4) library compounding math (10 skills × 30 min/wk = 260 hours/yr). Hard rules: under 500 lines, no vague language, every instruction testable. Plus industry-specific Skill templates. |
 | 2026-05-22 | raw/2026-05-22-repo-anthropics-skills.md | Added Anthropic-official **three-tier word budgets** (~100 words metadata / <500 lines body / unlimited resources), **official folder anatomy** (scripts/ + references/ + assets/), **domain organization pattern** (variants in references/), and the **"pushy descriptions" counter-intuitive rule** (combat Claude's undertriggering bias by writing descriptions aggressively) — combine with Tw93's "Don't use when..." for the complete pattern |
+| 2026-05-22 | raw/2026-05-22-anthropic-equipping-agents-skills-blog.md | Added **Origin section** — the foundational 2025-10-16 announcement by Barry Zhang + Keith Lazuka + Mahesh Murag that introduced the term "Agent Skills." Covers: **"onboarding guide for a new hire" analogy** (the core framing), **"effectively unbounded" context philosophy** (justifies architecture), **PDF skill as canonical example** (the only specific example in the announcement). This is the source the docs/repo/Garry/Matt/Khairallah all stand on |

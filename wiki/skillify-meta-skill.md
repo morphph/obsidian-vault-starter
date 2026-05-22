@@ -6,10 +6,23 @@ sources:
   - raw/2026-04-21-garry-tan-skillify-manifesto.md
   - raw/2026-05-09-garry-tan-meta-meta-prompting.md
   - raw/2026-05-22-repo-anthropics-skills.md
+  - raw/2026-05-22-anthropic-equipping-agents-skills-blog.md
 tags: [wiki, principle, agentic, meta-skill, claude-code]
 ---
 
 # Skillify (Meta-Skill)
+
+## The original Anthropic vision (2025-10-16)
+
+Before Garry Tan packaged this as `/skillify`, Anthropic wrote the seed in their foundational Skills announcement ([[source-anthropic-equipping-agents-skills-blog]]):
+
+> "Agents to **create, edit, and evaluate Skills on their own**, letting them codify their own patterns of behavior into reusable capabilities."
+
+And the methodological version they shipped at the same time:
+
+> "Iterate with Claude — during task work, request that Claude **capture successful approaches and common mistakes into reusable context and code within a skill**. If using a skill leads to errors, ask Claude to self-reflect on what went wrong... will help you discover what context Claude actually needs, instead of trying to anticipate it upfront."
+
+`/skillify`, [[anthropic-skill-creator]], and Garry's 10-step checklist are all implementations of this 2025-10-16 thesis. **Anthropic wrote the spec; the ecosystem built the products.**
 
 ## Summary
 [[garry-tan|Garry Tan]]'s production-confirmed name for the **meta-skill that creates new skills**. In [[gbrain]], `/skillify` is a real command: you do a workflow manually once, then say "skillify this" — the system examines what happened, extracts the repeatable pattern, **runs the 10-step quality checklist** below, and registers the new skill in the [[resolvers|resolver]]. The operational implementation of Garry's "if I have to ask you for something twice, you failed" rule. Composes with [[check-resolvable]] (verifies reachability) and `cross-modal-eval` (multi-model quality check).
@@ -195,3 +208,4 @@ Anthropic shipped their own meta-skill at `github.com/anthropics/skills/skills/s
 | 2026-05-12 | raw/2026-04-21-garry-tan-skillify-manifesto.md | Major expansion — added full 10-step Skillify Checklist (the operational deliverable); calendar-recall + context-now case studies; "latent builds deterministic that constrains latent" recursive insight; skillify-as-verb daily workflow examples; Hermes Agent comparison (creation vs verification) |
 | 2026-05-16 | raw/2026-05-11-khairallah-how-to-use-claude-skills.md | Added Khairallah's mass-market framing: **"One Skill is a Tool. Ten Skills is a Workforce."** + the compounding math (10 skills × 30 min/week saved = 260 hours/year = 6.5 full work weeks returned). Useful tagline for explaining skillify to non-engineers |
 | 2026-05-22 | raw/2026-05-22-repo-anthropics-skills.md | Added side-by-side comparison with Anthropic's official [[anthropic-skill-creator|skill-creator]] meta-skill. Same idea, complementary implementations: Garry = speed/post-execution capture; Anthropic = rigor/pre-design ML-style eval. Recommend Garry for capture velocity, Anthropic for high-stakes skills |
+| 2026-05-22 | raw/2026-05-22-anthropic-equipping-agents-skills-blog.md | Added the **original Anthropic vision (2025-10-16)** at top of page — "agents to create, edit, and evaluate Skills on their own" + "iterate with Claude" methodology — that /skillify and skill-creator are both implementations of. **Anthropic wrote the spec; the ecosystem built the products.** |

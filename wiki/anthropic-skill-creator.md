@@ -4,13 +4,14 @@ created: 2026-05-22
 last-updated: 2026-05-22
 sources:
   - raw/2026-05-22-repo-anthropics-skills.md
+  - raw/2026-05-22-anthropic-equipping-agents-skills-blog.md
 tags: [wiki, entity, claude-code, skills, meta-skill, anthropic, official]
 ---
 
 # anthropic skill-creator
 
 ## Summary
-Anthropic's **official meta-skill for creating, improving, and optimizing skills**, shipped in [[anthropics-skills-repo|github.com/anthropics/skills]] at `skills/skill-creator/SKILL.md`. Treats skill creation as a small ML problem — train/test split, baseline comparison, quantitative + qualitative double-rail evaluation, iteration workspaces, automated description optimization loop. The Anthropic-internal counterpart to [[skillify-meta-skill|Garry Tan's /skillify]]: same idea, different implementation (Garry: governance/verification; Anthropic: ML-style optimization).
+Anthropic's **official meta-skill for creating, improving, and optimizing skills**, shipped in [[anthropics-skills-repo|github.com/anthropics/skills]] at `skills/skill-creator/SKILL.md`. Treats skill creation as a small ML problem — train/test split, baseline comparison, quantitative + qualitative double-rail evaluation, iteration workspaces, automated description optimization loop. The Anthropic-internal counterpart to [[skillify-meta-skill|Garry Tan's /skillify]]: same idea, different implementation (Garry: governance/verification; Anthropic: ML-style optimization). **The operational implementation of the "iterate with Claude" methodology Anthropic introduced in [[source-anthropic-equipping-agents-skills-blog|the original 2025-10-16 Skills announcement]].**
 
 ## Details
 
@@ -144,3 +145,4 @@ Phrasing tiers:
 | Date | Source | What changed |
 |------|--------|-------------|
 | 2026-05-22 | raw/2026-05-22-repo-anthropics-skills.md | Initial creation from anthropics/skills repo deep scan |
+| 2026-05-22 | raw/2026-05-22-anthropic-equipping-agents-skills-blog.md | Cross-referenced as the operational implementation of "iterate with Claude" methodology introduced in Anthropic's foundational 2025-10-16 Skills announcement |
