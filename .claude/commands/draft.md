@@ -77,16 +77,29 @@ The `sources:` field always points to raw/ files — the immutable source materi
 - Keep the substance — don't water down the content, just reshape it for a reader who doesn't have your wiki context
 - Preserve the original language (Chinese stays Chinese, English stays English, mixing is fine)
 
-### 5. Update wiki page (only if source was a wiki page)
+### 5. Offer companion visual (long-form + diagrammable content)
+
+If the draft is long-form (>2000 words) **and** contains diagrammable structure (architecture, layered framework, workflow with stages, comparison matrix), offer to generate a companion visual:
+
+- Run `/visualize <topic>` to produce `drafts/{name}.excalidraw` + `drafts/{name}.png`
+- Embed the PNG in the article body with `![[{name}.png]]` near the relevant section — embed the PNG, NOT the `.excalidraw` (per `feedback_visualize_embed` memory)
+- Keep both files in `drafts/` so the user can iterate the Excalidraw and re-export
+
+Skip silently if the draft is short or purely narrative with no diagrammable structure. When unsure, ask the user — visuals take real time and don't fit every draft.
+
+Evidence this step pays off: `managed-agents-architecture`, `connection-context-layers-and-best-practices`, and `claude-code-best-practices-guide` all carry companion visuals because the underlying material is structural.
+
+### 6. Update wiki page (only if source was a wiki page)
 
 Add `status: draft` to the wiki page's frontmatter. Do NOT change any other content.
 
 Skip this step if the draft was built directly from raw/ or a topic.
 
-### 6. Report
+### 7. Report
 
 Show in terminal:
 - Source(s) → Draft article (paths)
 - Detected type
 - Article structure chosen
+- Companion visual: path if generated, else "none"
 - What to do next: "Open `drafts/{filename}` and polish."
