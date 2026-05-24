@@ -99,6 +99,51 @@ After approval, edit each file's frontmatter `description:` line (and add `argum
 
 ---
 
+## Phase 1.5 — Skill body + cross-skill audit
+
+After Phase 1's description rewrites, audit the SKILL.md / command **bodies** for structural problems. A perfect description can't save a skill whose body is bloated, multi-concern, or unguarded.
+
+### Anti-pattern checks (per skill)
+
+1. **Body bloat** — is the body >500 lines? Tw93's rule: hundreds of lines of operating manual stuffed in the body should move into supporting files (`references/`, `scripts/`) and load only when needed. The body should be lean; progressive disclosure hides the rest.
+2. **Multi-concern overreach** — does the skill try to cover disparate concerns (Tw93's example: review + deploy + debug + incident in one skill)? If yes, propose splitting.
+3. **Side-effect without guard** — does the skill perform side effects (git push, send messages, create resources, modify databases) without an explicit "when NOT to call me" guard? If yes, propose `disable-model-invocation: true` (manual-only) or a stronger anti-trigger.
+4. **Vague language** — does the body contain "appropriately", "as needed", "when relevant", "if necessary"? Khairallah's rule: every instruction must be testable. Flag for rewriting.
+
+### MECE check (across all skills)
+
+A trigger phrase should map to exactly ONE skill. Two skills competing for the same phrase = ambiguous routing.
+
+For each pair of skills, ask: **could a single user phrase plausibly trigger both descriptions?** If yes, it's a MECE violation. Report as:
+
+```
+**MECE conflict:** /<skill-a> and /<skill-b> both claim the trigger "<phrase>".
+Propose: <merge | disambiguate by adding 'Don't use when /<other>' to one | rename one of the triggers>.
+```
+
+### Orphan check
+
+For each skill, search the repo (`grep -r "/<command-name>" .` and check CLAUDE.md / docs / README) for actual invocations or references. If a skill is never referenced AND has triggers vague enough that it might never fire, flag as an **orphan candidate** for deletion or `disable-model-invocation: true`. Orphans eat description budget and rot silently.
+
+### Report format
+
+```
+### Phase 1.5 — Body + cross-skill audit
+
+**Anti-patterns:**
+- /<skill>: <which check failed> — <suggested fix>
+
+**MECE conflicts:**
+- /<skill-a> ↔ /<skill-b>: overlapping trigger "<phrase>" — <suggested fix>
+
+**Orphans:**
+- /<skill>: never invoked + weak triggers — propose deletion / disable
+```
+
+Ask: **"Approve fixes? Apply which?"** before editing. Body rewrites and orphan deletions are higher-stakes than description rewrites — be more conservative about getting per-item OKs.
+
+---
+
 ## Phase 2 — Excavate new skill candidates from past evidence
 
 This phase produces a **candidate list** — you do NOT build any skills in Phase 2. The user picks 0, 1, or several after seeing the report.
@@ -263,13 +308,18 @@ What changed: pushy opener, 5 trigger phrases (4 EN + 1 ZH because repo is bilin
 
 ## End-of-session output format
 
-When both phases are done, summarize as:
+When all phases are done, summarize as:
 
 ```
-## Phase 1 — Audit results
+## Phase 1 — Description audit results
 - N existing commands audited
 - N descriptions rewritten (commit: <sha>)
 - N commands already passing all checks (no change)
+
+## Phase 1.5 — Body + cross-skill audit results
+- N anti-patterns flagged, N fixed
+- N MECE conflicts, resolution: <action>
+- N orphans flagged, action: <action>
 
 ## Phase 2 — Excavation results
 - N candidates above ≥3-instance bar
@@ -277,17 +327,92 @@ When both phases are done, summarize as:
 - Recommended pick: <name>
 
 ## Next step
-You decide: build any candidates from Phase 2, or ship and revisit later.
+You decide: build any candidates from Phase 2 (see Appendix A for
+creation guidance), or ship and revisit later.
 ```
 
 ---
 
 ## What this prompt does NOT do
 
-- Does **not** build new skills automatically — that's a follow-up session after the user picks.
-- Does **not** run automated trigger evals — that's Anthropic's heavier 20-query / 60-40 / 3× / 5-iter optimization loop, only worth it for skills used >100×/month.
+- Does **not** build new skills automatically — Phase 2 produces a candidate list; if the user picks one, follow **Appendix A** below in this same session or a follow-up.
+- Does **not** run automated trigger evals — that's Anthropic's heavier 20-query / 60-40 / 3× / 5-iter optimization loop, only worth it for skills used >100×/month or paid product surfaces.
 - Does **not** edit anything without user confirmation.
-- Does **not** delete commands (proposing a `disable-model-invocation: true` setting is fine; deletion is the user's call).
+- Does **not** delete commands without explicit OK — proposing `disable-model-invocation: true` is fine; outright deletion is the user's call.
+
+---
+
+## Appendix A — When you build a picked candidate
+
+When the user picks a candidate from Phase 2 and you sit down to actually build it (this session or a follow-up), apply these principles in order.
+
+### A.1 — Do the work first, skillify second
+
+Counter-intuitive but load-bearing. The instinct is "design the skill architecture first." Resist it.
+
+> "Don't start by planning your skill architecture. Start by doing a thing... Do it with your agent, iterate until it's good, and then run Skillify." — Garry Tan
+
+You cannot know which abstraction is right until you've executed the workflow at least once. A skill written before the user has done the task captures the wrong pattern. If the candidate from Phase 2 already has ≥3 past instances, this step is satisfied — extract from those instances. If the user wants to skillify something done only once or twice, push back: do it a third time first.
+
+### A.2 — The Three-Question Test (Khairallah)
+
+Before writing any file, the user must answer crisply:
+
+1. **What should this skill enable Claude to do?** (one sentence)
+2. **When should this skill trigger?** (the user-phrases list from Phase 2)
+3. **What does a perfect output look like?** (a concrete example output, not a description of one)
+
+If the user cannot answer all three, the candidate is not ready. Ask follow-ups until they can.
+
+### A.3 — Pick where the skill lives
+
+| Path | Scope | Use when |
+|---|---|---|
+| `~/.claude/skills/<name>/SKILL.md` | All projects (personal) | Cross-repo skill (a personal coding pattern, a generic workflow) |
+| `<repo>/.claude/skills/<name>/SKILL.md` | This repo only | Repo-specific workflow that needs a skill bundle |
+| `<repo>/.claude/commands/<name>.md` | This repo, slash-only | Lightweight slash command (no supporting files needed) |
+
+Default: prefer `.claude/commands/<name>.md` for simple cases. Only use the full `skills/<name>/SKILL.md` directory layout when you need supporting files (`scripts/`, `references/`, `assets/`). Most candidates from Phase 2 will be commands, not full skills.
+
+### A.4 — Hard rules for the body
+
+- **Under 500 lines.** Approaching the limit means push detail into `references/` and add a pointer from the main file.
+- **No vague language.** "Appropriately", "as needed", "when relevant", "if applicable" — every instruction must be testable. If you write "carefully consider X", rewrite as "check that X meets condition Y; if not, do Z".
+- **Imperative voice.** "Read the file" not "the file should be read."
+- **Explain the why for any rule.** ALL CAPS MUSTs are a yellow flag from Anthropic; reframe as "because X, do Y" so Claude can judge edge cases.
+- **Make it general, not narrow.** Cover the underlying pattern, not just the specific case the user happened to do today. (Anthropic: "make skills general, not super-narrow to specific examples.")
+- **Bundle deterministic work as scripts.** If the skill repeatedly does the same calculation or transformation, extract a script under `scripts/` and have the skill body invoke it. Garry's calendar-recall and context-now lesson: don't do in the LLM's latent space what a 5-line deterministic script can do reliably.
+
+### A.5 — The 10-step skillify quality bar (Garry Tan)
+
+Optional but useful for skills you'll lean on heavily:
+
+```
+1.  SKILL.md             — the contract (name, triggers, rules)
+2.  Deterministic code   — scripts/*.{mjs,py} (no LLM for what code can do)
+3.  Unit tests           — vitest, pytest, or similar
+4.  Integration tests    — live endpoints if applicable
+5.  LLM evals            — quality + correctness of outputs
+6.  Resolver trigger     — entry in CLAUDE.md commands table (or RESOLVER.md if you have one)
+7.  Resolver eval        — verify the trigger actually routes (20-query eval, see prompt header)
+8.  MECE + DRY audit     — no overlap with existing skills, no duplicated logic
+9.  E2E smoke test       — run the full workflow once end-to-end
+10. Filing rules         — where outputs go (drafts/, logs/, output/, etc.)
+```
+
+> "A feature that doesn't pass all ten is not a skill. It's just code that happens to work today." — Garry Tan
+
+For most personal skills, steps 1 + 6 + a quick manual version of 7 are enough. Steps 2-5 and 8-10 are for skills you bet your workflow on.
+
+### A.6 — After shipping, watch for these silent failure modes
+
+These accumulate invisibly without periodic re-audits:
+
+- **Duplicate skills** — you write `/deploy-k8s` on Monday, `/kubernetes-deploy` on Thursday. Routing goes ambiguous. Catch by re-running Phase 1.5 MECE check periodically.
+- **Silent API drift** — skill is perfect when written; upstream API changes 6 weeks later; skill silently returns garbage. Catch with smoke tests in CI or a manual re-run.
+- **Orphans** — skill with weak triggers never matches, eats description budget, rots. Catch with the orphan check in Phase 1.5.
+
+These three together are why "untested skills accumulate" is the real reason skill systems fail at scale, not because any single skill is bad.
 
 ---
 
