@@ -10,6 +10,7 @@ Four layers:
 - `raw/` — Immutable source documents. Human curates what goes in. LLM reads but never modifies.
 - `wiki/` — LLM-maintained knowledge base. LLM owns entirely. Creates, updates, cross-references pages.
 - `drafts/` — Articles for publication. Human owns. LLM creates initial draft via `/draft` (from wiki page, raw source, or topic), human polishes to publish.
+- `learn/` — Learning notes from `/learn` sessions. One file per session (mastery checklist + takeaways) for a blog, a Claude output, or pasted material. Human owns; prune or graduate into wiki/ as useful.
 - This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
 Two special files in wiki/:
@@ -43,7 +44,7 @@ AI Builder's Knowledge Base:
 
 ## Commands
 
-Five slash commands. Each has full instructions in `.claude/commands/`.
+Six slash commands. Each has full instructions in `.claude/commands/`.
 
 | Command | What it does |
 |---------|-------------|
@@ -53,6 +54,7 @@ Five slash commands. Each has full instructions in `.claude/commands/`.
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
 | `/draft <wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from wiki page, raw source, or topic. |
+| `/learn <url\|"last output"\|paste>` | Teach me a target incrementally until mastery — quizzes, running notes in `learn/`. |
 
 ## Skills
 
