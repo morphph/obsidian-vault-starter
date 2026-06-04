@@ -20,9 +20,9 @@ tokens; most coding tasks don't need it).
 
 ## Mastery checklist
 ### 1. The problem — what & why
-- [ ] Why single-context-window execution breaks on complex tasks
-- [ ] The 3 failure modes: agentic laziness, self-preferential bias, goal drift
-- [ ] Which task shapes trigger this (long-running, parallel, structured, adversarial)
+- [x] Why single-context-window execution breaks on complex tasks
+- [x] The 3 failure modes: agentic laziness, self-preferential bias, goal drift
+- [x] Which task shapes trigger this (long-running, parallel, structured, adversarial)
 
 ### 2. The substance — how & why this way
 - [ ] What a dynamic workflow actually IS (JS file + subagent-spawning functions)
@@ -40,4 +40,6 @@ tokens; most coding tasks don't need it).
 - (none yet)
 
 ## Key takeaways (fill as we go)
-- (to fill)
+- One long context window fails 3 ways on big tasks: **laziness** (quits early), **self-preferential bias** (trusts own work), **goal drift** (lossy compaction forgets constraints).
+- Triggers: long-running / massively parallel / highly structured / adversarial tasks.
+- The cure = **separate context windows** (kills drift) + **narrow isolated goals** (kills laziness) + **separate checker agents** (kills bias).
