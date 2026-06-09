@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Thin, path-portable shim for the obsidian-content CLI.
+# Resolves the repo from this script's own location, so Hermes can call it
+# from any working directory / transport.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO="$(cd "$HERE/.." && pwd)"
+PY="${OBSIDIAN_CONTENT_PYTHON:-python3}"
+exec "$PY" "$REPO/scripts/obsidian_content.py" "$@"

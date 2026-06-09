@@ -250,10 +250,37 @@ pages-created: {list}
 pages-updated: {list}
 ```
 
-### 7. Report
+### 7. Emit machine-readable ingest event
+
+After the log is updated, record a stable event so the autonomous content system
+(Hermes) can detect this Tier-1 ingest and route it downstream. This does **not**
+publish, push, or call any external service — it only appends one line to a local
+append-only log (`events/ingest-events.jsonl`).
+
+Run the repo CLI once per source ingested:
+
+```bash
+bin/obsidian-content record-ingest \
+  --source "raw/{filename}.md" \
+  --title "{Source Title}" \
+  --fetch-method "{fetch method used}" \
+  --pages-created "{comma-separated pages}" \
+  --pages-updated "{comma-separated pages}"
+```
+
+Notes:
+- Idempotent: re-running for the same `--source` is a no-op (the event id is a
+  hash of the source path), so a re-ingest won't create duplicates.
+- For a multi-source ingest (the `sources:` form), call it once per source file.
+- If the command is unavailable for any reason, don't block the ingest — just
+  note it in the Report; the event can be backfilled later with
+  `bin/obsidian-content backfill-from-log`.
+
+### 8. Report
 
 Show in terminal:
 - Source title
 - Pages created (with links)
 - Pages updated (with links)
 - Total pages touched
+- Ingest event id(s) recorded (from step 7)

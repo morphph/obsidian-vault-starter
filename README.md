@@ -56,6 +56,25 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 | `/visualize <topic\|source\|blank>` | Generate Excalidraw diagram from wiki knowledge.                                                      |
 | `/draft <wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from wiki page, raw source, or topic.                           |
 
+## Agent integration — `obsidian-content` CLI
+
+This repo is the human-curated **Tier-1 source layer** of an autonomous content
+system. The **Hermes** orchestration agent does not read this repo's internals —
+it calls a stable CLI that emits machine-readable JSON.
+
+```bash
+bin/obsidian-content list-ingests --status new      # discover new Tier-1 ingests
+bin/obsidian-content export-source --id <event_id>  # pull clean source markdown
+bin/obsidian-content mark-routed   --id <event_id>  # ack once routed (idempotent)
+```
+
+`/ingest` appends a stable event to `events/ingest-events.jsonl` after each
+successful ingest; Hermes folds that append-only log into state. The CLI never
+writes Hermes's ledger, never pushes, and never calls external services.
+
+**Full contract** (verbs, JSON shape, exit codes, idempotency, Hermes usage):
+[`docs/obsidian-content-cli.md`](docs/obsidian-content-cli.md).
+
 ## Vault Structure
 
 ```
@@ -66,15 +85,32 @@ wiki/                   Knowledge pages (LLM-owned)
   *.md                  Entity, concept, synthesis, connection, source pages
   visual-*.excalidraw   Diagrams
 drafts/                 Articles for publication (human-owned, LLM-seeded)
-scripts/                Helper scripts (content_agent.py, claude-remote helpers)
+events/                 Machine-readable event log (Hermes contract surface)
+  ingest-events.jsonl   Append-only ingest/routed events
+bin/obsidian-content    Agent-native CLI (thin shim → scripts/obsidian_content.py)
+scripts/                Helper scripts (obsidian_content.py, content_agent.py, ...)
 .claude/commands/       Slash commands (ingest, query, lint, visualize, draft)
 .claude/skills/         Skills (excalidraw-diagram + kepano/obsidian-skills)
+docs/                   Contracts & ops docs (obsidian-content-cli.md, ...)
 CLAUDE.md               Schema — the operating manual
 AGENTS.md               Mirror of CLAUDE.md for Codex CLI / agents.md tooling
 archive/                Everything from the pre-wiki vault
 ```
 
 ## Changelog
+
+### v0.4 — Agent-native CLI for Hermes (2026-06-09)
+
+- Added `bin/obsidian-content` + `scripts/obsidian_content.py` — stdlib-only CLI
+  exposing a stable JSON contract (`contract_version`, `ok`, `verb`, `artifacts`,
+  `warnings`, `errors`) to the Hermes orchestration agent
+- Verbs: `list-ingests`, `export-source`, `mark-routed`, `record-ingest`,
+  `backfill-from-log` — all idempotent where possible
+- Added `events/ingest-events.jsonl` append-only event log (folded to state)
+- `/ingest` now emits a stable ingest event (step 7) after each successful ingest
+- Backfilled 50 historical Tier-1 ingests from `wiki/log.md`
+- Contract docs: `docs/obsidian-content-cli.md`. Does not write Hermes's ledger,
+  push, or call external services.
 
 ### v0.3 — Pipeline B removed (2026-05-21)
 
