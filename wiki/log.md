@@ -1,5 +1,31 @@
 # Log
 
+## [2026-05-18] ingest | OpenAI official /goal corpus completion (2 sources)
+sources:
+  - raw/2026-05-05-openai-blog-long-horizon-tasks-codex.md
+  - raw/2026-05-09-openai-codex-use-case-follow-goals.md
+pages-created:
+  - source-openai-long-horizon-tasks-codex.md (12-section study guide — long-horizon thesis + Prompt/Plan/Implement triad)
+  - source-openai-codex-use-case-follow-goals.md (12-section study guide — 5-step setup process + 3 templates + "tighten the goal" pattern)
+pages-updated:
+  - index.md (added 2 source entries)
+  - claude-code-goal.md (source log + cross-vendor section)
+source-purity: ✅ official (both OpenAI Developers docs/blog)
+note: 完成 /goal 主题 cross-vendor 官方文档闭环 — Claude (1) + OpenAI (3: cookbook / blog / use-case) + Chris Hayduk insider (1) + George PM-craft (1) = 6 sources covering the full /goal landscape. Triggered by user's request to cross-compare George's PM-flavored take against the broader long-horizon-execution landscape (not just /goal command). Next step: draft Chinese PM-craft article on long-horizon autonomous execution combining Matt Pocock AFK + Claude/Codex /goal.
+
+## [2026-05-18] ingest | George (@nurijanian) — /goal for Product Managers
+source: raw/2026-05-17-nurijanian-goal-for-product-managers.md
+pages-created:
+  - source-nurijanian-goal-for-pms.md (12-section comprehensive study guide)
+  - george-nurijanian.md (entity — first PM-native voice in wiki)
+  - pm-os.md (entity — his AI-PM product)
+  - agent-ready-requirements.md (concept — 7-component PM spec standard)
+  - goal-template.md (concept — 6-section practical /goal template + 5 natural-fit scenarios)
+pages-updated:
+  - index.md (added 2 entities, 2 concepts, 1 source)
+source-purity: ✅ official (作者本人 X 账号 + 他自己产品的内容); third-party check OK
+note: 第一个 PM-native 视角入 wiki — reframes Claude Code /goal as "Ralph + product design layer". 与 idea-to-afk-agent-flow + mattpocock-skills-library 形成完整互补（engineer 视角 + PM 视角）。
+
 ## [2026-05-20] ingest | Codex official corpus completion (6 sources)
 sources:
   - raw/2025-10-07-openai-cookbook-plans-md-multi-hour.md

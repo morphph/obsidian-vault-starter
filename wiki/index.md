@@ -33,6 +33,8 @@
 - [[sandcastle]] — Matt's TypeScript framework for AFK coding agent orchestration (4.5K⭐); `sandcastle.run()` primitive; Docker/Podman/Vercel provider-agnostic; materializes interactive→AFK escalation as `createWorktree()` API
 - [[george-nurijanian]] — First PM-native voice in wiki; runs PM OS at prodmgmt.world; long-form X articles reframing engineer tools for PM craft; high bookmark-to-like ratio (2.84-4.5×)
 - [[pm-os]] — George's AI-PM operating system product (V2 imminent); productized version of agent-ready requirements + skill workflows; commercial sibling of mattpocock-skills-library/gbrain (open-source engineer versions)
+- [[george-nurijanian]] — First PM-native voice in wiki; runs PM OS at prodmgmt.world; long-form X articles reframing engineer tools for PM craft; high bookmark-to-like ratio (2.84-4.5×)
+- [[pm-os]] — George's AI-PM operating system product (V2 imminent); productized version of agent-ready requirements + skill workflows; commercial sibling of mattpocock-skills-library/gbrain (open-source engineer versions)
 - [[anthropics-skills-repo]] — Official Anthropic Skills repo (138.9K⭐, last commit 2026-05-22): 17 example SKILL.md + skill-creator meta-skill + 3-plugin marketplace; the canonical implementation of agent-skills-standard
 - [[anthropic-skill-creator]] — Anthropic's official meta-skill for creating/improving/optimizing skills: ML-style train/test split + 4 improvement principles + automated description optimization loop (20 queries, 60/40, 3×, 5 iter); complement to Garry's /skillify
 
