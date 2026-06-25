@@ -37,6 +37,8 @@
 - [[pm-os]] — George's AI-PM operating system product (V2 imminent); productized version of agent-ready requirements + skill workflows; commercial sibling of mattpocock-skills-library/gbrain (open-source engineer versions)
 - [[anthropics-skills-repo]] — Official Anthropic Skills repo (138.9K⭐, last commit 2026-05-22): 17 example SKILL.md + skill-creator meta-skill + 3-plugin marketplace; the canonical implementation of agent-skills-standard
 - [[anthropic-skill-creator]] — Anthropic's official meta-skill for creating/improving/optimizing skills: ML-style train/test split + 4 improvement principles + automated description optimization loop (20 queries, 60/40, 3×, 5 iter); complement to Garry's /skillify
+- [[feitong-yang]] — Founding engineer at Shortcut.ai; three-pivot AI agent startup veteran; author of "Ten Commandments for Building Product" (Jun 2026)
+- [[shortcut-ai]] — Excel AI coworker (shortcut.ai); found PMF in finance/high-caliber Excel users; canonical affordance + "fuel beats spark" case study
 
 ## Concepts
 
@@ -117,6 +119,8 @@
 - [[vertical-slicing]] — `/to-issues` unit-of-work pattern; slices cut through all layers (schema+API+UI+tests) not horizontal; enables parallel agents + independent shipping; generalizes beyond code
 - [[agent-ready-requirements]] — George's 7-component PM spec standard for unattended agent loops (observable behavior + negative cases + scope boundaries + validation evidence + stop conditions + status-report expectations + customer-facing success criteria); "a prompt asks for effort, a contract defines where effort stops"
 - [[goal-template]] — George's 6-section practical template for `/goal` invocations (target / source of truth / acceptance criteria / validation / boundaries / loop behavior); 5 natural-fit scenarios (migration / backlog clearing / file splitting / brute-force testing / bounded exploration)
+- [[product-reality-evasion]] — Feitong Yang's "one disease": any evasion of painful first-hand contact with reality that feels like progress; AI makes it cheaper and more dangerous
+- [[capability-vs-product]] — Capability is input; product is the translation of that input into a met need; translation is the third independent job (not a byproduct of research or engineering)
 
 ## Synthesis
 
@@ -221,3 +225,4 @@
 - [[source-openai-codex-skills-docs]] — OpenAI Codex Skills: built on **agentskills.io open standard** — same standard as Anthropic Skills; progressive disclosure 8K char cap; `$skill-name` invocation; cross-vendor portability ~1h per skill
 - [[source-anthropics-skills-repo]] — Official anthropics/skills repo GitHub Deep Scan (2026-05-22): reveals 4 things docs don't — "pushy descriptions" counter-intuitive guidance, concrete 3-tier progressive disclosure budgets (~100w/<500ln/unlimited), ML-style skill optimization workflow, 4 improvement principles (generalize/lean/explain why/bundle repeated work)
 - [[source-anthropic-equipping-agents-skills-blog]] — **Anthropic's foundational Skills announcement** (Barry Zhang + Keith Lazuka + Mahesh Murag, 2025-10-16): the original engineering blog post that introduced Agent Skills publicly; ~5-7 months earlier than all other Skills content in the wiki; establishes "onboarding guide for a new hire" framing, progressive-disclosure 3-tier architecture as #1 design principle, "effectively unbounded" context philosophy, the official statement of latent-vs-deterministic ("sorting via token vs algorithm"), and the recursive meta-skill vision that /skillify and skill-creator implement
+- [[source-feitong-yang-ten-commandments]] — Feitong Yang (founding engineer, Shortcut.ai): "Ten Commandments for Building Product" — first-hand 3-pivot account; core thesis: product-reality-evasion is the root disease, AI makes it worse; capability≠product; 252 bookmarks, 34K views (2026-06-21)

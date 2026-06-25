@@ -1,5 +1,10 @@
 # Log
 
+## [2026-06-25] ingest | Feitong Yang — The Ten Commandments for Building Product
+source: raw/2026-06-21-feitong-yang-ten-commandments-product.md
+pages-created: feitong-yang.md, shortcut-ai.md, product-reality-evasion.md, capability-vs-product.md, source-feitong-yang-ten-commandments.md
+pages-updated: index.md
+
 ## [2026-05-18] ingest | OpenAI official /goal corpus completion (2 sources)
 sources:
   - raw/2026-05-05-openai-blog-long-horizon-tasks-codex.md
