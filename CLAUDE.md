@@ -14,10 +14,10 @@ Four layers:
 - This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
 Plus one **non-vault workspace** (not a vault layer — see `research/README.md`):
-- `research/` — `/research` output (report + outline + ingest-candidates per topic). **Tier-4 derivative**: archival, excluded from vault / selection input / gbrain Tier-1 sync. Feeds `/ingest` (selected candidates) and `/draft research/<slug>/` (writing). Never auto-enters `raw/` or `wiki/`.
+- `research/` — `/research` output (research-plan + single report + ingest-candidates per topic). Report mirrors a proven shape: §1-2 facts · §3-5 per-channel Top-N · §6 insights · §7 ranked content angles · timeline. **Tier-4 derivative**: archival, excluded from vault / selection input / gbrain Tier-1 sync. Feeds `/ingest` (selected candidates) and `/draft research/<slug>/` (writing, from §7 angle). Never auto-enters `raw/` or `wiki/`.
 
 Plus one **taste anchor** at repo root:
-- `audience-profile.md` — reader persona + voice + GEO writing rules. Read by `/research` (outline) and `/draft` (writing). vault snapshot; content-ops version is canonical.
+- `audience-profile.md` — reader persona + voice + GEO writing rules. Read by `/research` (report §7 angles) and `/draft` (writing). vault snapshot; content-ops version is canonical.
 
 Two special files in wiki/:
 - `wiki/index.md` — Content catalog. Every wiki page listed with link + one-line summary. Updated on every ingest.
@@ -58,7 +58,7 @@ Seven slash commands. Each has full instructions in `.claude/commands/`.
 |---------|-------------|
 | `/ingest <url\|file\|scan>` | Drop a source into the wiki. One source fans out across multiple pages. |
 | `/ingest-anthropic-daily [window]` | Sweep all Anthropic + Claude sources, dedupe, write category-grouped digest. |
-| `/research <topic>` | Research a topic → report + outline + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
+| `/research <topic>` | Research a topic → research-plan + single report (facts + per-channel Top-N + ranked angles) + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
 | `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |

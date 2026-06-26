@@ -9,7 +9,7 @@ Read CLAUDE.md first for wiki conventions.
 
 ## Arguments
 Parse `$ARGUMENTS` for one of:
-- **Research workspace** (e.g., `/draft research/openai-codex/` or `.../outline.md`) — build article from a `/research` run (report + outline + candidates)
+- **Research workspace** (e.g., `/draft research/openai-codex/`) — build article from a `/research` run (report + candidates). Optionally name an angle: `/draft research/<slug>/ angle:2` (default: §7 角度1，the recommended one)
 - **Wiki page path** (e.g., `/draft wiki/context-noise-governance.md`) — graduate a wiki page
 - **Raw file path** (e.g., `/draft raw/2026-04-09-bcherny-claude-code-best-practices.md`) — build article from source
 - **Topic** (e.g., `/draft Claude Code best practices`) — find relevant raw/ sources and build article
@@ -20,10 +20,12 @@ If no argument given, ask the user what to draft.
 
 ### 1. Gather source material
 
-**If research workspace:** Read `report.md` + `outline.md` + `ingest-candidates.md` from the
-`research/<slug>/` dir. The `outline.md` is the article skeleton — follow it. The `report.md`
-supplies the facts (Track A) and the winning angle (Track B). Also read `audience-profile.md`
-(repo root) for voice + GEO rules. **Sourcing follows the 务实 rule** — see step 4.
+**If research workspace:** Read `report.md` + `ingest-candidates.md` from the `research/<slug>/`
+dir. `report.md` §7 holds **ranked content angles** — pick the named `angle:N` (default 角度1,
+the recommended one); that angle's "参考写法 / 渠道+形式 / 依赖" is the article skeleton. The rest
+of `report.md` supplies the facts (§1-2, with verification status) and the per-channel form
+references (§3-5). Also read `audience-profile.md` (repo root) for voice + GEO rules.
+**Sourcing follows the 务实 rule** — see step 4.
 **If wiki page:** Read the wiki page + all files in its `sources:` frontmatter.
 **If raw file:** Read the raw file. Check wiki/ for related pages that add context.
 **If topic:** Search raw/ and wiki/ for relevant files. Show what you found, ask user to confirm.

@@ -8,15 +8,21 @@
 
 ```
 research/<topic-slug>/
-  report.md             调研综合(A 事实锚定 + B 竞品缺口 + 制胜写法)
-  outline.md            文章大纲(以 audience-profile.md 为品味锚)
+  research-plan.md      检索计划(按渠道拆 + 每渠道原生搜法 + 消歧 + 检查点)
+  report.md             一份到底的调研报告。结构对齐参考报告:
+                          §1 这话题是什么(事实轴) · §2 焦点实体深挖
+                          §3-5 X / Web / YouTube 各渠道 Top-N(增长轴,含写作风格拆解)
+                          §6 核心洞察 · §7 排序的内容角度(增长轴→/draft 入口) · 附录时间线
   ingest-candidates.md  建议进 vault 的外部原文清单(每条:一句理由 + URL)
   meta.json             机器记录(slug / topic / sha256 / tools-used / warnings)
 ```
 
+两个原则:**采集按渠道**(每渠道用该渠道原生搜法),**综合按双轴**(事实轴锚官方源 / 增长轴排
+Top-N + 角度)。拿不到的互动/观看数据标「推断·未实测」,绝不编造。
+
 下游:
 - `ingest-candidates.md` → 人圈选 → `/ingest` 进 `raw/`(才成 Tier-1)。
-- `report.md` + `outline.md` → `/draft research/<slug>/` 写博客。
+- `report.md` §7 挑一个角度 → `/draft research/<slug>/` 写博客(无单独 outline.md;§7 角度即骨架)。
 
 ## Tier 与边界(重要)
 
