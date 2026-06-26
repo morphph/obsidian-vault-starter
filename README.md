@@ -29,15 +29,19 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 ## Architecture
 
 ```
-  /ingest <url|file|scan>
-            ↓
-   raw/ (immutable sources)
-            ↓
-   wiki/ (knowledge pages, LLM-owned)
-            ↓
-   /query  /lint  /visualize  /draft
-            ↓
-   drafts/ (articles for publication)
+  /research <topic>
+        ↓
+  research/<slug>/  (report + outline + ingest-candidates — non-vault, Tier-4)
+        │
+        ├─(human picks candidates)─→ /ingest <url|file|scan> ─→ raw/ (immutable sources)
+        │                                                              ↓
+        │                                                wiki/ (knowledge pages, LLM-owned)
+        │                                                              ↓
+        │                                                   /query  /lint  /visualize
+        │
+        └─(outline + report)───────→ /draft ─→ drafts/ (articles for publication)
+                                       ↑
+                          raw/ + wiki/ also feed /draft
 ```
 
 **Four layers:**
@@ -51,10 +55,11 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 | Command                             | What it does                                                                                          |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `/ingest <url\|file\|scan>`         | Drop a source → wiki pages fan out. Supports articles, GitHub repos (deep scan), tweets (Playwright). |
+| `/research <topic>`                 | Research a topic → report + outline + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
 | `/query <question>`                 | Ask the wiki. Optionally file answer back as synthesis page.                                          |
 | `/lint`                             | Health check: orphans, contradictions, stale pages, missing links.                                    |
 | `/visualize <topic\|source\|blank>` | Generate Excalidraw diagram from wiki knowledge.                                                      |
-| `/draft <wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from wiki page, raw source, or topic.                           |
+| `/draft <research-dir\|wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from a research workspace, wiki page, raw source, or topic. |
 
 ## Agent integration — `obsidian-content` CLI
 
@@ -85,11 +90,14 @@ wiki/                   Knowledge pages (LLM-owned)
   *.md                  Entity, concept, synthesis, connection, source pages
   visual-*.excalidraw   Diagrams
 drafts/                 Articles for publication (human-owned, LLM-seeded)
+research/               /research workspace (non-vault, Tier-4) — report + outline + candidates per topic
+  <topic-slug>/         report.md, outline.md, ingest-candidates.md, meta.json
 events/                 Machine-readable event log (Hermes contract surface)
   ingest-events.jsonl   Append-only ingest/routed events
+audience-profile.md     Reader persona + voice + GEO rules (read by /research + /draft)
 bin/obsidian-content    Agent-native CLI (thin shim → scripts/obsidian_content.py)
 scripts/                Helper scripts (obsidian_content.py, content_agent.py, ...)
-.claude/commands/       Slash commands (ingest, query, lint, visualize, draft)
+.claude/commands/       Slash commands (ingest, research, query, lint, visualize, draft, learn)
 .claude/skills/         Skills (excalidraw-diagram + kepano/obsidian-skills)
 docs/                   Contracts & ops docs (obsidian-content-cli.md, ...)
 CLAUDE.md               Schema — the operating manual
@@ -98,6 +106,21 @@ archive/                Everything from the pre-wiki vault
 ```
 
 ## Changelog
+
+### v0.5 — `/research` skill + draft seam (2026-06-26)
+
+- Added `/research <topic>` skill (`.claude/commands/research.md`): 查内 (index.md/drafts/gbrain)
+  → 扫外 (sub-agent: `deep-research` baseline + best-effort `last30days`/`bird`/`summarize`,
+  missing tools → `warnings[]`) → 综合 (report + outline + ingest-candidates) in a **non-vault**
+  `research/<slug>/` workspace. Stops at candidates — never auto-ingests. Prints a contract-1.0
+  envelope. Completes the content loop: `/research` → `/ingest` → `/draft`.
+- Wired the **research → draft seam**: `/draft research/<slug>/` is a 4th input mode. Pragmatic
+  sourcing — `sources:` = ingested `raw/` only, un-ingested URLs go in new `external-refs:`;
+  `research:` frontmatter points back. Load-bearing claims must trace to `raw/`.
+- Added `audience-profile.md` (taste anchor: reader persona + voice + GEO writing rules), read by
+  both `/research` and `/draft`. vault snapshot of the content-ops canonical version.
+- `research/` is Tier-4 (excluded from vault / selection input / gbrain Tier-1 sync — see
+  `research/README.md`). `obsidian_content.py` untouched (it stays LLM-free by design).
 
 ### v0.4 — Agent-native CLI for Hermes (2026-06-09)
 

@@ -13,6 +13,12 @@ Four layers:
 - `learn/` — Learning notes from `/learn` sessions. One file per session (mastery checklist + takeaways) for a blog, a Claude output, or pasted material. Human owns; prune or graduate into wiki/ as useful.
 - This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
+Plus one **non-vault workspace** (not a vault layer — see `research/README.md`):
+- `research/` — `/research` output (report + outline + ingest-candidates per topic). **Tier-4 derivative**: archival, excluded from vault / selection input / gbrain Tier-1 sync. Feeds `/ingest` (selected candidates) and `/draft research/<slug>/` (writing). Never auto-enters `raw/` or `wiki/`.
+
+Plus one **taste anchor** at repo root:
+- `audience-profile.md` — reader persona + voice + GEO writing rules. Read by `/research` (outline) and `/draft` (writing). vault snapshot; content-ops version is canonical.
+
 Two special files in wiki/:
 - `wiki/index.md` — Content catalog. Every wiki page listed with link + one-line summary. Updated on every ingest.
 - `wiki/log.md` — Chronological record. Append-only. Every operation logged with timestamp.
@@ -31,6 +37,8 @@ AI Builder's Knowledge Base:
 - Never create wiki pages without updating `wiki/index.md`
 - Never make claims in wiki pages without tracing to a source file in `raw/`
 - Never link generic terms (AI, marketing, Python) — only link concepts worth tracking
+- Never auto-ingest `/research` candidates — only human-selected candidates go through `/ingest`
+- Never treat `research/` outputs as Tier-1 or as selection/topic input — they are Tier-4 derivatives
 
 ## Conventions
 - Wiki page filenames: kebab-case, descriptive (e.g., `anthropic.md`, `aeo-strategy.md`)
@@ -44,16 +52,17 @@ AI Builder's Knowledge Base:
 
 ## Commands
 
-Six slash commands. Each has full instructions in `.claude/commands/`.
+Seven slash commands. Each has full instructions in `.claude/commands/`.
 
 | Command | What it does |
 |---------|-------------|
 | `/ingest <url\|file\|scan>` | Drop a source into the wiki. One source fans out across multiple pages. |
 | `/ingest-anthropic-daily [window]` | Sweep all Anthropic + Claude sources, dedupe, write category-grouped digest. |
+| `/research <topic>` | Research a topic → report + outline + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
 | `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
-| `/draft <wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from wiki page, raw source, or topic. |
+| `/draft <research-dir\|wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from a research workspace, wiki page, raw source, or topic. |
 | `/learn <url\|"last output"\|paste>` | Teach me a target incrementally until mastery — quizzes, running notes in `learn/`. |
 
 ## Skills

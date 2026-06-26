@@ -9,8 +9,12 @@ Bilingual (EN/ZH). Concise, action-oriented.
 Four layers:
 - `raw/` — Immutable source documents. Human curates what goes in. LLM reads but never modifies.
 - `wiki/` — LLM-maintained knowledge base. LLM owns entirely. Creates, updates, cross-references pages.
-- `drafts/` — Articles for publication. Human owns. LLM creates initial draft via `/draft` (from wiki page, raw source, or topic), human polishes to publish.
+- `drafts/` — Articles for publication. Human owns. LLM creates initial draft via `/draft` (from research workspace, wiki page, raw source, or topic), human polishes to publish.
 - This file (AGENTS.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
+
+Plus one **non-vault workspace** + one **taste anchor** (not vault layers):
+- `research/` — `/research` output (report + outline + ingest-candidates per topic). Tier-4 derivative: excluded from vault / selection input / gbrain Tier-1 sync. Feeds `/ingest` (selected candidates) and `/draft research/<slug>/`. Never auto-enters `raw/`/`wiki/`. See `research/README.md`.
+- `audience-profile.md` (repo root) — reader persona + voice + GEO writing rules. Read by `/research` + `/draft`. content-ops version is canonical.
 
 Two special files in wiki/:
 - `wiki/index.md` — Content catalog. Every wiki page listed with link + one-line summary. Updated on every ingest.
@@ -49,10 +53,11 @@ Five slash commands. Each has full instructions in `.Codex/commands/`.
 |---------|-------------|
 | `/ingest <url\|file\|scan>` | Drop a source into the wiki. One source fans out across multiple pages. |
 | `/ingest-anthropic-daily [window]` | Sweep all Anthropic + Codex sources, dedupe, write category-grouped digest. |
+| `/research <topic>` | Research a topic → report + outline + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
 | `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |
-| `/draft <wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from wiki page, raw source, or topic. |
+| `/draft <research-dir\|wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from a research workspace, wiki page, raw source, or topic. |
 
 ## Skills
 
