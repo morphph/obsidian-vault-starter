@@ -6,4 +6,8 @@ set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO="$(cd "$HERE/.." && pwd)"
 PY="${OBSIDIAN_CONTENT_PYTHON:-python3}"
+if [ "${1:-}" = "ingest-url" ]; then
+  shift
+  exec "$PY" "$REPO/scripts/ingest_url.py" "$@"
+fi
 exec "$PY" "$REPO/scripts/obsidian_content.py" "$@"
