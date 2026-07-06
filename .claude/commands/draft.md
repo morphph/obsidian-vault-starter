@@ -20,12 +20,22 @@ If no argument given, ask the user what to draft.
 
 ### 1. Gather source material
 
-**If research workspace:** Read `report.md` + `ingest-candidates.md` from the `research/<slug>/`
-dir. `report.md` §7 holds **ranked content angles** — pick the named `angle:N` (default 角度1,
-the recommended one); that angle's "参考写法 / 渠道+形式 / 依赖" is the article skeleton. The rest
-of `report.md` supplies the facts (§1-2, with verification status) and the per-channel form
-references (§3-5). Also read `audience-profile.md` (repo root) for voice + GEO rules.
+**If research workspace:** Read `report.md` + `outline.md` + `ingest-candidates.md` from the
+`research/<slug>/` dir. `outline.md` is the Gate-1-approved skeleton — follow its structure;
+`report.md` supplies the facts (§1-2, with verification status) and per-channel form references
+(§3-5). Also read `audience-profile.md` (repo root) for voice + GEO rules.
 **Sourcing follows the 务实 rule** — see step 4.
+
+**Take gate（WF3 铁律，plan §11.1/§11.2 拍板 A）：** if `outline.md` exists, its take section is
+load-bearing —
+- take 已填（3-5 句作者亲笔）→ **全文围绕 take 展开**：take 的观点必须出现在成稿**前 30%**
+  （GEO 位置偏置），每个主张段能挂回 take。
+- take 仍是占位（`⏳ 待作者 take`）→ **拒绝开工**：interactive 下告诉用户「Gate 1 take 未填，
+  writer 无 take 不开工」；headless 下打印 `ok:false, errors:["take_missing"]` envelope 退出。
+- 无 `outline.md`（非 WF3 的旧式 /draft 用法）→ 本 gate 不适用，照常。
+
+**穿透引用（plan §11.7）：** 成稿只许引用 report 里标注的**原始出处**（`[外部: URL]` 的 URL、
+`[内部/Tier-1: 页名]` 对应的 raw/ 源），**绝不引用 report.md/outline.md 本身**——防「报告引报告」。
 **If wiki page:** Read the wiki page + all files in its `sources:` frontmatter.
 **If raw file:** Read the raw file. Check wiki/ for related pages that add context.
 **If topic:** Search raw/ and wiki/ for relevant files. Show what you found, ask user to confirm.
@@ -52,6 +62,10 @@ Before creating the draft, show:
 - What will be cut vs kept (if from wiki page)
 
 Ask for confirmation or adjustments.
+
+**Headless rule（被 WF3 driver / headless claude 调起时）**: no one can confirm — skip this
+pause, follow `outline.md` as the approved plan (that's what Gate 1 approved), and note
+`"headless: plan confirmation skipped (outline.md is the approved plan)"` in the envelope warnings.
 
 ### 4. Create the draft article
 
@@ -116,6 +130,33 @@ Add `status: draft` to the wiki page's frontmatter. Do NOT change any other cont
 
 Skip this step if the draft was built directly from raw/, a topic, or a research workspace.
 
+### 6.5 WF3 mode: bilingual output + machine envelope（仅 research-workspace 且 outline 有 take 时）
+
+WF3 的发布目标是 loreai.dev **EN+ZH 双语**（Gate 2 审的必须是要发的全部东西）：
+
+1. 主稿 `drafts/<slug>.zh.md`（照上面全部规则写）。
+2. 英文版 `drafts/<slug>.en.md` — **同结构同论点的英文成文**（不是逐句直译；面向同一受众
+   画像的英文读者重述，保留全部出处链接与数据）。take 同样出现在前 30%。
+3. Frontmatter 两份都带（status/sources/external-refs/research/platform/lang）。
+4. 打印机器可读 envelope（contract 1.0 同形，skill 打印、非 CLI verb）：
+
+```json
+{
+  "contract_version": "1.0",
+  "ok": true,
+  "verb": "draft",
+  "artifacts": {
+    "draft_zh": { "path": "drafts/<slug>.zh.md", "sha256": "..." },
+    "draft_en": { "path": "drafts/<slug>.en.md", "sha256": "..." }
+  },
+  "data": { "slug": "<slug>", "take_present": true, "research": "research/<slug>/" },
+  "warnings": [], "errors": []
+}
+```
+
+（sha256 用 `shasum -a 256`。Gate 2 的 packet content_hash = content-ops 拿这两个 sha256 拼合
+再 hash——绑「批的就是发的这一对」。）失败也打印合法 envelope（如 `take_missing`）。
+
 ### 7. Report
 
 Show in terminal:
@@ -123,4 +164,5 @@ Show in terminal:
 - Detected type
 - Article structure chosen
 - Companion visual: path if generated, else "none"
-- What to do next: "Open `drafts/{filename}` and polish."
+- What to do next: "Open `drafts/{filename}` and polish."（WF3 mode: 改为「等 Gate 2——
+  content-ops 会出 review packet」）
