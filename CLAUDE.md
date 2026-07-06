@@ -52,7 +52,7 @@ AI Builder's Knowledge Base:
 
 ## Commands
 
-Seven slash commands. Each has full instructions in `.claude/commands/`.
+Eight slash commands. Lightweight ones live in `.claude/commands/{name}.md`; heavyweight ones (`/ingest`, `/research`) are skill folders in `.claude/skills/{name}/` — SKILL.md holds the workflow, `references/` holds templates loaded on demand (progressive disclosure).
 
 | Command | What it does |
 |---------|-------------|
@@ -81,7 +81,8 @@ When adding or changing features, put information in the right layer:
 |-------------|-------------|
 | New convention (applies every session) | This file (CLAUDE.md) |
 | Rule for specific file types/directories | `.claude/rules/{name}.md` with `paths:` glob |
-| New slash command | `.claude/commands/{name}.md` + add row to Commands table above |
+| New slash command (lightweight, no templates) | `.claude/commands/{name}.md` + add row to Commands table above |
+| New slash command (heavyweight, bundles templates) | `.claude/skills/{name}/SKILL.md` + `references/` + add row to Commands table above |
 | New skill | `.claude/skills/{name}/SKILL.md` + add row to Skills table above |
 | Skill/command behavior details | Inside the skill/command file, NOT here |
 

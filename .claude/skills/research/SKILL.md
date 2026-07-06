@@ -9,6 +9,11 @@ Read CLAUDE.md first for wiki conventions. This skill produces research artifact
 **non-vault** workspace; it never writes to `raw/` or `wiki/`, never auto-ingests,
 never pushes or publishes. It only produces candidates for a human to select.
 
+## Bundled references — read on demand
+
+- `references/report-template.md` — step 5 的 report.md 完整模板（双轴综合 §1-7 + appendix）。**写 report 前必读**。
+- `references/outline-template.md` — step 5 的 outline.md 模板（Gate-1 artifact，含 prior_coverage 强制字段）。**写 outline 前必读**。
+
 ## Two ideas this skill is built on
 
 - **Collection is organized by CHANNEL; synthesis is organized by AXIS.** You *search* each
@@ -144,96 +149,21 @@ candidate source URLs (canonical URL + one-line reason each), plus which tools r
 
 Read `audience-profile.md` (repo root) for reader persona, voice, and GEO writing rules. Now read
 the channel-organized harvest through **both axes** and write a single `research/<slug>/report.md`.
-**Mirror the reference shape (§1-7 + appendix); graft our discipline inline.**
 
-```markdown
-# <topic> 深度调研报告
-> depth: <quick|standard|deep> · generated: <YYYY-MM-DD> · tools: <ran> | skipped: <skipped>
-> ⚠️ 互动数据：X/YouTube 部分为「推断·未实测」（本机无 scanner），已逐条标注
-
-## TL;DR
-<3-5 句:最关键的发现 + 我们该怎么切。我们的增值,Dispatch 没有但有用>
-
-## 0. Vault 已有锚点（查内）
-- [[<wiki-page>]] — 一句话:我们已经怎么讲过这个
-- (若 drafts/ 已有成稿,这里 ⚠️ 显著标注,避免重复 draft)
-
-## 1. 这个话题是什么 — 事实轴
-定义 + 演进 + 关键事实。**逐条对官方文档/原始出处核验**:claim + 出处链接 + 状态。
-矛盾的用 `> [!warning]`,两个 claim 都留 + 各自出处。
-- **<claim>** — source: <official URL> — ✅ verified / ⚠️ unconfirmed / ❌ contradicted
-
-## 2. 焦点实体深挖（仅当话题含焦点/歧义实体时,否则删掉本节）
-从 research-plan 消歧块确认的实体,深挖其核心事实 + 与话题的关系(同 §1 的核验纪律)。
-
-## 3. X / Twitter — Top N（增长轴 · 渠道层）
-> ⚠️ 互动数据「推断·未实测」(本机无 bird)
-### #1 <作者 @handle> — <一句话定位>
-- 链接 / 作者 / 日期 / 格式(单帖|thread|长文)
-- 互动:<收藏·浏览,实测或「推断·未实测」>
-- 核心内容:<摘要>
-- **写作风格拆解**:<格言式 / 技术深度+数据 / 实操叙事 … — 这是给写稿用的弹药>
-（Top N 后接「#### 补充值得关注」表 + trending,如有）
-
-## 4. Web / 博客 — Top N（增长轴 · 渠道层）
-（同上结构;Web 通常有实测发布日期/作者,无互动数属正常)
-
-## 5. YouTube — Top N（增长轴 · 渠道层）
-> ⚠️ 观看/互动「推断·未实测」(本机无 summarize/last30days)
-（同上结构;标发布日期 + 实操/理论倾向)
-
-## 6. 核心洞察 + 最佳实践
-跨渠道综合:N 条洞察(每条挂一两个出处) + 一份可执行的最佳实践清单。
-
-> **溯源标注纪律（plan §11.7，全报告适用）**：每个论断标 `[内部/Tier-1: 页名]` 或
-> `[外部: URL]` —— Gate 1 时内外配比一目了然；下游 writer 只许穿透引用这些**原始出处**，
-> 绝不引用本报告（防「报告引报告」自举塌缩）。
-
-## 7. 对内容创作的启示 — 增长轴 → 排序的内容角度
-**这是两轴相乘的地方,也是 /draft 的入口。**
-### 时机窗口
-<这话题爆发/冷却到哪了 → 现在该不该写,趁哪个窗口>
-### 排序的内容角度（3-5 个,每个 = 一个内容赌注）
-#### 角度1（推荐）<标题>
-- 缺口:为什么有空间(来自竞品扫描)
-- 受欢迎度证据:哪些渠道在火 + 数据(实测/「推断」)
-- 参考写法:别人怎么写的(引 §3-5 的形式拆解) → 我们怎么改
-- 渠道 + 形式:X 长文 / 博客长文 / YouTube 脚本 …
-- 依赖:本报告哪几条 claim / 哪些候选源
-#### 角度2 … #### 角度3 …
-### 关键人物值得跟踪
-| 人物 | 角色 | 关注理由 |
-### 内容形式参考库
-长文学谁 / 视频学谁 / X 学谁(各引一个范本 + 一句为什么)
-
-## 附录:关键时间线
-| 日期 | 事件 | （把话题的演进/引爆点排成时间线,标出爆发节点）
-```
+**Read `references/report-template.md` and follow its structure exactly** (§TL;DR · §0 Vault
+已有锚点 · §1 事实轴 · §2 焦点实体 · §3-5 per-channel Top-N · §6 洞察+溯源纪律 · §7 排序角度 ·
+附录时间线). Key disciplines baked into the template — do not drop them:
+- §1 每条 claim 对官方源核验并标 ✅/⚠️/❌；矛盾用 `> [!warning]` 双留。
+- §6 溯源标注纪律：每个论断标 `[内部/Tier-1: 页名]` 或 `[外部: URL]`；下游只许穿透引用原始出处。
+- §3-5 互动数据拿不到就标「推断·未实测」，绝不编造。
 
 Also write:
 
 #### `outline.md` — the Gate-1 artifact (文章大纲)
 
-从 report §7 的**推荐角度**展开成一份可直接交给 writer 的大纲。结构:
-
-```markdown
-# Outline: <working title>
-> 基于角度: <report §7 角度N> · 目标渠道/形式: <博客长文 / …>
-
-## prior_coverage（强制字段——对「已表达角度清单」逐条声明关系）
-- <旧角度1(链接)> → 新证据推进 / 不同角度 / 明确推翻: <一句话>
-- <旧角度2(链接)> → …
-- (若已表达角度清单为空,写 "无旧角度——首次覆盖该话题")
-
-## take 占位（Gate 1 由作者填,3–5 句: thesis / 不同意主流叙事哪点 / 对 AI builder 的含义）
-> ⏳ 待作者 take —— 本 outline 的每个主张段都要能挂到 take 上,writer 无 take 不开工。
-
-## 结构（逐节: 论点 + 挂哪些 report 论断/出处 + 预估篇幅占比）
-1. <节> — 论点: … — 证据: [外部: URL] [内部/Tier-1: 页名] — ~15%
-2. …
-```
-
-**`prior_coverage` 是机器可检的强制字段**：重合无增量 → Gate 1 一眼可拒（plan §11.6）。
+**Read `references/outline-template.md` and follow it.** 要点：`prior_coverage` 是机器可检的
+强制字段（对 step 2 的「已表达角度清单」逐条声明关系，重合无增量 → Gate 1 可拒）；take 占位由
+作者亲笔填，writer 无 take 不开工。
 
 #### `ingest-candidates.md` — sources worth ingesting
 
