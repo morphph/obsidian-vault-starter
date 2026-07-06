@@ -1,0 +1,1 @@
+{"slug":"openai-codex","topic":"OpenAI Codex 指南","depth":"standard","generated":"2026-07-06","tools_ran":["WebSearch","WebFetch"],"tools_skipped":["bird","last30days","summarize"],"artifacts":["research-plan.md","report.md","outline.md","ingest-candidates.md"],"headless":true,"disambiguation":"Codex = 2025→2026 agentic product (CLI/IDE/App/Cloud), not 2021 code model"}
