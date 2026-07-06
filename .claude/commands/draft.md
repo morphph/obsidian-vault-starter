@@ -154,8 +154,10 @@ WF3 的发布目标是 loreai.dev **EN+ZH 双语**（Gate 2 审的必须是要�
 }
 ```
 
-（sha256 用 `shasum -a 256`。Gate 2 的 packet content_hash = content-ops 拿这两个 sha256 拼合
-再 hash——绑「批的就是发的这一对」。）失败也打印合法 envelope（如 `take_missing`）。
+（sha256 用 `shasum -a 256`；**若 shasum 不可用（无 Bash 白名单），置 null 并 warning**——
+调用方（wf3 driver）无论如何都要对磁盘产物**自行复算权威 hash**（只信外壳原则），skill 给的
+hash 只是 courtesy。Gate 2 的 packet content_hash = driver 拿两个权威 sha256 拼合再 hash——
+绑「批的就是发的这一对」。）失败也打印合法 envelope（如 `take_missing`）。
 
 ### 7. Report
 
