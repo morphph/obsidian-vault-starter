@@ -11,8 +11,11 @@
 - 结论：**vault 有 Codex 方法论、无 Codex 上手指南 —— 本稿是首次覆盖「产品入口」这个面，不与任何已表达角度重合。**
 
 ## take 占位（Gate 1 由作者填，3–5 句）
-> ⏳ 待作者 take —— 每个主张段都要挂到 take 上，writer 无 take 不开工。
-> 建议 thesis 方向（供作者取舍）：**「Codex 的门槛不在模型、在配置层：装只要一行，真正拉开差距的是 AGENTS.md + config.toml 那几十行。这份指南按官方逐条核验，顺带把没人讲清的模型命名（GPT-5.5 vs 弃用的 -Codex 后缀）理顺。」** 不同意主流叙事哪点：反对「Codex vs Claude Code 谁更强」的 benchmark 口水，主张对已有 Claude Code 用户是「一套心智换个 CLI」。对 AI builder 的含义：上手成本被高估，配置素养被低估。
+> **作者 take（2026-07-06，Gate 1）：**
+> 1. **Thesis**：Codex 上手的真门槛不是装，而是心智模型。
+> 2. **不同意主流叙事**：大家把它当 IDE 补全来讲，讲浅了。
+> 3. **对 AI builder 的含义**：先配 AGENTS.md，再跑第一个任务。
+> 〔researcher 建议稿——已被上方作者 take 取代，仅存档，writer 勿采〕原建议：**「Codex 的门槛不在模型、在配置层：装只要一行，真正拉开差距的是 AGENTS.md + config.toml 那几十行。这份指南按官方逐条核验，顺带把没人讲清的模型命名（GPT-5.5 vs 弃用的 -Codex 后缀）理顺。」** 不同意主流叙事哪点：反对「Codex vs Claude Code 谁更强」的 benchmark 口水，主张对已有 Claude Code 用户是「一套心智换个 CLI」。对 AI builder 的含义：上手成本被高估，配置素养被低估。
 
 ## 结构（逐节：论点 + 挂哪些 report 论断/出处 + 预估篇幅占比）
 
