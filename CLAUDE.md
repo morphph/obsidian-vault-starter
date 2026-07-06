@@ -69,9 +69,9 @@ Eight slash commands. Lightweight ones live in `.claude/commands/{name}.md`; hea
 
 | Skill | Purpose |
 |-------|---------|
-| excalidraw-diagram | Generate `.excalidraw` JSON diagrams that make visual arguments. Used by `/visualize`. |
-| obsidian-markdown | Write valid Obsidian flavored markdown (wikilinks, callouts, embeds, properties). Auto-invoked when editing wiki/. From kepano/obsidian-skills. |
-| defuddle | Extract clean markdown from URLs (less noise than WebFetch). Prefer for `/ingest <url>`. Requires `npm install -g defuddle`. From kepano/obsidian-skills. |
+| excalidraw-diagram | Generate `.excalidraw` JSON diagrams that make visual arguments. Used by `/visualize`. Local: `.claude/skills/excalidraw-diagram/`. |
+| obsidian:obsidian-markdown | Write valid Obsidian flavored markdown (wikilinks, callouts, embeds, properties). Auto-invoked when editing wiki/. From the installed kepano `obsidian` plugin (marketplace), not a local copy. |
+| obsidian:defuddle | Extract clean markdown from URLs (less noise than WebFetch). Prefer for `/ingest <url>`. Requires `npm install -g defuddle`. From the installed kepano `obsidian` plugin. |
 
 ## Documentation Layers
 

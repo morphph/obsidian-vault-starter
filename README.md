@@ -60,6 +60,8 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 | `/lint`                             | Health check: orphans, contradictions, stale pages, missing links.                                    |
 | `/visualize <topic\|source\|blank>` | Generate Excalidraw diagram from wiki knowledge.                                                      |
 | `/draft <research-dir\|wiki-page\|raw-file\|topic>` | Create a draft article in `drafts/` from a research workspace, wiki page, raw source, or topic. |
+| `/learn <url\|"last output"\|paste>` | Teach a target incrementally until mastery — quizzes, running notes in `learn/`.                      |
+| `/ingest-anthropic-daily [window]`  | Sweep all Anthropic + Claude sources, dedupe, write category-grouped digest.                          |
 
 ## Agent integration — `obsidian-content` CLI
 
@@ -90,21 +92,41 @@ wiki/                   Knowledge pages (LLM-owned)
   *.md                  Entity, concept, synthesis, connection, source pages
   visual-*.excalidraw   Diagrams
 drafts/                 Articles for publication (human-owned, LLM-seeded)
+learn/                  /learn session notes (human-owned; graduate into wiki/ as useful)
 research/               /research workspace (non-vault, Tier-4) — report + outline + candidates per topic
   <topic-slug>/         report.md, outline.md, ingest-candidates.md, meta.json
 events/                 Machine-readable event log (Hermes contract surface)
   ingest-events.jsonl   Append-only ingest/routed events
 audience-profile.md     Reader persona + voice + GEO rules (read by /research + /draft)
 bin/obsidian-content    Agent-native CLI (thin shim → scripts/obsidian_content.py)
-scripts/                Helper scripts (obsidian_content.py, content_agent.py, ...)
-.claude/commands/       Slash commands (ingest, research, query, lint, visualize, draft, learn)
-.claude/skills/         Skills (excalidraw-diagram + kepano/obsidian-skills)
+scripts/                Helper scripts (obsidian_content.py, ingest_url.py, ...)
+.claude/commands/       Lightweight slash commands (query, lint, visualize, draft, learn, ingest-anthropic-daily)
+.claude/skills/         Heavyweight commands as skill folders (ingest/, research/ — SKILL.md + references/) + excalidraw-diagram
+prompts/                Reusable prompts (skill-audit, research dispatch, ...)
 docs/                   Contracts & ops docs (obsidian-content-cli.md, ...)
 CLAUDE.md               Schema — the operating manual
 archive/                Everything from the pre-wiki vault
 ```
 
 ## Changelog
+
+### v0.6 — Claude Code only + skill folders (2026-07-06)
+
+- **Removed the Codex mirror layer**: deleted `AGENTS.md` (find-replace-damaged mirror
+  pointing at nonexistent `.Codex/` paths), `.codex/`, and `.agents/` (stale copies of
+  lint/excalidraw skills + broken obsidian-skills gitlink). Claude Code is the only dev
+  harness for this vault; `.claude/` is the single source of agent config.
+- **`/ingest` + `/research` → skill folders** (`.claude/skills/{ingest,research}/`):
+  SKILL.md keeps the workflow; big templates moved to `references/` loaded on demand —
+  ingest's 12-section study guide + GitHub deep-scan, research's report + outline (Gate-1)
+  templates. All rules preserved verbatim; invocation unchanged.
+- **`/lint` now checks docs drift**: CLAUDE.md/README command+skill tables, count words,
+  and structure listings vs actual files; auto-fixable with permission.
+- **Cleanup**: root stray prompts moved to `prompts/` (`research-dispatch.md`,
+  `research-prompt.md`, `fable5-pipeline-audit-prompt.md`) and `docs/`
+  (`research-to-obsidian-handoff.md`); deleted empty `visual-best-practices-guide.md`,
+  `Untitled/`, stray session-flush file; removed the broken `obsidian-skills` gitlink
+  (the installed kepano `obsidian` plugin provides those skills).
 
 ### v0.5 — `/research` skill + draft seam (2026-06-26)
 
