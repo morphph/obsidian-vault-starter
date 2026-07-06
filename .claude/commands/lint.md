@@ -33,6 +33,13 @@ Read CLAUDE.md first for wiki conventions.
 
 **Source gaps:** Topics mentioned across multiple pages but lacking a dedicated page.
 
+**Docs drift (schema mirrors):** CLAUDE.md is the source of truth; README.md must mirror it (per `feedback_readme_as_hub`). Check:
+- CLAUDE.md Commands table vs actual files: every row has a matching `.claude/commands/{name}.md` or `.claude/skills/{name}/SKILL.md`, and every file has a row
+- CLAUDE.md Skills table vs actually-available skills (local folders + installed plugins)
+- README.md Commands table + Vault Structure section vs CLAUDE.md and vs actual directories
+- Count words vs reality ("Eight slash commands" must match the table's row count)
+- README Changelog: does the latest entry predate significant schema/command changes visible in git log?
+
 ### 3. Report
 
 Show in terminal:
@@ -42,11 +49,12 @@ Show in terminal:
 
 ### 4. Auto-fix (with permission)
 
-Ask: **"Auto-fix index drift and add missing cross-references?"**
+Ask: **"Auto-fix index drift, docs drift, and add missing cross-references?"**
 
 If yes:
 - Update index.md to match actual wiki pages
 - Add missing [[wikilinks]] where pages reference the same concepts
+- Sync CLAUDE.md/README.md tables, counts, and structure listings to reality (docs drift)
 - Do NOT auto-resolve contradictions — flag them for human review
 
 ### 5. Log
@@ -55,6 +63,6 @@ Append to wiki/log.md:
 ```
 ## [YYYY-MM-DD] lint
 pages-scanned: {N}
-issues: orphans({N}), stale({N}), contradictions({N}), index-drift({N}), unresolved-links({N}), thin({N})
+issues: orphans({N}), stale({N}), contradictions({N}), index-drift({N}), unresolved-links({N}), thin({N}), docs-drift({N})
 auto-fixed: {description or "none"}
 ```
