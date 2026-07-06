@@ -101,7 +101,6 @@ scripts/                Helper scripts (obsidian_content.py, content_agent.py, .
 .claude/skills/         Skills (excalidraw-diagram + kepano/obsidian-skills)
 docs/                   Contracts & ops docs (obsidian-content-cli.md, ...)
 CLAUDE.md               Schema — the operating manual
-AGENTS.md               Mirror of CLAUDE.md for Codex CLI / agents.md tooling
 archive/                Everything from the pre-wiki vault
 ```
 
