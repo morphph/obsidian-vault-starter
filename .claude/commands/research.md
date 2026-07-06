@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Use this skill whenever the user wants to research a topic before writing — gather what's known internally + externally, and produce a single research report (facts + per-channel popularity + content angles) + a list of sources worth ingesting. Triggers: 'research X', '调研一下 X', 'help me research before I write about Y', 'what's out there on Z', 'gather sources on W', 'I want to write about X, research it first'. Produces research-plan.md + report.md + ingest-candidates.md in a non-vault workspace (research/<slug>/). **Don't use when** the user wants to add a known source to the wiki — use `/ingest`. **Don't use when** the user just wants an answer from the existing wiki — use `/query`. **Don't use when** they're ready to write from existing material — use `/draft`."
+description: "Use this skill whenever the user wants to research a topic before writing — gather what's known internally + externally, and produce a single research report (facts + per-channel popularity + content angles) + a list of sources worth ingesting. Triggers: 'research X', '调研一下 X', 'help me research before I write about Y', 'what's out there on Z', 'gather sources on W', 'I want to write about X, research it first'. Produces research-plan.md + report.md + outline.md (Gate-1 artifact, 含 prior_coverage) + ingest-candidates.md in a non-vault workspace (research/<slug>/). **Don't use when** the user wants to add a known source to the wiki — use `/ingest`. **Don't use when** the user just wants an answer from the existing wiki — use `/query`. **Don't use when** they're ready to write from existing material — use `/draft`."
 ---
 
 # Research — Investigate a Topic → Report + Ingest Candidates
@@ -56,8 +56,14 @@ repeating them.
    are the source of truth** (gbrain may be stale). If gbrain disagrees with on-disk state,
    trust on-disk and note the discrepancy in `warnings`.
 
-Output of this step: a short list of vault Tier-1 anchors + any duplication warning. These feed
-the search plan (so it doesn't re-surface what we already have) and `report.md` §"Vault 已有锚点".
+Output of this step — **exactly three lists, hard cap ONE page total**（plan §11.6：内部存量只
+塑造 outline、不填充正文；用内部存量撑厚度恰恰是自我重复的开始）:
+1. **已表达角度清单**（≤3 条）— drafts/ 或已发布内容里已经写过的角度，各附链接/路径。
+2. **内部锚点清单**（top 5–8 个 Tier-1 页）— 作者亲手圈过、可直接引用免重复核验。
+3. **旧判断回收** — 作者过去对这个话题下过的判断/立场（wiki 页或旧稿里的），供 Gate 1
+   写新 take 时参照或推翻。
+These feed the search plan (so it doesn't re-surface what we already have), `report.md`
+§"Vault 已有锚点", and `outline.md` 的 `prior_coverage` 字段（见 step 5）.
 
 ### 3. 计划 — write `research-plan.md` (channel-organized search plan + checkpoint)
 
@@ -100,6 +106,10 @@ synthesis-time concern (step 5). Write `research/<slug>/research-plan.md`:
 - `quick`: proceed without pausing.
 - If the plan contains a **消歧块** (unknown entity): **always pause to confirm** which entity
   is meant, regardless of depth — a wrong disambiguation wastes the whole scan.
+- **Headless rule（被 headless claude / driver 调起时）**: there is no one to answer a pause —
+  do NOT pause at any depth; write the plan, note `"headless: plan checkpoint skipped"` in
+  `warnings[]`, resolve 消歧 by best evidence and RECORD the choice in the plan, then proceed.
+  (Headless invocation is detectable: non-interactive run, or the caller says so in the prompt.)
 
 ### 4. 扫外 — execute the plan per-channel (best-effort, isolate the noise)
 
@@ -175,6 +185,10 @@ the channel-organized harvest through **both axes** and write a single `research
 ## 6. 核心洞察 + 最佳实践
 跨渠道综合:N 条洞察(每条挂一两个出处) + 一份可执行的最佳实践清单。
 
+> **溯源标注纪律（plan §11.7，全报告适用）**：每个论断标 `[内部/Tier-1: 页名]` 或
+> `[外部: URL]` —— Gate 1 时内外配比一目了然；下游 writer 只许穿透引用这些**原始出处**，
+> 绝不引用本报告（防「报告引报告」自举塌缩）。
+
 ## 7. 对内容创作的启示 — 增长轴 → 排序的内容角度
 **这是两轴相乘的地方,也是 /draft 的入口。**
 ### 时机窗口
@@ -198,6 +212,29 @@ the channel-organized harvest through **both axes** and write a single `research
 
 Also write:
 
+#### `outline.md` — the Gate-1 artifact (文章大纲)
+
+从 report §7 的**推荐角度**展开成一份可直接交给 writer 的大纲。结构:
+
+```markdown
+# Outline: <working title>
+> 基于角度: <report §7 角度N> · 目标渠道/形式: <博客长文 / …>
+
+## prior_coverage（强制字段——对「已表达角度清单」逐条声明关系）
+- <旧角度1(链接)> → 新证据推进 / 不同角度 / 明确推翻: <一句话>
+- <旧角度2(链接)> → …
+- (若已表达角度清单为空,写 "无旧角度——首次覆盖该话题")
+
+## take 占位（Gate 1 由作者填,3–5 句: thesis / 不同意主流叙事哪点 / 对 AI builder 的含义）
+> ⏳ 待作者 take —— 本 outline 的每个主张段都要能挂到 take 上,writer 无 take 不开工。
+
+## 结构（逐节: 论点 + 挂哪些 report 论断/出处 + 预估篇幅占比）
+1. <节> — 论点: … — 证据: [外部: URL] [内部/Tier-1: 页名] — ~15%
+2. …
+```
+
+**`prior_coverage` 是机器可检的强制字段**：重合无增量 → Gate 1 一眼可拒（plan §11.6）。
+
 #### `ingest-candidates.md` — sources worth ingesting
 
 每条一行:`- [ ] <canonical-URL> — 一句理由(为什么值得进 vault)`
@@ -211,7 +248,7 @@ Also write:
 
 ```json
 {"slug":"<slug>","topic":"<topic>","depth":"<depth>","generated":"<YYYY-MM-DD>",
- "tools_ran":[],"tools_skipped":[],"artifacts":["research-plan.md","report.md","ingest-candidates.md"]}
+ "tools_ran":[],"tools_skipped":[],"artifacts":["research-plan.md","report.md","outline.md","ingest-candidates.md"]}
 ```
 
 ### 6. 停 — stop here
@@ -235,6 +272,7 @@ Print exactly one JSON object to the terminal, **aligned to obsidian-content con
   "artifacts": {
     "plan":       { "path": "research/<slug>/research-plan.md",     "sha256": "..." },
     "report":     { "path": "research/<slug>/report.md",           "sha256": "..." },
+    "outline":    { "path": "research/<slug>/outline.md",          "sha256": "..." },
     "candidates": { "path": "research/<slug>/ingest-candidates.md", "sha256": "..." }
   },
   "warnings": ["last30days unavailable (VPS-only)", "..."],
