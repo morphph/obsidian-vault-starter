@@ -444,6 +444,31 @@ See `references/element-templates.md` for copy-paste JSON templates for each ele
 
 ---
 
+## Step Annotation & Layered Export (for animation / video)
+
+When a diagram will be animated (whiteboard-video lane) or progressively revealed, annotate every element with an animation step:
+
+```json
+{ "type": "rectangle", ..., "customData": { "step": 2, "stepLabel": "Loop 引擎" } }
+```
+
+- **`step`** (int, ≥1): the reveal order. Elements without `step` default to 1 (base layer). Text bound to a container (`containerId`) inherits the container's step automatically — annotate the container only.
+- **`stepLabel`** (optional, on any one element of the step): short label for the storyboard.
+- **铁律 — steps are ADDITIVE**: layer k stacks visually ON TOP of layers 1..k-1. Never plan a later step whose elements must appear *underneath* an earlier step's elements, and never "remove" anything in a later step. Whiteboards only gain ink.
+- **Step = 论证节拍**: one step per narration beat (a section of the source's argument), typically 4-8 steps per diagram. Steps should follow the source's argument order (the diagram is the argument, spatialized).
+- **Whiteboard style override**: for the wb video lane use `roughness: 1` (hand-drawn) and the hand-drawn font, even though the default recommendation elsewhere in this skill is `roughness: 0`.
+
+Export layers after the PNG loop passes:
+
+```bash
+cd .claude/skills/excalidraw-diagram/references && \
+uv run python render_excalidraw.py <file.excalidraw> --export-layers <outdir>
+```
+
+Outputs `<outdir>/layers/step-NN.svg` (one per step, **identical viewBox** — safe to stack pixel-aligned) + `<outdir>/steps.json` (per-step `bbox`/`cumulativeBbox` in canvas coordinates, for camera moves). Old files without annotations degrade to a single layer. Validate by stacking all layers in a browser — the result must look identical to the full PNG.
+
+---
+
 ## Render & Validate (MANDATORY)
 
 You cannot judge a diagram from JSON alone. After generating or editing the Excalidraw JSON, you MUST render it to PNG, view the image, and fix what you see — in a loop until it's right. This is a core part of the workflow, not a final check.

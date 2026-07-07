@@ -69,6 +69,116 @@ def compute_bounding_box(elements: list[dict]) -> tuple[float, float, float, flo
     return (min_x, min_y, max_x, max_y)
 
 
+def effective_step(el: dict, by_id: dict[str, dict]) -> int:
+    """Element's animation step: explicit customData.step, else inherited from
+    its container (bound text), else 1 (base layer)."""
+    step = (el.get("customData") or {}).get("step")
+    if step is None and el.get("containerId"):
+        container = by_id.get(el["containerId"])
+        if container is not None:
+            step = (container.get("customData") or {}).get("step")
+    try:
+        return max(1, int(step))
+    except (TypeError, ValueError):
+        return 1
+
+
+def export_layers(excalidraw_path: Path, out_dir: Path, padding: int = 80) -> Path:
+    """Export per-step layer SVGs (identical viewBox) + steps.json. Returns out_dir."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        print("ERROR: playwright not installed.", file=sys.stderr)
+        sys.exit(1)
+
+    raw = excalidraw_path.read_text(encoding="utf-8")
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        print(f"ERROR: Invalid JSON in {excalidraw_path}: {e}", file=sys.stderr)
+        sys.exit(1)
+    errors = validate_excalidraw(data)
+    if errors:
+        for err in errors:
+            print(f"  - {err}", file=sys.stderr)
+        sys.exit(1)
+
+    elements = [e for e in data["elements"] if not e.get("isDeleted")]
+    by_id = {e["id"]: e for e in elements}
+
+    steps_map: dict[int, list[dict]] = {}
+    for el in elements:
+        steps_map.setdefault(effective_step(el, by_id), []).append(el)
+    step_nums = sorted(steps_map)
+
+    min_x, min_y, max_x, max_y = compute_bounding_box(elements)
+    frame = {
+        "x": min_x - padding, "y": min_y - padding,
+        "w": (max_x - min_x) + padding * 2, "h": (max_y - min_y) + padding * 2,
+    }
+
+    layers_dir = out_dir / "layers"
+    layers_dir.mkdir(parents=True, exist_ok=True)
+
+    template_url = (Path(__file__).parent / "render_template.html").as_uri()
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(viewport={"width": 1280, "height": 800})
+        page.goto(template_url)
+        page.wait_for_function("window.__moduleReady === true", timeout=30000)
+        id_sets = [[e["id"] for e in steps_map[n]] for n in step_nums]
+        result = page.evaluate(
+            "([data, sets, frame]) => window.renderLayersSvg(data, sets, frame)",
+            [data, id_sets, frame],
+        )
+        browser.close()
+
+    if not result or not result.get("success"):
+        msg = result.get("error", "renderLayersSvg returned null") if result else "null"
+        print(f"ERROR: Layer export failed: {msg}", file=sys.stderr)
+        sys.exit(1)
+
+    layers = result["layers"]
+    view_boxes = {l["viewBox"] for l in layers}
+    if len(view_boxes) != 1:
+        print(f"ERROR: layer viewBoxes differ: {view_boxes}", file=sys.stderr)
+        sys.exit(1)
+
+    steps_meta = []
+    seen: list[dict] = []
+    for i, n in enumerate(step_nums):
+        els = steps_map[n]
+        seen.extend(els)
+        bx0, by0, bx1, by1 = compute_bounding_box(els)
+        cx0, cy0, cx1, cy1 = compute_bounding_box(seen)
+        label = next(
+            ((e.get("customData") or {}).get("stepLabel") for e in els
+             if (e.get("customData") or {}).get("stepLabel")), None)
+        fname = f"step-{i + 1:02d}.svg"
+        (layers_dir / fname).write_text(layers[i]["svg"], encoding="utf-8")
+        steps_meta.append({
+            "step": n, "label": label,
+            "bbox": [bx0, by0, bx1 - bx0, by1 - by0],
+            "cumulativeBbox": [cx0, cy0, cx1 - cx0, cy1 - cy0],
+            "elementCount": len(els), "file": f"layers/{fname}",
+        })
+
+    steps_json = {
+        "contract_version": "layer-export.v1",
+        "source": excalidraw_path.name,
+        "canvas": {
+            "bbox": [frame["x"], frame["y"], frame["w"], frame["h"]],
+            "padding": padding,
+            "viewBox": layers[0]["viewBox"],
+            "width": layers[0]["width"], "height": layers[0]["height"],
+        },
+        "steps": steps_meta,
+    }
+    (out_dir / "steps.json").write_text(
+        json.dumps(steps_json, ensure_ascii=False, indent=2), encoding="utf-8")
+    return out_dir
+
+
 def render(
     excalidraw_path: Path,
     output_path: Path | None = None,
@@ -175,11 +285,18 @@ def main() -> None:
     parser.add_argument("--output", "-o", type=Path, default=None, help="Output PNG path (default: same name with .png)")
     parser.add_argument("--scale", "-s", type=int, default=2, help="Device scale factor (default: 2)")
     parser.add_argument("--width", "-w", type=int, default=1920, help="Max viewport width (default: 1920)")
+    parser.add_argument("--export-layers", type=Path, default=None, metavar="OUTDIR",
+                        help="Export per-step layer SVGs + steps.json to OUTDIR (uses customData.step)")
     args = parser.parse_args()
 
     if not args.input.exists():
         print(f"ERROR: File not found: {args.input}", file=sys.stderr)
         sys.exit(1)
+
+    if args.export_layers is not None:
+        out = export_layers(args.input, args.export_layers)
+        print(str(out))
+        return
 
     png_path = render(args.input, args.output, args.scale, args.width)
     print(str(png_path))

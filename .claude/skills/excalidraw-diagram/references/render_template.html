@@ -13,7 +13,9 @@
   <div id="root"></div>
 
   <script type="module">
-    import { exportToSvg } from "https://esm.sh/@excalidraw/excalidraw?bundle";
+    // Version pinned: layered export (steps.json + per-layer viewBox stability)
+    // depends on exportToSvg sizing semantics; unpinned "latest" broke determinism.
+    import { exportToSvg } from "https://esm.sh/@excalidraw/excalidraw@0.18.1?bundle";
 
     window.renderDiagram = async function(jsonData) {
       try {
@@ -46,6 +48,49 @@
       } catch (err) {
         window.__renderComplete = true;
         window.__renderError = err.message;
+        return { success: false, error: err.message };
+      }
+    };
+
+    // Layered export for animation: each layer = one step's elements + an
+    // invisible full-canvas frame rect. The frame keeps every layer's
+    // viewBox/width/height identical so layers can be stacked pixel-aligned.
+    // Layers export with transparent background (the consumer provides it).
+    window.renderLayersSvg = async function(jsonData, layerIdSets, frameRect) {
+      try {
+        const data = typeof jsonData === "string" ? JSON.parse(jsonData) : jsonData;
+        const all = (data.elements || []).filter((e) => !e.isDeleted);
+        const byId = Object.fromEntries(all.map((e) => [e.id, e]));
+        const frame = {
+          id: "__layer_frame__", type: "rectangle",
+          x: frameRect.x, y: frameRect.y, width: frameRect.w, height: frameRect.h,
+          angle: 0, strokeColor: "transparent", backgroundColor: "transparent",
+          fillStyle: "solid", strokeWidth: 1, strokeStyle: "solid",
+          roughness: 0, opacity: 0, groupIds: [], frameId: null, roundness: null,
+          seed: 1, version: 1, versionNonce: 1, isDeleted: false,
+          boundElements: null, updated: 1, link: null, locked: true,
+        };
+        const layers = [];
+        for (const ids of layerIdSets) {
+          const els = ids.map((i) => byId[i]).filter(Boolean);
+          const svg = await exportToSvg({
+            elements: [frame, ...els],
+            appState: {
+              ...(data.appState || {}),
+              exportBackground: false,
+              exportWithDarkMode: false,
+            },
+            files: data.files || {},
+          });
+          layers.push({
+            svg: svg.outerHTML,
+            width: svg.getAttribute("width"),
+            height: svg.getAttribute("height"),
+            viewBox: svg.getAttribute("viewBox"),
+          });
+        }
+        return { success: true, layers };
+      } catch (err) {
         return { success: false, error: err.message };
       }
     };
