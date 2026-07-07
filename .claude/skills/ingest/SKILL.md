@@ -10,7 +10,8 @@ Read CLAUDE.md first for wiki conventions.
 ## Bundled references — read on demand
 
 - `references/github-deep-scan.md` — GitHub repo URL 的深扫流程 + 源文档模板。**遇到 GitHub repo URL 必读**。
-- `references/study-guide-12.md` — step 3 的 12-section 中文学习型解读结构（canonical，用户 feedback 强制）。**每次走到 step 3 前必读**。
+- `references/structured-close-reading.md` — step 3 的**默认**结构：原文结构精读（贴原文章节序的中文精读，2026-07-07 作者拍板）。**每次走到 step 3 前必读**。
+- `references/study-guide-12.md` — step 3 的备选结构：12-section 学习型解读（重组式 study guide）。仅当用户明确要求 study guide / 深度解读框架时使用。
 
 ## Arguments
 Parse `$ARGUMENTS` for one of:
@@ -57,13 +58,15 @@ Read the source document. Extract:
 - **Key claims:** Factual assertions worth tracking
 - **Connections:** Links to existing wiki pages
 
-### 3. Discuss with user — 详细学习型解读（Chinese Study Guide）
+### 3. Chinese close reading — 原文结构精读（默认）
 
-**Read `references/study-guide-12.md` and follow it completely.** 硬性要求（详见 reference）：
-- 长度不限；是 study guide 不是 summary——教会用户，不是概括
-- 12 个 section 每个维度都必须主动思考是否适用；不适用的明确写"无"
-- 中文为主体；英文只在概念原名括号注 + 关键引语两处
+**Read `references/structured-close-reading.md` and follow it completely.** 硬性要求（详见 reference）：
+- 贴原文章节顺序，压缩翻译密度——读完精读 ≈ 读完原文，不重组、不夹私货
+- 术语留英文原名括号注；关键引语 EN+中译；数据逐字保留
+- 元信息头含「一句话主旨」（下游 gate packet 提 Hook 用）；收尾含视频适配自评
 - 结束后走 reference 里的收尾互动 + 源纯度提醒
+
+**备选**：用户明确要求 study guide / 深度解读框架时，改读 `references/study-guide-12.md` 并完整遵循（12-section 重组式解读）。
 
 ### 4. Create/update wiki pages
 
@@ -84,7 +87,7 @@ For each entity and concept worth a page:
 - Write Summary, Details, Connections, Source Log sections
 - Link to other wiki pages with [[wikilinks]]
 
-Also create a source summary page: `wiki/source-{slug}.md` with type: source-summary. Include a `## 要点解读` section with the detailed Chinese takeaways from step 3 — this preserves the analysis for future reference.
+Also create a source summary page: `wiki/source-{slug}.md` with type: source-summary. Include the full output of step 3 as a `## 精读` section (or `## 要点解读` if the study-guide structure was used) — this preserves the close reading for future reference and downstream export.
 
 ### 5. Update index
 
