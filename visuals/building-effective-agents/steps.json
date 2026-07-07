@@ -1,0 +1,144 @@
+{
+  "contract_version": "layer-export.v1",
+  "source": "diagram.excalidraw",
+  "canvas": {
+    "bbox": [
+      -20,
+      -40,
+      1720,
+      1064
+    ],
+    "padding": 80,
+    "viewBox": "0 0 1740 1084",
+    "width": "1740",
+    "height": "1084"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "label": "标题·中心论证",
+      "bbox": [
+        110,
+        40,
+        940,
+        102
+      ],
+      "cumulativeBbox": [
+        110,
+        40,
+        940,
+        102
+      ],
+      "elementCount": 3,
+      "file": "layers/step-01.svg"
+    },
+    {
+      "step": 2,
+      "label": "增强型 LLM 构件",
+      "bbox": [
+        60,
+        180,
+        480,
+        370
+      ],
+      "cumulativeBbox": [
+        60,
+        40,
+        990,
+        510
+      ],
+      "elementCount": 13,
+      "file": "layers/step-02.svg"
+    },
+    {
+      "step": 3,
+      "label": "五种 workflow 模式",
+      "bbox": [
+        545,
+        170,
+        650,
+        760
+      ],
+      "cumulativeBbox": [
+        60,
+        40,
+        1135,
+        890
+      ],
+      "elementCount": 31,
+      "file": "layers/step-03.svg"
+    },
+    {
+      "step": 4,
+      "label": "并行化 & 编排者-工作者",
+      "bbox": [
+        580,
+        445,
+        625,
+        195
+      ],
+      "cumulativeBbox": [
+        60,
+        40,
+        1145,
+        890
+      ],
+      "elementCount": 30,
+      "file": "layers/step-04.svg"
+    },
+    {
+      "step": 5,
+      "label": "评估者-优化者（循环）",
+      "bbox": [
+        580,
+        680,
+        547,
+        195
+      ],
+      "cumulativeBbox": [
+        60,
+        40,
+        1145,
+        890
+      ],
+      "elementCount": 13,
+      "file": "layers/step-05.svg"
+    },
+    {
+      "step": 6,
+      "label": "自主 agent 循环",
+      "bbox": [
+        1195,
+        170,
+        425,
+        760
+      ],
+      "cumulativeBbox": [
+        60,
+        40,
+        1560,
+        890
+      ],
+      "elementCount": 15,
+      "file": "layers/step-06.svg"
+    },
+    {
+      "step": 7,
+      "label": "复杂度阶梯 & 中心论证",
+      "bbox": [
+        110,
+        96,
+        1500,
+        848
+      ],
+      "cumulativeBbox": [
+        60,
+        40,
+        1560,
+        904
+      ],
+      "elementCount": 4,
+      "file": "layers/step-07.svg"
+    }
+  ]
+}
