@@ -122,7 +122,8 @@ def export_layers(excalidraw_path: Path, out_dir: Path, padding: int = 80) -> Pa
 
     template_url = (Path(__file__).parent / "render_template.html").as_uri()
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        # file:// ES-module import of the vendored bundle needs this flag (CORS)
+        browser = p.chromium.launch(headless=True, args=["--allow-file-access-from-files"])
         page = browser.new_page(viewport={"width": 1280, "height": 800})
         page.goto(template_url)
         page.wait_for_function("window.__moduleReady === true", timeout=30000)
@@ -234,7 +235,8 @@ def render(
 
     with sync_playwright() as p:
         try:
-            browser = p.chromium.launch(headless=True)
+            # file:// ES-module import of the vendored bundle needs this flag (CORS)
+            browser = p.chromium.launch(headless=True, args=["--allow-file-access-from-files"])
         except Exception as e:
             if "Executable doesn't exist" in str(e) or "browserType.launch" in str(e):
                 print("ERROR: Chromium not installed for Playwright.", file=sys.stderr)

@@ -12,10 +12,15 @@
 <body>
   <div id="root"></div>
 
+  <script>
+    // Fonts lazy-load from here at export time (SVG @font-face + PNG rendering).
+    window.EXCALIDRAW_ASSET_PATH = "./vendor/";
+  </script>
   <script type="module">
-    // Version pinned: layered export (steps.json + per-layer viewBox stability)
-    // depends on exportToSvg sizing semantics; unpinned "latest" broke determinism.
-    import { exportToSvg } from "https://esm.sh/@excalidraw/excalidraw@0.18.1?bundle";
+    // Vendored @excalidraw/excalidraw@0.18.1 (esbuild single-file ESM, see
+    // vendor/README.md). Replaces esm.sh: its dep-chunk URLs 404'd upstream
+    // (2026-07-07), and any CDN re-resolve breaks layer-export determinism.
+    import { exportToSvg } from "./vendor/excalidraw-export.mjs";
 
     window.renderDiagram = async function(jsonData) {
       try {
