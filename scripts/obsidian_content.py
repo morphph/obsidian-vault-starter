@@ -273,6 +273,84 @@ def cmd_export_source(args) -> int:
     return emit("export-source", True, artifacts, warnings, errors)
 
 
+# ── verb: export-learn ────────────────────────────────────────────────────────
+
+def cmd_export_learn(args) -> int:
+    """Stage a slug's 精读 + whiteboard visual bundle into a b2v workspace.
+
+    Deterministic sibling of export-source: copies wiki/source-<slug>.md to
+    <out-dir>/jingdu.md and visuals/<slug>/** to <out-dir>/diagrams/.
+    """
+    import shutil
+
+    warnings: list[str] = []
+    errors: list[str] = []
+
+    slug = (args.slug or "").strip()
+    if not slug and args.id:
+        row = fold_state(read_events()).get(args.id)
+        if row is None or not row.get("source_path"):
+            errors.append(f"unknown event_id: {args.id}")
+            return emit("export-learn", False, {}, warnings, errors)
+        stem = Path(row["source_path"]).stem
+        slug = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", stem)
+    if not slug:
+        errors.append("--slug or --id is required")
+        return emit("export-learn", False, {}, warnings, errors)
+
+    jingdu = REPO_ROOT / "wiki" / f"source-{slug}.md"
+    vdir = REPO_ROOT / "visuals" / slug
+    if not jingdu.exists():
+        errors.append(f"jingdu_missing: wiki/source-{slug}.md")
+        return emit("export-learn", False, {"slug": slug}, warnings, errors)
+
+    out_dir = Path(args.out_dir)
+    if not out_dir.is_absolute():
+        out_dir = REPO_ROOT / out_dir
+
+    jingdu_bytes = jingdu.stat().st_size
+    jingdu_hash = hashlib.sha256(jingdu.read_bytes()).hexdigest()[:16]
+
+    diagrams = None
+    steps_json = vdir / "steps.json"
+    if steps_json.exists():
+        try:
+            steps = len(json.loads(steps_json.read_text(encoding="utf-8")).get("steps") or [])
+        except (json.JSONDecodeError, OSError):
+            steps = None
+            warnings.append("steps.json unparseable; copied as-is")
+        files = [p for p in vdir.rglob("*") if p.is_file()]
+        diagrams = {
+            "files": len(files),
+            "steps": steps,
+            "steps_json_hash": hashlib.sha256(steps_json.read_bytes()).hexdigest()[:16],
+        }
+    else:
+        warnings.append(f"no visual bundle for {slug} (visuals/{slug}/steps.json missing)")
+
+    artifacts = {
+        "slug": slug,
+        "jingdu": {"path": str(out_dir / "jingdu.md"),
+                   "bytes": jingdu_bytes, "sha256_16": jingdu_hash},
+        "diagrams": diagrams,
+    }
+
+    if args.dry_run:
+        warnings.append("dry-run: nothing written")
+        artifacts["would_write_to"] = str(out_dir)
+        return emit("export-learn", True, artifacts, warnings, errors)
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(jingdu, out_dir / "jingdu.md")
+    if diagrams is not None:
+        dest = out_dir / "diagrams"
+        if dest.exists():
+            shutil.rmtree(dest)
+        shutil.copytree(vdir, dest)
+
+    return emit("export-learn", True, artifacts, warnings, errors)
+
+
 # ── verb: mark-routed ─────────────────────────────────────────────────────────
 
 def cmd_mark_routed(args) -> int:
@@ -480,6 +558,15 @@ def build_parser() -> argparse.ArgumentParser:
     pe.add_argument("--out", help="Write content to this path instead of returning it inline")
     pe.add_argument("--dry-run", action="store_true")
     pe.set_defaults(func=cmd_export_source)
+
+    px = sub.add_parser("export-learn",
+                        help="Stage 精读 + whiteboard visual bundle into a b2v workspace.")
+    grp = px.add_mutually_exclusive_group(required=True)
+    grp.add_argument("--id", help="event_id from list-ingests")
+    grp.add_argument("--slug", help="Slug directly (wiki/source-<slug>.md)")
+    px.add_argument("--out-dir", required=True, help="Destination workspace directory")
+    px.add_argument("--dry-run", action="store_true")
+    px.set_defaults(func=cmd_export_learn)
 
     pm = sub.add_parser("mark-routed", help="Mark an ingest routed (idempotent).")
     pm.add_argument("--id", required=True, help="event_id from list-ingests")

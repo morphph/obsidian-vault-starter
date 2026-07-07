@@ -10,4 +10,8 @@ if [ "${1:-}" = "ingest-url" ]; then
   shift
   exec "$PY" "$REPO/scripts/ingest_url.py" "$@"
 fi
+if [ "${1:-}" = "learn" ]; then
+  shift
+  exec "$PY" "$REPO/scripts/learn_note.py" "$@"
+fi
 exec "$PY" "$REPO/scripts/obsidian_content.py" "$@"

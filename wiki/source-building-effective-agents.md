@@ -161,7 +161,7 @@ LLM 有时能同时处理一个任务，再用程序把多路输出聚合起来�
 > [!note] 白板图示（S3 预演）：复杂度阶梯
 > 一张论证型白板图，把本节的核心论证空间化——**① 增强型 LLM 基础构件 → ② 五种 workflow 模式（prompt chaining / routing / parallelization / orchestrator-workers / evaluator-optimizer）→ ③ 自主 agent 循环**，沿底部「复杂度递增」轴线逐级展开，落点是「只在复杂度能被证明改善结果时才加」。按论证顺序标了 7 个 `customData.step`，可分层动画导出。
 
-![[diagram.png]]
+![[building-effective-agents-diagram.png]]
 
 ### 6. Combining and customizing these patterns（组合与定制这些模式）
 
