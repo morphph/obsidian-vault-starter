@@ -1,7 +1,9 @@
 # A Field Guide to Fable: Finding Your Unknowns
 
 **Author:** Thariq (@trq212) — Claude Code, Anthropic. prev YC W20, South Park Commons, MIT Media Lab
-**Source:** X (native Article) · Jul 4, 2026 · https://x.com/trq212/status/2073100352921215386
+**Source:** https://x.com/trq212/status/2073100352921215386
+**Fetch method:** logged-in browser (X native Article, login-walled; WebFetch/defuddle cannot reach)
+**Published:** X native Article · Jul 4, 2026
 **Captured:** 2026-07-08 (extracted from logged-in browser; X article body is behind a login wall and not fetchable by WebFetch/defuddle)
 **Engagement at capture:** 3.35M views · 8,885 likes · 20,168 bookmarks · 1,524 reposts · 252 replies
 **Linked artifacts:** example artifacts for finding unknowns — https://thariqs.github.io/html-effectiveness/unknowns/
