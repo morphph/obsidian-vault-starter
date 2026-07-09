@@ -32,6 +32,10 @@ load-bearing —
   （GEO 位置偏置），每个主张段能挂回 take。
 - take 仍是占位（`⏳ 待作者 take`）→ **拒绝开工**：interactive 下告诉用户「Gate 1 take 未填，
   writer 无 take 不开工」；headless 下打印 `ok:false, errors:["take_missing"]` envelope 退出。
+- take 占位 **且调用 prompt 含 `TAKE_OPTIONAL`**（作者显式豁免——只能来自 wf3 driver 的
+  `resume --take-optional` 旗标，2026-07-09 作者拍板）→ **开工**：用 outline 的候选 thesis 方向当
+  **编辑立场**工作论点（行文不得伪称作者亲笔 take），thesis 仍出现在成稿前 30%，
+  frontmatter 加 `take: waived`；署名与否由 Gate 2 作者看稿定夺。
 - 无 `outline.md`（非 WF3 的旧式 /draft 用法）→ 本 gate 不适用，照常。
 
 **穿透引用（plan §11.7）：** 成稿只许引用 report 里标注的**原始出处**（`[外部: URL]` 的 URL、
@@ -130,7 +134,7 @@ Add `status: draft` to the wiki page's frontmatter. Do NOT change any other cont
 
 Skip this step if the draft was built directly from raw/, a topic, or a research workspace.
 
-### 6.5 WF3 mode: bilingual output + machine envelope（仅 research-workspace 且 outline 有 take 时）
+### 6.5 WF3 mode: bilingual output + machine envelope（仅 research-workspace 且「outline 有 take 或 TAKE_OPTIONAL 豁免」时）
 
 WF3 的发布目标是 loreai.dev **EN+ZH 双语**（Gate 2 审的必须是要发的全部东西）：
 
