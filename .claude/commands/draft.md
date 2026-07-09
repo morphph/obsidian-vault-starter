@@ -138,7 +138,9 @@ Skip this step if the draft was built directly from raw/, a topic, or a research
 
 WF3 的发布目标是 loreai.dev **EN+ZH 双语**（Gate 2 审的必须是要发的全部东西）：
 
-1. 主稿 `drafts/<slug>.zh.md`（照上面全部规则写）。
+1. 主稿 `drafts/<slug>.zh.md`（照上面全部规则写）。**正文必须以 `# <标题>` H1 开头**
+   （紧跟 frontmatter 之后；loreai 发布链从 H1 提取 title——没有 H1 会拿代码注释当标题）；
+   不留 `<!-- HOOK -->` 之类占位注释。
 2. 英文版 `drafts/<slug>.en.md` — **同结构同论点的英文成文**（不是逐句直译；面向同一受众
    画像的英文读者重述，保留全部出处链接与数据）。take 同样出现在前 30%。
 3. Frontmatter 两份都带（status/sources/external-refs/research/platform/lang）。
