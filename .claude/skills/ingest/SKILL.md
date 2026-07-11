@@ -89,6 +89,17 @@ For each entity and concept worth a page:
 
 Also create a source summary page: `wiki/source-{slug}.md` with type: source-summary. Include the full output of step 3 as a `## 精读` section (or `## 要点解读` if the study-guide structure was used) — this preserves the close reading for future reference and downstream export.
 
+### 4b. 白板图（默认自动 — 作者 2026-07-11 拍板「ingest 完自动跟精读」）
+
+精读（step 3）已经产出；这一步补上配套的白板图，让每次 ingest 直接得到「精读＋图」完整学习包。
+
+- **单一真源**：读 `.claude/commands/learn-note.md` 的 **Step 2（白板图）与 Step 3（嵌入）**并完整照做——
+  同样的可图则图判断、同样的 `visuals/<slug>/` 产物路径、同样的渲染回环与分层导出。
+  产物路径与 headless `learn` verb 完全一致，因此 WF1 whiteboard lane 再跑 `learn` 时幂等预检直接跳过，零重复成本。
+- 判断「不可图」时照 learn-note 的约定记 `LEARN_NO_VISUAL` 原因（写进 Report），不硬画。
+- **scan（批量）模式例外**：白板图逐篇 ≈ 数分钟＋$1-2。先列出待 ingest 清单与预估成本问作者一次，
+  作者点头才逐篇带图；否则只做精读、图留给后续 `learn`。
+
 ### 5. Update index
 
 Read wiki/index.md. Add or update entries for every page touched. Each entry: `- [[page-name]] — one-line summary`
@@ -131,11 +142,14 @@ Notes:
   note it in the Report; the event can be backfilled later with
   `bin/obsidian-content backfill-from-log`.
 
-### 8. Report
+### 8. Report — 摘要先行
 
-Show in terminal:
-- Source title
-- Pages created (with links)
-- Pages updated (with links)
-- Total pages touched
+**开头直接给作者可读的学习包摘要**（不是只报文件清单）：
+1. `**一句话主旨**`（逐字取自精读元信息头）
+2. 5-10 句中文摘要（从精读提炼：核心论证链 + 最硬的 1-2 个数据/引语）
+3. 白板图：用 Read 展示 `visuals/<slug>/<slug>-diagram.png`（或注明 LEARN_NO_VISUAL 原因）
+4. 精读全文路径 `wiki/source-<slug>.md`
+
+然后才是账目：
+- Pages created / updated (with links) · total touched
 - Ingest event id(s) recorded (from step 7)
