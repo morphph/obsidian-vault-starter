@@ -144,6 +144,15 @@ WF3 的发布目标是 loreai.dev **EN+ZH 双语**（Gate 2 审的必须是要�
 2. 英文版 `drafts/<slug>.en.md` — **同结构同论点的英文成文**（不是逐句直译；面向同一受众
    画像的英文读者重述，保留全部出处链接与数据）。take 同样出现在前 30%。
 3. Frontmatter 两份都带（status/sources/external-refs/research/platform/lang）。
+3b. **图示（S11 文图一体，强制评估·可图则图）**：读 `.claude/skills/excalidraw-diagram/SKILL.md`，
+   判断文章有可空间化的论证结构则画**一张论证型白板图**（Diagrams ARGUE, not DISPLAY）：
+   - 写 `drafts/figs/<slug>/<slug>-fig-1.excalidraw` → 渲染回环（render_excalidraw.py，Read 看 PNG 修到合格）
+   - 导出整图 SVG `drafts/figs/<slug>/<slug>-fig-1.svg`（博客用）+ `--export-layers` 分层导出
+     （steps.json + layers/，留给 make-video 白板视频线零重画）
+   - **双语正文**在最相关章节嵌 `![<一句话图说明>](/diagrams/<slug>-fig-1.svg)`（站点根路径；
+     发布链会把 SVG 拷进 loreai `public/diagrams/`）
+   - 不可图（纯叙事/清单/太短）：envelope warnings 记 `no_figure: <一句原因>`，不硬画不硬嵌。
+   - Gate-2 组合 hash 含图（driver 计算）：改图=改稿，同样触发重呈。
 4. 打印机器可读 envelope（contract 1.0 同形，skill 打印、非 CLI verb）：
 
 ```json
@@ -153,7 +162,8 @@ WF3 的发布目标是 loreai.dev **EN+ZH 双语**（Gate 2 审的必须是要�
   "verb": "draft",
   "artifacts": {
     "draft_zh": { "path": "drafts/<slug>.zh.md", "sha256": "..." },
-    "draft_en": { "path": "drafts/<slug>.en.md", "sha256": "..." }
+    "draft_en": { "path": "drafts/<slug>.en.md", "sha256": "..." },
+    "figures":  [ { "path": "drafts/figs/<slug>/<slug>-fig-1.svg", "sha256": "..." } ]
   },
   "data": { "slug": "<slug>", "take_present": true, "research": "research/<slug>/" },
   "warnings": [], "errors": []
