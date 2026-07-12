@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Use this skill whenever the user wants to research a topic before writing — gather what's known internally + externally, and produce a single research report (facts + per-channel popularity + content angles) + a list of sources worth ingesting. Triggers: 'research X', '调研一下 X', 'help me research before I write about Y', 'what's out there on Z', 'gather sources on W', 'I want to write about X, research it first'. Produces research-plan.md + report.md + outline.md (Gate-1 artifact, 含 prior_coverage) + ingest-candidates.md in a non-vault workspace (research/<slug>/). **Don't use when** the user wants to add a known source to the wiki — use `/ingest`. **Don't use when** the user just wants an answer from the existing wiki — use `/query`. **Don't use when** they're ready to write from existing material — use `/draft`."
+description: "Use this skill whenever the user wants to research a topic before writing — gather what's known internally + externally, and produce a single research report (facts + per-channel popularity + content angles) + a list of sources worth ingesting. Triggers: 'research X', '调研一下 X', 'help me research before I write about Y', 'what's out there on Z', 'gather sources on W', 'I want to write about X, research it first'. Produces research-plan.md + report.md (Gate-1 闸面：末尾强制 2-4 个建议角度供作者选择) + ingest-candidates.md in a non-vault workspace (research/<slug>/); outline.md 在作者选定角度后经 outline 细化模式单角度产出 (`/research outline <slug> angle:<N>`). **Don't use when** the user wants to add a known source to the wiki — use `/ingest`. **Don't use when** the user just wants an answer from the existing wiki — use `/query`. **Don't use when** they're ready to write from existing material — use `/draft`."
 ---
 
 # Research — Investigate a Topic → Report + Ingest Candidates
@@ -157,13 +157,15 @@ the channel-organized harvest through **both axes** and write a single `research
 - §6 溯源标注纪律：每个论断标 `[内部/Tier-1: 页名]` 或 `[外部: URL]`；下游只许穿透引用原始出处。
 - §3-5 互动数据拿不到就标「推断·未实测」，绝不编造。
 
+**报告末【建议角度】节 = 强制契约（角度闸，2026-07-10 作者批准的机制）**：2–4 个角度，每个必含
+六件：① 标题候选 ② 一句 thesis ③ 为什么是我们/为什么现在 ④ 与 step 2「已表达角度清单」的
+prior_coverage 关系 ⑤ 3–5 行骨架 ⑥ 渠道建议。可标一个「推荐」。这一节就是 Gate-1 的闸面——
+作者读完报告直接做选择题。
+
+**调研阶段不再写 outline.md**（省去为没选中角度白做的功）。outline 由作者在角度闸选定后经
+下方「Outline 细化模式」单角度产出。
+
 Also write:
-
-#### `outline.md` — the Gate-1 artifact (文章大纲)
-
-**Read `references/outline-template.md` and follow it.** 要点：`prior_coverage` 是机器可检的
-强制字段（对 step 2 的「已表达角度清单」逐条声明关系，重合无增量 → Gate 1 可拒）；take 占位由
-作者亲笔填，writer 无 take 不开工。
 
 #### `ingest-candidates.md` — sources worth ingesting
 
@@ -178,7 +180,7 @@ Also write:
 
 ```json
 {"slug":"<slug>","topic":"<topic>","depth":"<depth>","generated":"<YYYY-MM-DD>",
- "tools_ran":[],"tools_skipped":[],"artifacts":["research-plan.md","report.md","outline.md","ingest-candidates.md"]}
+ "tools_ran":[],"tools_skipped":[],"artifacts":["research-plan.md","report.md","ingest-candidates.md"]}
 ```
 
 ### 6. 停 — stop here
@@ -202,7 +204,6 @@ Print exactly one JSON object to the terminal, **aligned to obsidian-content con
   "artifacts": {
     "plan":       { "path": "research/<slug>/research-plan.md",     "sha256": "..." },
     "report":     { "path": "research/<slug>/report.md",           "sha256": "..." },
-    "outline":    { "path": "research/<slug>/outline.md",          "sha256": "..." },
     "candidates": { "path": "research/<slug>/ingest-candidates.md", "sha256": "..." }
   },
   "warnings": ["last30days unavailable (VPS-only)", "..."],
@@ -220,7 +221,21 @@ After the envelope, show in terminal:
 - Duplication warning if `drafts/` already covers this topic
 - Candidate count (and how many flagged "already in vault")
 - The §7 top recommended angle (one line)
-- Next steps: "圈选 `ingest-candidates.md` → `/ingest` 选中的源 · 挑 report §7 一个角度 → `/draft research/<slug>/` 写博客"
+- Next steps: "圈选 `ingest-candidates.md` → `/ingest` 选中的源 · 读 report 末【建议角度】选一个
+  （WF3 任务：`wf3.py choose-angle --task <id> --angle N [--note …]` → resume）→ outline 细化 → `/draft`"
+
+## Outline 细化模式 — `/research outline <slug> angle:<N>`（角度闸选定后）
+
+由 WF3 driver 在作者 `choose-angle` 之后 headless 调起（也可作者手动调）。**不重新调研**：
+
+1. 读 `research/<slug>/report.md`（含建议角度节）与 `research-plan.md`；prompt 里会带作者的
+   修正意见（若有）。
+2. **Read `references/outline-template.md` and follow it**，只为选中角度写
+   `research/<slug>/outline.md`：`prior_coverage` 仍是机器可检的强制字段；
+   **take 段直接由选中角度的 thesis + 作者修正合成**——作者的选择即 take，绝不留
+   `⏳ 待作者 take` 占位。
+3. 只写 outline.md 这一个文件；结尾打 envelope（verb: "research-outline"，artifacts 只含 outline）。
+4. Headless 铁律同上：不暂停、不问、消歧自决记录在 outline 文末注记。
 
 ## Hard constraints (handoff §3 — safety invariants, preserve all)
 
