@@ -1,0 +1,368 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "text", "id": "title", "x": 360, "y": 24, "width": 720, "height": 34,
+      "text": "为什么他把「生孩子」想错了 —— 一次判断的复盘", "originalText": "为什么他把「生孩子」想错了 —— 一次判断的复盘",
+      "fontSize": 28, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100001, "version": 1, "versionNonce": 100002, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 1, "stepLabel": "婚前的恐惧" }
+    },
+    {
+      "type": "text", "id": "subtitle", "x": 360, "y": 66, "width": 720, "height": 20,
+      "text": "Paul Graham · Having Kids (2019)", "originalText": "Paul Graham · Having Kids (2019)",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#64748b", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100003, "version": 1, "versionNonce": 100004, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 1 }
+    },
+
+    {
+      "type": "text", "id": "before_label", "x": 62, "y": 118, "width": 260, "height": 24,
+      "text": "① 婚前 · 恐惧 BEFORE", "originalText": "① 婚前 · 恐惧 BEFORE",
+      "fontSize": 19, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100005, "version": 1, "versionNonce": 100006, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "ellipse", "id": "belief", "x": 66, "y": 322, "width": 236, "height": 120,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100007, "version": 1, "versionNonce": 100008, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "belief_t", "type": "text"}, {"id": "arrow_A_belief", "type": "arrow"}, {"id": "arrow_B_belief", "type": "arrow"}, {"id": "arrow_belief_pivot", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "text", "id": "belief_t", "x": 82, "y": 355, "width": 204, "height": 54,
+      "text": "错误结论：父母都很惨\n『Better you than me』", "originalText": "错误结论：父母都很惨\n『Better you than me』",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100009, "version": 1, "versionNonce": 100010, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "belief", "lineHeight": 1.25,
+      "customData": { "step": 1 }
+    },
+
+    {
+      "type": "rectangle", "id": "dataA", "x": 58, "y": 170, "width": 252, "height": 96,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200001, "version": 1, "versionNonce": 200002, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "dataA_t", "type": "text"}, {"id": "arrow_A_belief", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": {"type": 3},
+      "customData": { "step": 2, "stepLabel": "两个坏数据源" }
+    },
+    {
+      "type": "text", "id": "dataA_t", "x": 70, "y": 186, "width": 228, "height": 64,
+      "text": "坏数据源① 选择偏差\n只在孩子闹时才注意到\n(飞机等 bottleneck)", "originalText": "坏数据源① 选择偏差\n只在孩子闹时才注意到\n(飞机等 bottleneck)",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200003, "version": 1, "versionNonce": 200004, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "dataA", "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "rectangle", "id": "dataB", "x": 58, "y": 496, "width": 252, "height": 96,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200005, "version": 1, "versionNonce": 200006, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "dataB_t", "type": "text"}, {"id": "arrow_B_belief", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": {"type": 3},
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "dataB_t", "x": 70, "y": 512, "width": 228, "height": 64,
+      "text": "坏数据源② 自己的童年\nparenthood = 执法\nlaw enforcement", "originalText": "坏数据源② 自己的童年\nparenthood = 执法\nlaw enforcement",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200007, "version": 1, "versionNonce": 200008, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "dataB", "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "arrow", "id": "arrow_A_belief", "x": 184, "y": 268, "width": 0, "height": 52,
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200009, "version": 1, "versionNonce": 200010, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [0, 52]], "startBinding": {"elementId": "dataA", "focus": 0, "gap": 3}, "endBinding": {"elementId": "belief", "focus": 0, "gap": 3},
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "arrow", "id": "arrow_B_belief", "x": 184, "y": 494, "width": 0, "height": 50,
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200011, "version": 1, "versionNonce": 200012, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [0, -50]], "startBinding": {"elementId": "dataB", "focus": 0, "gap": 3}, "endBinding": {"elementId": "belief", "focus": 0, "gap": 3},
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 2 }
+    },
+
+    {
+      "type": "ellipse", "id": "pivot", "x": 396, "y": 328, "width": 214, "height": 122,
+      "strokeColor": "#e11d48", "backgroundColor": "#fb7185", "fillStyle": "solid",
+      "strokeWidth": 3, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300001, "version": 1, "versionNonce": 300002, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "pivot_t", "type": "text"}, {"id": "arrow_belief_pivot", "type": "arrow"}, {"id": "arrow_pivot_gains", "type": "arrow"}, {"id": "arrow_pivot_costs", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 3, "stepLabel": "有了孩子——开关翻转" }
+    },
+    {
+      "type": "text", "id": "pivot_t", "x": 412, "y": 368, "width": 182, "height": 42,
+      "text": "有了孩子\nHAD KIDS", "originalText": "有了孩子\nHAD KIDS",
+      "fontSize": 20, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#ffffff", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300003, "version": 1, "versionNonce": 300004, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "pivot", "lineHeight": 1.25,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "text", "id": "caveat", "x": 388, "y": 466, "width": 230, "height": 48,
+      "text": "⚡ 化学开关一瞬翻转\n——这部分你别全信 (cult 效应)", "originalText": "⚡ 化学开关一瞬翻转\n——这部分你别全信 (cult 效应)",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#64748b", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300005, "version": 1, "versionNonce": 300006, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "arrow", "id": "arrow_belief_pivot", "x": 304, "y": 385, "width": 90, "height": 3,
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300007, "version": 1, "versionNonce": 300008, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [90, 3]], "startBinding": {"elementId": "belief", "focus": 0, "gap": 3}, "endBinding": {"elementId": "pivot", "focus": 0, "gap": 3},
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 3 }
+    },
+
+    {
+      "type": "text", "id": "after_label", "x": 712, "y": 118, "width": 300, "height": 24,
+      "text": "② 婚后 · 真相 AFTER", "originalText": "② 婚后 · 真相 AFTER",
+      "fontSize": 19, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400001, "version": 1, "versionNonce": 400002, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 4, "stepLabel": "被低估的收获" }
+    },
+    {
+      "type": "text", "id": "gains_label", "x": 712, "y": 170, "width": 300, "height": 22,
+      "text": "被低估的收获 GAINS ↑", "originalText": "被低估的收获 GAINS ↑",
+      "fontSize": 17, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#047857", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400003, "version": 1, "versionNonce": 400004, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "rectangle", "id": "g1", "x": 710, "y": 200, "width": 300, "height": 50,
+      "strokeColor": "#047857", "backgroundColor": "#a7f3d0", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400005, "version": 1, "versionNonce": 400006, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "g1_t", "type": "text"}],
+      "link": null, "locked": false, "roundness": {"type": 3},
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "g1_t", "x": 720, "y": 214, "width": 280, "height": 22,
+      "text": "随时的平静 peace on tap", "originalText": "随时的平静 peace on tap",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400007, "version": 1, "versionNonce": 400008, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "g1", "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "rectangle", "id": "g2", "x": 710, "y": 262, "width": 300, "height": 50,
+      "strokeColor": "#047857", "backgroundColor": "#a7f3d0", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400009, "version": 1, "versionNonce": 400010, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "g2_t", "type": "text"}, {"id": "arrow_pivot_gains", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": {"type": 3},
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "g2_t", "x": 720, "y": 276, "width": 280, "height": 22,
+      "text": "孩子成了朋友 · 真有意思", "originalText": "孩子成了朋友 · 真有意思",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400011, "version": 1, "versionNonce": 400012, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "g2", "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "rectangle", "id": "g3", "x": 710, "y": 324, "width": 300, "height": 50,
+      "strokeColor": "#047857", "backgroundColor": "#a7f3d0", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400013, "version": 1, "versionNonce": 400014, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "g3_t", "type": "text"}, {"id": "arrow_gains_net", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": {"type": 3},
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "g3_t", "x": 720, "y": 338, "width": 280, "height": 22,
+      "text": "又变得好玩 fun again", "originalText": "又变得好玩 fun again",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400015, "version": 1, "versionNonce": 400016, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "g3", "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "arrow", "id": "arrow_pivot_gains", "x": 612, "y": 372, "width": 96, "height": 85,
+      "strokeColor": "#047857", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400017, "version": 1, "versionNonce": 400018, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [96, -85]], "startBinding": {"elementId": "pivot", "focus": -0.2, "gap": 3}, "endBinding": {"elementId": "g2", "focus": 0, "gap": 3},
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 4 }
+    },
+
+    {
+      "type": "text", "id": "costs_label", "x": 712, "y": 402, "width": 300, "height": 22,
+      "text": "被言中的代价 COSTS ↓", "originalText": "被言中的代价 COSTS ↓",
+      "fontSize": 17, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#dc2626", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500001, "version": 1, "versionNonce": 500002, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 5, "stepLabel": "被言中的代价" }
+    },
+    {
+      "type": "rectangle", "id": "c1", "x": 710, "y": 432, "width": 300, "height": 50,
+      "strokeColor": "#dc2626", "backgroundColor": "#fee2e2", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500003, "version": 1, "versionNonce": 500004, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "c1_t", "type": "text"}, {"id": "arrow_pivot_costs", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": {"type": 3},
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "text", "id": "c1_t", "x": 720, "y": 446, "width": 280, "height": 22,
+      "text": "效率下降 → 得按日程工作", "originalText": "效率下降 → 得按日程工作",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500005, "version": 1, "versionNonce": 500006, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "c1", "lineHeight": 1.25,
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "rectangle", "id": "c2", "x": 710, "y": 494, "width": 300, "height": 50,
+      "strokeColor": "#dc2626", "backgroundColor": "#fee2e2", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500007, "version": 1, "versionNonce": 500008, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "c2_t", "type": "text"}, {"id": "arrow_costs_net", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": {"type": 3},
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "text", "id": "c2_t", "x": 720, "y": 508, "width": 280, "height": 22,
+      "text": "野心减退 → 注意力零和", "originalText": "野心减退 → 注意力零和",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500009, "version": 1, "versionNonce": 500010, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "c2", "lineHeight": 1.25,
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "arrow", "id": "arrow_pivot_costs", "x": 612, "y": 408, "width": 96, "height": 49,
+      "strokeColor": "#dc2626", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500011, "version": 1, "versionNonce": 500012, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [96, 49]], "startBinding": {"elementId": "pivot", "focus": 0.2, "gap": 3}, "endBinding": {"elementId": "c1", "focus": 0, "gap": 3},
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 5 }
+    },
+
+    {
+      "type": "ellipse", "id": "net", "x": 1090, "y": 316, "width": 254, "height": 148,
+      "strokeColor": "#047857", "backgroundColor": "#6ee7b7", "fillStyle": "solid",
+      "strokeWidth": 3, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600001, "version": 1, "versionNonce": 600002, "isDeleted": false,
+      "groupIds": [], "boundElements": [{"id": "net_t", "type": "text"}, {"id": "arrow_gains_net", "type": "arrow"}, {"id": "arrow_costs_net", "type": "arrow"}],
+      "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 6, "stepLabel": "净结果:快乐随时可得" }
+    },
+    {
+      "type": "text", "id": "net_t", "x": 1106, "y": 350, "width": 222, "height": 80,
+      "text": "净结果 NET\n婚后快乐时刻 > 婚前\n几乎随时可得 (on tap)", "originalText": "净结果 NET\n婚后快乐时刻 > 婚前\n几乎随时可得 (on tap)",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#374151", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600003, "version": 1, "versionNonce": 600004, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": "net", "lineHeight": 1.25,
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "arrow", "id": "arrow_gains_net", "x": 1012, "y": 349, "width": 76, "height": 30,
+      "strokeColor": "#047857", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600005, "version": 1, "versionNonce": 600006, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [76, 30]], "startBinding": {"elementId": "g3", "focus": 0, "gap": 3}, "endBinding": {"elementId": "net", "focus": -0.3, "gap": 3},
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "arrow", "id": "arrow_costs_net", "x": 1012, "y": 519, "width": 76, "height": 90,
+      "strokeColor": "#dc2626", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600007, "version": 1, "versionNonce": 600008, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [76, -90]], "startBinding": {"elementId": "c2", "focus": 0, "gap": 3}, "endBinding": {"elementId": "net", "focus": 0.3, "gap": 3},
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "text", "id": "plus_label", "x": 1040, "y": 336, "width": 40, "height": 24,
+      "text": "＋", "originalText": "＋",
+      "fontSize": 26, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#047857", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600009, "version": 1, "versionNonce": 600010, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "text", "id": "minus_label", "x": 1040, "y": 470, "width": 40, "height": 24,
+      "text": "－", "originalText": "－",
+      "fontSize": 26, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#dc2626", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600011, "version": 1, "versionNonce": 600012, "isDeleted": false,
+      "groupIds": [], "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 6 }
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20
+  },
+  "files": {}
+}

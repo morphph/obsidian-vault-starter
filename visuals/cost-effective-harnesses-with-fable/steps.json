@@ -1,0 +1,126 @@
+{
+  "contract_version": "layer-export.v1",
+  "source": "cost-effective-harnesses-with-fable-diagram.excalidraw",
+  "canvas": {
+    "bbox": [
+      -20,
+      -50,
+      1400,
+      1678
+    ],
+    "padding": 80,
+    "viewBox": "0 0 1420 1698",
+    "width": "1420",
+    "height": "1698"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "label": "任务的智能不对称",
+      "bbox": [
+        360,
+        30,
+        940,
+        190
+      ],
+      "cumulativeBbox": [
+        360,
+        30,
+        940,
+        190
+      ],
+      "elementCount": 8,
+      "file": "layers/step-01.svg"
+    },
+    {
+      "step": 2,
+      "label": "orchestrator · advisor · verifier",
+      "bbox": [
+        60,
+        252,
+        1210,
+        188
+      ],
+      "cumulativeBbox": [
+        60,
+        30,
+        1240,
+        410
+      ],
+      "elementCount": 10,
+      "file": "layers/step-02.svg"
+    },
+    {
+      "step": 3,
+      "label": "判断力撒在全程 → 90% 改进 @ 34% 成本",
+      "bbox": [
+        60,
+        480,
+        1200,
+        194
+      ],
+      "cumulativeBbox": [
+        60,
+        30,
+        1240,
+        644
+      ],
+      "elementCount": 11,
+      "file": "layers/step-03.svg"
+    },
+    {
+      "step": 4,
+      "label": "套利必须抵消协调成本",
+      "bbox": [
+        60,
+        750,
+        1200,
+        202
+      ],
+      "cumulativeBbox": [
+        60,
+        30,
+        1240,
+        922
+      ],
+      "elementCount": 9,
+      "file": "layers/step-04.svg"
+    },
+    {
+      "step": 5,
+      "label": "token 量决定编排是省还是亏",
+      "bbox": [
+        60,
+        998,
+        1040,
+        210
+      ],
+      "cumulativeBbox": [
+        60,
+        30,
+        1240,
+        1178
+      ],
+      "elementCount": 9,
+      "file": "layers/step-05.svg"
+    },
+    {
+      "step": 6,
+      "label": "任务形状 · 启发式 · 协调成本 · prompt caching",
+      "bbox": [
+        60,
+        1268,
+        1200,
+        280
+      ],
+      "cumulativeBbox": [
+        60,
+        30,
+        1240,
+        1518
+      ],
+      "elementCount": 9,
+      "file": "layers/step-06.svg"
+    }
+  ]
+}

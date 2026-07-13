@@ -340,6 +340,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # 内层 headless claude 会继承本进程 env；若带着会话的 TELEGRAM_STATE_DIR，
+    # 其 telegram 插件会抢走 bot poller、瘫痪回话通道（07-05/07-13 事故根因）。
+    os.environ.pop("TELEGRAM_STATE_DIR", None)
     args = build_parser().parse_args(argv)
     return cmd_learn(args)
 

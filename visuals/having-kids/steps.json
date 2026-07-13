@@ -1,0 +1,126 @@
+{
+  "contract_version": "layer-export.v1",
+  "source": "having-kids-diagram.excalidraw",
+  "canvas": {
+    "bbox": [
+      -22,
+      -56,
+      1446,
+      728
+    ],
+    "padding": 80,
+    "viewBox": "0 0 1466 748",
+    "width": "1466",
+    "height": "748"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "label": "婚前的恐惧",
+      "bbox": [
+        62,
+        24,
+        1018,
+        418
+      ],
+      "cumulativeBbox": [
+        62,
+        24,
+        1018,
+        418
+      ],
+      "elementCount": 5,
+      "file": "layers/step-01.svg"
+    },
+    {
+      "step": 2,
+      "label": "两个坏数据源",
+      "bbox": [
+        58,
+        170,
+        252,
+        422
+      ],
+      "cumulativeBbox": [
+        58,
+        24,
+        1022,
+        568
+      ],
+      "elementCount": 6,
+      "file": "layers/step-02.svg"
+    },
+    {
+      "step": 3,
+      "label": "有了孩子——开关翻转",
+      "bbox": [
+        304,
+        328,
+        314,
+        186
+      ],
+      "cumulativeBbox": [
+        58,
+        24,
+        1022,
+        568
+      ],
+      "elementCount": 4,
+      "file": "layers/step-03.svg"
+    },
+    {
+      "step": 4,
+      "label": "被低估的收获",
+      "bbox": [
+        612,
+        118,
+        400,
+        256
+      ],
+      "cumulativeBbox": [
+        58,
+        24,
+        1022,
+        568
+      ],
+      "elementCount": 9,
+      "file": "layers/step-04.svg"
+    },
+    {
+      "step": 5,
+      "label": "被言中的代价",
+      "bbox": [
+        612,
+        402,
+        400,
+        142
+      ],
+      "cumulativeBbox": [
+        58,
+        24,
+        1022,
+        568
+      ],
+      "elementCount": 6,
+      "file": "layers/step-05.svg"
+    },
+    {
+      "step": 6,
+      "label": "净结果:快乐随时可得",
+      "bbox": [
+        1012,
+        316,
+        332,
+        203
+      ],
+      "cumulativeBbox": [
+        58,
+        24,
+        1286,
+        568
+      ],
+      "elementCount": 6,
+      "file": "layers/step-06.svg"
+    }
+  ]
+}

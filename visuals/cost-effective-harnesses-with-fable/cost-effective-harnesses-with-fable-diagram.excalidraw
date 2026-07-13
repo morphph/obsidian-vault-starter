@@ -1,0 +1,539 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "text", "id": "s1_title", "x": 360, "y": 30, "width": 800, "height": 42,
+      "text": "Cost-Effective Harnesses with Fable 5", "originalText": "Cost-Effective Harnesses with Fable 5",
+      "fontSize": 32, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100001, "version": 1, "versionNonce": 100002, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 1, "stepLabel": "任务的智能不对称" }
+    },
+    {
+      "type": "text", "id": "s1_sub", "x": 400, "y": 84, "width": 720, "height": 24,
+      "text": "任务的智能不对称 — 不是每个 token 都要顶配智能", "originalText": "任务的智能不对称 — 不是每个 token 都要顶配智能",
+      "fontSize": 18, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#475569", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100003, "version": 1, "versionNonce": 100004, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "rectangle", "id": "s1_taskbar", "x": 420, "y": 132, "width": 600, "height": 56,
+      "strokeColor": "#94a3b8", "backgroundColor": "#f1f5f9", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100005, "version": 1, "versionNonce": 100006, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "rectangle", "id": "s1_bar1", "x": 520, "y": 132, "width": 26, "height": 56,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100007, "version": 1, "versionNonce": 100008, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "rectangle", "id": "s1_bar2", "x": 710, "y": 132, "width": 26, "height": 56,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100009, "version": 1, "versionNonce": 100010, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "rectangle", "id": "s1_bar3", "x": 900, "y": 132, "width": 26, "height": 56,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100011, "version": 1, "versionNonce": 100012, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "text", "id": "s1_legend", "x": 420, "y": 198, "width": 600, "height": 22,
+      "text": "灰 = 便宜 token(低成本 worker)   珊瑚 = 需 Fable 5 判断的时刻", "originalText": "灰 = 便宜 token(低成本 worker)   珊瑚 = 需 Fable 5 判断的时刻",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#64748b", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100013, "version": 1, "versionNonce": 100014, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "text", "id": "s1_annot", "x": 1050, "y": 138, "width": 250, "height": 48,
+      "text": "→ harness 只在珊瑚处\n调用 Fable 5", "originalText": "→ harness 只在珊瑚处\n调用 Fable 5",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 100015, "version": 1, "versionNonce": 100016, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 1 }
+    },
+    {
+      "type": "text", "id": "s2_title", "x": 60, "y": 252, "width": 560, "height": 30,
+      "text": "把 Fable 5 放在哪 · 3 种模式", "originalText": "把 Fable 5 放在哪 · 3 种模式",
+      "fontSize": 24, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200001, "version": 1, "versionNonce": 200002, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 2, "stepLabel": "orchestrator · advisor · verifier" }
+    },
+    {
+      "type": "ellipse", "id": "s2_orch", "x": 110, "y": 312, "width": 250, "height": 96,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200003, "version": 1, "versionNonce": 200004, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s2_orch_t", "type": "text" }], "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "s2_orch_t", "x": 150, "y": 335, "width": 170, "height": 50,
+      "text": "Orchestrator\n编排者", "originalText": "Orchestrator\n编排者",
+      "fontSize": 20, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#9f1239", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200005, "version": 1, "versionNonce": 200006, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s2_orch", "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "s2_orch_sub", "x": 110, "y": 418, "width": 250, "height": 22,
+      "text": "委派给低成本 worker", "originalText": "委派给低成本 worker",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#64748b", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200007, "version": 1, "versionNonce": 200008, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "ellipse", "id": "s2_adv", "x": 560, "y": 312, "width": 250, "height": 96,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200009, "version": 1, "versionNonce": 200010, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s2_adv_t", "type": "text" }], "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "s2_adv_t", "x": 600, "y": 335, "width": 170, "height": 50,
+      "text": "Advisor\n顾问", "originalText": "Advisor\n顾问",
+      "fontSize": 20, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#9f1239", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200011, "version": 1, "versionNonce": 200012, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s2_adv", "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "s2_adv_sub", "x": 560, "y": 418, "width": 250, "height": 22,
+      "text": "执行者按需请教", "originalText": "执行者按需请教",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#64748b", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200013, "version": 1, "versionNonce": 200014, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "ellipse", "id": "s2_ver", "x": 1010, "y": 312, "width": 250, "height": 96,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200015, "version": 1, "versionNonce": 200016, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s2_ver_t", "type": "text" }], "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "s2_ver_t", "x": 1050, "y": 335, "width": 170, "height": 50,
+      "text": "Verifier\n校验者", "originalText": "Verifier\n校验者",
+      "fontSize": 20, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#9f1239", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200017, "version": 1, "versionNonce": 200018, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s2_ver", "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "s2_ver_sub", "x": 1000, "y": 418, "width": 270, "height": 22,
+      "text": "复核成果 · /goal · Outcomes", "originalText": "复核成果 · /goal · Outcomes",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#64748b", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 200019, "version": 1, "versionNonce": 200020, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 2 }
+    },
+    {
+      "type": "text", "id": "s3_title", "x": 60, "y": 480, "width": 700, "height": 28,
+      "text": "案例 1 · Parameter Golf(顾问模式)", "originalText": "案例 1 · Parameter Golf(顾问模式)",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300001, "version": 1, "versionNonce": 300002, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 3, "stepLabel": "判断力撒在全程 → 90% 改进 @ 34% 成本" }
+    },
+    {
+      "type": "rectangle", "id": "s3_exec", "x": 100, "y": 540, "width": 250, "height": 84,
+      "strokeColor": "#047857", "backgroundColor": "#a7f3d0", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300003, "version": 1, "versionNonce": 300004, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s3_exec_t", "type": "text" }, { "id": "s3_arr1", "type": "arrow" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "text", "id": "s3_exec_t", "x": 120, "y": 558, "width": 210, "height": 48,
+      "text": "Sonnet 5 executor\n吸收实现 token", "originalText": "Sonnet 5 executor\n吸收实现 token",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#065f46", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300005, "version": 1, "versionNonce": 300006, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s3_exec", "lineHeight": 1.25,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "text", "id": "s3_arr1_lbl", "x": 352, "y": 538, "width": 136, "height": 32,
+      "text": "初始计划\n+ 2× checkpoint", "originalText": "初始计划\n+ 2× checkpoint",
+      "fontSize": 12, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#64748b", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300007, "version": 1, "versionNonce": 300008, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "arrow", "id": "s3_arr1", "x": 352, "y": 582, "width": 136, "height": 0,
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300009, "version": 1, "versionNonce": 300010, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [136, 0]],
+      "startBinding": { "elementId": "s3_exec", "focus": 0, "gap": 4 },
+      "endBinding": { "elementId": "s3_fable", "focus": 0, "gap": 4 },
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "ellipse", "id": "s3_fable", "x": 490, "y": 536, "width": 180, "height": 92,
+      "strokeColor": "#e11d48", "backgroundColor": "#fecdd3", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300011, "version": 1, "versionNonce": 300012, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s3_fable_t", "type": "text" }, { "id": "s3_arr1", "type": "arrow" }, { "id": "s3_arr2", "type": "arrow" }], "link": null, "locked": false, "roundness": null,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "text", "id": "s3_fable_t", "x": 520, "y": 559, "width": 120, "height": 46,
+      "text": "Fable 5\nadvisor", "originalText": "Fable 5\nadvisor",
+      "fontSize": 18, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#9f1239", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300013, "version": 1, "versionNonce": 300014, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s3_fable", "lineHeight": 1.25,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "arrow", "id": "s3_arr2", "x": 672, "y": 582, "width": 104, "height": 0,
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300015, "version": 1, "versionNonce": 300016, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [104, 0]],
+      "startBinding": { "elementId": "s3_fable", "focus": 0, "gap": 4 },
+      "endBinding": { "elementId": "s3_res", "focus": 0, "gap": 4 },
+      "startArrowhead": null, "endArrowhead": "arrow",
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "rectangle", "id": "s3_res", "x": 780, "y": 540, "width": 300, "height": 84,
+      "strokeColor": "#047857", "backgroundColor": "#a7f3d0", "fillStyle": "solid",
+      "strokeWidth": 3, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300017, "version": 1, "versionNonce": 300018, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s3_res_t", "type": "text" }, { "id": "s3_arr2", "type": "arrow" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "text", "id": "s3_res_t", "x": 800, "y": 558, "width": 260, "height": 48,
+      "text": "≈90% Fable-solo 改进\n@ ≈34% token 成本", "originalText": "≈90% Fable-solo 改进\n@ ≈34% token 成本",
+      "fontSize": 17, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#065f46", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300019, "version": 1, "versionNonce": 300020, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s3_res", "lineHeight": 1.25,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "text", "id": "s3_ins", "x": 100, "y": 650, "width": 1160, "height": 24,
+      "text": "洞察:判断力要撒在全程、不前置 — Fable 初始排名与实际反相关,价值在中途 checkpoint(Sonnet 易困在边际收益上爬坡)", "originalText": "洞察:判断力要撒在全程、不前置 — Fable 初始排名与实际反相关,价值在中途 checkpoint(Sonnet 易困在边际收益上爬坡)",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#475569", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 300021, "version": 1, "versionNonce": 300022, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 3 }
+    },
+    {
+      "type": "text", "id": "s4_title", "x": 60, "y": 750, "width": 700, "height": 28,
+      "text": "委派的账 · token 套利 vs 协调成本", "originalText": "委派的账 · token 套利 vs 协调成本",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400001, "version": 1, "versionNonce": 400002, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 4, "stepLabel": "套利必须抵消协调成本" }
+    },
+    {
+      "type": "rectangle", "id": "s4_arb", "x": 100, "y": 808, "width": 270, "height": 88,
+      "strokeColor": "#047857", "backgroundColor": "#a7f3d0", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400003, "version": 1, "versionNonce": 400004, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s4_arb_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "s4_arb_t", "x": 120, "y": 828, "width": 230, "height": 48,
+      "text": "Token 成本套利\n便宜 worker 吸收的 token", "originalText": "Token 成本套利\n便宜 worker 吸收的 token",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#065f46", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400005, "version": 1, "versionNonce": 400006, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s4_arb", "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "s4_gt", "x": 392, "y": 826, "width": 60, "height": 52,
+      "text": ">?", "originalText": ">?",
+      "fontSize": 44, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400007, "version": 1, "versionNonce": 400008, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "rectangle", "id": "s4_coord", "x": 470, "y": 808, "width": 340, "height": 88,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400009, "version": 1, "versionNonce": 400010, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s4_coord_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "s4_coord_t", "x": 490, "y": 828, "width": 300, "height": 48,
+      "text": "协调成本\n≈ 每次 handoff 固定", "originalText": "协调成本\n≈ 每次 handoff 固定",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400011, "version": 1, "versionNonce": 400012, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s4_coord", "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "s4_c1", "x": 470, "y": 906, "width": 480, "height": 20,
+      "text": "① Boundary duplication:跨模型每 token 至少计费 ×2", "originalText": "① Boundary duplication:跨模型每 token 至少计费 ×2",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#475569", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400013, "version": 1, "versionNonce": 400014, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "s4_c2", "x": 470, "y": 932, "width": 480, "height": 20,
+      "text": "② Fan-out overlap:worker 互不通信、研究重叠", "originalText": "② Fan-out overlap:worker 互不通信、研究重叠",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#475569", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400015, "version": 1, "versionNonce": 400016, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "s4_rule", "x": 870, "y": 824, "width": 390, "height": 48,
+      "text": "worker 收益随其吸收的 token 量扩展\n→ 委派量要够大才回本", "originalText": "worker 收益随其吸收的 token 量扩展\n→ 委派量要够大才回本",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 400017, "version": 1, "versionNonce": 400018, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 4 }
+    },
+    {
+      "type": "text", "id": "s5_title", "x": 60, "y": 998, "width": 800, "height": 28,
+      "text": "案例 2 · BrowseComp(编排模式)· 门槛效应", "originalText": "案例 2 · BrowseComp(编排模式)· 门槛效应",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500001, "version": 1, "versionNonce": 500002, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 5, "stepLabel": "token 量决定编排是省还是亏" }
+    },
+    {
+      "type": "text", "id": "s5_small_h", "x": 100, "y": 1052, "width": 360, "height": 22,
+      "text": "小任务 · 0.37M tok / 题", "originalText": "小任务 · 0.37M tok / 题",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#b91c1c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500003, "version": 1, "versionNonce": 500004, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "rectangle", "id": "s5_loss", "x": 100, "y": 1080, "width": 360, "height": 96,
+      "strokeColor": "#dc2626", "backgroundColor": "#fee2e2", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500005, "version": 1, "versionNonce": 500006, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s5_loss_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "text", "id": "s5_loss_t", "x": 120, "y": 1096, "width": 320, "height": 64,
+      "text": "编排 +60% markup\n0 性能收益\nFable 单干更便宜", "originalText": "编排 +60% markup\n0 性能收益\nFable 单干更便宜",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#b91c1c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500007, "version": 1, "versionNonce": 500008, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s5_loss", "lineHeight": 1.25,
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "line", "id": "s5_div", "x": 600, "y": 1058, "width": 0, "height": 130,
+      "strokeColor": "#94a3b8", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "dashed", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500009, "version": 1, "versionNonce": 500010, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false,
+      "points": [[0, 0], [0, 130]],
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "text", "id": "s5_thr", "x": 480, "y": 1188, "width": 240, "height": 20,
+      "text": "token 量门槛决定成败", "originalText": "token 量门槛决定成败",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500011, "version": 1, "versionNonce": 500012, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "text", "id": "s5_big_h", "x": 740, "y": 1052, "width": 360, "height": 22,
+      "text": "大任务 · 31M tok / 题", "originalText": "大任务 · 31M tok / 题",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "strokeColor": "#047857", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500013, "version": 1, "versionNonce": 500014, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "rectangle", "id": "s5_win", "x": 740, "y": 1080, "width": 360, "height": 96,
+      "strokeColor": "#047857", "backgroundColor": "#a7f3d0", "fillStyle": "solid",
+      "strokeWidth": 3, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500015, "version": 1, "versionNonce": 500016, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s5_win_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "text", "id": "s5_win_t", "x": 760, "y": 1104, "width": 320, "height": 48,
+      "text": "96% 分数 @ 46% 成本\n编排划算", "originalText": "96% 分数 @ 46% 成本\n编排划算",
+      "fontSize": 17, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "strokeColor": "#065f46", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 500017, "version": 1, "versionNonce": 500018, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s5_win", "lineHeight": 1.25,
+      "customData": { "step": 5 }
+    },
+    {
+      "type": "text", "id": "s6_title", "x": 60, "y": 1268, "width": 700, "height": 28,
+      "text": "写低成本 harness · 4 条指南", "originalText": "写低成本 harness · 4 条指南",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "strokeColor": "#c2410c", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600001, "version": 1, "versionNonce": 600002, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": null, "lineHeight": 1.25,
+      "customData": { "step": 6, "stepLabel": "任务形状 · 启发式 · 协调成本 · prompt caching" }
+    },
+    {
+      "type": "rectangle", "id": "s6_g1", "x": 100, "y": 1320, "width": 560, "height": 104,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600003, "version": 1, "versionNonce": 600004, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s6_g1_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "text", "id": "s6_g1_t", "x": 120, "y": 1344, "width": 520, "height": 56,
+      "text": "1. 审视任务形状\n散布→便宜执行者 + Fable 顾问;前置/复核→Fable 编排者/校验者", "originalText": "1. 审视任务形状\n散布→便宜执行者 + Fable 顾问;前置/复核→Fable 编排者/校验者",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "left", "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600005, "version": 1, "versionNonce": 600006, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s6_g1", "lineHeight": 1.25,
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "rectangle", "id": "s6_g2", "x": 700, "y": 1320, "width": 560, "height": 104,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600007, "version": 1, "versionNonce": 600008, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s6_g2_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "text", "id": "s6_g2_t", "x": 720, "y": 1352, "width": 520, "height": 40,
+      "text": "2. 用委派启发式\n给模型按 taste × intelligence 排名当先验", "originalText": "2. 用委派启发式\n给模型按 taste × intelligence 排名当先验",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "left", "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600009, "version": 1, "versionNonce": 600010, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s6_g2", "lineHeight": 1.25,
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "rectangle", "id": "s6_g3", "x": 100, "y": 1444, "width": 560, "height": 104,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600011, "version": 1, "versionNonce": 600012, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s6_g3_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "text", "id": "s6_g3_t", "x": 120, "y": 1476, "width": 520, "height": 40,
+      "text": "3. 评估协调成本\n委派量要够大;Fable 更 token 高效,收益需权衡", "originalText": "3. 评估协调成本\n委派量要够大;Fable 更 token 高效,收益需权衡",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "left", "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600013, "version": 1, "versionNonce": 600014, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s6_g3", "lineHeight": 1.25,
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "rectangle", "id": "s6_g4", "x": 700, "y": 1444, "width": 560, "height": 104,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "fillStyle": "solid",
+      "strokeWidth": 2, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600015, "version": 1, "versionNonce": 600016, "isDeleted": false, "groupIds": [],
+      "boundElements": [{ "id": "s6_g4_t", "type": "text" }], "link": null, "locked": false, "roundness": { "type": 3 },
+      "customData": { "step": 6 }
+    },
+    {
+      "type": "text", "id": "s6_g4_t", "x": 720, "y": 1468, "width": 520, "height": 56,
+      "text": "4. 保证 prompt caching\n路由同一 worker 让 cache 累积;低命中率会抵消 $/token 优势", "originalText": "4. 保证 prompt caching\n路由同一 worker 让 cache 累积;低命中率会抵消 $/token 优势",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "left", "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e", "backgroundColor": "transparent", "fillStyle": "solid",
+      "strokeWidth": 1, "strokeStyle": "solid", "roughness": 1, "opacity": 100, "angle": 0,
+      "seed": 600017, "version": 1, "versionNonce": 600018, "isDeleted": false, "groupIds": [],
+      "boundElements": null, "link": null, "locked": false, "containerId": "s6_g4", "lineHeight": 1.25,
+      "customData": { "step": 6 }
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20
+  },
+  "files": {}
+}
