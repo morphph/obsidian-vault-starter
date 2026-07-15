@@ -10,8 +10,12 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 # Ask the wiki a question
 /query what harness engineering patterns have I collected?
 
-# Ingest an article
+# Ingest an article (blog/tweet → full natural Chinese translation)
 /ingest https://example.com/interesting-article
+
+# Ingest a PDF or YouTube video (→ Chinese 精要 / essence extraction)
+/ingest paper.pdf
+/ingest https://www.youtube.com/watch?v=...
 
 # Ingest a GitHub repo (deep scan)
 /ingest https://github.com/owner/repo
@@ -54,7 +58,7 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 
 | Command                             | What it does                                                                                          |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `/ingest <url\|file\|scan>`         | Drop a source → wiki pages fan out. Supports articles, GitHub repos (deep scan), tweets (Playwright). |
+| `/ingest <url\|file\|scan>`         | Drop a source → wiki pages fan out. Step 3 routes by type: **blog/article/tweet → full natural translation**; **PDF/YouTube → 精要 extraction** (yt-dlp captions / `Read` for PDF); GitHub repo → deep scan. |
 | `/research <topic>`                 | Research a topic → report + outline + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
 | `/query <question>`                 | Ask the wiki. Optionally file answer back as synthesis page.                                          |
 | `/lint`                             | Health check: orphans, contradictions, stale pages, missing links.                                    |
@@ -118,8 +122,8 @@ archive/                Everything from the pre-wiki vault
   harness for this vault; `.claude/` is the single source of agent config.
 - **`/ingest` + `/research` → skill folders** (`.claude/skills/{ingest,research}/`):
   SKILL.md keeps the workflow; big templates moved to `references/` loaded on demand —
-  ingest's 12-section study guide + GitHub deep-scan, research's report + outline (Gate-1)
-  templates. All rules preserved verbatim; invocation unchanged.
+  ingest's per-type step-3 modes (full-translation / 精要 / study-guide) + GitHub deep-scan,
+  research's report + outline (Gate-1) templates. Invocation unchanged.
 - **`/lint` now checks docs drift**: CLAUDE.md/README command+skill tables, count words,
   and structure listings vs actual files; auto-fixable with permission.
 - **Cleanup**: root stray prompts moved to `prompts/` (`research-dispatch.md`,

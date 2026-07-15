@@ -1,7 +1,9 @@
-# 12-Section 中文学习型解读结构（canonical）
+# 12-Section 中文学习型解读结构（备选）
 
-> `/ingest` step 3 的强制结构。这是用户明确 feedback 固化下来的（2026-05-17）：
-> 目标是 **study guide 不是 summary** —— 教会用户，不是概括给用户。
+> `/ingest` step 3 的**备选**结构——**仅当用户明确要求 study guide / 深度解读框架时**才用。
+> 默认分流：博文→全文自然翻译（`structured-close-reading.md`）；PDF/视频→精要（`essence-extraction.md`）。
+> 沿革：本结构曾是 2026-05-17 的默认；2026-07-07 让位给忠实精读，2026-07-15 起改为按源类型分流，本结构保留为"教会式深度解读"的显式选项。
+> 目标是 **study guide 不是 summary** —— 教会用户，不是概括给用户。产出包成 `## 要点解读` section。
 
 **目的**：让用户最大程度地从这篇英文源中学到东西。用户正在学习 AI coding / agent development / content automation 等课题，英文阅读有限，希望通过中文深度解读快速且彻底地内化原文。
 
