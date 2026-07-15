@@ -543,3 +543,10 @@ pages-created: source-anthropic-equipping-agents-skills-blog.md (12-section stud
 pages-updated: agent-skills-standard.md (added Origin section with onboarding-guide framing, effectively-unbounded context philosophy, PDF skill canonical example), skillify-meta-skill.md (added original 2025-10-16 Anthropic vision at top — agents create/edit/evaluate Skills on their own + iterate-with-Claude methodology — that /skillify and skill-creator both implement), anthropic-skill-creator.md (cross-referenced as operational implementation of "iterate with Claude"), latent-vs-deterministic.md (added Anthropic's official "sorting via token vs algorithm" backing), anthropic.md (registered foundational source), index.md
 
 note: This is Anthropic's foundational Skills announcement, dated 2025-10-16 — ~5-7 months earlier than all other Skills content in our wiki. Restores chronological source-of-truth: the docs/repo/Garry/Matt/Khairallah all stand on this piece.
+
+## [2026-07-15] ingest | You Can Learn AI Agent Harness In Real Code In 20 Min (Sean's AI Stories)
+source: raw/2026-07-14-agent-harness-real-code-waku.md
+fetch-method: yt-dlp auto-captions (en-orig) → cleaned transcript → 精要 mode (essence-extraction)
+pages-created: source-agent-harness-real-code-waku.md (精要: four pillars + retrieval gate + 3 memory types + eval + local ops, from open-source Waku-Agent walkthrough)
+pages-updated: index.md
+note: 首次用新的「精要」分流模式 ingest 一个 YouTube 视频。字幕为自动生成，精要中已校正转录噪声（Asian→AI agent / LM→LLM / clock code→Claude Code 等）。未生成白板图（本次为分流测试，按需再补）。
