@@ -45,13 +45,14 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
         │
         └─(outline + report)───────→ /draft ─→ drafts/ (articles for publication)
                                        ↑
-                          raw/ + wiki/ also feed /draft
+                    raw/ + wiki/ + references/ also feed /draft
 ```
 
-**Four layers:**
+**Five layers:**
 - `raw/` — Immutable source documents. You curate what goes in. LLM never modifies.
 - `wiki/` — LLM-maintained knowledge pages. Entities, concepts, connections, visuals.
 - `drafts/` — Articles for publication. LLM seeds via `/draft`, human polishes.
+- `references/` — Content reference library. Curated source material (videos, articles, talks) you create *from* — folder per source with a note card + transcript. Not for ingest; feeds `/draft`.
 - `CLAUDE.md` — Schema. Conventions, commands, workflows.
 
 ## Commands
@@ -97,6 +98,8 @@ wiki/                   Knowledge pages (LLM-owned)
   visual-*.excalidraw   Diagrams
 drafts/                 Articles for publication (human-owned, LLM-seeded)
 learn/                  /learn session notes (human-owned; graduate into wiki/ as useful)
+references/             Content reference library — create-from material, not for ingest
+  <slug>/               README.md (note card) + transcript.txt + captions.srt
 research/               /research workspace (non-vault, Tier-4) — report + outline + candidates per topic
   <topic-slug>/         report.md, outline.md, ingest-candidates.md, meta.json
 events/                 Machine-readable event log (Hermes contract surface)
@@ -113,6 +116,17 @@ archive/                Everything from the pre-wiki vault
 ```
 
 ## Changelog
+
+### v0.7 — `references/` layer (2026-07-17)
+
+- Added **`references/`** as a fifth vault layer: a curated content-reference library
+  of source material (videos, articles, talks) to create *from* — distinct from `raw/`
+  (create-from vs ingest-into-wiki). One folder per source (`references/<slug>/`) with a
+  note card (`README.md`: source, why it's a reference, takeaways, content angles) +
+  `transcript.txt` + `captions.srt`. Human-curated; never auto-ingested (new NEVER rule).
+- First entry: Sean's AI Stories — *Agent Harness & Loop Engineering (19 min)*, captured
+  via `yt-dlp` (auto-caption pull + rolling-caption de-dupe → clean transcript).
+- Layer conventions + `yt-dlp` capture recipe documented in `references/README.md`.
 
 ### v0.6 — Claude Code only + skill folders (2026-07-06)
 

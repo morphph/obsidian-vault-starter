@@ -6,11 +6,12 @@ Bilingual (EN/ZH). Concise, action-oriented.
 
 ## Architecture
 
-Four layers:
+Five layers:
 - `raw/` — Immutable source documents. Human curates what goes in. LLM reads but never modifies.
 - `wiki/` — LLM-maintained knowledge base. LLM owns entirely. Creates, updates, cross-references pages.
 - `drafts/` — Articles for publication. Human owns. LLM creates initial draft via `/draft` (from wiki page, raw source, or topic), human polishes to publish.
 - `learn/` — Learning notes from `/learn` sessions. One file per session (mastery checklist + takeaways) for a blog, a Claude output, or pasted material. Human owns; prune or graduate into wiki/ as useful.
+- `references/` — Content reference library. Curated source material (videos, articles, talks) I deliberately draw on **when creating content** — not for ingest. One folder per source (`references/<slug>/`) with a note card (source, why it's a reference, takeaways, content angles) + transcript/captions. Human curates, LLM helps capture. Distinct from `raw/` by purpose: create-from vs ingest-into-wiki. See `references/README.md`.
 - This file (CLAUDE.md) — Schema. Conventions, workflows, structure. Co-evolved by human and LLM.
 
 Plus one **non-vault workspace** (not a vault layer — see `research/README.md`):
@@ -38,6 +39,7 @@ AI Builder's Knowledge Base:
 - Never make claims in wiki pages without tracing to a source file in `raw/`
 - Never link generic terms (AI, marketing, Python) — only link concepts worth tracking
 - Never auto-ingest `/research` candidates — only human-selected candidates go through `/ingest`
+- Never auto-ingest `references/` material into `wiki/` — it's a create-from library; ingest only if the human explicitly asks
 - Never treat `research/` outputs as Tier-1 or as selection/topic input — they are Tier-4 derivatives
 
 ## Conventions
