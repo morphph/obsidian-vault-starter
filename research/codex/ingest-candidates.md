@@ -1,4 +1,4 @@
-# Ingest Candidates — Codex 完全使用指南（进阶续集）
+# Ingest Candidates — Codex 常青报告（概览 + 进阶）
 
 > 圈选后才 `/ingest`（本 skill 不自动入库）。已对 `raw/` 去重。
 > 源纯度（memory `feedback_source_purity`）：本话题几乎全官方源（learn.chatgpt.com / developers.openai.com），优先级高；唯一第三方已标注。
