@@ -1,5 +1,7 @@
 # Handoff — build a "topic → whiteboard explainer video" skill
 
+> **[归档 2026-07-17]** 本 handoff 已完成使命(白板链路已建成:blog2video wb-kit + render-wb + content-ops WF1 lane=whiteboard),归档留底。原随附的 `references/sean-whiteboard-explainer/` 参照对已迁至 blog2video 仓库 `templates/sean-whiteboard-explainer/`(视频风格模板库),本目录不再保留副本。文中路径以归档时点为准,勿按图索骥。
+
 **For:** Fable 5 (`claude-fable-5`), running as a coding agent in this repo.
 **From:** a working session between vfan and Claude (Opus 4.8).
 **Deliverable Fable 5 should produce:** a Claude Code skill that turns a topic into a
@@ -102,16 +104,12 @@ vfan already runs two pipelines that together *are* most of this. Don't reinvent
 ## What's in this folder
 
 ```
-handoff/whiteboard-video-skill/
+archive/whiteboard-video-skill-handoff/   (原 handoff/whiteboard-video-skill/)
 ├── HANDOFF.md          ← you are here (context)
-├── BUILD-PROMPT.md     ← paste THIS into Fable 5
-└── references/
-    └── sean-whiteboard-explainer/
-        ├── note.md              ← how to use this reference (read first)
-        ├── visual-style-prompt.md ← the visual DNA to reproduce
-        ├── transcript.md        ← the narration voice/structure to emulate
-        └── captions.srt         ← caption format reference
+└── BUILD-PROMPT.md     ← paste THIS into Fable 5
 ```
+
+(原随附的 `references/sean-whiteboard-explainer/` 参照对——note.md / visual-style-prompt.md / transcript.md / captions.srt——已迁至 blog2video `templates/sean-whiteboard-explainer/`。)
 
 ## Repo resources Fable 5 should know about
 

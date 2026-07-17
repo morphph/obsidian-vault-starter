@@ -112,10 +112,22 @@ scripts/                Helper scripts (obsidian_content.py, ingest_url.py, ...)
 prompts/                Reusable prompts (skill-audit, research dispatch, ...)
 docs/                   Contracts & ops docs (obsidian-content-cli.md, ...)
 CLAUDE.md               Schema — the operating manual
-archive/                Everything from the pre-wiki vault
+archive/                Everything from the pre-wiki vault + retired handoffs
 ```
 
 ## Changelog
+
+### v0.8 — 风格模板参照迁出至 blog2video (2026-07-17)
+
+- **风格模板类参照不再放 `references/`**:用来定义视频格式/风格的参照(旁白口吻 +
+  视觉系统 + 渲染方式)统一落在 blog2video 仓库的 `templates/`(视频风格模板库,
+  模板 = transcript + visual-style-prompt 两半 + 模板卡)。`references/` 继续用于
+  「做内容的素材来源」。
+- 移除 `references/sean-agent-harness-loop-engineering/`(其风格模板角色已由
+  blog2video `templates/sean-whiteboard-explainer/` 承接,git 历史留底)。
+- `handoff/whiteboard-video-skill/` 使命完成,归档为
+  `archive/whiteboard-video-skill-handoff/`(随附的参照对已迁 blog2video,归档内
+  不留副本);`handoff/` 目录随之移除。
 
 ### v0.7 — `references/` layer (2026-07-17)
 

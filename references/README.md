@@ -3,6 +3,12 @@
 Curated source material I deliberately **draw on when creating content** — videos,
 articles, talks worth returning to for ideas, framings, examples, and angles.
 
+> **Style-template references live elsewhere.** References whose job is to *define a
+> video format/style to reproduce* (narration voice + visual system + render target)
+> are **not** kept here — they live in the blog2video repo's `templates/` (video style
+> template library; one folder per template = `transcript.md` + `visual-style-prompt.md`
+> + template card). This folder stays for **material to create content from**.
+
 ## How this differs from `raw/`
 
 | | `raw/` | `references/` |
@@ -45,4 +51,4 @@ Then de-dupe the rolling auto-captions into a clean `transcript.txt` and write t
 
 ## Index
 
-- [[sean-agent-harness-loop-engineering/README|Sean — AI Agent Harness & Loop Engineering (19 min)]] — cleanest plain-language frame for harness / loop / eval / RAG
+(暂无条目——收录后在此登记。)

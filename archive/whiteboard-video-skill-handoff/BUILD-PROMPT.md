@@ -1,5 +1,7 @@
 # Fable 5 Prompt — 造一个「话题 → 白板讲解视频」skill
 
+> **[归档 2026-07-17]** 本 prompt 已完成使命,归档留底。文中提到的 `references/sean-whiteboard-explainer/` 已迁至 blog2video 仓库 `templates/sean-whiteboard-explainer/`(视频风格模板库)。
+
 > 运行建议：模型 `claude-fable-5`，effort = `high`（复杂的多组件工程任务；别用 low/medium）。工作目录 = 仓库根 `obsidian-vault-starter/`。给读写 + 跑命令权限。这活儿大、跑得久——单次可能跑很多分钟，正常。先出方案、对齐关键决策，再动手建。
 
 ---
