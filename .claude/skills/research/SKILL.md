@@ -121,25 +121,42 @@ synthesis-time concern (step 5). Write `research/<slug>/research-plan.md`:
 Raw scraped material is heavy context pollution. **Spawn ONE sub-agent (Agent tool, type
 `general-purpose`)** to run the external fan-out and return ONLY synthesized findings — do not
 let raw fetches flood the main session. Give the sub-agent `research-plan.md`, the vault anchors
-from step 2, and the depth budget. It executes **channel by channel, each with that channel's
-search method from the plan.**
+from step 2, and the depth budget. It runs the two phases below **in strict order — 4a
+deep-research first, then 4b per-channel scanners** — and never fires a channel scanner before
+deep-research has returned.
 
-Tools the sub-agent uses, in order of reliability:
+#### 4a. 先跑 deep-research（强制地板，永远第一步）
 
-- **`deep-research` skill — baseline engine, always available.** Fans out web searches, fetches
-  sources, adversarially verifies claims, returns a cited synthesis. This is the floor: even if
-  every scanner below is missing, research still works (and the Web/官方 channel still produces).
+**The sub-agent MUST invoke the `deep-research` skill FIRST, before any channel scanner, at
+every depth — including `quick`.** It is the baseline engine: fans out web searches, fetches
+sources, adversarially verifies claims, returns a cited synthesis. Give it the topic plus the
+plan's 渠道① Web/官方 queries as the research question. This guarantees a floor of verified,
+cited findings even if every scanner in 4b is missing.
+
+- deep-research is a built-in skill and is **always available** — it MUST appear in `tools_ran`,
+  never in `tools_skipped`. There is no depth or condition under which it is skipped.
+- If it genuinely errors out (not merely returns thin results), that is a **hard failure**, not a
+  degradable scanner: record it in `warnings[]` prominently, and if it produced nothing usable set
+  `ok:false` with the reason in `errors[]` (step 7). Never silently proceed without it.
+- Use the **`defuddle`** skill to clean any URLs (from 4a or 4b) you open for closer reading.
+
+#### 4b. 再按渠道补扫（best-effort，增量叠加在 deep-research 之上）
+
+Only after 4a returns, augment each channel with its native scanner — these sharpen the
+engagement/recency signal deep-research alone can't measure. Each channel keeps its native search
+method from the plan:
+
 - **`last30days`** — web / Reddit / HN / YouTube trends (engagement-weighted).
 - **`bird`** — X targeted search / threads / engagement counts (bookmarks).
 - **`summarize`** — YouTube transcripts.
-- Use the **`defuddle`** skill to clean any fetched URLs.
 
-**Graceful degradation (required).** `last30days`, `bird`, and `summarize` are **VPS-only and
-absent on this machine today** — calling them locally will fail, and that is expected. Treat
-each external scanner as **best-effort**: if a tool is missing or errors, **record it in
-`warnings[]` and continue** — never fail the run for a missing scanner. When a scanner is absent,
-the channel still gets searched via `deep-research`/WebSearch (content is findable; only precise
-engagement numbers are not) — mark those numbers **「推断·未实测」**, never fabricate them.
+**Graceful degradation (required, 4b only).** `last30days`, `bird`, and `summarize` are **VPS-only
+and absent on this machine today** — calling them locally will fail, and that is expected. Treat
+each **4b** scanner as **best-effort**: if a tool is missing or errors, **record it in `warnings[]`
+and continue** — never fail the run for a missing 4b scanner (this leniency does NOT extend to 4a
+deep-research). When a scanner is absent, that channel still stands on the 4a deep-research harvest
+(content is findable; only precise engagement numbers are not) — mark those numbers
+**「推断·未实测」**, never fabricate them.
 
 The sub-agent returns, **grouped by channel**: per-channel candidate pieces (link · author ·
 date · engagement-or-「推断」· core content · **writing-style note**), plus a flat list of
@@ -245,3 +262,5 @@ After the envelope, show in terminal:
 - 报告**引用的外部原文 = Tier-3**:圈选后才作来源。
 - `/research` 自身**不写 ledger、不 push、不发布**。
 - 拿不到的互动/观看数据一律标 **「推断·未实测」**,绝不像第三方调研那样编造数字。
+- **外扫必须以 deep-research 打底**：step 4 的子 agent 每次、每个 depth 都先跑 `deep-research`(4a),
+  再叠加渠道 scanner(4b)。deep-research 只许出现在 `tools_ran`,绝不 skip;它硬失败按 `ok:false` 处理。
