@@ -17,24 +17,31 @@
   - `developers.openai.com/codex/hooks`（6 lifecycle events · exit 2 block · requirements.toml；hooks GA 2026-05-14）
   - `developers.openai.com/codex/config-reference` + `/config-advanced`（进阶旋钮穷举）
   - `developers.openai.com/codex/changelog`（2026-05~07 进阶功能投放，重核当前）
+- **长时 / 自主运行任务**（cross-cutting 工作流，横跨多个 feature——2026-07-17 补入，见文末补记）：
+  - OpenAI 官方博客「long-horizon tasks with Codex」**当前版**（`Prompt.md` / `Plan.md` / `Implement.md` 三件套 · "freeze the target so the agent doesn't build something impressive but wrong" 原则）——重核是否更新
+  - **Codex Cloud 后台 / 无人值守长跑**：`chatgpt.com/codex` · 本地关机不影响 · 12h 容器缓存 · `@codex` GitHub mention · setup/agent 网络分离
+  - **Codex Remote**（~2026-06-25 GA）：手机端控主机 + QR 一对一配对，长任务远程盯梢/续跑
+  - **全自动运行档**：automations 的 `approval_policy = "never"` + cron 定时 + project-scoped worktree = 无人值守闭环
+  - **PLANS.md + AGENTS.md** 组合跑多小时任务（cookbook 实操）
 - OpenAI Cookbook（官方，方法论一手）：
   - Using Goals in Codex · Iterative Repair Loops · Agent Improvement Flywheel（cookbook 三层 loop）
-  - AGENTS.md + PLANS.md 多小时长任务
-- 查询：`Codex skills site:developers.openai.com` · `Codex subagents max_threads` · `Codex automations cron` ·
+- 查询：`Codex skills site:developers.openai.com` · `Codex subagents max_threads` · **`Codex automations cron approval_policy never`** ·
+  **`Codex long-horizon tasks Prompt.md Plan.md`** · **`Codex unattended background cloud run`** · **`Codex Remote control from phone`** ·
   `Codex MCP config.toml example` · `Codex hooks requirements.toml exit 2` · `Codex cloud environment setup script` ·
-  `Codex worktree parallel` · `Codex prompting best practices GPT-5.5`（8-12 条）
+  `Codex worktree parallel` · `Codex prompting best practices GPT-5.5`（12-15 条）
 - 搜法：官方文档 / 原始出处优先；第三方（freeCodeCamp handbook 进阶章节、Simon Willison、cookbook 二创）作结构范本 + 外部视角。
 
 ## 渠道② X / Twitter
 - 查询：`"Codex" "AGENTS.md" min_faves:50 site:x.com` · `"Codex" subagents site:x.com` ·
-  `"Codex" worktree parallel site:x.com` · `"Codex" skills site:x.com` · `@OpenAIDevs Codex` ·
-  `@simonw Codex` ·（6-10 条）
+  `"Codex" worktree parallel site:x.com` · `"Codex" skills site:x.com` · **`"Codex" automations cron site:x.com`** ·
+  **`"Codex" overnight/unattended/autonomous site:x.com`** · `@OpenAIDevs Codex` · `@simonw Codex` ·（8-12 条）
 - 搜法：按收藏(bookmark)加权（收藏=想存来重读，信号比赞硬）；抓 workflow long-thread；记 作者@handle + 互动 + 是否长文。
 - ⚠️ 本机无 `bird` → 互动数标「推断·未实测」；handle/URL 未核前不在正文归因具体人。
 
 ## 渠道③ YouTube
 - 查询：`Codex subagents tutorial 2026` · `Codex automations cron youtube` · `Codex MCP setup youtube` ·
-  `OpenAI Codex advanced workflow 2026` · `Codex parallel worktree youtube`（5-8 条）
+  `OpenAI Codex advanced workflow 2026` · `Codex parallel worktree youtube` · **`Codex autonomous long-running task youtube`** ·
+  **`Codex cloud background agent youtube`**（6-9 条）
 - 搜法：近 60 天优先；实操（屏幕共享 build-along）> 理论；记 频道 + 观看 + 长度。
 - ⚠️ 本机无 `summarize`/`last30days` → 观看/互动标「推断·未实测」，仅作 leads。
 
@@ -48,3 +55,10 @@
 - 候选源对 `raw/` 去重（Codex 进阶源页多已在库，命中标「已在库」）。
 - 拿不到的互动数据标「推断·未实测」，绝不编造。
 - 报告末【建议角度】2-4 个，每个六件套（标题/thesis/为何我们为何现在/prior_coverage 关系/骨架/渠道）。
+
+## 补记（2026-07-17，作者反馈后补入）
+- 作者指出原计划漏了「automations / Codex 跑长时任务」。核查结论：**automations 原本就在**（渠道①第4行 + 汇总表），
+  但**长时/自主运行**只被 Cookbook「PLANS.md 多小时」擦到边，**未立独立查询簇**——已补为渠道① 一等公民。
+- 遗漏根因（存档警醒）：① 计划按离散 feature 组织，「长时·自主运行」是横跨 automations+cloud+Remote+`/goal`+PLANS.md 的
+  **工作流**，掉进 feature 桶之间的缝；② 长时任务在 vault 已是厚方法论锚点，被误归「§0 内部已覆盖」而非「需外扫当前状态」
+  ——即 §11.6 自我重复陷阱。修正：外扫「现在怎么真把长任务无人值守跑起来」的 2026 新状态（Cloud 后台 / Remote / approval=never）。
