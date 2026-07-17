@@ -23,6 +23,15 @@
 
 别把这份清单当结论。真去读、真去把 excalidraw / remotion 两个 skill 跑通看它们能给你什么,形成你自己的判断。
 
+**复用优先——这条链路大半已经存在,先摸清再决定造什么(别重造轮子)**
+主人另外两个项目合起来几乎就是这个 skill。你要有这三个仓库的读权限:
+- **content-ops**(`/Users/yufanp/Desktop/Project/content-ops`)——**编排的形状已经有了**。WF3 = `话题 → 深调研 → 作者复审闸 → 产出发布`;WF1 = `URL → 精读 → 白板 → 闸 → 渲染 → 打包`,全程写中央 ledger。**这个 skill 本质就是「把输出格式钉成 Sean 白板模板的 WF3」**。读 `.claude/commands/WF3.md`、`WF1.md` 当编排蓝本——话题前门、复审闸、ledger 纪律都已解决,别从零发明。
+- **blog2video**(`/Users/yufanp/Desktop/Project/blog2video`)——**渲染层已经有了,而且它不是单个渲染器,是一个按格式分的视频模板库**(`.claude/skills/`:`faceless-explainer`、`website-to-video`、`product-launch-video`、`slideshow`、`talking-head-recut`…),底下是共享的 **HyperFrames 动画引擎 + Remotion 渲染 + 接好的 TTS**。离你最近的是 **`faceless-explainer`**(话题 → 纯发明式视觉的讲解视频)。Sean 的手绘「N 分钟学会 X」白板,基本就是**这个家族里的一个新模板**(更长、单块 Excalidraw 画布、白板视觉系统)。复用它的引擎 + TTS,**别在 vault 里另起一套 Remotion+TTS**。
+- **「让主人挑模板」这件事 blog2video 已经解决**:它靠 `/hyperframes` + 每个模板自述里的路由规则在格式间转派。所以你是**往这个路由里加一个模板**,不是从头造一个菜单。两种入口都要照顾:① 「12 分钟讲 X」这类把格式写进话题的,直接路由到白板模板;② 先跑 WF3 式调研、到渲染时再从菜单挑模板(白板 / faceless-explainer / slideshow…)。
+- **一个大决策,先提议别默认**:既然渲染和编排都在别的 repo,这**到底还是不是一个 vault skill**?还是真正形态是「**在 blog2video 里加一个白板模板 + 在 content-ops 里做 WF3 式话题前门**」,vault 只留 Sean 参照 + Excalidraw 白板作画?把三个 repo 都读一遍再提议每块落在哪、怎么跨库够到。vault 这边仍然拥有:参照(`references/sean-whiteboard-explainer/`)、调研 stash(`research/`)、Excalidraw 白板作画。
+
+(详见 HANDOFF.md 的「This is WF3 with the format pinned」一节。)
+
 **这个 skill 要实现的链路(目标,不是给你逐步脚本)**
 一个命令、一个话题,跑这条流水线:
 
@@ -45,15 +54,16 @@
 如果某个做法值得做但会碰到上面某条,明说这个张力,别偷偷绕过。
 
 **留给你拍板的决策(先提议,别默默替他定)**
-- **TTS 供应商**(ElevenLabs / OpenAI / 其他)——挑一个并说明 API key / 成本影响。
-- **渲染器**——Remotion 是对 Excalidraw 导出做定时 pan/zoom 的天然选择,但你确认并给出方案。
-- **调研怎么跑**——复用现有 `/research`,还是在 skill 内跑一个更轻的话题调研。
-- **skill 的粒度**——一个 skill,还是一个 skill 编排几个脚本。你定。
+- **落点(最大的一个)**——这是一个 vault skill,还是「blog2video 里的白板模板 + content-ops 里的 WF3 式话题前门」?给方案,别默认在 vault 里从零建。
+- **TTS**——blog2video 已接好 TTS(见上面复用块);优先复用,只有理由充分才提替代方案(说明 API key / 成本)。
+- **渲染器**——blog2video 已经在 HyperFrames 底下跑 Remotion;复用那套引擎做 Excalidraw 导出的定时 pan/zoom,别在 vault 里重搭一套。确认接缝,别重建。
+- **调研怎么跑**——复用 content-ops WF3 的调研 / vault 的 `/research` / skill 内轻调研,三选一并说清是否吃 vault 的 research stash。
+- **粒度与模板注册**——一个 skill 还是编排几个脚本;以及白板模板怎么注册进 blog2video 的 `/hyperframes` 路由,让两种入口都能选到它。
 
 **任务**
 1. 把参考和两个可复用 skill(excalidraw / remotion)摸透,把上面这条链路在脑子里跑通。
 2. **先出一份简短方案**:链路怎么落地、上面四个决策你怎么选(带理由)、skill folder 长什么样、哪里可能卡住。把关键决策摆出来让主人对齐——这一步别跳过,主人想在你动手大建之前拍一次板(和 skill 本身的复审闸门是同一个哲学)。
-3. 对齐后,把 skill 建出来:`.claude/skills/whiteboard-video/`(名字你可提更好的),SKILL.md 承载工作流,`references/` / 脚本 / 模板按需分层。把这个 handoff 里的 `references/sean-whiteboard-explainer/` 作为 skill 自带的风格靶子带进去。
+3. 对齐后,按你方案里定的**落点**把它建出来(vault skill / blog2video 模板 / content-ops WF3 前门,或三者组合;名字你可提更好的):承载工作流的 SKILL.md,`references/` / 脚本 / 模板按需分层。把这个 handoff 里的 `references/sean-whiteboard-explainer/` 作为自带的风格靶子带进去。
 4. 端到端自测一遍(哪怕用一个小话题),证明链路到复审闸门为止真能跑通;闸门之后的音频/渲染至少要能在批准后跑起来。
 
 **工作方式(自己拿捏,别按我的步骤走)**

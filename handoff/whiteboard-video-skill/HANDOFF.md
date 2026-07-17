@@ -67,10 +67,34 @@ spends anything on them. Build the skill so it stops there and waits.
 - **Review gate after step 3**, before audio/render.
 - **House style for the build prompt** mirrors `prompts/fable5-pipeline-audit-prompt.md` (context/intent → where to read → invariants → task → working style → boundaries → deliverable shape → communication style).
 
+## This is WF3 with the format pinned — reuse before you build
+
+vfan already runs two pipelines that together *are* most of this. Don't reinvent them; survey first, then propose how this skill leans on them.
+
+**The shape already exists — content-ops WF1 / WF3.** WF3 is `topic → deep research → author-review gate → produce & publish`; WF1 is `URL → 精读 → whiteboard → gate → render → package`, writing a central ledger. This skill is **WF3 with the output format pinned to the Sean whiteboard template** (topic → research → gate → *whiteboard video* instead of an article). Read these as the orchestration blueprint — the topic-front, the review gate, the ledger discipline are already solved:
+- `/Users/yufanp/Desktop/Project/content-ops/.claude/commands/WF3.md`
+- `/Users/yufanp/Desktop/Project/content-ops/.claude/commands/WF1.md`
+
+**The render layer already exists — blog2video is a template library, not a single renderer.** `/Users/yufanp/Desktop/Project/blog2video` is a **library of per-format video templates** (`.claude/skills/`) on a shared **HyperFrames** animation engine + **Remotion** render + a wired-up **TTS**. Existing templates: `faceless-explainer`, `website-to-video`, `product-launch-video`, `slideshow`, `talking-head-recut`, `motion-graphics`, … The **nearest neighbor is `faceless-explainer`** — *"topic → faceless explainer where every visual is invented (typography, diagrams, data-viz)"*. Sean's hand-drawn *"learn X in N min"* whiteboard is essentially **a new template in the same family** (longer-form, single Excalidraw canvas, whiteboard visual system). Reuse blog2video's engine + TTS — do **not** stand up a fresh vault-local Remotion+TTS stack.
+
+**Template selection is already a solved pattern — you're adding one template, not building a menu.** blog2video already routes between formats via `/hyperframes` + each template's own routing rules (*"not a product launch? use faceless-explainer; a real site? use website-to-video"*). The new whiteboard template just **registers into that router and declares when it's the right pick.** That covers both entry modes vfan wants — design for both:
+1. **Format baked into the ask** — *"explain X in 12 min"* routes straight to the whiteboard template.
+2. **Research first, then choose** — WF3-style topic research runs; at render time the author picks a template from the menu (whiteboard-12min / faceless-explainer / slideshow / …).
+
+**The one big open decision — propose, don't assume:** since the render + orchestration both live in *other repos*, is this even a vault skill? Or is the real build **"a whiteboard template added inside blog2video + a WF3-style topic-front in content-ops"**, with this vault holding only the Sean reference + the Excalidraw whiteboard authoring? Look at all three repos, then propose where each piece lives and how you'd reach across them. The Obsidian side still owns: the **reference** (`references/sean-whiteboard-explainer/`), the **research stash** (`/Users/yufanp/Desktop/Project/obsidian-vault-starter/research/`), and Excalidraw whiteboard authoring.
+
+**Cross-repo map (real paths on vfan's Mac — you need read access to all three):**
+
+| asset | path | what to reuse |
+|---|---|---|
+| this vault (where you run) | `…/Desktop/Project/obsidian-vault-starter` | reference, research stash, `excalidraw-diagram` skill |
+| blog2video (engine + template library) | `…/Desktop/Project/blog2video` | HyperFrames + Remotion render, TTS, `faceless-explainer` as the template pattern |
+| content-ops (orchestration) | `…/Desktop/Project/content-ops` | WF1/WF3 as the `topic→research→gate→render→ledger` blueprint |
+
 ## Decisions left to Fable 5 (propose, don't guess silently)
 
-- **TTS provider** for step 4 (ElevenLabs / OpenAI / other) — flag the API-key/cost implication.
-- **Renderer** for step 5 — this repo has a **Remotion** skill (`remotion-best-practices`); Remotion (React video) is the natural fit for timed pan/zoom over an Excalidraw export, but Fable 5 should confirm and propose the approach.
+- **TTS provider** for step 4 — but blog2video already has a wired-up TTS (see reuse section above); prefer reusing it, and only propose an alternative with the API-key/cost reason.
+- **Renderer** for step 5 — blog2video already runs **Remotion under HyperFrames**; reuse that engine for timed pan/zoom over the Excalidraw export rather than a vault-local Remotion stack. Confirm the seam, don't rebuild it.
 - **Whiteboard generation** — this repo has an **`excalidraw-diagram`** skill that emits `.excalidraw` JSON; reuse it for step 3.
 - **How research runs** — this repo already has a `/research` skill; decide whether to reuse it or run a lighter topic-research pass inside the skill.
 - **Skill granularity** — one skill, or a skill that orchestrates a few scripts. Fable 5's call.
