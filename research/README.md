@@ -20,6 +20,14 @@ research/<topic-slug>/
 两个原则:**采集按渠道**(每渠道用该渠道原生搜法),**综合按双轴**(事实轴锚官方源 / 增长轴排
 Top-N + 角度)。拿不到的互动/观看数据标「推断·未实测」,绝不编造。
 
+**两种产物模式**(`mode:` 参数,只影响 step 5 交付形状,采集 step 1-4 相同):
+- **`mode:report`**(默认)= 上面的选题决策文档,末尾 Gate-1 建议角度喂选题。
+- **`mode:guide`**(话题含 指南/教程/上手/进阶/guide/tutorial 时自动建议)= **常青读者指南**:
+  产出 `facts.md`(核验台账,住所有研究元话术)+ `<slug>-guide.md` 或成对 `<slug>-overview.md` +
+  `<slug>-advanced.md`(头部契约 → 心智模型 → 能力映射/职责边界 → 每主题处方 → 端到端工作流 →
+  分阶段计划 → 可复制模板 → 检查清单 → 官方索引)。**不产渠道 Top-N、不产建议角度**——指南本身即交付物。
+  骨架与硬性配额见 `.claude/skills/research/references/guide-template.md`。样例:`research/codex/`。
+
 下游:
 - `ingest-candidates.md` → 人圈选 → `/ingest` 进 `raw/`(才成 Tier-1)。
 - `report.md` §7 挑一个角度 → `/draft research/<slug>/` 写博客(无单独 outline.md;§7 角度即骨架)。

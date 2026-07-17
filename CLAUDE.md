@@ -60,7 +60,7 @@ Eight slash commands. Lightweight ones live in `.claude/commands/{name}.md`; hea
 |---------|-------------|
 | `/ingest <url\|file\|scan>` | Drop a source into the wiki. One source fans out across multiple pages. |
 | `/ingest-anthropic-daily [window]` | Sweep all Anthropic + Claude sources, dedupe, write category-grouped digest. |
-| `/research <topic>` | Research a topic → research-plan + single report (facts + per-channel Top-N + ranked angles) + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
+| `/research <topic>` | Research a topic → research-plan + ingest-candidates in `research/<slug>/` (non-vault). `mode:report` (default): single report (facts + per-channel Top-N + ranked angles). `mode:guide`: evergreen reader guide(s) + facts.md ledger. Doesn't auto-ingest. |
 | `/query <question>` | Ask a question against the wiki. Synthesize with [[wikilink]] citations. |
 | `/lint` | Health check: orphans, stale pages, contradictions, index drift. |
 | `/visualize <topic\|path\|blank>` | Generate Excalidraw diagram from wiki knowledge. |

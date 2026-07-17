@@ -60,7 +60,7 @@ Built on [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893
 | Command                             | What it does                                                                                          |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `/ingest <url\|file\|scan>`         | Drop a source → wiki pages fan out. Step 3 routes by type: **blog/article/tweet → full natural translation**; **PDF/YouTube → 精要 extraction** (yt-dlp captions / `Read` for PDF); GitHub repo → deep scan. |
-| `/research <topic>`                 | Research a topic → report + outline + ingest-candidates in `research/<slug>/` (non-vault). Doesn't auto-ingest. |
+| `/research <topic>`                 | Research a topic → research-plan + ingest-candidates in `research/<slug>/` (non-vault). `mode:report` (default) = single report + Gate-1 angles; `mode:guide` = evergreen reader guide(s) + `facts.md` ledger (auto-suggested for 指南/教程/进阶/guide topics). Doesn't auto-ingest. |
 | `/query <question>`                 | Ask the wiki. Optionally file answer back as synthesis page.                                          |
 | `/lint`                             | Health check: orphans, contradictions, stale pages, missing links.                                    |
 | `/visualize <topic\|source\|blank>` | Generate Excalidraw diagram from wiki knowledge.                                                      |
