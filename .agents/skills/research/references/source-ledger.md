@@ -60,18 +60,33 @@ Use this only when discussing reach or prominence:
 
 - **URL:**
 - **Channel:**
-- **Observed at:** <timestamp or unknown>
+- **Surface:** <original page, connector/API, search card, or third-party snapshot>
+- **Query / sort:** <query and Latest/Top, direct URL, or not applicable>
+- **Author / handle:**
+- **Published at:**
+- **Observed at:** <timestamp with timezone or unknown>
+- **Post type:** <post, reply, quote, thread, article, video, etc.>
+- **Text access:** complete | partial | inaccessible
 - **Views / impressions:**
 - **Likes / reactions:**
 - **Comments / replies:**
+- **Reposts / shares:**
+- **Quotes:**
 - **Bookmarks / saves:**
 - **Signal status:** observed | proxy | unavailable
+- **Metric precision:** exact-ui | rounded-ui | partial | none
 - **Proxy basis:** <search prominence, citation frequency, author reach; omit if observed>
 - **Comparable set:** <what this item was compared against, if ranked>
 ```
 
-Never infer missing numbers. Without a comparable set and observed metrics, describe a piece as
-representative or high-signal, not Top-N.
+`observed` requires a direct original surface or first-party API result and an observation time.
+A search card, third-party snapshot, snippet, or another author's retelling is `proxy`. A blank
+or hidden metric is `unavailable`, not zero. Preserve rounded UI strings such as `3.1M`; do not
+convert them into invented exact counts.
+
+Never infer missing numbers. Rank only within an explicit, comparably observed set using the same
+metric and observation window. Otherwise describe a piece as representative, discourse-shaping,
+or high-signal rather than Top-N.
 
 ## Open questions
 

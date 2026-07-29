@@ -85,6 +85,11 @@ Choose channels because they fit the topic, not because a fixed template demands
 channels include official sites, original essays, papers, GitHub, X, Reddit, Hacker News,
 newsletters, blogs, talks, and videos.
 
+Before using a browser for a channel, discover whether a dedicated connector, API, or MCP can
+perform the required operation. Prefer the dedicated surface when it is available and
+appropriately scoped; otherwise use a browser for direct, read-only observation, then public web
+discovery or third-party snapshots as explicit fallbacks.
+
 Search for distinct evidence roles:
 
 - **Originators** — earliest traceable use, original proposal, or primary release.
@@ -96,6 +101,10 @@ Search for distinct evidence roles:
 
 Read `references/community-discourse.md` when the topic is community-formed, definitionally
 unstable, or driven by social discussion.
+
+When X materially carries the origin, spread, definition, or dispute, also read
+`references/x-community-research.md` and follow its routing, sampling, capture, and fallback
+protocol. Do not add an X lane merely to fill a channel quota.
 
 ### 3. Deep-read the load-bearing sources
 
@@ -116,6 +125,8 @@ Before drafting the report:
 - record competing evidence instead of averaging it away;
 - counter-search claims containing `first`, `only`, `best`, `top`, `most`, or exact metrics;
 - label engagement signals `observed`, `proxy`, or `unavailable`.
+- preserve the observation surface, query boundary, timestamp, and displayed metric precision
+  for social evidence.
 
 If actual performance data is absent, call a source `representative` or `high-signal`; do not
 rank it as Top-N.
@@ -155,6 +166,8 @@ Before finishing, verify:
 - the report distinguishes fact, source opinion, and synthesis;
 - origin and superlative claims show their search limits;
 - community coverage includes disagreement, not just amplifiers;
+- X-based community claims come from directly observed original posts or are explicitly marked
+  `proxy` or `unavailable`;
 - the explanation is useful to the stated reader without assuming wiki context;
 - recommendations do not outrun the evidence;
 - all four artifacts exist and links resolve syntactically.

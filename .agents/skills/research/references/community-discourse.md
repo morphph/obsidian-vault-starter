@@ -39,6 +39,10 @@ Answer:
 
 Do not force all channels into every report.
 
+When X is load-bearing, read `x-community-research.md`. Use reproducible queries or direct post
+URLs rather than a personalized feed. Treat `Latest` as a chronology aid and `Top` as candidate
+discovery, not proof of a platform-wide ranking.
+
 ## Popularity versus importance
 
 A viral post may be historically important to the discourse without being factually reliable.

@@ -1,46 +1,44 @@
-# research/ — 调研工作区(非 vault)
+# research/ — 调研工作区（非 vault）
 
 `/research` skill 的输出目录。**这不是 vault 的一部分。**
 
 ## 这是什么
 
-每次 `/research "<topic>"` 跑完,在这里建一个 `<topic-slug>/` 子目录,产出:
+每次 `/research "<topic>"` 跑完，在这里建立一个 `<topic-slug>/` 子目录，产出：
 
 ```
 research/<topic-slug>/
-  research-plan.md      检索计划(按渠道拆 + 每渠道原生搜法 + 消歧 + 检查点)
-  report.md             一份到底的调研报告。结构对齐参考报告:
-                          §1 这话题是什么(事实轴) · §2 焦点实体深挖
-                          §3-5 X / Web / YouTube 各渠道 Top-N(增长轴,含写作风格拆解)
-                          §6 核心洞察 · §7 排序的内容角度(增长轴→/draft 入口) · 附录时间线
-  ingest-candidates.md  建议进 vault 的外部原文清单(每条:一句理由 + URL)
-  meta.json             机器记录(slug / topic / sha256 / tools-used / warnings)
+  research-plan.md      问题地图、渠道选择、时间边界、消歧与反证计划
+  report.md             面向读者的事实、机制、起源、社区争议与实际意义
+  source-ledger.md      claim 级证据、来源角色、冲突、访问限制与互动状态
+  ingest-candidates.md  值得人工复核、之后可能进入 vault 的外部原文
 ```
 
-两个原则:**采集按渠道**(每渠道用该渠道原生搜法),**综合按双轴**(事实轴锚官方源 / 增长轴排
-Top-N + 角度)。拿不到的互动/观看数据标「推断·未实测」,绝不编造。
+三个原则：
 
-**两种产物模式**(`mode:` 参数,只影响 step 5 交付形状,采集 step 1-4 相同):
-- **`mode:report`**(默认)= 上面的选题决策文档,末尾 Gate-1 建议角度喂选题。
-- **`mode:guide`**(话题含 指南/教程/上手/进阶/guide/tutorial 时自动建议)= **常青读者指南**:
-  产出 `facts.md`(核验台账,住所有研究元话术)+ `<slug>-guide.md` 或成对 `<slug>-overview.md` +
-  `<slug>-advanced.md`(头部契约 → 心智模型 → 能力映射/职责边界 → 每主题处方 → 端到端工作流 →
-  分阶段计划 → 可复制模板 → 检查清单 → 官方索引)。**不产渠道 Top-N、不产建议角度**——指南本身即交付物。
-  骨架与硬性配额见 `.claude/skills/research/references/guide-template.md`。样例:`research/codex/`。
+- **按证据角色采集**：官方/一手来源、原始作者、社区传播、实践、解释与批评不能混为一类。
+- **按读者认知路径综合**：先回答是什么，再解释起源、机制、边界、争议和实际意义。
+- **把验证元数据留在 ledger**：报告保持可读；互动数据只写 `observed`、`proxy` 或
+  `unavailable`，没有可比样本就不写 Top-N。
 
-下游:
-- `ingest-candidates.md` → 人圈选 → `/ingest` 进 `raw/`(才成 Tier-1)。
-- `report.md` §7 挑一个角度 → `/draft research/<slug>/` 写博客(无单独 outline.md;§7 角度即骨架)。
+`/research` 只负责理解话题，不负责研究内容市场或选择写作角度。下游边界：
+
+- `/topic research/<slug>/`：分析市场覆盖、内容表现和空白，产出候选角度。
+- 人选择角度后，`/topic` 产出 `topic-brief.md` 与 `outline.md`。
+- `/draft`：基于选定的 topic brief、outline 和研究证据写文章。
+- `ingest-candidates.md`：人圈选后才通过 `/ingest` 进入 `raw/`。
 
 ## Tier 与边界(重要)
 
 - **调研报告本身 = Tier-4 衍生品**:归档可检索,但**排除出 vault、排除出选题输入**(否则选题会引用自己的调研结论 → 塌缩)。
 - **报告引用的外部原文 = Tier-3**:圈选后经 `/ingest` 才进 `raw/` 成 Tier-1。
-- `/research` **不自动 ingest、不写 `wiki/log.md`、不 push、不发布**。只产候选清单,人圈选后才 `/ingest`。
+- `/research` **不自动 ingest、不写 `wiki/log.md`、不发布**。只产候选清单，人圈选后才
+  `/ingest`。
 
 > **⚠️ gbrain Tier-1 sync 必须排除本目录(`research/`)。**
 > 否则机器按 engagement 挑的调研素材会被当 Tier-1 收,稀释 vault 的作者品味锚,并造成同文双路入库(重复 atoms)。gbrain sync 的监听范围应只含 `raw/`。此排除配置在本仓之外,需在 gbrain 侧确认。
 
 ## `_reference/`
 
-回归 fixture(如 content-ops 的 `outputs/codex-guide/PILOT.md`)。`/research` 的产出应与 PILOT 同形(两轨调研 + 候选清单)。fixture 待从 content-ops 拷入。
+历史回归材料仅用于审计旧产物的优缺点，不定义当前 `/research` 的结构。当前契约以
+`.agents/skills/research/SKILL.md` 和其 `references/` 为准。
