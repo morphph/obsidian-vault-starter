@@ -1,0 +1,4 @@
+interface:
+  display_name: "Topic"
+  short_description: "Find a differentiated editorial angle worth writing"
+  default_prompt: "Use $topic to analyze the content landscape and propose evidence-backed article angles."
