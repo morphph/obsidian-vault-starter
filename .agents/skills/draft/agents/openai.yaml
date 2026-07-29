@@ -1,0 +1,4 @@
+interface:
+  display_name: "Draft"
+  short_description: "Write a publication-ready article from an approved brief"
+  default_prompt: "Use $draft to turn this selected topic brief and its evidence into a strong article draft."
