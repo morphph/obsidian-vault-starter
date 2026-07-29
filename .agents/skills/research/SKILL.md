@@ -35,6 +35,9 @@ Parse the request for:
 - **Reader context** — infer from the request. If relevant, read `audience-profile.md`; do not
   require internal wiki coverage.
 - **`as_of:`** — default to today. State it explicitly for fast-moving topics.
+- **Reference / golden example** — if the user provides one, treat it as an editorial and
+  coverage benchmark, not as evidence. Read `references/reference-benchmarking.md` before
+  research and record what to preserve, what to verify, and the comparison criteria.
 
 Depth controls breadth and verification effort, not a dependency on any named research tool:
 
@@ -99,6 +102,12 @@ Search for distinct evidence roles:
 - **Practitioners** — concrete implementations, results, and failure reports.
 - **Critics** — counterarguments, falsifications, and hype checks.
 
+For current products, APIs, commands, prices, deployment advice, or other operational
+best-practice topics, create a **technical-contract lane**. Verify each actionable claim against
+the canonical current source and record the surface, minimum version, access prerequisites,
+provider or plan limits, beta status, and `as_of` date. Do not let a launch post or community
+summary carry a runtime contract.
+
 Read `references/community-discourse.md` when the topic is community-formed, definitionally
 unstable, or driven by social discussion.
 
@@ -127,6 +136,12 @@ Before drafting the report:
 - label engagement signals `observed`, `proxy`, or `unavailable`.
 - preserve the observation surface, query boundary, timestamp, and displayed metric precision
   for social evidence.
+- record the author's current affiliation, vendor relationship, sponsorship, customer status, or
+  other dependency when it changes the source's independence;
+- collapse posts, videos, newsletters, and interviews that repeat one person's test into one
+  evidence chain rather than counting them as independent confirmation;
+- for technical recommendations, attach the exact surface, version, prerequisites, limits, and
+  verification path needed to execute them safely.
 
 If actual performance data is absent, call a source `representative` or `high-signal`; do not
 rank it as Top-N.
@@ -141,6 +156,18 @@ Ask what would make the current explanation wrong:
 - Is a supposed official source actually a third-party interpretation?
 - Are examples demonstrations rather than production evidence?
 - Is the report mistaking virality for truth?
+
+Apply a **recommendation risk gate** to advice involving deletion, autonomous permissions,
+production changes, migrations, paid actions, or high-stakes domains. Such advice needs:
+
+1. direct primary evidence and a serious counter-evidence check;
+2. a reversible pilot or canary with explicit success metrics;
+3. rollback and permission boundaries;
+4. a human Gate for irreversible or high-stakes consequences.
+
+If these conditions are absent, downgrade the advice to a hypothesis to test. Distinguish
+removing redundant prompt scaffolding from removing executable tests, acceptance checks, or
+safety controls.
 
 Update the ledger and soften or remove unsupported claims.
 
@@ -158,6 +185,11 @@ Translate complexity without erasing it:
 - explain why the topic matters to this reader;
 - end with proportionate next steps and a curated resource index.
 
+For an actionable best-practice report, express recommendations as decision contracts:
+**surface → when to use → action → evidence → boundary → how to verify**. State what new evidence
+would change the recommendation. Avoid a universal “best” or “default” when the correct answer
+depends on the reader's workload eval.
+
 ### 7. Quality check
 
 Before finishing, verify:
@@ -170,6 +202,14 @@ Before finishing, verify:
   `proxy` or `unavailable`;
 - the explanation is useful to the stated reader without assuming wiki context;
 - recommendations do not outrun the evidence;
+- every claim containing `first`, `only`, `best`, `top`, `most`, `highest`, `always`, `never`,
+  an exact metric, a quote, an identity, a version, a price, or a command has a matching ledger
+  record or has been softened;
+- technical instructions state their surface and prerequisites and do not silently mix API,
+  CLI, subscription, provider, beta, and production behavior;
+- high-risk recommendations include a reversible pilot, rollback, and the required human Gate;
+- source independence is not overstated and repeated items from one evidence chain are not
+  counted as corroboration;
 - all four artifacts exist and links resolve syntactically.
 
 ## Boundary with other skills

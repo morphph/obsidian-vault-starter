@@ -85,6 +85,14 @@ For each item:
 
 <A proportionate learning or experimentation path. Prefer a small first step over generic advice.>
 
+For operational or best-practice research, prefer a compact decision-contract table:
+
+| Surface / scenario | When to use | Action | Evidence | Boundary | Verification |
+|---|---|---|---|---|---|
+
+Add `什么证据会改变这些建议` when recommendations depend on a fast-moving product, early
+community evidence, benchmark choice, or the reader's own workload.
+
 ## 关键资源索引
 
 ### Start here
@@ -102,3 +110,7 @@ For each item:
 - Do not use channel sections as filler.
 - Do not repeat the same source in multiple lists unless it serves a distinct role.
 - Prefer a handful of deeply understood sources over a large annotated link dump.
+- Keep commands, prices, defaults, versions, beta flags, provider limits, and permissions adjacent
+  to their applicable surface.
+- Distinguish deleting redundant natural-language self-check prompts from deleting executable
+  tests, acceptance rubrics, production controls, or human Gates.

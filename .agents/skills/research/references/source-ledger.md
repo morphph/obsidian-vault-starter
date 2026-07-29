@@ -28,6 +28,8 @@ Create one record for every load-bearing or contested claim:
 - **Supporting sources:** <URLs>
 - **Counter-evidence:** <URLs or search result>
 - **Search boundary:** <what was checked before using first/only/best>
+- **Operational contract:** <surface, minimum version, prerequisites, provider/plan/beta limits,
+  or not applicable>
 - **Used in report:** <section>
 - **Notes:** <what the sources actually establish>
 ```
@@ -47,6 +49,9 @@ Record sources that materially shape the report:
 - **Published / updated:**
 - **Role:** originator | official | amplifier | explainer | practitioner | critic
 - **Source class:** primary | first-party | independent analysis | community | aggregator
+- **Affiliation / dependency:** <employer, vendor, sponsor, customer, investor, evaluation access,
+  or none found>
+- **Evidence chain:** <other items that repeat the same underlying test, interview, or release>
 - **Claims supported:** C-001, C-004
 - **Limitations:** <conflict of interest, missing data, inaccessible original, etc.>
 ```
