@@ -10,8 +10,8 @@ Read `AGENTS.md` before working in this repository.
 Turn a chosen editorial position and its evidence into a strong article. Preserve the author's
 take, serve the stated reader, and write a narrative that stands on its own outside the vault.
 
-This version writes articles only. Do not create podcast, video, social-thread, or publication
-automation artifacts.
+This version writes articles only. Do not create other content formats or publication automation
+artifacts.
 
 ## Inputs
 
