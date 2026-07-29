@@ -1,68 +1,104 @@
-# report.md 模板 — 双轴综合报告（mirror 参考形状 §1-7 + appendix）
+# Reader-facing research report
 
-> step 5 用。Mirror the reference shape (see `research/_reference/` fixtures); graft our
-> discipline inline — don't replace the shape.
+Use this as a question sequence, not a rigid quota. Omit irrelevant sections and rename headings
+to fit the topic. The report should feel like a strong guided explanation, not research notes.
 
 ```markdown
-# <topic> 深度调研报告
-> depth: <quick|standard|deep> · generated: <YYYY-MM-DD> · tools: <ran> | skipped: <skipped>
-> ⚠️ 互动数据：X/YouTube 部分为「推断·未实测」（本机无 scanner），已逐条标注
+# <Topic> 深度调研报告
 
-## TL;DR
-<3-5 句:最关键的发现 + 我们该怎么切。我们的增值,Dispatch 没有但有用>
+> 调研日期：<YYYY-MM-DD>
+> 调研范围：<channels actually used>
+> 面向读者：<specific reader>
+> 截止时间：<as-of boundary for fast-moving topics>
 
-## 0. Vault 已有锚点（查内）
-- [[<wiki-page>]] — 一句话:我们已经怎么讲过这个
-- (若 drafts/ 已有成稿,这里 ⚠️ 显著标注,避免重复 draft)
+## Executive Summary
 
-## 1. 这个话题是什么 — 事实轴
-定义 + 演进 + 关键事实。**逐条对官方文档/原始出处核验**:claim + 出处链接 + 状态。
-矛盾的用 `> [!warning]`,两个 claim 都留 + 各自出处。
-- **<claim>** — source: <official URL> — ✅ verified / ⚠️ unconfirmed / ❌ contradicted
+<Answer-first definition, the most important finding, the current state of the discussion, and
+the practical conclusion for this reader.>
 
-## 2. 焦点实体深挖（仅当话题含焦点/歧义实体时,否则删掉本节）
-从 research-plan 消歧块确认的实体,深挖其核心事实 + 与话题的关系(同 §1 的核验纪律)。
+## 1. <Topic> 是什么
 
-## 3. X / Twitter — Top N（增长轴 · 渠道层）
-> ⚠️ 互动数据「推断·未实测」(本机无 bird)
-### #1 <作者 @handle> — <一句话定位>
-- 链接 / 作者 / 日期 / 格式(单帖|thread|长文)
-- 互动:<收藏·浏览,实测或「推断·未实测」>
-- 核心内容:<摘要>
-- **写作风格拆解**:<格言式 / 技术深度+数据 / 实操叙事 … — 这是给写稿用的弹药>
-（Top N 后接「#### 补充值得关注」表 + trending,如有）
+### 最简单的定义
+<One precise sentence, followed by a plain-language explanation.>
 
-## 4. Web / 博客 — Top N（增长轴 · 渠道层）
-（同上结构;Web 通常有实测发布日期/作者,无互动数属正常)
+### 必要消歧
+<Competing meanings or definitions. State which meaning dominates which community.>
 
-## 5. YouTube — Top N（增长轴 · 渠道层）
-> ⚠️ 观看/互动「推断·未实测」(本机无 summarize/last30days)
-（同上结构;标发布日期 + 实操/理论倾向)
+## 2. 它从哪里来，为什么现在出现
 
-## 6. 核心洞察 + 最佳实践
-跨渠道综合:N 条洞察(每条挂一两个出处) + 一份可执行的最佳实践清单。
+### 起源与提出者
+<Traceable origin with direct sources. Qualify the search boundary for "earliest" claims.>
 
-> **溯源标注纪律（plan §11.7，全报告适用）**：每个论断标 `[内部/Tier-1: 页名]` 或
-> `[外部: URL]` —— Gate 1 时内外配比一目了然；下游 writer 只许穿透引用这些**原始出处**，
-> 绝不引用本报告（防「报告引报告」自举塌缩）。
+### 触发事件与背景因素
+<Separate direct triggers from longer-term enabling conditions.>
 
-## 7. 对内容创作的启示 — 增长轴 → 排序的内容角度
-**这是两轴相乘的地方,也是 /draft 的入口。**
-### 时机窗口
-<这话题爆发/冷却到哪了 → 现在该不该写,趁哪个窗口>
-### 排序的内容角度（3-5 个,每个 = 一个内容赌注）
-#### 角度1（推荐）<标题>
-- 缺口:为什么有空间(来自竞品扫描)
-- 受欢迎度证据:哪些渠道在火 + 数据(实测/「推断」)
-- 参考写法:别人怎么写的(引 §3-5 的形式拆解) → 我们怎么改
-- 渠道 + 形式:X 长文 / 博客长文 / YouTube 脚本 …
-- 依赖:本报告哪几条 claim / 哪些候选源
-#### 角度2 … #### 角度3 …
-### 关键人物值得跟踪
-| 人物 | 角色 | 关注理由 |
-### 内容形式参考库
-长文学谁 / 视频学谁 / X 学谁(各引一个范本 + 一句为什么)
+### 关键时间线
+| 日期 | 事件 | 证据 |
+|---|---|---|
 
-## 附录:关键时间线
-| 日期 | 事件 | （把话题的演进/引爆点排成时间线,标出爆发节点）
+## 3. 核心机制：非专家也能理解的版本
+
+<Use a compact analogy only if it preserves the important boundaries.>
+
+### 三个关键认知
+<The few ideas a reader must retain to reason correctly about the topic.>
+
+## 4. 与相邻概念的关系
+
+<Compare concepts on stable dimensions: scope, responsibility, inputs/outputs, evidence, or
+failure mode. Prefer a table or layered model when it improves clarity.>
+
+## 5. 社区讨论地图
+
+### 主要定义或阵营
+<Who says what, why their definitions differ, and what evidence each side uses.>
+
+### 引爆者、解释者、实践者与批评者
+<Representative people and pieces. Include links and the role each played in the discourse.>
+
+### 争议与反例
+<The strongest disagreement, debunked claims, and unresolved questions.>
+
+## 6. 代表性来源与实践
+
+<Organize by channels that matter to this topic. Use "Top" only when comparable observed metrics
+exist; otherwise call these representative or high-signal sources.>
+
+For each item:
+- Link, author, date, and source role
+- Core contribution
+- Observed engagement, proxy signal, or `unavailable`
+- Why it matters to understanding the topic
+
+## 7. 对目标读者的实际价值
+
+### 先说结论
+<What the reader should understand, ignore for now, or act on.>
+
+### Relevant scenarios
+<Map the topic to the reader's real decisions without inventing private context.>
+
+### What not to overdo
+<Hype boundary, premature complexity, or common misuse.>
+
+## 8. 建议的下一步
+
+<A proportionate learning or experimentation path. Prefer a small first step over generic advice.>
+
+## 关键资源索引
+
+### Start here
+### Primary and official sources
+### Best independent explanations
+### Criticism and counter-evidence
+### Tools, implementations, or papers
 ```
+
+## Writing discipline
+
+- Keep citations next to the claims they support.
+- Keep verification codes and research metadata in `source-ledger.md`.
+- Label a statement as synthesis when no source states it directly.
+- Do not use channel sections as filler.
+- Do not repeat the same source in multiple lists unless it serves a distinct role.
+- Prefer a handful of deeply understood sources over a large annotated link dump.

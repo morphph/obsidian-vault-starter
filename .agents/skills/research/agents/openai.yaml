@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research"
+  short_description: "Build an evidence-backed understanding of a topic"
+  default_prompt: "Use $research to investigate this topic and produce a reader-friendly report with a separate evidence ledger."
