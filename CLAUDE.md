@@ -94,7 +94,19 @@ Principle: **CLAUDE.md declares WHAT exists. Skills and commands define HOW they
 
 When compressing context, preserve in priority order:
 1. Architecture decisions and the four-layer model (raw → wiki → drafts → CLAUDE.md)
-2. NEVER list — always re-check before acting
+2. NEVER list — these are hard invariants
 3. Which files have been modified and key changes made
 4. Current task state and open TODOs
 5. Tool outputs can be discarded — keep only pass/fail status
+
+## Working Style
+
+Keep responses focused and concise. Keep caveats short; spend the response on the answer.
+
+Delegate to a subagent only for large, genuinely independent, parallelizable work.
+Don't delegate what you can finish in a handful of tool calls, and never use a
+subagent to verify your own work.
+
+Read from an explicit path list. Never read `raw/**` or `wiki/*.md` (except
+`index.md` and `log.md`) unless the task is specifically about that content.
+Never glob into `*/references/vendor/**` — 26MB of duplicated fonts per tree.

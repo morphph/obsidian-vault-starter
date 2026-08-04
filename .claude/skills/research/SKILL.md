@@ -122,7 +122,7 @@ synthesis-time concern (step 5). Write `research/<slug>/research-plan.md`:
 **Checkpoint (balance against zero-friction):**
 - Always **write `research-plan.md`** (transparent + reproducible).
 - `standard`/`deep`: **pause and show the plan** before the expensive scan — let the user
-  eyeball the queries / fix a misread intent. This matches the owner's "做完验证再继续" habit.
+  eyeball the queries / fix a misread intent — a wrong plan wastes the whole scan.
 - `quick`: proceed without pausing.
 - If the plan contains a **消歧块** (unknown entity): **always pause to confirm** which entity
   is meant, regardless of depth — a wrong disambiguation wastes the whole scan.
